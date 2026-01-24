@@ -22,6 +22,36 @@ public class BookBlurbSupplier : MonoBehaviour
         BuildSampleData();
     }
 
+    public string[] GetAdjectives(string key)
+    {
+        return character_words[key][0];   
+    }
+
+    public string[] GetCatchphrases(string key)
+    {
+        return character_words[key][1];
+    }
+
+    public string[] GetPeople(string key)
+    {
+        return setting_words[key][0];
+    }
+
+    public string[] GetPlaces(string key)
+    {
+        return setting_words[key][1];
+    }
+
+    public string[] GetThings(string key)
+    {
+        return setting_words[key][2];
+    }
+
+    public string[] GetNames(string key)
+    {
+        return names[key];
+    }
+
     void BuildSampleData()
     // sample data for testing purposes, actual data will link to csv
     {
