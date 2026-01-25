@@ -9,14 +9,37 @@ public class BookBlurbGenerator : MonoBehaviour
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;
     
-    string sample_template = "{0} fell in love with a {1} {2}!";
+
+    void generate_sample()
+    {
+
+        var femaleNames = bookBlurbSupplier.GetNames("f");
+        int id1 = Random.Range(0, femaleNames.Count);
+        string charA = femaleNames[id1];
+
+        var people = bookBlurbSupplier.GetPeople(setting);
+        int id2 = Random.Range(0, people.Count);
+        string charB = people[id2];
+
+        var adjectives = bookBlurbSupplier.GetAdjectives(character);
+        int id5 = Random.Range(0, adjectives.Count);
+        string adj = adjectives[id5];
+
+        Debug.Log($"{charA} fell in love with {(startsVowel(adj)?"an":"a")} {adj} {charB}!");
+
+    }
+    
+    bool startsVowel(string s)
+    // returns true if the first letter of a given string is a vowel
+    {
+        return "aeiouAEIOU".IndexOf(s[0]) >= 0;
+    }
 
     void Start()
     {
-        var femaleNames = bookBlurbSupplier.GetNames("f");
-        int idx = Random.Range(0, femaleNames.Count);
-        string charA = femaleNames[idx];
-        Debug.Log(string.Format(sample_template, charA, "B", "C"));
+        for (int i = 0; i<5; i++)
+        {
+            generate_sample();
+        }
     }
-    
 }
