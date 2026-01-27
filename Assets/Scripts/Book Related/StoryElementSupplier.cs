@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class StoryElementSupplier : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class StoryElementSupplier : MonoBehaviour
     [SerializeField] string[] characterTypes;
     [SerializeField] string[] settingTypes;
 
-    [SerializeField] private Dictionary<string, string> elementBlurbs;
+    [SerializeField] private Dictionary<string, string[]> elementBlurbs;
 
 
     void Awake()
@@ -20,14 +21,15 @@ public class StoryElementSupplier : MonoBehaviour
     {
         if (storyElementCSV == null)
         {
-            Debug.LogError("Assign the CSV file, Goddamn it!");
+            UnityEngine.Debug.LogError("Assign the CSV file, Goddamn it!");
             return;
         }
 
         List<string> genres = new List<string>();
         List<string> characters = new List<string>();
         List<string> settings = new List<string>();
-        elementBlurbs = new Dictionary<string, string>();
+        // elementBlurb is the dictionary for associated words
+        elementBlurbs = new Dictionary<string, string[]>();
 
         string[] lines = storyElementCSV.text.Split('\n'); // Line Separation
 
@@ -37,7 +39,7 @@ public class StoryElementSupplier : MonoBehaviour
 
             if (string.IsNullOrEmpty(line))
             {
-                Debug.LogError("We don't take empty lines here, folks!");
+                UnityEngine.Debug.LogError("We don't take empty lines here, folks!");
                 continue;
             }
             
@@ -45,13 +47,14 @@ public class StoryElementSupplier : MonoBehaviour
 
             if (columns.Length < 3)
             {
-                Debug.LogError("Please fill all the data, seems like you are missing something? -_-");
+                UnityEngine.Debug.LogError("Please fill all the data, seems like you are missing something? -_-");
                 continue;                
             }
 
             string category = columns[0].Trim();
             string elementName = columns[1].Trim();
-            string description = columns[2].Trim();
+            string[] associatedWords = columns[2].Split('|'); 
+            UnityEngine.Debug.Log($"associatedWords? [{string.Join(", ", associatedWords)}]");
 
 
 
@@ -70,7 +73,7 @@ public class StoryElementSupplier : MonoBehaviour
 
             if (!elementBlurbs.ContainsKey(elementName)) // Filling in the text/blurb
             {
-                elementBlurbs.Add(elementName, description);
+                elementBlurbs.Add(elementName, associatedWords);
             }
 
             genreTypes = genres.ToArray();
@@ -94,7 +97,7 @@ public class StoryElementSupplier : MonoBehaviour
         return settingTypes;
     }
 
-    public Dictionary<string, string> GetElementBlurbs()
+    public Dictionary<string, string[]> GetElementBlurbs()
     {
         return elementBlurbs;
     }
