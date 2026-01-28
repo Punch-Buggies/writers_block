@@ -4,13 +4,42 @@ using TMPro;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-public class Book : MonoBehaviour
+/*
+Class for creating Books.
+This is data only.
+Info can be read and passed to UI objects.
+*/
+
+[System.Serializable]
+public class Book
 {
-    [SerializeField] string genre;
-    [SerializeField] string character;
-    [SerializeField] string setting;
-    [SerializeField] string copiesSold;
-    [SerializeField] string moneyMade;
-    [Serializefield] Boolean bestSelling;
-    
+    public string genre;
+    public string character;
+    public string setting;
+
+
+    public int copiesSold;
+    public int moneyMade;
+    public bool bestSelling;
+    public string excerpt;
+
+    // initialize
+    public Book(string genre, string character, string setting, int copiesSold, int moneyMade, bool bestSelling)
+    {
+        this.genre = genre;
+        this.character = character;
+        this.setting = setting;
+        this.copiesSold = copiesSold;
+        this.moneyMade = moneyMade;
+        this.bestSelling = bestSelling;
+
+        this.excerpt = generateExcerpt();
+        UnityEngine.Debug.Log("Excerpt: " + this.excerpt);
+    }
+
+    public string generateExcerpt()
+    // generates the excerpt. genre, character and setting are all accessible because this func is in the book class
+    {
+        return $"A {genre} story about a {character} in {setting}";
+    }
 }
