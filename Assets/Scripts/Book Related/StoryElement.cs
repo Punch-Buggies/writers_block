@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StoryElement : MonoBehaviour
 {
-    [SerializeField] string storyElement;
+    [SerializeField] string storyElement; // this is the type (genre, char, setting)
 
-    [SerializeField] string elementType;
+    [SerializeField] string elementType; // this is value e.g. action or fantasy
 
     TextMeshProUGUI elementTypeText;
 
