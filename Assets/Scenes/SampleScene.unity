@@ -1139,6 +1139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a9b8c281f9b524c9b521dcd80557bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoryElementSupplier
+  storyElementCSV: {fileID: 4900000, guid: 4d54b2b55e19e4b41ae7a3b9b933fb0e, type: 3}
   genreTypes:
   - Action
   - Thriller
