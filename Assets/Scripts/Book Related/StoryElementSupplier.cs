@@ -16,6 +16,25 @@ public class StoryElementSupplier : MonoBehaviour
         LoadDataFromCSV();
     }
 
+
+    public string[] GetGenreTypes()
+    {
+        return genreTypes;
+    }
+    public string[] GetCharacterTypes()
+    {
+        return characterTypes;
+    }
+    public string[] GetSettingTypes()
+    {
+        return settingTypes;
+    }
+
+    public Dictionary<string, string> GetElementBlurbs()
+    {
+        return elementBlurbs;
+    }
+
     void LoadDataFromCSV()
     {
         if (storyElementCSV == null)
@@ -78,24 +97,5 @@ public class StoryElementSupplier : MonoBehaviour
             settingTypes = settings.ToArray();
         }
 
-    }
-
-
-    public string[] GetGenreTypes()
-    {
-        return genreTypes;
-    }
-    public string[] GetCharacterTypes()
-    {
-        return characterTypes;
-    }
-    public string[] GetSettingTypes()
-    {
-        return settingTypes;
-    }
-
-    public Dictionary<string, string> GetElementBlurbs()
-    {
-        return elementBlurbs;
     }
 }
