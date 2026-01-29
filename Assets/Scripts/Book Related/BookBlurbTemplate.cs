@@ -19,10 +19,10 @@ public class BookBlurbTemplate
 public enum WordType
 {
     Adjective,
-    Verb,
+    Catchphrase,
     Person,
     Place,
-    Object,
+    Thing,
     Name
 }
 

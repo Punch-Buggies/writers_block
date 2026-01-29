@@ -9,6 +9,7 @@ public class BookBlurbGenerator : MonoBehaviour
     [SerializeField] string setting;
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
+
     
 
     void generate_sample()
@@ -17,32 +18,62 @@ public class BookBlurbGenerator : MonoBehaviour
         var possible_templates = bookBlurbSupplier.GetTemplates(genre);
         BookBlurbTemplate sample_template = possible_templates[Random.Range(0, possible_templates.Count)];
 
-        Debug.Log(sample_template.baseText);
+        // map slotId -> chosen word
+        Dictionary<string, string> chosenBySlot = new Dictionary<string, string>();
 
         // replace variables
         int n = sample_template.slots.Count;
-        chosen_words = List<string>;
-        foreach (int i in n)
+        List<string> chosen_words = new List<string>();
+        foreach (var slot in sample_template.slots)
         {
-            chosen_words.Add();
+            if (!chosenBySlot.ContainsKey(slot.slotId))//don't overwrite already chosen words
+            {
+                string word = "";
+                switch (slot.type)
+                {
+                    case WordType.Adjective:
+                        word = RandomFrom(bookBlurbSupplier.GetAdjectives(character));
+                        break;
+                    case WordType.Catchphrase:
+                        word = RandomFrom(bookBlurbSupplier.GetCatchphrases(character));
+                        break;
+                    case WordType.Name:
+                        word = RandomFrom(bookBlurbSupplier.GetNames(RandomFrom(new List<string> {"f","m","nb"})));
+                        break;
+                    case WordType.Person:
+                        word = RandomFrom(bookBlurbSupplier.GetPeople(setting));
+                        break;
+                    case WordType.Place:
+                        word = RandomFrom(bookBlurbSupplier.GetPlaces(setting));
+                        break;
+                    case WordType.Thing:
+                        word = RandomFrom(bookBlurbSupplier.GetThings(setting));
+                        break;
+                    default:
+                        throw new System.ArgumentOutOfRangeException(nameof(slot.type), slot.type, null);
+                }
+
+                chosenBySlot[slot.slotId] = word;
+            }
+        }
+        
+
+        // replace placeholders in the template
+        string finalBlurb = sample_template.baseText;
+        foreach (var kvp in chosenBySlot)
+        {
+            finalBlurb = finalBlurb.Replace("{" + kvp.Key + "}", kvp.Value);
         }
 
-        var femaleNames = bookBlurbSupplier.GetNames("f");
-        int id1 = Random.Range(0, femaleNames.Count);
-        string charA = femaleNames[id1];
-
-        var people = bookBlurbSupplier.GetPeople(setting);
-        int id2 = Random.Range(0, people.Count);
-        string charB = people[id2];
-
-        var adjectives = bookBlurbSupplier.GetAdjectives(character);
-        int id5 = Random.Range(0, adjectives.Count);
-        string adj = adjectives[id5];
-
-        // Debug.Log($"{charA} fell in love with {(startsVowel(adj)?"an":"a")} {adj} {charB}!");
+        Debug.Log(finalBlurb);
 
     }
     
+    string RandomFrom(List<string> list)
+    // returns a random item from the provided list
+    {
+        return list[Random.Range(0, list.Count)];
+    }
     bool startsVowel(string s)
     // returns true if the first letter of a given string is a vowel
     {
