@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 
 public class BookBlurbGenerator : MonoBehaviour
 {
@@ -12,7 +12,20 @@ public class BookBlurbGenerator : MonoBehaviour
     
 
     void generate_sample()
-    {
+    {   
+        // choose template
+        var possible_templates = bookBlurbSupplier.GetTemplates(genre);
+        BookBlurbTemplate sample_template = possible_templates[Random.Range(0, possible_templates.Count)];
+
+        Debug.Log(sample_template.baseText);
+
+        // replace variables
+        int n = sample_template.slots.Count;
+        chosen_words = List<string>;
+        foreach (int i in n)
+        {
+            chosen_words.Add();
+        }
 
         var femaleNames = bookBlurbSupplier.GetNames("f");
         int id1 = Random.Range(0, femaleNames.Count);
@@ -26,7 +39,7 @@ public class BookBlurbGenerator : MonoBehaviour
         int id5 = Random.Range(0, adjectives.Count);
         string adj = adjectives[id5];
 
-        Debug.Log($"{charA} fell in love with {(startsVowel(adj)?"an":"a")} {adj} {charB}!");
+        // Debug.Log($"{charA} fell in love with {(startsVowel(adj)?"an":"a")} {adj} {charB}!");
 
     }
     
