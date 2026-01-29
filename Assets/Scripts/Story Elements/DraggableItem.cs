@@ -22,7 +22,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false; 
-        Debug.Log("Begin Drag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -39,8 +38,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             transform.position = initialLocation.position;
             canvasGroup.blocksRaycasts = true; 
         }
-
-        Debug.Log("End Drag");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -61,8 +58,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnSuccessfulDrop(Vector3 dropPosition)
     {
-         wasPlacedSuccessfully = true;
-         transform.position = dropPosition;
+        wasPlacedSuccessfully = true;
+        transform.position = dropPosition;
     }
 
     void Start()

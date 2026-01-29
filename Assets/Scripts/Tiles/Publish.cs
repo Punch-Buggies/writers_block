@@ -1,57 +1,67 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Publish : MonoBehaviour, IDropHandler
+public class Publish : MonoBehaviour
 {
-    GameObject publishedElement;
+    [SerializeField] int publishCounter = 0;
 
-    [SerializeField] GameObject copiesSoldText;
+    Dictionary<string, string> bookStoryElementDict;
+
+    List<GameObject> publishedTiles;
 
 
-    float timer = 5f;
-
-    bool startCopiesSoldTimer = false;
-    public void OnDrop(PointerEventData eventData)
+    void Awake()
     {
-        publishedElement = eventData.pointerDrag;
-        DraggableItem draggable = publishedElement.GetComponent<DraggableItem>();
-
-        if (draggable != null)
-        {
-            draggable.OnSuccessfulDrop(transform.position);
-            copiesSoldText.SetActive(true!);
-            startCopiesSoldTimer = true;
-        }
+        bookStoryElementDict = new Dictionary<string, string>();
+        publishedTiles = new List<GameObject>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        copiesSoldText.SetActive(false);
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (startCopiesSoldTimer)
+        if(publishCounter >= 3)
         {
-            copiesSoldTimer();
+            Debug.Log(bookStoryElementDict.Count);
+            FullPublish();
+            Debug.Log(bookStoryElementDict.Count);
         }
-        
     }
 
-    void copiesSoldTimer()
+    void FullPublish()
     {
-        float iniTimer = timer;
-        timer -= Time.deltaTime;
+            Debug.Log("Publish time!");
 
-        if(timer <= 0f)
-        {
-            timer = iniTimer;
-            copiesSoldText.SetActive(false);
-            startCopiesSoldTimer = false;
-        }
+            Debug.Log("Published the book with: ");
+            foreach(string key in bookStoryElementDict.Keys)
+            {
+                Debug.Log(key  + " and " + bookStoryElementDict[key]);
+            }
+
+            foreach(GameObject publishedTile in publishedTiles)
+            {
+                Destroy(publishedTile);
+            }
+
+            bookStoryElementDict.Clear();
+            publishedTiles.Clear();
+            publishCounter = 0;       
     }
+
+    public void PublishStoryElement(string storyElement, string elementType)
+    {
+        publishCounter += 1;
+        Debug.Log("Published Story Element: " +  storyElement + " with " + elementType);
+        bookStoryElementDict.Add(storyElement, elementType);
+    }
+
+    public Dictionary<string, string> GetBookStoryElementDict()
+    {
+        return bookStoryElementDict;
+    }
+
+    public void AddToPublishedTiles(GameObject publishedTile)
+    {
+        publishedTiles.Add(publishedTile);
+    }
+
 }
