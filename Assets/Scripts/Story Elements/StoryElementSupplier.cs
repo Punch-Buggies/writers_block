@@ -54,7 +54,7 @@ public class StoryElementSupplier : MonoBehaviour
             string category = columns[0].Trim();
             string elementName = columns[1].Trim();
             string[] associatedWords = columns[2].Split('|'); 
-            UnityEngine.Debug.Log($"associatedWords? [{string.Join(", ", associatedWords)}]");
+            //UnityEngine.Debug.Log($"associatedWords? [{string.Join(", ", associatedWords)}]");
 
 
 

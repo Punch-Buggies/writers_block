@@ -8,10 +8,12 @@ public class Tile : MonoBehaviour, IDropHandler
     [SerializeField] GameObject progressBar;
     [SerializeField] GameObject publishableTile;
 
+    [SerializeField] string tileType;
+
     Slider progressBarSlider;
     StoryElementSupplier storyElementSupplier;
     float timer = 0f;
-    float timerLimit = 10f;
+    [SerializeField] float timerLimit = 2f;
 
     bool tileOccupied = false;
 
@@ -27,18 +29,20 @@ public class Tile : MonoBehaviour, IDropHandler
     }
     
     public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("Haha!!!");      
+    { 
         spawnedElement = eventData.pointerDrag;
         DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
         StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
 
         if (tileOccupied == false && storyElement != null)
         {
-             progressBar.SetActive(true);
+            progressBar.SetActive(true);
             if (draggable != null)
             {
+                // StoryElement Side of things
                 draggable.OnSuccessfulDrop(transform.position);
+                storyElement.OnSuccessfulDrop();
+
                 tileOccupied = true;
                 startCooking = true;
             }         
@@ -62,13 +66,23 @@ public class Tile : MonoBehaviour, IDropHandler
         }
         else
         {
-            Destroy(spawnedElement );
+            // Before we destroy the storyElement, we get the info out of it
+            string storyElement = spawnedElement.GetComponent<StoryElement>().GetStoryElement();
+            string elementType = spawnedElement.GetComponent<StoryElement>().GetElementType();
+
+            Destroy(spawnedElement);
             GameObject spawnedTile = Instantiate(
                 publishableTile,
                 transform.position,
                 Quaternion.identity,
-                transform.parent // Set as child of the parent GameObject
+                transform // Set as child of the parent GameObject
             );
+
+            // After Spawning the Publishable Tile, we put the info into it
+            spawnedTile.GetComponent<PublishableTile>().SetStoryElement(storyElement);
+            spawnedTile.GetComponent<PublishableTile>().SetElementType(elementType);
+
+
             progressBar.SetActive(false);
             timer = 0f;
 
@@ -81,6 +95,6 @@ public class Tile : MonoBehaviour, IDropHandler
                 tileOccupied = false;
             }
         }
-        Debug.Log(timer);       
+        // Debug.Log(timer);
     }
 }

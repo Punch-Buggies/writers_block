@@ -11,7 +11,7 @@ public class Bookshelf : MonoBehaviour
 {
     public List<Book> publishedBooks = new List<Book>();
 
-    public void addBook(Books book)
+    public void addBook(Book book)
     {
         publishedBooks.Add(book);
     }
