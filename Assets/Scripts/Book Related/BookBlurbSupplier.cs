@@ -54,6 +54,29 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("place1", WordType.Place),
                 },
                 "Romance"
+            ),
+            new BookBlurbTemplate(
+                "Holding the {thing1} between his teeth in a {adjective1} bite, paying careful attention to the {thing2}, {name1}’s hands were now free to wander down his lap where he quickly got to work unzipping himself.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("thing1", WordType.Thing),
+                    new TemplateSlot("adjective1", WordType.Adjective),
+                    new TemplateSlot("thing2", WordType.Thing),
+                    new TemplateSlot("name1", WordType.Name)
+                },
+                "Romance"
+            ),
+            new BookBlurbTemplate(
+                "{name1} surged forward, catching {name2}'s lips in a {adjective1} kiss. The {person1}'s lips parted formed a surprised 'o'. {name1} slid their tongue forward, watching {name2}'s eyes curiously.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("name1", WordType.Name),
+                    new TemplateSlot("name2", WordType.Name),
+                    new TemplateSlot("adjective1", WordType.Adjective),
+                    new TemplateSlot("person1", WordType.Person)
+            
+                },
+                "Romance"
             )
         });
 
