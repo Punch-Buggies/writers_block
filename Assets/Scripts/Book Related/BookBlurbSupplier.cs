@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
 public class BookBlurbSupplier : MonoBehaviour
-// handles associated word dictionaries used to generate blurbs 
+// handles associated word dictionaries and templates used to generate blurbs 
 // dictionary structure:
 //      setting_words = {key:storyelement = [[people], [places], [things]]}
 //      character_words = {key:storyelement = [[adjectives], [catchphrases]]}
@@ -11,6 +12,7 @@ public class BookBlurbSupplier : MonoBehaviour
     Dictionary<string, List<List<string>>> setting_words;
     Dictionary<string, List<List<string>>> character_words;
     Dictionary<string, List<string>> names;
+    List<BookBlurbTemplate> templates;
 
     void Awake()
     // initialize dictionaries
@@ -19,9 +21,10 @@ public class BookBlurbSupplier : MonoBehaviour
         character_words = new Dictionary<string, List<List<string>>>();
         names = new Dictionary<string, List<string>>();
 
-        BuildSampleData();
+        BuildSampleData();//replace with csv retrieval
     }
 
+    // getters
     public List<string> GetAdjectives(string key)   => character_words[key][0];
     public List<string> GetCatchphrases(string key) => character_words[key][1];
 
@@ -33,7 +36,19 @@ public class BookBlurbSupplier : MonoBehaviour
 
     void BuildSampleData()
     // sample data for testing purposes, actual data will link to csv
-    {
+    {   
+        templates.Add(new BookBlurbTemplate(
+        "{name1} kissed the {adjective1} {person1} in the {place1}. But, the {person1} was actually a {person2}!",
+        new List<TemplateSlot>
+        {
+            new TemplateSlot("name1", WordType.Name),
+            new TemplateSlot("adjective1", WordType.Adjective),
+            new TemplateSlot("person1", WordType.Person),
+            new TemplateSlot("person2", WordType.Person),
+            new TemplateSlot("place1", WordType.Place),
+        }));
+
+
         setting_words.Add("Spaceship", new List<List<string>>
         {
             new List<string> { "alien", "captain", "stormtrooper" },

@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class BookBlurbGenerator : MonoBehaviour
 {
+    // genre, character, & setting will come from published book
     [SerializeField] string genre;
     [SerializeField] string character;
     [SerializeField] string setting;
 
-    [SerializeField] BookBlurbSupplier bookBlurbSupplier;
+    [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
     
 
     void generate_sample()
