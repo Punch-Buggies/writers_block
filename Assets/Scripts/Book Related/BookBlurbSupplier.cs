@@ -8,11 +8,12 @@ public class BookBlurbSupplier : MonoBehaviour
 //      setting_words = {key:storyelement = [[people], [places], [things]]}
 //      character_words = {key:storyelement = [[adjectives], [catchphrases]]}
 //      names = {key:gender = [names]}
+//      templates = {key:genre = [Template objects (see BookBlurbTemplate)]}
 {
     Dictionary<string, List<List<string>>> setting_words;
     Dictionary<string, List<List<string>>> character_words;
     Dictionary<string, List<string>> names;
-    List<BookBlurbTemplate> templates;
+    Dictionary<string, List<BookBlurbTemplate>> templates;
 
     void Awake()
     // initialize dictionaries
@@ -34,10 +35,12 @@ public class BookBlurbSupplier : MonoBehaviour
 
     public List<string> GetNames(string key) => names[key];
 
+    public List<string> GetTemplates(string key) => templates[key];
+
     void BuildSampleData()
     // sample data for testing purposes, actual data will link to csv
     {   
-        templates.Add(new BookBlurbTemplate(
+        templates.Add("Romance",new BookBlurbTemplate(
         "{name1} kissed the {adjective1} {person1} in the {place1}. But, the {person1} was actually a {person2}!",
         new List<TemplateSlot>
         {
@@ -46,7 +49,7 @@ public class BookBlurbSupplier : MonoBehaviour
             new TemplateSlot("person1", WordType.Person),
             new TemplateSlot("person2", WordType.Person),
             new TemplateSlot("place1", WordType.Place),
-        }));
+        }, "Romance"));
 
 
         setting_words.Add("Spaceship", new List<List<string>>

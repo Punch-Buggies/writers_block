@@ -6,10 +6,13 @@ public class BookBlurbTemplate
     public string baseText;
     public List<TemplateSlot> slots;
 
-    public BookBlurbTemplate(string baseText, List<TemplateSlot> slots)
+    public string genre;
+
+    public BookBlurbTemplate(string baseText, List<TemplateSlot> slots, string genre)
     {
         this.baseText = baseText;
         this.slots = slots;
+        this.genre = genre;
     }
 }
 
