@@ -1,4 +1,7 @@
+using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThoughtBubbleHandler : MonoBehaviour
 {
@@ -63,6 +66,12 @@ public class ThoughtBubbleHandler : MonoBehaviour
             Quaternion.identity, 
             transform // Set as child of this GameObject
         );
+
+        UnityEngine.Color c = UnityEngine.Color.blue;
+        spawnedElement.GetComponent <Image>().color = c;
+        // actual image is whats it called in uniy editor whatevrr man'
+        spawnedElement.GetComponentsInChildren<Image>().color = c;
+;
         
 
         // Filling up the data for both the scripts
