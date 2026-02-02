@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ThoughtBubbleHandler : MonoBehaviour
 {
-    [SerializeField] Transform[] elementSpawnLocations;
+    [SerializeField] GameObject[] elementSpawnLocations;
     [SerializeField] GameObject storyElementPrefab;
 
     [SerializeField] string storyElement;
@@ -14,44 +14,71 @@ public class ThoughtBubbleHandler : MonoBehaviour
     void Awake()
     {
         storyElementSupplier = FindAnyObjectByType<StoryElementSupplier>();
-        GetLocationTransforms();
-        GetStoryElements();   
+        GetStoryElements();
+
+        foreach(GameObject loc in elementSpawnLocations)
+        {
+            // Get the spawn location script
+            SpawnLocation spawnLocation = loc.GetComponent<SpawnLocation>();
+
+            // Get the transform
+            Transform elementSpawnTransform = spawnLocation.GetTransform();
+
+            // Spawn a story element there
+            SpawnStoryElement(elementSpawnTransform, loc);
+
+            // Set it to occupied
+            spawnLocation.SetOccupation(true);
+
+        }    
     }
 
-    void Start()
+    void Update()
     {
-        SpawnStoryElements();
-    }
+        foreach(GameObject loc in elementSpawnLocations)
+        {
+            SpawnLocation spawnLocation = loc.GetComponent<SpawnLocation>();
+            if (spawnLocation.GetOccupation() == false)
+            {
+                // Get the transform
+                Transform elementSpawnTransform = spawnLocation.GetTransform();
 
-    void SpawnStoryElements()
+                // Spawn a story element there
+                SpawnStoryElement(elementSpawnTransform, loc);
+
+                // Set it to occupied
+                spawnLocation.SetOccupation(true);          
+            }            
+        }   
+    } 
+
+    void SpawnStoryElement(Transform elementSpawnTransform, GameObject parent)
     {
         int randomElementNumber = Random.Range(0, elements.Length);
         int spawnCount = Mathf.Min(elements.Length, elementSpawnLocations.Length); // Make sure we don't spawn more elements than we have locations
         
-        for (int i = 0; i < spawnCount; i++)
-        {
-            randomElementNumber = Random.Range(0, elements.Length);
-            GameObject spawnedElement = Instantiate(
-                storyElementPrefab, 
-                elementSpawnLocations[i].position, 
-                Quaternion.identity, 
-                transform // Set as child of this GameObject
-            );
-            
+        GameObject spawnedElement = Instantiate(
+            storyElementPrefab, 
+            elementSpawnTransform.position, 
+            Quaternion.identity, 
+            transform // Set as child of this GameObject
+        );
+        
 
-            // Filling up the data for both the scripts
-            StoryElement storyElementComponent = spawnedElement.GetComponent<StoryElement>();
-            if (storyElementComponent != null)
-            {
-                storyElementComponent.SetStoryElement(storyElement);
-                storyElementComponent.SetElementType(elements[randomElementNumber]);
-            }
-            
-            DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
-            if (draggable != null)
-            {
-                draggable.SetInitialLocation(elementSpawnLocations[i]);
-            }
+        // Filling up the data for both the scripts
+        StoryElement storyElementComponent = spawnedElement.GetComponent<StoryElement>();
+        if (storyElementComponent != null)
+        {
+            storyElementComponent.SetStoryElement(storyElement);
+            storyElementComponent.SetElementType(elements[randomElementNumber]);
+            storyElementComponent.SetSpawnParent(parent);
+
+        }
+        
+        DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
+        if (draggable != null)
+        {
+            draggable.SetInitialLocation(elementSpawnTransform);
         }
     }
 
@@ -72,32 +99,5 @@ public class ThoughtBubbleHandler : MonoBehaviour
                 Debug.Log("No Story Element Defined");
                 break;
         }       
-    }
-
-    void GetLocationTransforms() // Gets all the Spawn Locations
-    {
-        int childCount = transform.childCount;
-        
-        int locationCount = 0;
-        for (int i = 0; i < childCount; i++)
-        {
-            if (transform.GetChild(i).name.StartsWith("Location"))
-            {
-                locationCount++;
-            }
-        }
-        
-        elementSpawnLocations = new Transform[locationCount];
-        
-        int index = 0;
-        for (int i = 0; i < childCount; i++)
-        {
-            Transform child = transform.GetChild(i);
-            if (child.name.StartsWith("Location"))
-            {
-                elementSpawnLocations[index] = child;
-                index++;
-            }
-        }        
     }
 }
