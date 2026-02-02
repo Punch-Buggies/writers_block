@@ -60,8 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ba9ab8baaf2c640875709f17d41f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
-  BGImage: {fileID: 5919123509137929754}
   initialLocation: {fileID: 0}
+  scaleFactor: 2
+  scaleTime: 0.2
 --- !u!1 &2359432530253464406
 GameObject:
   m_ObjectHideFlags: 0
