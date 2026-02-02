@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,6 +13,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField] float scaleTime = 0.5f;
 
     Vector2 initialScale;
+    Vector2 finalScale;
 
     void Awake()
     {
@@ -24,6 +23,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
         initialScale = transform.localScale;
+        finalScale = transform.localScale * scaleFactor;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -56,9 +56,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         // actualImageTransform.localScale = scaled;
 
-        transform.DOScale(new Vector3(transform.localScale.x * scaleFactor, 
-        transform.localScale.y * scaleFactor, 
-        transform.localScale.z), scaleTime).SetEase(Ease.OutBounce);
+        transform.DOScale(finalScale, scaleTime).SetEase(Ease.OutBounce);
     }
 
     public void OnPointerExit(PointerEventData eventData)
