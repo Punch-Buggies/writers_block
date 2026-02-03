@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+// using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -21,9 +22,9 @@ public class Publish : MonoBehaviour
     {
         if(publishCounter >= 3)
         {
-            Debug.Log(bookStoryElementDict.Count);
+            Debug.Log("element count before full pub" + bookStoryElementDict.Count);
             FullPublish();
-            Debug.Log(bookStoryElementDict.Count);
+            Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
     }
 
@@ -44,7 +45,14 @@ public class Publish : MonoBehaviour
 
             bookStoryElementDict.Clear();
             publishedTiles.Clear();
-            publishCounter = 0;       
+            publishCounter = 0; // checking how many categories of elements we have (genre, char, setting)
+
+
+            // increasing money because we sold something
+            UnityEngine.Debug.Log($"Before: ${MoneyManager.Instance.currentMoney}");
+            MoneyManager.Instance.addMoney(200);
+            UnityEngine.Debug.Log($"Published! ${MoneyManager.Instance.currentMoney}");
+
     }
 
     public void PublishStoryElement(string storyElement, string elementType)
