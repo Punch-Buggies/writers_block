@@ -1,5 +1,4 @@
 using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,7 +69,7 @@ public class ThoughtBubbleHandler : MonoBehaviour
         UnityEngine.Color c = UnityEngine.Color.blue;
         spawnedElement.GetComponent <Image>().color = c;
         // actual image is whats it called in uniy editor whatevrr man'
-        spawnedElement.GetComponentsInChildren<Image>().color = c;
+        // spawnedElement.GetComponentsInChildren<Image>().color = c;
 ;
         
 
