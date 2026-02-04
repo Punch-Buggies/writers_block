@@ -29,6 +29,12 @@ public enum WordType
     Pronoun, // she/he/they
     IndefiniteArticle //    a/an
 }
+public enum Perspective
+{
+    firstPerson,
+    secondPerson,
+    thirdPerson
+}
 
 [System.Serializable]
 public class TemplateSlot
@@ -36,8 +42,9 @@ public class TemplateSlot
     public string slotId;   // character1, character2, etc
     public WordType type;   // Person, Place, etc
     public string parentId; //for dependant words only
+    public Perspective perspective; //for gendered pronouns only
 
-    public TemplateSlot(string id, WordType type, string parentId=null)
+    public TemplateSlot(string id, WordType type, string parentId=null, Perspective perspective=Perspective.thirdPerson)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -46,6 +53,7 @@ public class TemplateSlot
         }
         slotId = id;
         this.type = type;
+        this.perspective = perspective;
         // Dependent word types must reference a parent slot
         if (type == WordType.Pronoun || type == WordType.IndefiniteArticle)
         {

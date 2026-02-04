@@ -48,7 +48,7 @@ public class BookBlurbSupplier : MonoBehaviour
                 new List<TemplateSlot>
                 {   
                     new TemplateSlot("person1", WordType.Person),
-                    new TemplateSlot("pronoun", WordType.Pronoun, parentId:"character"),
+                    new TemplateSlot("pronoun", WordType.Pronoun, parentId:"character", perspective:Perspective.firstPerson),
                     new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"person1")
                 },
                 "Test"

@@ -97,6 +97,29 @@ public class BookBlurbGenerator : MonoBehaviour
                 case WordType.IndefiniteArticle:
                     word = new Word(chosenBySlot[slot.parentId].startsVowel?"an":"a");
                     break;
+                case WordType.Pronoun:
+                    Gender g = chosenBySlot[slot.parentId].gender;
+                    string p = "they";
+                    if (g == Gender.feminine)
+                    {
+                        if (slot.perspective == Perspective.firstPerson){p="she";}
+                        if (slot.perspective == Perspective.secondPerson){p="her";}
+                        if (slot.perspective == Perspective.thirdPerson){p="hers";}
+                    }
+                    if (g == Gender.masculine)
+                    {
+                        if (slot.perspective == Perspective.firstPerson){p="he";}
+                        if (slot.perspective == Perspective.secondPerson){p="him";}
+                        if (slot.perspective == Perspective.thirdPerson){p="his";}
+                    }
+                    if (g == Gender.nonbinary)
+                    {
+                        if (slot.perspective == Perspective.firstPerson){p="they";}
+                        if (slot.perspective == Perspective.secondPerson){p="them";}
+                        if (slot.perspective == Perspective.thirdPerson){p="theirs";} 
+                    }
+                    word = new Word(p, g);
+                    break;
             }
             chosenBySlot[slot.slotId] = word;
         }
