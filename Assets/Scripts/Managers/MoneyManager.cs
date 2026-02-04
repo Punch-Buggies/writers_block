@@ -1,11 +1,19 @@
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
+/// <summary>
+/// This script is attached to the MoneyUI gameObject btw
+/// </summary>
 public class MoneyManager : MonoBehaviour
 {
     // only moneymanager script can set moneymanager
     public static MoneyManager Instance { get; private set;}
+
+    public TextMeshProUGUI moneyUI;
 
     [SerializeField] private int startingAmount = 0;
 
@@ -32,11 +40,14 @@ public class MoneyManager : MonoBehaviour
         }
 
         Debug.Log("I have $" + currentMoney);
+        moneyUI.text = $"${currentMoney}";
     }
 
     public void addMoney(int amount)
     {
         currentMoney += amount;
+        moneyUI.text = $"${currentMoney}";
+
     }
 
 
