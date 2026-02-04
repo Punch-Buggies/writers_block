@@ -23,7 +23,11 @@ public enum WordType
     Person,
     Place,
     Thing,
-    Name
+    Name,
+
+    //for grammar words (pronouns, a/an, etc) : slotId is of the independant word this word depends on
+    Pronoun, // she/he/they
+    IndefiniteArticle //    a/an
 }
 
 [System.Serializable]
@@ -31,11 +35,33 @@ public class TemplateSlot
 {
     public string slotId;   // character1, character2, etc
     public WordType type;   // Person, Place, etc
+    public string parentId; //for dependant words only
 
-    public TemplateSlot(string id, WordType type)
+    public TemplateSlot(string id, WordType type, string parentId=null)
     {
+        if (string.IsNullOrEmpty(id))
+        {
+            
+            throw new System.ArgumentException("slotId cannot be null or empty");
+        }
         slotId = id;
         this.type = type;
+        // Dependent word types must reference a parent slot
+        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle)
+        {
+             if (string.IsNullOrEmpty(parentId))
+            {
+                throw new System.ArgumentException(
+                    $"Dependent slot '{id}' must define a parentId."
+                );
+            }
+            this.parentId = parentId;
+        }
+        else
+        {
+            // Independent words reference themselves
+            this.parentId = id;
+        }
     }
 }
 

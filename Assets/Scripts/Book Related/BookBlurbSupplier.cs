@@ -41,6 +41,24 @@ public class BookBlurbSupplier : MonoBehaviour
     void BuildSampleData()
     // sample data for testing
     {
+        templates.Add("Test", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "{pronoun} saw {a} {person1}",
+                new List<TemplateSlot>
+                {   
+                    new TemplateSlot("person1", WordType.Person),
+                    new TemplateSlot("pronoun", WordType.Pronoun, parentId:"character"),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"person1")
+                },
+                "Test"
+            ),
+            new BookBlurbTemplate(
+                "the genre is {genre}",
+                new List<TemplateSlot>{},
+                "Test"
+            )
+        });
         templates.Add("Romance", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
@@ -77,7 +95,7 @@ public class BookBlurbSupplier : MonoBehaviour
             
                 },
                 "Romance"
-            )
+            ),
         });
 
         setting_words.Add("Spaceship", new SettingWordSet

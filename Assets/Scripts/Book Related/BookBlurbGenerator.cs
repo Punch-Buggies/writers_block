@@ -21,13 +21,18 @@ public class BookBlurbGenerator : MonoBehaviour
         // map slotId -> chosen word
         Dictionary<string, string> chosenBySlot = new Dictionary<string, string>();
 
+        //include genre, setting, and character as words
+        chosenBySlot["character"] = character;
+        chosenBySlot["genre"] = genre;
+        chosenBySlot["setting"] = setting;
+
         // replace variables
-        int n = sample_template.slots.Count;
-        List<string> chosen_words = new List<string>();
+        List<TemplateSlot> dependants = new List<TemplateSlot>{};
         foreach (var slot in sample_template.slots)
         {
             if (!chosenBySlot.ContainsKey(slot.slotId))//don't overwrite already chosen words
-            {
+            { 
+                bool is_dependant = false;
                 string word = "";
                 switch (slot.type)
                 {
@@ -49,15 +54,37 @@ public class BookBlurbGenerator : MonoBehaviour
                     case WordType.Thing:
                         word = RandomFrom(bookBlurbSupplier.GetThings(setting));
                         break;
+                    case WordType.Pronoun:
+                        is_dependant = true;
+                        break;
+                    case WordType.IndefiniteArticle:
+                        is_dependant = true;
+                        break;
                     default:
                         throw new System.ArgumentOutOfRangeException(nameof(slot.type), slot.type, null);
                 }
-
-                chosenBySlot[slot.slotId] = word;
+                if (is_dependant)
+                {
+                    dependants.Add(slot);
+                }
+                else
+                {
+                   chosenBySlot[slot.slotId] = word; 
+                }
+                
             }
         }
         
-
+        //handle dependants
+        foreach (var slot in dependants)
+        {
+            if (!chosenBySlot.ContainsKey(slot.parentId))
+            {
+                throw new System.Exception($"Parent slot '{slot.parentId}' not resolved.");
+            }
+                
+            chosenBySlot[slot.slotId] = chosenBySlot[slot.parentId];
+        }
         // replace placeholders in the template
         string finalBlurb = sample_template.baseText;
         foreach (var kvp in chosenBySlot)
