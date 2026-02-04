@@ -26,7 +26,7 @@ public class BookBlurbGenerator : MonoBehaviour
         chosenBySlot["genre"] = genre;
         chosenBySlot["setting"] = setting;
 
-        // replace variables
+        // replace independant variables
         List<TemplateSlot> dependants = new List<TemplateSlot>{};
         foreach (var slot in sample_template.slots)
         {
@@ -101,11 +101,7 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         return list[Random.Range(0, list.Count)];
     }
-    bool startsVowel(string s)
-    // returns true if the first letter of a given string is a vowel
-    {
-        return "aeiouAEIOU".IndexOf(s[0]) >= 0;
-    }
+
 
     void Start()
     {
@@ -115,3 +111,30 @@ public class BookBlurbGenerator : MonoBehaviour
         }
     }
 }
+
+public enum Gender
+{
+    feminine,
+    masculine,
+    nonbinary
+}
+public class Word
+{
+    public string word_s;
+    public Gender gender;
+    public bool startsVowel;
+
+    public Word(string word_s, Gender gender = Gender.nonbinary)
+    {
+        this.word_s = word_s;
+        this.gender = gender;
+        this.startsVowel = check_starts_vowel(word_s);
+    }
+
+    bool check_starts_vowel(string s)
+    // returns true if the first letter of a given string is a vowel
+    {
+        return "aeiouAEIOU".IndexOf(s[0]) >= 0;
+    }
+}
+
