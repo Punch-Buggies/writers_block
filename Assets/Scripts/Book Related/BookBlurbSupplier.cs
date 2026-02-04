@@ -52,15 +52,8 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"person1")
                 },
                 "Test"
-            ),
-            new BookBlurbTemplate(
-                "the random name is {r_name}",
-                new List<TemplateSlot>
-                {
-                    new TemplateSlot("r_name", WordType.Name)
-                },
-                "Test"
             )
+            
         });
         templates.Add("Romance", new List<BookBlurbTemplate>
         {
@@ -110,7 +103,7 @@ public class BookBlurbSupplier : MonoBehaviour
 
         setting_words.Add("Castle", new SettingWordSet
         {
-            people = new List<string> { "king", "jester", "knight", "squire" },
+            people = new List<string> { "king", "jester", "knight", "squire", "imbecile", "ingrate" },
             places = new List<string> { "throne room", "stable", "royal courtyard", "ballroom" },
             things = new List<string> { "crown", "jewel", "broadsword", "flag" }
         });

@@ -90,8 +90,15 @@ public class BookBlurbGenerator : MonoBehaviour
             {
                 throw new System.Exception($"Parent slot '{slot.parentId}' not resolved.");
             }
-                
-            chosenBySlot[slot.slotId] = chosenBySlot[slot.parentId];
+            string word_s = "s";
+            Word word = chosenBySlot[slot.parentId];
+            switch (slot.type)
+            {
+                case WordType.IndefiniteArticle:
+                    word = new Word(chosenBySlot[slot.parentId].startsVowel?"an":"a");
+                    break;
+            }
+            chosenBySlot[slot.slotId] = word;
         }
         // replace placeholders in the template
         string finalBlurb = sample_template.baseText;
