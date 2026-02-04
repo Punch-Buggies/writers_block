@@ -11,14 +11,14 @@ public class BookBlurbSupplier : MonoBehaviour
 {
     Dictionary<string, SettingWordSet> setting_words;
     Dictionary<string, CharacterWordSet> character_words;
-    Dictionary<string, List<string>> names;
+    Dictionary<Gender, List<string>> names;
     Dictionary<string, List<BookBlurbTemplate>> templates;
 
     void Awake()
     {
         setting_words = new Dictionary<string, SettingWordSet>();
         character_words = new Dictionary<string, CharacterWordSet>();
-        names = new Dictionary<string, List<string>>();
+        names = new Dictionary<Gender, List<string>>();
         templates = new Dictionary<string, List<BookBlurbTemplate>>();
 
         BuildSampleData(); // todo: replace with CSV retrieval
@@ -32,7 +32,7 @@ public class BookBlurbSupplier : MonoBehaviour
     public List<string> GetPlaces(string key) => setting_words[key].places;
     public List<string> GetThings(string key) => setting_words[key].things;
 
-    public List<string> GetNames(string key) => names[key];
+    public List<string> GetNames(Gender key) => names[key];
 
     public List<BookBlurbTemplate> GetTemplates(string key) => templates[key];
 
@@ -54,8 +54,11 @@ public class BookBlurbSupplier : MonoBehaviour
                 "Test"
             ),
             new BookBlurbTemplate(
-                "the genre is {genre}",
-                new List<TemplateSlot>{},
+                "the random name is {r_name}",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("r_name", WordType.Name)
+                },
                 "Test"
             )
         });
@@ -132,9 +135,9 @@ public class BookBlurbSupplier : MonoBehaviour
             }
         });
 
-        names.Add("f", new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid" });
-        names.Add("m", new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
-        names.Add("nb", new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
+        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid" });
+        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
+        names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
     }
 }
 
@@ -151,4 +154,10 @@ public class CharacterWordSet
 {
     public List<string> adjectives = new();
     public List<string> catchphrases = new();
+}
+public enum Gender
+{
+    feminine,
+    masculine,
+    nonbinary
 }

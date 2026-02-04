@@ -43,7 +43,7 @@ public class BookBlurbGenerator : MonoBehaviour
                         word = RandomFrom(bookBlurbSupplier.GetCatchphrases(character));
                         break;
                     case WordType.Name:
-                        word = RandomFrom(bookBlurbSupplier.GetNames(RandomFrom(new List<string> {"f","m","nb"})));
+                        word = RandomFrom(bookBlurbSupplier.GetNames(RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary})));
                         break;
                     case WordType.Person:
                         word = RandomFrom(bookBlurbSupplier.GetPeople(setting));
@@ -96,9 +96,9 @@ public class BookBlurbGenerator : MonoBehaviour
 
     }
     
-    string RandomFrom(List<string> list)
-    // returns a random item from the provided list
+    T RandomFrom<T>(List<T> list)
     {
+        // returns a random item from the provided list
         return list[Random.Range(0, list.Count)];
     }
 
@@ -110,14 +110,10 @@ public class BookBlurbGenerator : MonoBehaviour
             generate_sample();
         }
     }
+
 }
 
-public enum Gender
-{
-    feminine,
-    masculine,
-    nonbinary
-}
+
 public class Word
 {
     public string word_s;
