@@ -19,12 +19,12 @@ public class BookBlurbGenerator : MonoBehaviour
         BookBlurbTemplate sample_template = possible_templates[Random.Range(0, possible_templates.Count)];
 
         // map slotId -> chosen word
-        Dictionary<string, string> chosenBySlot = new Dictionary<string, string>();
+        Dictionary<string, Word> chosenBySlot = new Dictionary<string, Word>();
 
         //include genre, setting, and character as words
-        chosenBySlot["character"] = character;
-        chosenBySlot["genre"] = genre;
-        chosenBySlot["setting"] = setting;
+        chosenBySlot["character"] = new Word(character, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary}));
+        chosenBySlot["genre"] = new Word(genre);
+        chosenBySlot["setting"] = new Word(setting);
 
         // replace independant variables
         List<TemplateSlot> dependants = new List<TemplateSlot>{};
@@ -33,26 +33,34 @@ public class BookBlurbGenerator : MonoBehaviour
             if (!chosenBySlot.ContainsKey(slot.slotId))//don't overwrite already chosen words
             { 
                 bool is_dependant = false;
-                string word = "";
+                string word_s = "s";
+                Word word = new Word(word_s);
                 switch (slot.type)
                 {
                     case WordType.Adjective:
-                        word = RandomFrom(bookBlurbSupplier.GetAdjectives(character));
+                        word_s = RandomFrom(bookBlurbSupplier.GetAdjectives(character));
+                        word = new Word(word_s);
                         break;
                     case WordType.Catchphrase:
-                        word = RandomFrom(bookBlurbSupplier.GetCatchphrases(character));
+                        word_s = RandomFrom(bookBlurbSupplier.GetCatchphrases(character));
+                        word = new Word(word_s);
                         break;
                     case WordType.Name:
-                        word = RandomFrom(bookBlurbSupplier.GetNames(RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary})));
+                    // TODO: restructure name into being a dependant word
+                        word_s = RandomFrom(bookBlurbSupplier.GetNames(chosenBySlot["character"].gender));
+                        word = new Word(word_s, gender:chosenBySlot["character"].gender);
                         break;
                     case WordType.Person:
-                        word = RandomFrom(bookBlurbSupplier.GetPeople(setting));
+                        word_s = RandomFrom(bookBlurbSupplier.GetPeople(setting));
+                        word = new Word(word_s, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary}));
                         break;
                     case WordType.Place:
-                        word = RandomFrom(bookBlurbSupplier.GetPlaces(setting));
+                        word_s = RandomFrom(bookBlurbSupplier.GetPlaces(setting));
+                        word = new Word(word_s);
                         break;
                     case WordType.Thing:
-                        word = RandomFrom(bookBlurbSupplier.GetThings(setting));
+                        word_s = RandomFrom(bookBlurbSupplier.GetThings(setting));
+                        word = new Word(word_s);
                         break;
                     case WordType.Pronoun:
                         is_dependant = true;
@@ -89,7 +97,7 @@ public class BookBlurbGenerator : MonoBehaviour
         string finalBlurb = sample_template.baseText;
         foreach (var kvp in chosenBySlot)
         {
-            finalBlurb = finalBlurb.Replace("{" + kvp.Key + "}", kvp.Value);
+            finalBlurb = finalBlurb.Replace("{" + kvp.Key + "}", kvp.Value.word_s);
         }
 
         Debug.Log(finalBlurb);
