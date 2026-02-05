@@ -51,9 +51,7 @@ public class BookBlurbGenerator : MonoBehaviour
                         word = new Word(word_s);
                         break;
                     case WordType.Name:
-                    // TODO: restructure name into being a dependant word
-                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetNames(chosenBySlot["character"].gender), s=>s, usedWords);
-                        word = new Word(word_s, gender:chosenBySlot["character"].gender);
+                        is_dependant = true;
                         break;
                     case WordType.Person:
                         word_s = RandomUniqueFrom(bookBlurbSupplier.GetPeople(setting), s=>s, usedWords);
@@ -93,7 +91,7 @@ public class BookBlurbGenerator : MonoBehaviour
         {
             if (!chosenBySlot.ContainsKey(slot.parentId))
             {
-                throw new System.Exception($"Parent slot '{slot.parentId}' not resolved.");
+                throw new System.Exception($"'{slot.slotId}''s Parent slot '{slot.parentId}' not resolved.");
             }
             string word_s = "s";
             Word word = chosenBySlot[slot.parentId];
@@ -128,6 +126,10 @@ public class BookBlurbGenerator : MonoBehaviour
                     }
                     word = new Word(p, g);
                     break;
+                case WordType.Name:
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetNames(chosenBySlot[slot.parentId].gender), s=>s, usedWords);
+                        word = new Word(word_s, gender:chosenBySlot[slot.parentId].gender);
+                        break;
             }
             chosenBySlot[slot.slotId] = word;
         }

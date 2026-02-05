@@ -18,14 +18,14 @@ public class BookBlurbTemplate
 
 public enum WordType
 {
+    //independants:
     Adjective,
     Catchphrase,
     Person,
     Place,
     Thing,
+    //dependants:
     Name,
-
-    //for grammar words (pronouns, a/an, etc) : slotId is of the independant word this word depends on
     Pronoun, // she/he/they
     IndefiniteArticle //    a/an
 }
@@ -56,7 +56,7 @@ public class TemplateSlot
         this.type = type;
         this.perspective = perspective;
         // Dependent word types must reference a parent slot
-        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle)
+        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name)
         {
              if (string.IsNullOrEmpty(parentId))
             {
