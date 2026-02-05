@@ -33,7 +33,8 @@ public enum Perspective
 {
     firstPerson,
     secondPerson,
-    thirdPerson
+    thirdPerson,
+    possessive
 }
 
 [System.Serializable]

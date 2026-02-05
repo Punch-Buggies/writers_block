@@ -14,6 +14,8 @@ public class BookBlurbGenerator : MonoBehaviour
 
     void generate_sample()
     {   
+        HashSet<string> usedWords = new HashSet<string>(); //track words that have been used by their id
+
         // choose template
         var possible_templates = bookBlurbSupplier.GetTemplates(genre);
         BookBlurbTemplate sample_template = possible_templates[Random.Range(0, possible_templates.Count)];
@@ -23,8 +25,11 @@ public class BookBlurbGenerator : MonoBehaviour
 
         //include genre, setting, and character as words
         chosenBySlot["character"] = new Word(character, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary}));
+        usedWords.Add(character);
         chosenBySlot["genre"] = new Word(genre);
+        usedWords.Add(genre);
         chosenBySlot["setting"] = new Word(setting);
+        usedWords.Add(setting);
 
         // replace independant variables
         List<TemplateSlot> dependants = new List<TemplateSlot>{};
@@ -38,28 +43,28 @@ public class BookBlurbGenerator : MonoBehaviour
                 switch (slot.type)
                 {
                     case WordType.Adjective:
-                        word_s = RandomFrom(bookBlurbSupplier.GetAdjectives(character));
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetAdjectives(character), s=>s, usedWords);
                         word = new Word(word_s);
                         break;
                     case WordType.Catchphrase:
-                        word_s = RandomFrom(bookBlurbSupplier.GetCatchphrases(character));
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetCatchphrases(character), s=>s, usedWords);
                         word = new Word(word_s);
                         break;
                     case WordType.Name:
                     // TODO: restructure name into being a dependant word
-                        word_s = RandomFrom(bookBlurbSupplier.GetNames(chosenBySlot["character"].gender));
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetNames(chosenBySlot["character"].gender), s=>s, usedWords);
                         word = new Word(word_s, gender:chosenBySlot["character"].gender);
                         break;
                     case WordType.Person:
-                        word_s = RandomFrom(bookBlurbSupplier.GetPeople(setting));
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetPeople(setting), s=>s, usedWords);
                         word = new Word(word_s, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary}));
                         break;
                     case WordType.Place:
-                        word_s = RandomFrom(bookBlurbSupplier.GetPlaces(setting));
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetPlaces(setting), s=>s, usedWords);
                         word = new Word(word_s);
                         break;
                     case WordType.Thing:
-                        word_s = RandomFrom(bookBlurbSupplier.GetThings(setting));
+                        word_s = RandomUniqueFrom(bookBlurbSupplier.GetThings(setting), s=>s, usedWords);
                         word = new Word(word_s);
                         break;
                     case WordType.Pronoun:
@@ -105,18 +110,21 @@ public class BookBlurbGenerator : MonoBehaviour
                         if (slot.perspective == Perspective.firstPerson){p="she";}
                         if (slot.perspective == Perspective.secondPerson){p="her";}
                         if (slot.perspective == Perspective.thirdPerson){p="hers";}
+                        if (slot.perspective == Perspective.possessive){p="her";}
                     }
                     if (g == Gender.masculine)
                     {
                         if (slot.perspective == Perspective.firstPerson){p="he";}
                         if (slot.perspective == Perspective.secondPerson){p="him";}
                         if (slot.perspective == Perspective.thirdPerson){p="his";}
+                        if (slot.perspective == Perspective.possessive){p="his";}
                     }
                     if (g == Gender.nonbinary)
                     {
                         if (slot.perspective == Perspective.firstPerson){p="they";}
                         if (slot.perspective == Perspective.secondPerson){p="them";}
                         if (slot.perspective == Perspective.thirdPerson){p="theirs";} 
+                        if (slot.perspective == Perspective.possessive){p="their";}
                     }
                     word = new Word(p, g);
                     break;
@@ -138,6 +146,31 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // returns a random item from the provided list
         return list[Random.Range(0, list.Count)];
+    }
+    T RandomUniqueFrom<T>(List<T> list,System.Func<T, string> key,HashSet<string> used)
+    {
+        //returns a unique (not yet in the hash set) random item from the provided list
+        if (list == null || list.Count == 0)
+            throw new System.Exception("RandomUniqueFrom called with empty list.");
+
+        var shuffled = new List<T>(list);
+        for (int i = shuffled.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
+        }
+
+        foreach (var item in shuffled)
+        {
+            string k = key(item);
+            if (!used.Contains(k))
+            {
+                used.Add(k);
+                return item;
+            }
+        }
+
+        throw new System.Exception("No unused words available.");
     }
 
 
