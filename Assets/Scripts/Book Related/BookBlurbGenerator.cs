@@ -107,24 +107,24 @@ public class BookBlurbGenerator : MonoBehaviour
                     string p = "they";
                     if (g == Gender.feminine)
                     {
-                        if (slot.perspective == Perspective.firstPerson){p="she";}
-                        if (slot.perspective == Perspective.secondPerson){p="her";}
-                        if (slot.perspective == Perspective.thirdPerson){p="hers";}
-                        if (slot.perspective == Perspective.possessive){p="her";}
+                        if (slot.perspective == Perspective.Subject){p="she";}
+                        if (slot.perspective == Perspective.Object){p="her";}
+                        if (slot.perspective == Perspective.PossessivePro){p="hers";}
+                        if (slot.perspective == Perspective.PossessiveAdj){p="her";}
                     }
                     if (g == Gender.masculine)
                     {
-                        if (slot.perspective == Perspective.firstPerson){p="he";}
-                        if (slot.perspective == Perspective.secondPerson){p="him";}
-                        if (slot.perspective == Perspective.thirdPerson){p="his";}
-                        if (slot.perspective == Perspective.possessive){p="his";}
+                        if (slot.perspective == Perspective.Subject){p="he";}
+                        if (slot.perspective == Perspective.Object){p="him";}
+                        if (slot.perspective == Perspective.PossessivePro){p="his";}
+                        if (slot.perspective == Perspective.PossessiveAdj){p="his";}
                     }
                     if (g == Gender.nonbinary)
                     {
-                        if (slot.perspective == Perspective.firstPerson){p="they";}
-                        if (slot.perspective == Perspective.secondPerson){p="them";}
-                        if (slot.perspective == Perspective.thirdPerson){p="theirs";} 
-                        if (slot.perspective == Perspective.possessive){p="their";}
+                        if (slot.perspective == Perspective.Subject){p="they";}
+                        if (slot.perspective == Perspective.Object){p="them";}
+                        if (slot.perspective == Perspective.PossessivePro){p="theirs";} 
+                        if (slot.perspective == Perspective.PossessiveAdj){p="their";}
                     }
                     word = new Word(p, g);
                     break;

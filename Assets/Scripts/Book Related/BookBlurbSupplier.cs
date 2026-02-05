@@ -48,7 +48,7 @@ public class BookBlurbSupplier : MonoBehaviour
                 new List<TemplateSlot>
                 {   
                     new TemplateSlot("person1", WordType.Person),
-                    new TemplateSlot("pronoun", WordType.Pronoun, parentId:"character", perspective:Perspective.firstPerson),
+                    new TemplateSlot("pronoun", WordType.Pronoun, parentId:"character", perspective:Perspective.Subject),
                     new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"person1")
                 },
                 "Test"
@@ -78,10 +78,10 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("thing2", WordType.Thing),
                     new TemplateSlot("name1", WordType.Name),
-                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", perspective:Perspective.thirdPerson),
-                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", perspective:Perspective.firstPerson),
-                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", perspective:Perspective.secondPerson),
-                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", perspective:Perspective.possessive)
+                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessivePro),
+                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", perspective:Perspective.Subject),
+                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", perspective:Perspective.Object),
+                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
                 },
                 "Romance"
             ),
@@ -94,7 +94,7 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("person1", WordType.Person),
                     new TemplateSlot("a1", WordType.IndefiniteArticle, parentId:"adjective1"),
-                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", perspective:Perspective.possessive)
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
             
                 },
                 "Romance"

@@ -31,10 +31,10 @@ public enum WordType
 }
 public enum Perspective
 {
-    firstPerson,
-    secondPerson,
-    thirdPerson,
-    possessive
+    Subject, // she/he/they
+    Object,//   her/him/them
+    PossessivePro,//    hers/his/theirs
+    PossessiveAdj//     her/his/their
 }
 
 [System.Serializable]
@@ -45,7 +45,7 @@ public class TemplateSlot
     public string parentId; //for dependant words only
     public Perspective perspective; //for gendered pronouns only
 
-    public TemplateSlot(string id, WordType type, string parentId=null, Perspective perspective=Perspective.thirdPerson)
+    public TemplateSlot(string id, WordType type, string parentId=null, Perspective perspective=Perspective.PossessivePro)
     {
         if (string.IsNullOrEmpty(id))
         {
