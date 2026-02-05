@@ -133,6 +133,7 @@ public class BookBlurbGenerator : MonoBehaviour
             }
             chosenBySlot[slot.slotId] = word;
         }
+
         // replace placeholders in the template
         string finalBlurb = sample_template.baseText;
         foreach (var kvp in chosenBySlot)
@@ -140,7 +141,7 @@ public class BookBlurbGenerator : MonoBehaviour
             finalBlurb = finalBlurb.Replace("{" + kvp.Key + "}", kvp.Value.word_s);
         }
 
-        Debug.Log(finalBlurb);
+        Debug.Log(finalBlurb);// OUTPUT
 
     }
     
@@ -178,6 +179,7 @@ public class BookBlurbGenerator : MonoBehaviour
 
     void Start()
     {
+        // generate 5 random blurbs from sample data (for testing)
         for (int i = 0; i<5; i++)
         {
             generate_sample();

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public class BookBlurbTemplate
 {
-    public string baseText;
-    public List<TemplateSlot> slots;
+    public string baseText; //raw string
+    public List<TemplateSlot> slots; //list of variables
 
-    public string genre;
+    public string genre; 
 
     public BookBlurbTemplate(string baseText, List<TemplateSlot> slots, string genre)
     {
@@ -25,9 +25,11 @@ public enum WordType
     Place,
     Thing,
     //dependants:
-    Name,
-    Pronoun, // she/he/they
+    Name, // gendered
+    Pronoun, // gendered pronouns only
     IndefiniteArticle //    a/an
+
+    // note gendered dependants must depend on an independant word that has a gender (character, WordType.Person)
 }
 public enum Perspective
 {
@@ -40,10 +42,10 @@ public enum Perspective
 [System.Serializable]
 public class TemplateSlot
 {
-    public string slotId;   // character1, character2, etc
+    public string slotId;   // unique id
     public WordType type;   // Person, Place, etc
-    public string parentId; //for dependant words only
-    public Perspective perspective; //for gendered pronouns only
+    public string parentId; //for dependant words only (id of word it depends on, must be an independant word)
+    public Perspective perspective; //for pronouns only
 
     public TemplateSlot(string id, WordType type, string parentId=null, Perspective perspective=Perspective.PossessivePro)
     {
