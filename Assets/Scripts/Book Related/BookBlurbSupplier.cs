@@ -11,14 +11,14 @@ public class BookBlurbSupplier : MonoBehaviour
 {
     Dictionary<string, SettingWordSet> setting_words;
     Dictionary<string, CharacterWordSet> character_words;
-    Dictionary<string, List<string>> names;
+    Dictionary<Gender, List<string>> names;
     Dictionary<string, List<BookBlurbTemplate>> templates;
 
     void Awake()
     {
         setting_words = new Dictionary<string, SettingWordSet>();
         character_words = new Dictionary<string, CharacterWordSet>();
-        names = new Dictionary<string, List<string>>();
+        names = new Dictionary<Gender, List<string>>();
         templates = new Dictionary<string, List<BookBlurbTemplate>>();
 
         BuildSampleData(); // todo: replace with CSV retrieval
@@ -32,7 +32,7 @@ public class BookBlurbSupplier : MonoBehaviour
     public List<string> GetPlaces(string key) => setting_words[key].places;
     public List<string> GetThings(string key) => setting_words[key].things;
 
-    public List<string> GetNames(string key) => names[key];
+    public List<string> GetNames(Gender key) => names[key];
 
     public List<BookBlurbTemplate> GetTemplates(string key) => templates[key];
 
@@ -41,43 +41,69 @@ public class BookBlurbSupplier : MonoBehaviour
     void BuildSampleData()
     // sample data for testing
     {
+        templates.Add("Test", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "The {first_name} saw {their1} {thing_a}. Then, the {name2}, {they2} took it from {them1}",
+                new List<TemplateSlot>
+                {   
+                    new TemplateSlot("person1", WordType.Person),
+                    new TemplateSlot("their1", WordType.Pronoun, parentId:"person1", perspective:Perspective.PossessiveAdj),
+                    new TemplateSlot("thing_a", WordType.Thing),
+                    new TemplateSlot("person2", WordType.Person),
+                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", perspective:Perspective.Subject),
+                    new TemplateSlot("them1", WordType.Pronoun, parentId:"person1", perspective:Perspective.Object),
+                    new TemplateSlot("first_name", WordType.Name, parentId:"person1"),
+                    new TemplateSlot("name2", WordType.Name, parentId:"person2")
+                },
+                "Test"
+            )
+            
+        });
         templates.Add("Romance", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
-                "{name1} kissed the {adjective1} {person1} in the {place1}. But, the {person1} was actually a {person2}!",
+                "{name1} kissed the {adjective1} {person1} in the {place1}. But, the {person1} was actually {a} {person2}!",
                 new List<TemplateSlot>
                 {
-                    new TemplateSlot("name1", WordType.Name),
+                    new TemplateSlot("name1", WordType.Name, parentId:"character"),
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("person1", WordType.Person),
                     new TemplateSlot("person2", WordType.Person),
                     new TemplateSlot("place1", WordType.Place),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"person2")
                 },
                 "Romance"
             ),
             new BookBlurbTemplate(
-                "Holding the {thing1} between his teeth in a {adjective1} bite, paying careful attention to the {thing2}, {name1}’s hands were now free to wander down his lap where he quickly got to work unzipping himself.",
+                "Holding the {thing1} between {his_posses} teeth in a {adjective1} bite, paying careful attention to the {thing2}, {name1}’s hands were now free to wander down {his_posses} lap where {he} quickly got to work unzipping {him}self.",
                 new List<TemplateSlot>
                 {
                     new TemplateSlot("thing1", WordType.Thing),
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("thing2", WordType.Thing),
-                    new TemplateSlot("name1", WordType.Name)
+                    new TemplateSlot("name1", WordType.Name, parentId:"character"),
+                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessivePro),
+                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", perspective:Perspective.Subject),
+                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", perspective:Perspective.Object),
+                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
                 },
                 "Romance"
             ),
             new BookBlurbTemplate(
-                "{name1} surged forward, catching {name2}'s lips in a {adjective1} kiss. The {person1}'s lips parted formed a surprised 'o'. {name1} slid their tongue forward, watching {name2}'s eyes curiously.",
+                "{name1} surged forward, catching {name2}'s lips in {a1} {adjective1} kiss. The {person1}'s lips parted formed a surprised 'o'. {name1} slid {their} tongue forward, watching {name2}'s eyes curiously.",
                 new List<TemplateSlot>
                 {
-                    new TemplateSlot("name1", WordType.Name),
-                    new TemplateSlot("name2", WordType.Name),
+                    new TemplateSlot("name1", WordType.Name, parentId:"character"),
+                    new TemplateSlot("name2", WordType.Name, parentId:"person1"),
                     new TemplateSlot("adjective1", WordType.Adjective),
-                    new TemplateSlot("person1", WordType.Person)
+                    new TemplateSlot("person1", WordType.Person),
+                    new TemplateSlot("a1", WordType.IndefiniteArticle, parentId:"adjective1"),
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
             
                 },
                 "Romance"
-            )
+            ),
         });
 
         setting_words.Add("Spaceship", new SettingWordSet
@@ -89,7 +115,7 @@ public class BookBlurbSupplier : MonoBehaviour
 
         setting_words.Add("Castle", new SettingWordSet
         {
-            people = new List<string> { "king", "jester", "knight", "squire" },
+            people = new List<string> { "king", "jester", "knight", "squire", "imbecile", "ingrate" },
             places = new List<string> { "throne room", "stable", "royal courtyard", "ballroom" },
             things = new List<string> { "crown", "jewel", "broadsword", "flag" }
         });
@@ -114,9 +140,9 @@ public class BookBlurbSupplier : MonoBehaviour
             }
         });
 
-        names.Add("f", new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid" });
-        names.Add("m", new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
-        names.Add("nb", new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
+        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid" });
+        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
+        names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
     }
 }
 
@@ -133,4 +159,10 @@ public class CharacterWordSet
 {
     public List<string> adjectives = new();
     public List<string> catchphrases = new();
+}
+public enum Gender
+{
+    feminine,
+    masculine,
+    nonbinary
 }
