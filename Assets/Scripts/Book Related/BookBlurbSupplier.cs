@@ -39,7 +39,6 @@ public class BookBlurbSupplier : MonoBehaviour
 
     public List<BookBlurbTemplate> GetTemplates(string key) => templates[key];
 
-    
 
     void BuildSampleData()
     // sample data for testing
@@ -150,49 +149,55 @@ public class BookBlurbSupplier : MonoBehaviour
 
     void addCharacterData(string value,string adjectives, string catchphrases)
     {
-        //(1) parse
+        //(1) parse into lists
         List<string> adj = new List<string>(adjectives.Split('|'));
         List<string> cp = new List<string>();
         foreach (Match match in Regex.Matches(catchphrases, "\".*?\""))
         {// regex match for quotations
             cp.Add(match.Value);
         }
-        //(2) add data
+        //(2) add data to dictionary
         character_words.Add(value, new CharacterWordSet{
             adjectives = adj,
             catchphrases = cp    
         });
-        Debug.Log($"{value}\nadjs: {string.Join(", ",GetAdjectives(value))} \ncps: {string.Join(", ", GetCatchphrases(value))}\n");
+        // Debug.Log($"{value}\nadjs: {string.Join(", ",GetAdjectives(value))} \ncps: {string.Join(", ", GetCatchphrases(value))}\n");
     }
     void addSettingData(string value, string people, string places, string things)
     {
-        //(1) parse
+        //(1) parse into lists
         List<string> peop = new List<string>(people.Split('|'));
         List<string> pla = new List<string>(places.Split('|'));
         List<string> thi = new List<string>(things.Split('|'));
-        //(2) add data
+        //(2) add data to dictionary
         setting_words.Add(value, new SettingWordSet
         {
            people = peop,
            places = pla,
            things = thi 
         });
-        Debug.Log($"{value}people: {string.Join(", ",GetPeople(value))} \nplaces: {string.Join(", ", GetPlaces(value))}\nthings: {string.Join(", ", GetThings(value))}\n");
+        // Debug.Log($"{value}\npeople: {string.Join(", ",GetPeople(value))} \nplaces: {string.Join(", ", GetPlaces(value))}\nthings: {string.Join(", ", GetThings(value))}\n");
         
     }
-    void addTemplateData(string value, string templates){}
+    void addTemplateData(string value, string templates)
+    {
+        //(1) parse into lists
+        List<string> temp = new List<string>();
+        foreach (Match match in Regex.Matches(templates, "\".*?\""))
+        {// regex match for quotations
+            temp.Add(match.Value);
+        }
+
+    }
 
     void BuildDataFromCSV()
     {
+        /* This function parses through the CSV and adds the info to the corresponding dictionary. First goes through some error checking, then goes through each line and switches to the correct addData function. */
         if (blurbCSV == null)
             {
                 UnityEngine.Debug.LogError("You gotta attach the CSV file to the supplier object");
                 return;
             }
-
-        //setting_words
-        //character_words
-        //templates
 
         /* CSV file is structured as the following: 
         Value, Story Type, Adjectives, Catchphrases, People, Places, Things, Template */
@@ -203,9 +208,6 @@ public class BookBlurbSupplier : MonoBehaviour
         // starts at i1 bc i0 are headers
         for (int i = 1; i < lines.Length; i++)
         {
-            /* go through each line in the csv,
-            parse into its columns, and add to correct data structure (setting_words, character_words, template)
-             */
             string line = lines[i].Trim();
             // Debug.Log($"i{i} {line}");
             if (string.IsNullOrEmpty(line))
@@ -219,6 +221,7 @@ public class BookBlurbSupplier : MonoBehaviour
                 UnityEngine.Debug.LogError("Please fill all the data, seems like you are missing something? -_-");
                 continue;                
             }
+
             string value = columns[0].Trim();
             string storyType = columns[1].Trim();
 
