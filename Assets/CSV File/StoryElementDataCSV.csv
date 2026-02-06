@@ -1,12 +1,12 @@
-Genre,Action,sprint|seize|attack|smash
-Genre,Comedy,silly|zany|quirky
-Genre,Adventure,crazy|chaotic
-Character,Antihero,Deadpool
-Character,Hero,Princess Leia|Himmel|Frieren
-Character,Villain,Oikawa|Voldemort|Darth Vader
-Setting,Cyperpunk,Neo-Tokyo|Night City|City Centre
-Setting,Office,Scranton|water cooler|meeting room|closet
-Setting,Pre-historic,ice age|2000 BC|Pangea
-Genre,Romance,daring|dashing
-Character,Lover,Ilya Rossanov|Shane Hollander
+Genre,Action,sprint|seize|attack|smash,,
+Genre,Comedy,silly|zany|quirky,,
+Genre,Adventure,crazy|chaotic,,
+Character,Antihero,Deadpool,,
+Character,Hero,Princess Leia|Himmel|Frieren,,
+Character,Villain,Oikawa|Voldemort|Darth Vader,,
+Setting,Cyperpunk,Neo-Tokyo|Night City|City Centre,,
+Setting,Office,Scranton|water cooler|meeting room|closet,,
+Setting,Pre-historic,ice age|2000 BC|Pangea,,
+Genre,Romance,daring|dashing,,
+Character,Lover,Ilya Rossanov|Shane Hollander,,
 Setting,Mountains,Mt. Rushmore|forest|valley,,field
