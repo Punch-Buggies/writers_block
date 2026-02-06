@@ -28,10 +28,12 @@ public class StoryElementSupplier : MonoBehaviour
         List<string> genres = new List<string>();
         List<string> characters = new List<string>();
         List<string> settings = new List<string>();
-        // elementBlurb is the dictionary for associated words
-        elementBlurbs = new Dictionary<string, string[]>();
+        // // elementBlurb is the dictionary for associated words
+        // elementBlurbs = new Dictionary<string, string[]>();
 
         string[] lines = storyElementCSV.text.Split('\n'); // Line Separation
+
+        int num_headers = lines[0].Split('\t').Length;
 
         for (int i = 1; i < lines.Length; i++)
         {
@@ -45,7 +47,7 @@ public class StoryElementSupplier : MonoBehaviour
             
             string[] columns = line.Split(','); // Column Separation
 
-            if (columns.Length < 3)
+            if (columns.Length < num_headers)
             {
                 UnityEngine.Debug.LogError("Please fill all the data, seems like you are missing something? -_-");
                 continue;                
@@ -53,8 +55,8 @@ public class StoryElementSupplier : MonoBehaviour
 
             string category = columns[0].Trim();
             string elementName = columns[1].Trim();
-            string[] associatedWords = columns[2].Split('|'); 
-            UnityEngine.Debug.Log($"associatedWords? [{string.Join(", ", associatedWords)}]");
+            // string[] associatedWords = columns[2].Split('|'); 
+            //UnityEngine.Debug.Log($"associatedWords? [{string.Join(", ", associatedWords)}]");
 
 
 
@@ -71,10 +73,10 @@ public class StoryElementSupplier : MonoBehaviour
                     break;
             }
 
-            if (!elementBlurbs.ContainsKey(elementName)) // Filling in the text/blurb
-            {
-                elementBlurbs.Add(elementName, associatedWords);
-            }
+            // if (!elementBlurbs.ContainsKey(elementName)) // Filling in the text/blurb
+            // {
+            //     elementBlurbs.Add(elementName, associatedWords);
+            // }
 
             genreTypes = genres.ToArray();
             characterTypes = characters.ToArray();
@@ -97,8 +99,8 @@ public class StoryElementSupplier : MonoBehaviour
         return settingTypes;
     }
 
-    public Dictionary<string, string[]> GetElementBlurbs()
-    {
-        return elementBlurbs;
-    }
+    // public Dictionary<string, string[]> GetElementBlurbs()
+    // {
+    //     return elementBlurbs;
+    // }
 }
