@@ -1,0 +1,6 @@
+Value, Story Type, Adjectives, Catchphrases, People, Places, Things, Template
+Spaceship,Setting,,,alien|captain|stormtrooper,control room|research lab|med bay,lightsaber|spacesuit|beaker,
+Castle,Setting,,,king|jester|knight|squire|imbecile|ingrate,throne room|stable|royal courtyard|ballroom,crown|jewel|broadsword|flag,
+Villian,Character,evil|somber|piercing|twisted,"I will avenge my dead father!""Pity. You're too late!",,,,
+Business Person,Character,plain|greedy|bored|soulless,"Let me crunch the numbers..."|"Have my secretary schedule that in for next week.",,,,
+Romance,Genre,,,,,,"{name1} kissed the {adjective1} {person1} in the {place1}. But, the {person1} was actually {a} {person2}!""Holding the {thing1} between {his_posses} teeth in a {adjective1} bite, paying careful attention to the {thing2}, {name1}’s hands were now free to wander down {his_posses} lap where {he} quickly got to work unzipping {him}self.""{name1} surged forward, catching {name2}'s lips in {a1} {adjective1} kiss. The {person1}'s lips parted formed a surprised 'o'. {name1} slid {their} tongue forward, watching {name2}'s eyes curiously."
