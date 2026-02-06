@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 public class StoryElementSupplier : MonoBehaviour
 {
@@ -8,9 +7,6 @@ public class StoryElementSupplier : MonoBehaviour
     [SerializeField] string[] genreTypes;
     [SerializeField] string[] characterTypes;
     [SerializeField] string[] settingTypes;
-
-    // [SerializeField] private Dictionary<string, string[]> elementBlurbs;
-
 
     void Awake()
     {
@@ -28,20 +24,22 @@ public class StoryElementSupplier : MonoBehaviour
         List<string> genres = new List<string>();
         List<string> characters = new List<string>();
         List<string> settings = new List<string>();
-        // // elementBlurb is the dictionary for associated words
-        // elementBlurbs = new Dictionary<string, string[]>();
 
+        // the CSV file should just contain the story type, its value, and associated information like base money amount, and art/audio assests
         string[] lines = storyElementCSV.text.Split('\n'); // Line Separation
 
-        int num_headers = lines[0].Split('\t').Length;
-
+        int num_headers = lines[0].Split(',').Length;
+        Debug.Log("Number of headers" + num_headers + "total number of lines" + lines.Length);
+    
+        // start at i1 because i0 is the headers
         for (int i = 1; i < lines.Length; i++)
         {
             string line = lines[i].Trim();
+            // Debug.Log($"i{i} {line}");
 
             if (string.IsNullOrEmpty(line))
             {
-                UnityEngine.Debug.LogError("We don't take empty lines here, folks!");
+                UnityEngine.Debug.LogError("There is an empty line? perhaps at the bottom, please delete it.");
                 continue;
             }
             
@@ -55,12 +53,8 @@ public class StoryElementSupplier : MonoBehaviour
 
             string category = columns[0].Trim();
             string elementName = columns[1].Trim();
-            // string[] associatedWords = columns[2].Split('|'); 
-            //UnityEngine.Debug.Log($"associatedWords? [{string.Join(", ", associatedWords)}]");
 
-
-
-            switch (category.ToLower()) // Filling in the data
+            switch (category.ToLower()) // Adding data to its category list
             {
                 case "genre":
                     genres.Add(elementName);
@@ -72,11 +66,6 @@ public class StoryElementSupplier : MonoBehaviour
                     settings.Add(elementName);
                     break;
             }
-
-            // if (!elementBlurbs.ContainsKey(elementName)) // Filling in the text/blurb
-            // {
-            //     elementBlurbs.Add(elementName, associatedWords);
-            // }
 
             genreTypes = genres.ToArray();
             characterTypes = characters.ToArray();
@@ -99,8 +88,4 @@ public class StoryElementSupplier : MonoBehaviour
         return settingTypes;
     }
 
-    // public Dictionary<string, string[]> GetElementBlurbs()
-    // {
-    //     return elementBlurbs;
-    // }
 }
