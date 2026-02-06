@@ -29,7 +29,7 @@ public class StoryElementSupplier : MonoBehaviour
         string[] lines = storyElementCSV.text.Split('\n'); // Line Separation
 
         int num_headers = lines[0].Split(',').Length;
-        Debug.Log("Number of headers" + num_headers + "total number of lines" + lines.Length);
+        Debug.Log("STORY CSV Number of headers " + num_headers + ", total number of lines " + lines.Length);
     
         // start at i1 because i0 is the headers
         for (int i = 1; i < lines.Length; i++)
