@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class StoryElement : MonoBehaviour
 {
-    [SerializeField] string storyElement;
+    [SerializeField] string storyElement; // this is the type (genre, char, setting)
 
-    [SerializeField] string elementType;
+    [SerializeField] string elementType; // this is value e.g. action or fantasy
 
     TextMeshProUGUI elementTypeText;
+    GameObject parentSpawnLocation;
+
+    
 
 
     void Start()
@@ -33,5 +36,17 @@ public class StoryElement : MonoBehaviour
     public string GetElementType()
     {
         return elementType;
+    }
+
+    public void SetSpawnParent(GameObject parent)
+    {
+        parentSpawnLocation = parent;
+    }
+
+    public void OnSuccessfulDrop()
+    {
+        SpawnLocation spawnLocation = parentSpawnLocation.GetComponent<SpawnLocation>();
+        spawnLocation.SetOccupation(false);
+        Debug.Log("Papa!"); 
     }
 }
