@@ -78,6 +78,8 @@ public class Publish : MonoBehaviour
                 bookProfit,
                 false
                 );
+            newBook.blurb = BookBlurbGenerator.Instance.generate_sample("Romance", "Villian", "Castle");
+
 
             // clear the element dictionary
             bookStoryElementDict.Clear();
