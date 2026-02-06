@@ -316,7 +316,10 @@ public class BookBlurbSupplier : MonoBehaviour
                 "Romance"
             ),
         });
-
+        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid" });
+        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
+        names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
+        Debug.Log("I have populated all the data i Hope");
     }
 // end of BookBLurnSupplier Class
 }
