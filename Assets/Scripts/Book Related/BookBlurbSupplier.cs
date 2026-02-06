@@ -150,25 +150,36 @@ public class BookBlurbSupplier : MonoBehaviour
 
     void addCharacterData(string value,string adjectives, string catchphrases)
     {
+        //(1) parse
         List<string> adj = new List<string>(adjectives.Split('|'));
         List<string> cp = new List<string>();
         foreach (Match match in Regex.Matches(catchphrases, "\".*?\""))
-        {
+        {// regex match for quotations
             cp.Add(match.Value);
         }
-
-        // List<string> cp = new List<string>(catchphrases.Split('|'));
-
+        //(2) add data
         character_words.Add(value, new CharacterWordSet{
             adjectives = adj,
             catchphrases = cp    
         });
-
-        Debug.Log($"adjs: {string.Join(", ",GetAdjectives(value))}");
-        Debug.Log($"cps: {string.Join(", ", GetCatchphrases(value))}");
-
+        Debug.Log($"{value}\nadjs: {string.Join(", ",GetAdjectives(value))} \ncps: {string.Join(", ", GetCatchphrases(value))}\n");
     }
-    void addSettingData(string value, string people, string places, string things){}
+    void addSettingData(string value, string people, string places, string things)
+    {
+        //(1) parse
+        List<string> peop = new List<string>(people.Split('|'));
+        List<string> pla = new List<string>(places.Split('|'));
+        List<string> thi = new List<string>(things.Split('|'));
+        //(2) add data
+        setting_words.Add(value, new SettingWordSet
+        {
+           people = peop,
+           places = pla,
+           things = thi 
+        });
+        Debug.Log($"{value}people: {string.Join(", ",GetPeople(value))} \nplaces: {string.Join(", ", GetPlaces(value))}\nthings: {string.Join(", ", GetThings(value))}\n");
+        
+    }
     void addTemplateData(string value, string templates){}
 
     void BuildDataFromCSV()
