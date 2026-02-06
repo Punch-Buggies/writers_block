@@ -21,7 +21,8 @@ public class Book
     public int copiesSold;
     public int moneyMade;
     public bool bestSelling;
-    public string excerpt;
+    // [SerializeField] BookBlurbGenerator bookBlurbGenerator;
+    public string blurb;
 
     // initialize
     public Book(string genre, string character, string setting, int copiesSold, int moneyMade, bool bestSelling)
@@ -33,18 +34,10 @@ public class Book
         this.moneyMade = moneyMade;
         this.bestSelling = bestSelling;
 
-        this.excerpt = generateExcerpt();
-        UnityEngine.Debug.Log("Excerpt: " + this.excerpt);
 
         // increasing money because we sold something
         UnityEngine.Debug.Log($"Before: ${MoneyManager.Instance.currentMoney}");
         MoneyManager.Instance.addMoney(this.moneyMade);
         UnityEngine.Debug.Log($"Published! ${MoneyManager.Instance.currentMoney}");
-    }
-
-    public string generateExcerpt()
-    // generates the excerpt. genre, character and setting are all accessible because this func is in the book class
-    {
-        return $"A {genre} story about a {character} in {setting}";
     }
 }
