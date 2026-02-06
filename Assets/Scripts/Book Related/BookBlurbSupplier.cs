@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public class BookBlurbSupplier : MonoBehaviour
 // handles associated word dictionaries and templates used to generate blurbs 
@@ -9,6 +10,7 @@ public class BookBlurbSupplier : MonoBehaviour
 //   names           = { key: gender        -> [names] }
 //   templates       = { key: genre         -> [BookBlurbTemplate] }
 {
+    [SerializeField] private TextAsset blurbCSV;
     Dictionary<string, SettingWordSet> setting_words;
     Dictionary<string, CharacterWordSet> character_words;
     Dictionary<Gender, List<string>> names;
@@ -21,7 +23,8 @@ public class BookBlurbSupplier : MonoBehaviour
         names = new Dictionary<Gender, List<string>>();
         templates = new Dictionary<string, List<BookBlurbTemplate>>();
 
-        BuildSampleData(); // todo: replace with CSV retrieval
+        // BuildSampleData(); // todo: replace with CSV retrieval
+        BuildDataFromCSV();
     }
 
     // getters
@@ -144,7 +147,102 @@ public class BookBlurbSupplier : MonoBehaviour
         names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
         names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
     }
+
+    void addCharacterData(string value,string adjectives, string catchphrases)
+    {
+        List<string> adj = new List<string>(adjectives.Split('|'));
+        List<string> cp = new List<string>();
+        foreach (Match match in Regex.Matches(catchphrases, "\".*?\""))
+        {
+            cp.Add(match.Value);
+        }
+
+        // List<string> cp = new List<string>(catchphrases.Split('|'));
+
+        character_words.Add(value, new CharacterWordSet{
+            adjectives = adj,
+            catchphrases = cp    
+        });
+
+        Debug.Log($"adjs: {string.Join(", ",GetAdjectives(value))}");
+        Debug.Log($"cps: {string.Join(", ", GetCatchphrases(value))}");
+
+    }
+    void addSettingData(string value, string people, string places, string things){}
+    void addTemplateData(string value, string templates){}
+
+    void BuildDataFromCSV()
+    {
+        if (blurbCSV == null)
+            {
+                UnityEngine.Debug.LogError("You gotta attach the CSV file to the supplier object");
+                return;
+            }
+
+        //setting_words
+        //character_words
+        //templates
+
+        /* CSV file is structured as the following: 
+        Value, Story Type, Adjectives, Catchphrases, People, Places, Things, Template */
+        string[] lines = blurbCSV.text.Split('\n'); // Line Separation
+        int num_headers = lines[0].Split(',').Length;
+        Debug.Log("BLURB CSV Number of headers " + num_headers + ", total number of entries " + lines.Length);
+        
+        // starts at i1 bc i0 are headers
+        for (int i = 1; i < lines.Length; i++)
+        {
+            /* go through each line in the csv,
+            parse into its columns, and add to correct data structure (setting_words, character_words, template)
+             */
+            string line = lines[i].Trim();
+            // Debug.Log($"i{i} {line}");
+            if (string.IsNullOrEmpty(line))
+            { // check if the line is empty
+                UnityEngine.Debug.LogError("There is an empty line? perhaps at the bottom, please delete it.");
+                continue;
+            }
+            string[] columns = line.Split(','); // Column Separation
+            if (columns.Length < num_headers)
+            { // check for missing column
+                UnityEngine.Debug.LogError("Please fill all the data, seems like you are missing something? -_-");
+                continue;                
+            }
+            string value = columns[0].Trim();
+            string storyType = columns[1].Trim();
+
+            switch (storyType)
+            // grab relevant columns and call addfunction
+            {
+                case "Setting":
+                string people = columns[4].Trim();
+                string places = columns[5].Trim();
+                string things = columns[6].Trim();
+                // all the adding is done here
+                addSettingData(value, people, places, things);
+                break;
+                case "Character":
+                string adjectives = columns[2].Trim();
+                string catchphrases = columns[3].Trim();
+                // all the adding is done here
+                addCharacterData(value, adjectives, catchphrases);
+                break;
+                case "Genre":
+                string templates = columns[7].Trim();
+                // all the adding is done here
+                addTemplateData(value, templates);
+                break;
+                default:
+                Debug.Log("No CSV case found");
+                break;
+            }
+        }
+
+    }
+// end of BookBLurnSupplier Class
 }
+
+
 
 [System.Serializable]
 public class SettingWordSet
