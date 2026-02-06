@@ -35,6 +35,11 @@ public class Book
 
         this.excerpt = generateExcerpt();
         UnityEngine.Debug.Log("Excerpt: " + this.excerpt);
+
+        // increasing money because we sold something
+        UnityEngine.Debug.Log($"Before: ${MoneyManager.Instance.currentMoney}");
+        MoneyManager.Instance.addMoney(this.moneyMade);
+        UnityEngine.Debug.Log($"Published! ${MoneyManager.Instance.currentMoney}");
     }
 
     public string generateExcerpt()
