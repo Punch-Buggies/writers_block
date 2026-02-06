@@ -9,10 +9,10 @@ public class BookBlurbGenerator : MonoBehaviour
     [SerializeField] string setting;
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
+    public static BookBlurbGenerator Instance { get; private set;}
 
-    
 
-    void generate_sample()
+    public string generate_sample(string genre, string character, string setting)
     {   
         HashSet<string> usedWords = new HashSet<string>(); //track words that have been used by their id
 
@@ -141,8 +141,8 @@ public class BookBlurbGenerator : MonoBehaviour
             finalBlurb = finalBlurb.Replace("{" + kvp.Key + "}", kvp.Value.word_s);
         }
 
-        Debug.Log(finalBlurb);// OUTPUT
-
+        Debug.Log("Blurb:\n"+finalBlurb);// OUTPUT
+        return finalBlurb;
     }
     
     T RandomFrom<T>(List<T> list)
@@ -176,14 +176,18 @@ public class BookBlurbGenerator : MonoBehaviour
         throw new System.Exception("No unused words available.");
     }
 
-
+    void Awake()
+    {
+        Debug.Log("the generator has awakened");
+        Instance = this;
+    }
     void Start()
     {
-        // generate 5 random blurbs from sample data (for testing)
-        for (int i = 0; i<5; i++)
-        {
-            generate_sample();
-        }
+        // // generate 5 random blurbs from sample data (for testing)
+        // for (int i = 0; i<5; i++)
+        // {
+        //     generate_sample();
+        // }
     }
 
 }
