@@ -10,7 +10,7 @@ public class PublishZone : MonoBehaviour, IDropHandler
 
     [SerializeField] string zoneType;
 
-    bool occupied = false;
+    // bool occupied = false;
 
     void Awake()
     {

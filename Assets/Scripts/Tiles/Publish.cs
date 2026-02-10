@@ -49,9 +49,9 @@ public class Publish : MonoBehaviour
 
 
             // increasing money because we sold something
-            UnityEngine.Debug.Log($"Before: ${MoneyManager.Instance.currentMoney}");
+            Debug.Log($"Before: ${MoneyManager.Instance.currentMoney}");
             MoneyManager.Instance.addMoney(200);
-            UnityEngine.Debug.Log($"Published! ${MoneyManager.Instance.currentMoney}");
+            Debug.Log($"Published! ${MoneyManager.Instance.currentMoney}");
 
     }
 
