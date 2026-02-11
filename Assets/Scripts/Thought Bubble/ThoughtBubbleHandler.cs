@@ -1,5 +1,6 @@
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class ThoughtBubbleHandler : MonoBehaviour
@@ -26,12 +27,14 @@ public class ThoughtBubbleHandler : MonoBehaviour
             // Get the transform
             Transform elementSpawnTransform = spawnLocation.GetTransform();
 
-            // Spawn a story element there
-            SpawnStoryElement(elementSpawnTransform, loc);
+            if (spawnLocation.GetUnlockStatus())
+            {
+                // Spawn a story element there
+                SpawnStoryElement(elementSpawnTransform, loc);
 
-            // Set it to occupied
-            spawnLocation.SetOccupation(true);
-
+                // Set it to occupied
+                spawnLocation.SetOccupation(true);
+            }
         }    
     }
 
@@ -40,7 +43,7 @@ public class ThoughtBubbleHandler : MonoBehaviour
         foreach(GameObject loc in elementSpawnLocations)
         {
             SpawnLocation spawnLocation = loc.GetComponent<SpawnLocation>();
-            if (spawnLocation.GetOccupation() == false)
+            if (spawnLocation.GetOccupation() == false && spawnLocation.GetUnlockStatus() == true)
             {
                 // Get the transform
                 Transform elementSpawnTransform = spawnLocation.GetTransform();
@@ -49,7 +52,7 @@ public class ThoughtBubbleHandler : MonoBehaviour
                 SpawnStoryElement(elementSpawnTransform, loc);
 
                 // Set it to occupied
-                spawnLocation.SetOccupation(true);          
+                spawnLocation.SetOccupation(true);    
             }            
         }   
     } 
@@ -68,10 +71,7 @@ public class ThoughtBubbleHandler : MonoBehaviour
 
         UnityEngine.Color c = UnityEngine.Color.blue;
         spawnedElement.GetComponent <Image>().color = c;
-        // actual image is whats it called in uniy editor whatevrr man'
-        // spawnedElement.GetComponentsInChildren<Image>().color = c;
 ;
-        
 
         // Filling up the data for both the scripts
         StoryElement storyElementComponent = spawnedElement.GetComponent<StoryElement>();
