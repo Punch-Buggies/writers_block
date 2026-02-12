@@ -79,7 +79,7 @@ public class Publish : MonoBehaviour
                 false
                 );
 
-            newBook.blurb = BookBlurbGenerator.Instance.generate_sample("Romance", "Villian", "Castle");//TODO: replace with book's genre/char/setting
+            newBook.blurb = BookBlurbGenerator.Instance.generate_sample("Romance", newBook.character, newBook.setting);//TODO: replace with book's genre/char/setting
 
 
             // clear the element dictionary
