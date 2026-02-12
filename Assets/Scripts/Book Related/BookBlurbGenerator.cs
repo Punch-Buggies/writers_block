@@ -12,7 +12,7 @@ public class BookBlurbGenerator : MonoBehaviour
     public static BookBlurbGenerator Instance { get; private set;}
 
 
-    public string generate_sample(string genre, string character, string setting)
+    public string generate_blurb(string genre, string character, string setting)
     {   
         HashSet<string> usedWords = new HashSet<string>(); //track words that have been used by their id
 
