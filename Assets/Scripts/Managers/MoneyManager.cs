@@ -47,7 +47,17 @@ public class MoneyManager : MonoBehaviour
     {
         currentMoney += amount;
         moneyUI.text = $"${currentMoney}";
+    }
 
+    public void deductMoney(int amount)
+    {
+        currentMoney -= amount;
+        moneyUI.text = $"${currentMoney}";
+    }
+
+    public int getMoney()
+    {
+        return currentMoney;
     }
 
 

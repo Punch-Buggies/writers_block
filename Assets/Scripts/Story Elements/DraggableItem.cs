@@ -32,9 +32,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
+
         RectTransformUtility.ScreenPointToWorldPointInRectangle(transform.parent as RectTransform, eventData.position, eventData.pressEventCamera, out Vector3 globalMousePos);
         transform.position = globalMousePos;
-
         //transform.position = eventData.position;
     }
 
@@ -57,6 +57,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // actualImageTransform.localScale = scaled;
 
         transform.DOScale(finalScale, scaleTime).SetEase(Ease.OutBounce);
+
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -72,8 +74,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnSuccessfulDrop(Vector3 dropPosition)
     {
+
         wasPlacedSuccessfully = true;
         transform.position = dropPosition;
+
     }
 
     void Start()

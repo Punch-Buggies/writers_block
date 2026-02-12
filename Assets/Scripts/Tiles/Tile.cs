@@ -1,14 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
-public class Tile : MonoBehaviour, IDropHandler
+public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
     [SerializeField] GameObject progressBar;
     [SerializeField] GameObject publishableTile;
 
     [SerializeField] string tileType;
+    [SerializeField] TextMeshProUGUI unlockText;
 
     Slider progressBarSlider;
     StoryElementSupplier storyElementSupplier;
@@ -20,32 +23,52 @@ public class Tile : MonoBehaviour, IDropHandler
 
     bool startCooking = false;
     GameObject spawnedElement;
+    Image image;
+
+
+    int unlockCost = 50;
+    [SerializeField] bool unlocked = false;
 
     void Awake()
     {
         storyElementSupplier = FindAnyObjectByType<StoryElementSupplier>();
+        unlockText.text = "";
         progressBar.SetActive(false);
         progressBarSlider = progressBar.GetComponent<Slider>();
+
+        image = GetComponent<Image>();
+
+        if (unlocked)
+        {
+            image.color = Color.white;
+        }
+        else
+        {
+            image.color = Color.grey;
+        }
     }
     
     public void OnDrop(PointerEventData eventData)
-    { 
-        spawnedElement = eventData.pointerDrag;
-        DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
-        StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
-
-        if (tileOccupied == false && storyElement != null)
+    {
+        if (unlocked)
         {
-            progressBar.SetActive(true);
-            if (draggable != null)
-            {
-                // StoryElement Side of things
-                draggable.OnSuccessfulDrop(transform.position);
-                storyElement.OnSuccessfulDrop();
+            spawnedElement = eventData.pointerDrag;
+            DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
+            StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
 
-                tileOccupied = true;
-                startCooking = true;
-            }         
+            if (tileOccupied == false && storyElement != null)
+            {
+                progressBar.SetActive(true);
+                if (draggable != null)
+                {
+                    // StoryElement Side of things
+                    draggable.OnSuccessfulDrop(transform.position);
+                    storyElement.OnSuccessfulDrop();
+
+                    tileOccupied = true;
+                    startCooking = true;
+                }         
+            }
         }
     }
 
@@ -96,5 +119,30 @@ public class Tile : MonoBehaviour, IDropHandler
             }
         }
         // Debug.Log(timer);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!unlocked)
+        {
+            unlockText.text = "Unlock: " + unlockCost + "$";
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        unlockText.text = "";
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(MoneyManager.Instance.getMoney() >= unlockCost)
+        {
+            MoneyManager.Instance.deductMoney(unlockCost);
+            
+            unlocked = true;
+            image.color = Color.white;
+        }
+
     }
 }
