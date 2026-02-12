@@ -1,6 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class StoryElement : MonoBehaviour
 {
@@ -8,11 +9,12 @@ public class StoryElement : MonoBehaviour
 
     [SerializeField] string elementType; // this is value e.g. action or fantasy
 
+
+    Image storyElementImage;
     TextMeshProUGUI elementTypeText;
     GameObject parentSpawnLocation;
 
-    
-
+    DraggableItem draggableItem;
 
     void Start()
     {
@@ -22,7 +24,7 @@ public class StoryElement : MonoBehaviour
 
     public void SetStoryElement(string element)
     {
-        storyElement = element;       
+        storyElement = element;    
     }
 
     public string GetStoryElement()
