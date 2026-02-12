@@ -34,7 +34,7 @@ public class Publish : MonoBehaviour
     bool bestSelling()
     // this function determines whether the current book has ALL the best selling requirements
     {
-        // always returns false for noe
+        // always returns false for now
         return false;
     }
 
@@ -78,7 +78,8 @@ public class Publish : MonoBehaviour
                 bookProfit,
                 false
                 );
-            newBook.blurb = BookBlurbGenerator.Instance.generate_sample("Romance", "Villian", "Castle");
+
+            newBook.blurb = BookBlurbGenerator.Instance.generate_sample("Romance", "Villian", "Castle");//TODO: replace with book's genre/char/setting
 
 
             // clear the element dictionary

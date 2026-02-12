@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class BookBlurbGenerator : MonoBehaviour
 {
     // genre, character, & setting will come from published book
-    [SerializeField] string genre;
-    [SerializeField] string character;
-    [SerializeField] string setting;
+    // [SerializeField] string genre;
+    // [SerializeField] string character;
+    // [SerializeField] string setting;
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
     public static BookBlurbGenerator Instance { get; private set;}
@@ -105,24 +105,24 @@ public class BookBlurbGenerator : MonoBehaviour
                     string p = "they";
                     if (g == Gender.feminine)
                     {
-                        if (slot.perspective == Perspective.Subject){p="she";}
-                        if (slot.perspective == Perspective.Object){p="her";}
-                        if (slot.perspective == Perspective.PossessivePro){p="hers";}
-                        if (slot.perspective == Perspective.PossessiveAdj){p="her";}
+                        if (slot.perspective == Conjugation.Subject){p="she";}
+                        if (slot.perspective == Conjugation.Object){p="her";}
+                        if (slot.perspective == Conjugation.PossessivePro){p="hers";}
+                        if (slot.perspective == Conjugation.PossessiveAdj){p="her";}
                     }
                     if (g == Gender.masculine)
                     {
-                        if (slot.perspective == Perspective.Subject){p="he";}
-                        if (slot.perspective == Perspective.Object){p="him";}
-                        if (slot.perspective == Perspective.PossessivePro){p="his";}
-                        if (slot.perspective == Perspective.PossessiveAdj){p="his";}
+                        if (slot.perspective == Conjugation.Subject){p="he";}
+                        if (slot.perspective == Conjugation.Object){p="him";}
+                        if (slot.perspective == Conjugation.PossessivePro){p="his";}
+                        if (slot.perspective == Conjugation.PossessiveAdj){p="his";}
                     }
                     if (g == Gender.nonbinary)
                     {
-                        if (slot.perspective == Perspective.Subject){p="they";}
-                        if (slot.perspective == Perspective.Object){p="them";}
-                        if (slot.perspective == Perspective.PossessivePro){p="theirs";} 
-                        if (slot.perspective == Perspective.PossessiveAdj){p="their";}
+                        if (slot.perspective == Conjugation.Subject){p="they";}
+                        if (slot.perspective == Conjugation.Object){p="them";}
+                        if (slot.perspective == Conjugation.PossessivePro){p="theirs";} 
+                        if (slot.perspective == Conjugation.PossessiveAdj){p="their";}
                     }
                     word = new Word(p, g);
                     break;
