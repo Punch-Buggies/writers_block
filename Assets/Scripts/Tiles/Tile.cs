@@ -136,7 +136,13 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        unlocked = true;
-        image.color = Color.white;
+        if(MoneyManager.Instance.getMoney() >= unlockCost)
+        {
+            MoneyManager.Instance.deductMoney(unlockCost);
+            
+            unlocked = true;
+            image.color = Color.white;
+        }
+
     }
 }

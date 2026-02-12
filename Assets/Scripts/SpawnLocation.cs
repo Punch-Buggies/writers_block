@@ -9,6 +9,8 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [SerializeField] GameObject unlockText;
 
+    int unlockCost = 10;
+
 
     void Start()
     {
@@ -49,19 +51,24 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!unlocked)
+        if(MoneyManager.Instance.getMoney() >= unlockCost)
         {
-            UnlockLocation();
+            if (!unlocked)
+            {
+                MoneyManager.Instance.deductMoney(unlockCost);
+                UnlockLocation();
+            }
         }
+
     }
 }
