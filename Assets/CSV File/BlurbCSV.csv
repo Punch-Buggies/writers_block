@@ -1,6 +1,9 @@
 Value, Story Type, Adjectives, Catchphrases, People, Places, Things, Template
-Spaceship,Setting,,,alien|captain|stormtrooper,control room|research lab|med bay,lightsaber|spacesuit|beaker,
-Castle,Setting,,,king|jester|knight|squire|imbecile|ingrate,throne room|stable|royal courtyard|ballroom,crown|jewel|broadsword|flag,
-Villian,Character,evil|somber|piercing|twisted,"I will avenge my dead father!""Pity. You're too late!",,,,
-Business Person,Character,plain|greedy|bored|soulless,"Let me crunch the numbers..."|"Have my secretary schedule that in for next week.",,,,
-Romance,Genre,,,,,,"{name1} kissed the {adjective1} {person1} in the {place1}. But, the {person1} was actually {a} {person2}!""Holding the {thing1} between {his_posses} teeth in a {adjective1} bite, paying careful attention to the {thing2}, {name1}â€™s hands were now free to wander down {his_posses} lap where {he} quickly got to work unzipping {him}self.""{name1} surged forward, catching {name2}'s lips in {a1} {adjective1} kiss. The {person1}'s lips parted formed a surprised 'o'. {name1} slid {their} tongue forward, watching {name2}'s eyes curiously."
+Antihero,Character,greedy|narcissistic|brash|rash|rude|domineering|impulsive|dishonest,I did what had to be done|It was the only way|I have my reasons,,,,
+Hero,Character,shining|brave|heroic|herculean|bright|fearless|selfless,Love is stronger than hate|We did it with the power of friendship|You’re safe now,,,,
+Villain,Character,sneering|sly|devilish|brooding|twisted|piercing|manipulative,Pity. You’re too late|This is all going according to my master plan,,,,
+Lover,Character,caring|gentle|soft|warm|sweet|calming|beautiful|pretty,I love you|I’m in love with you|I fall asleep each night dreaming of you|My love,,,,
+Cyberpunk,Setting,,,alien|captain|time-lord|android|scientist|cyborg|hacker|rogue,space-station|laboratory|metropolis|control-room,computer|neon sign|bionic arm|laser-gun,
+Office,Setting,,,ceo|secretary|code-monkey|office bore|manager|administrator|receptionist|supervisor|janitor,headquarters|head-office|human resources|cubicle|lunchroom|bathroom|broom closet|waiting-room,pen|paper|computer|paperwork|coffee|tie|pencil skirt|spreadsheet|leger,
+Pre-historic,Setting,,,caveman|cavewoman|caveperson|hunter|gatherer|dinosaur,cave|field|burrow|forest|rock structure|campfire,rock|arrowhead|spear|bison,
+Mountains,Setting,,,hermit|nomad|guide|mountaineer,cliff-face|slope|trail|waterfall|cabin|lodge|summit|valley|glacier,harness|carabiner|rope|goat|trail-mix,

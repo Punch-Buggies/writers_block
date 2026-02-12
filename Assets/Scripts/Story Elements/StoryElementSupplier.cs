@@ -26,7 +26,7 @@ public class StoryElementSupplier : MonoBehaviour
         List<string> settings = new List<string>();
 
         // the CSV file should just contain the story type, its value, and associated information like base money amount, and art/audio assests
-        string[] lines = storyElementCSV.text.Split('\n'); // Line Separation
+        string[] lines = storyElementCSV.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries); // Line Separation
 
         int num_headers = lines[0].Split(',').Length;
         Debug.Log("STORY CSV Number of headers " + num_headers + ", total number of entries " + lines.Length);

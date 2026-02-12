@@ -50,11 +50,11 @@ public class BookBlurbSupplier : MonoBehaviour
                 new List<TemplateSlot>
                 {   
                     new TemplateSlot("person1", WordType.Person),
-                    new TemplateSlot("their1", WordType.Pronoun, parentId:"person1", perspective:Perspective.PossessiveAdj),
+                    new TemplateSlot("their1", WordType.Pronoun, parentId:"person1", conjugation:Conjugation.PossessiveAdj),
                     new TemplateSlot("thing_a", WordType.Thing),
                     new TemplateSlot("person2", WordType.Person),
-                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", perspective:Perspective.Subject),
-                    new TemplateSlot("them1", WordType.Pronoun, parentId:"person1", perspective:Perspective.Object),
+                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them1", WordType.Pronoun, parentId:"person1", conjugation:Conjugation.Object),
                     new TemplateSlot("first_name", WordType.Name, parentId:"person1"),
                     new TemplateSlot("name2", WordType.Name, parentId:"person2")
                 },
@@ -85,10 +85,10 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("thing2", WordType.Thing),
                     new TemplateSlot("name1", WordType.Name, parentId:"character"),
-                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessivePro),
-                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", perspective:Perspective.Subject),
-                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", perspective:Perspective.Object),
-                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
+                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessivePro),
+                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj)
                 },
                 "Romance"
             ),
@@ -101,7 +101,7 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("person1", WordType.Person),
                     new TemplateSlot("a1", WordType.IndefiniteArticle, parentId:"adjective1"),
-                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj)
             
                 },
                 "Romance"
@@ -151,11 +151,7 @@ public class BookBlurbSupplier : MonoBehaviour
     {
         //(1) parse into lists
         List<string> adj = new List<string>(adjectives.Split('|'));
-        List<string> cp = new List<string>();
-        foreach (Match match in Regex.Matches(catchphrases, "\".*?\""))
-        {// regex match for quotations
-            cp.Add(match.Value);
-        }
+        List<string> cp = new List<string>(catchphrases.Split('|'));
         //(2) add data to dictionary
         character_words.Add(value, new CharacterWordSet{
             adjectives = adj,
@@ -201,9 +197,10 @@ public class BookBlurbSupplier : MonoBehaviour
 
         /* CSV file is structured as the following: 
         Value, Story Type, Adjectives, Catchphrases, People, Places, Things, Template */
-        string[] lines = blurbCSV.text.Split('\n'); // Line Separation
+        string[] lines = blurbCSV.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries); // Line Separation
         int num_headers = lines[0].Split(',').Length;
         Debug.Log("BLURB CSV Number of headers " + num_headers + ", total number of entries " + lines.Length);
+        Debug.Log($"Last line raw: '{lines[lines.Length - 1]}'");
         
         // starts at i1 bc i0 are headers
         for (int i = 1; i < lines.Length; i++)
@@ -254,16 +251,28 @@ public class BookBlurbSupplier : MonoBehaviour
         // adding templates for testing, remove this once the addTemplateData has been made
         templates.Add("Test", new List<BookBlurbTemplate>
         {
+            new BookBlurbTemplate("{adj} {name1} ran over to {name2}, the {person2}. {they} shouted at {them}, “{catchphrase}!", 
+            new List<TemplateSlot>
+            {
+                new TemplateSlot("adj", WordType.Adjective),
+                new TemplateSlot("name1", WordType.Name, parentId:"character"),
+                new TemplateSlot("name2", WordType.Name, parentId:"person2"),
+                new TemplateSlot("person2", WordType.Person),
+                new TemplateSlot("them", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Object),
+                new TemplateSlot("catchphrase", WordType.Catchphrase),
+                new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject)
+            }, 
+            "Test"),
             new BookBlurbTemplate(
-                "The {first_name} saw {their1} {thing_a}. Then, the {name2}, {they2} took it from {them1}",
+                "{first_name}, the {person1}, saw {their1} {thing_a}. Then, {name2} took it from {them1}",
                 new List<TemplateSlot>
                 {   
                     new TemplateSlot("person1", WordType.Person),
-                    new TemplateSlot("their1", WordType.Pronoun, parentId:"person1", perspective:Perspective.PossessiveAdj),
+                    new TemplateSlot("their1", WordType.Pronoun, parentId:"person1", conjugation:Conjugation.PossessiveAdj),
                     new TemplateSlot("thing_a", WordType.Thing),
                     new TemplateSlot("person2", WordType.Person),
-                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", perspective:Perspective.Subject),
-                    new TemplateSlot("them1", WordType.Pronoun, parentId:"person1", perspective:Perspective.Object),
+                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them1", WordType.Pronoun, parentId:"person1", conjugation:Conjugation.Object),
                     new TemplateSlot("first_name", WordType.Name, parentId:"person1"),
                     new TemplateSlot("name2", WordType.Name, parentId:"person2")
                 },
@@ -294,10 +303,10 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("thing2", WordType.Thing),
                     new TemplateSlot("name1", WordType.Name, parentId:"character"),
-                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessivePro),
-                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", perspective:Perspective.Subject),
-                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", perspective:Perspective.Object),
-                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
+                    new TemplateSlot("his", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessivePro),
+                    new TemplateSlot("he", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("him", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("his_posses", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj)
                 },
                 "Romance"
             ),
@@ -310,7 +319,7 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective1", WordType.Adjective),
                     new TemplateSlot("person1", WordType.Person),
                     new TemplateSlot("a1", WordType.IndefiniteArticle, parentId:"adjective1"),
-                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", perspective:Perspective.PossessiveAdj)
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj)
             
                 },
                 "Romance"

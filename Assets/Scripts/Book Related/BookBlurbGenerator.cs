@@ -4,15 +4,15 @@ using System.Collections.Generic;
 public class BookBlurbGenerator : MonoBehaviour
 {
     // genre, character, & setting will come from published book
-    [SerializeField] string genre;
-    [SerializeField] string character;
-    [SerializeField] string setting;
+    // [SerializeField] string genre;
+    // [SerializeField] string character;
+    // [SerializeField] string setting;
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
     public static BookBlurbGenerator Instance { get; private set;}
 
 
-    public string generate_sample(string genre, string character, string setting)
+    public string generate_blurb(string genre, string character, string setting)
     {   
         HashSet<string> usedWords = new HashSet<string>(); //track words that have been used by their id
 
@@ -105,24 +105,24 @@ public class BookBlurbGenerator : MonoBehaviour
                     string p = "they";
                     if (g == Gender.feminine)
                     {
-                        if (slot.perspective == Perspective.Subject){p="she";}
-                        if (slot.perspective == Perspective.Object){p="her";}
-                        if (slot.perspective == Perspective.PossessivePro){p="hers";}
-                        if (slot.perspective == Perspective.PossessiveAdj){p="her";}
+                        if (slot.perspective == Conjugation.Subject){p="she";}
+                        if (slot.perspective == Conjugation.Object){p="her";}
+                        if (slot.perspective == Conjugation.PossessivePro){p="hers";}
+                        if (slot.perspective == Conjugation.PossessiveAdj){p="her";}
                     }
                     if (g == Gender.masculine)
                     {
-                        if (slot.perspective == Perspective.Subject){p="he";}
-                        if (slot.perspective == Perspective.Object){p="him";}
-                        if (slot.perspective == Perspective.PossessivePro){p="his";}
-                        if (slot.perspective == Perspective.PossessiveAdj){p="his";}
+                        if (slot.perspective == Conjugation.Subject){p="he";}
+                        if (slot.perspective == Conjugation.Object){p="him";}
+                        if (slot.perspective == Conjugation.PossessivePro){p="his";}
+                        if (slot.perspective == Conjugation.PossessiveAdj){p="his";}
                     }
                     if (g == Gender.nonbinary)
                     {
-                        if (slot.perspective == Perspective.Subject){p="they";}
-                        if (slot.perspective == Perspective.Object){p="them";}
-                        if (slot.perspective == Perspective.PossessivePro){p="theirs";} 
-                        if (slot.perspective == Perspective.PossessiveAdj){p="their";}
+                        if (slot.perspective == Conjugation.Subject){p="they";}
+                        if (slot.perspective == Conjugation.Object){p="them";}
+                        if (slot.perspective == Conjugation.PossessivePro){p="theirs";} 
+                        if (slot.perspective == Conjugation.PossessiveAdj){p="their";}
                     }
                     word = new Word(p, g);
                     break;
@@ -154,7 +154,11 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         //returns a unique (not yet in the hash set) random item from the provided list
         if (list == null || list.Count == 0)
+        {   
             throw new System.Exception("RandomUniqueFrom called with empty list.");
+        }
+            
+            
 
         var shuffled = new List<T>(list);
         for (int i = shuffled.Count - 1; i > 0; i--)
