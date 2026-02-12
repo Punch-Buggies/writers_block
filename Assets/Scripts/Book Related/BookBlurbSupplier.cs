@@ -201,9 +201,10 @@ public class BookBlurbSupplier : MonoBehaviour
 
         /* CSV file is structured as the following: 
         Value, Story Type, Adjectives, Catchphrases, People, Places, Things, Template */
-        string[] lines = blurbCSV.text.Split('\n'); // Line Separation
+        string[] lines = blurbCSV.text.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries); // Line Separation
         int num_headers = lines[0].Split(',').Length;
         Debug.Log("BLURB CSV Number of headers " + num_headers + ", total number of entries " + lines.Length);
+        Debug.Log($"Last line raw: '{lines[lines.Length - 1]}'");
         
         // starts at i1 bc i0 are headers
         for (int i = 1; i < lines.Length; i++)
