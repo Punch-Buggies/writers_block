@@ -31,7 +31,7 @@ public enum WordType
 
     // note gendered dependants must depend on an independant word that has a gender (character, WordType.Person)
 }
-public enum Perspective
+public enum Conjugation
 {
     Subject, // she/he/they
     Object,//   her/him/them
@@ -45,9 +45,9 @@ public class TemplateSlot
     public string slotId;   // unique id
     public WordType type;   // Person, Place, etc
     public string parentId; //for dependant words only (id of word it depends on, must be an independant word)
-    public Perspective perspective; //for pronouns only
+    public Conjugation perspective; //for pronouns only
 
-    public TemplateSlot(string id, WordType type, string parentId=null, Perspective perspective=Perspective.PossessivePro)
+    public TemplateSlot(string id, WordType type, string parentId=null, Conjugation conjugation=Conjugation.PossessivePro)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -56,7 +56,7 @@ public class TemplateSlot
         }
         slotId = id;
         this.type = type;
-        this.perspective = perspective;
+        this.perspective = conjugation;
         // Dependent word types must reference a parent slot
         if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name)
         {
