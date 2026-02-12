@@ -151,11 +151,7 @@ public class BookBlurbSupplier : MonoBehaviour
     {
         //(1) parse into lists
         List<string> adj = new List<string>(adjectives.Split('|'));
-        List<string> cp = new List<string>();
-        foreach (Match match in Regex.Matches(catchphrases, "\".*?\""))
-        {// regex match for quotations
-            cp.Add(match.Value);
-        }
+        List<string> cp = new List<string>(catchphrases.Split('|'));
         //(2) add data to dictionary
         character_words.Add(value, new CharacterWordSet{
             adjectives = adj,
@@ -255,15 +251,16 @@ public class BookBlurbSupplier : MonoBehaviour
         // adding templates for testing, remove this once the addTemplateData has been made
         templates.Add("Test", new List<BookBlurbTemplate>
         {
-            new BookBlurbTemplate("{adj} {name1} ran over to {name2} the {person2} and shouted at {them}, “{catchphrase}!", 
+            new BookBlurbTemplate("{adj} {name1} ran over to {name2}, the {person2}. {they} shouted at {them}, “{catchphrase}!", 
             new List<TemplateSlot>
             {
                 new TemplateSlot("adj", WordType.Adjective),
                 new TemplateSlot("name1", WordType.Name, parentId:"character"),
                 new TemplateSlot("name2", WordType.Name, parentId:"person2"),
                 new TemplateSlot("person2", WordType.Person),
-                new TemplateSlot("them", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
-                new TemplateSlot("catchphrase", WordType.Catchphrase)
+                new TemplateSlot("them", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Object),
+                new TemplateSlot("catchphrase", WordType.Catchphrase),
+                new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject)
             }, 
             "Test"),
             new BookBlurbTemplate(

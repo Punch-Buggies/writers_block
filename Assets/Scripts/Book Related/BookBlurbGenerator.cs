@@ -154,7 +154,11 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         //returns a unique (not yet in the hash set) random item from the provided list
         if (list == null || list.Count == 0)
+        {   
             throw new System.Exception("RandomUniqueFrom called with empty list.");
+        }
+            
+            
 
         var shuffled = new List<T>(list);
         for (int i = shuffled.Count - 1; i > 0; i--)
