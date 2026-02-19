@@ -2,17 +2,26 @@ using UnityEngine;
 
 public class BookInsideSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject book_inside_prefab;
+    [SerializeField] private GameObject bookInsidePrefab;
+    [SerializeField] private GameObject bookCoverPrefab;
     [SerializeField] private Transform parentContainer;
 
 
 
-    public void SpawnItem(string blurb)
+    public void SpawnItem(string blurb, string title, bool bestseller, int copiesSold)
     {
-        GameObject newItem = Instantiate(book_inside_prefab, parentContainer);
+        // spawn inside
+        GameObject newInside = Instantiate(bookInsidePrefab, parentContainer);
 
-        BookInside itemScript = newItem.GetComponent<BookInside>();
-        itemScript.Initialize(blurb);
+        BookInside insideScript = newInside.GetComponent<BookInside>();
+        insideScript.Initialize(blurb);
+
+        // spawn outside
+        GameObject newCover = Instantiate(bookCoverPrefab, parentContainer);
+        BookCover coverScript = newCover.GetComponent<BookCover>();
+        string bestsellerStr = bestseller ? "Bestselling novel" : "Novel";;
+        string coverHeaderStr = $"{bestsellerStr} with {copiesSold} copies sold";
+        coverScript.Initialize(title, coverHeaderStr);
     }
 
 }

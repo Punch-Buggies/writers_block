@@ -86,7 +86,7 @@ public class Publish : MonoBehaviour
             publishCounter = 0; // checking how many categories of elements we have (genre, char, setting)    
 
             //display book ui - temporary
-            spawner.SpawnItem(newBook.blurb);
+            spawner.SpawnItem(newBook.blurb, "Temporary Title", newBook.bestSelling, newBook.copiesSold);
 
     }
 
