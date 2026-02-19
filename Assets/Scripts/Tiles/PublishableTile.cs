@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PublishableTile : MonoBehaviour
+public class PublishableTile : MonoBehaviour, IDropHandler
 {
     [SerializeField] string storyElement;
     [SerializeField] string elementType;
@@ -25,5 +26,14 @@ public class PublishableTile : MonoBehaviour
     public string GetElementType()
     {
         return elementType;
-    }  
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if(eventData.pointerDrag.GetComponent<Eraser>() != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 }

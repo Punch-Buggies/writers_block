@@ -50,7 +50,19 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     
     public void OnDrop(PointerEventData eventData)
     {
-        if (unlocked)
+        if(tileOccupied == true && eventData.pointerDrag.GetComponent<Eraser>() != null)
+        {
+            Debug.Log("Erasing");
+            Destroy(spawnedElement);
+            spawnedElement = null;
+            tileOccupied = false;
+            startCooking = false;
+            timer = 0f;
+            progressBar.SetActive(false);
+            return;
+        }
+        
+        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null)
         {
             spawnedElement = eventData.pointerDrag;
             DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
@@ -67,7 +79,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
                     tileOccupied = true;
                     startCooking = true;
-                }         
+                }   
             }
         }
     }
@@ -105,9 +117,12 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             spawnedTile.GetComponent<PublishableTile>().SetStoryElement(storyElement);
             spawnedTile.GetComponent<PublishableTile>().SetElementType(elementType);
 
+            spawnedElement = spawnedTile;
+
 
             progressBar.SetActive(false);
             timer = 0f;
+            startCooking = false;
 
             DraggableItem draggable = spawnedTile.GetComponent<DraggableItem>();
 
