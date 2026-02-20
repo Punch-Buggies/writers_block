@@ -7,6 +7,8 @@ public class BookCover : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI bestellerText;
+    
+
     private string title;
     private string besteller;
 
