@@ -19,8 +19,8 @@ public class BookInsideSpawner : MonoBehaviour
         // spawn outside
         GameObject newCover = Instantiate(bookCoverPrefab, parentContainer);
         BookCover coverScript = newCover.GetComponent<BookCover>();
-        string bestsellerStr = bestseller ? "Bestselling novel" : "Novel";;
-        string coverHeaderStr = $"{bestsellerStr} with {copiesSold} copies sold";
+        string bestsellerStr = bestseller ? "Bestseller" : "";;
+        string coverHeaderStr = $"{copiesSold}\ncopies sold\n{bestsellerStr}";
         coverScript.Initialize(title, coverHeaderStr);
     }
 
