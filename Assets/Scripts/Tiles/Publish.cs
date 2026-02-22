@@ -10,6 +10,7 @@ public class Publish : MonoBehaviour
 {
     [SerializeField] BestSeller bestSeller;
     [SerializeField] int publishCounter = 0;
+    [SerializeField] BookInsideSpawner spawner;//temp
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
@@ -76,13 +77,17 @@ public class Publish : MonoBehaviour
                 false
                 );
 
-            newBook.blurb = BookBlurbGenerator.Instance.generate_blurb("Test", newBook.character, newBook.setting);//TODO: replace with book's genre/char/setting
+            newBook.blurb = BookBlurbGenerator.Instance.generate_blurb("Test", newBook.character, newBook.setting);//TODO: replace with book's genre
 
 
             // clear the element dictionary
             bookStoryElementDict.Clear();
             publishedTiles.Clear();
-            publishCounter = 0; // checking how many categories of elements we have (genre, char, setting)            
+            publishCounter = 0; // checking how many categories of elements we have (genre, char, setting)    
+
+            //display book ui - temporary
+            string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
+            spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold);
 
     }
 
