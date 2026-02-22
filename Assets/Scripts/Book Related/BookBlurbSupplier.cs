@@ -270,8 +270,8 @@ public class BookBlurbSupplier : MonoBehaviour
                 },"Title"),
             new BookBlurbTemplate("When two {character}s Meet", new List<TemplateSlot>{}, "Title"),
             new BookBlurbTemplate("The Cadence of {adjective} {people}s", new List<TemplateSlot>{new TemplateSlot("adjective", WordType.Adjective)}, "Title"),
-            new BookBlurbTemplate("You Lie in the {place}", new List<Templateslot>{new Templateslot("place", WordType.Place)}, "Title"),
-            new BookBlurbTemplate("The End of the World (for {adjective} {character}s)", new List<TemplateSlot>{"adjective", WordType.Adjective},"Title"),
+            new BookBlurbTemplate("You Lie in the {place}", new List<TemplateSlot>{new TemplateSlot("place", WordType.Place)}, "Title"),
+            new BookBlurbTemplate("The End of the World (for {adjective} {character}s)", new List<TemplateSlot>{new TemplateSlot("adjective", WordType.Adjective)},"Title"),
             new BookBlurbTemplate("The Song of the {character}", new List<TemplateSlot>{}, "Title")
         });
         templates.Add("Test", new List<BookBlurbTemplate>
