@@ -8,7 +8,7 @@ public class BookInsideSpawner : MonoBehaviour
 
 
 
-    public void SpawnItem(string blurb, string title, bool bestseller, int copiesSold)
+    public void SpawnInside(string blurb )
     {
         // spawn inside
         GameObject newInside = Instantiate(bookInsidePrefab, parentContainer);
@@ -16,6 +16,11 @@ public class BookInsideSpawner : MonoBehaviour
         BookInside insideScript = newInside.GetComponent<BookInside>();
         insideScript.Initialize(blurb);
 
+
+    }
+
+    public void SpawnCover(string title, bool bestseller, int copiesSold)
+    {
         // spawn outside
         GameObject newCover = Instantiate(bookCoverPrefab, parentContainer);
         BookCover coverScript = newCover.GetComponent<BookCover>();

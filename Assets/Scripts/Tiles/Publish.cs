@@ -87,7 +87,7 @@ public class Publish : MonoBehaviour
 
             //display book ui - temporary
             string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
-            spawner.SpawnItem(newBook.blurb, title, newBook.bestSelling, newBook.copiesSold);
+            spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold);
 
     }
 
