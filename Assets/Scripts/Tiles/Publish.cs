@@ -77,6 +77,7 @@ public class Publish : MonoBehaviour
                 false
                 );
 
+            // this is the blurb being adding to the book object
             newBook.blurb = BookBlurbGenerator.Instance.generate_blurb("Test", newBook.character, newBook.setting);//TODO: replace with book's genre
 
 
@@ -87,7 +88,8 @@ public class Publish : MonoBehaviour
 
             //display book ui - temporary
             string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
-            spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold);
+            // makes bookui object and adds to bookshelf UI
+            spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold, newBook.blurb);
 
     }
 
