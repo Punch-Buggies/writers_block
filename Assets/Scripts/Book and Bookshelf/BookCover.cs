@@ -11,13 +11,20 @@ public class BookCover : MonoBehaviour
 
     private string title;
     private string besteller;
+    private string blurb;
 
-    public void Initialize(string title, string besteller)
+    public void Initialize(string title, string besteller, string b)
     {
 
         titleText.text = title;
         bestellerText.text = besteller;
+        blurb = b;
     }
 
+    // add button for opening bookview
+    public void OnClick(){
+        Debug.Log("youre clicking me");
+        BookViewManager.Instance.OpenBookView(blurb);
+    }
 
 }
