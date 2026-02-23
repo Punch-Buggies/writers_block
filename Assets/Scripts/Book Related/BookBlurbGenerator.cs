@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 
 public class BookBlurbGenerator : MonoBehaviour
 {
@@ -140,7 +142,15 @@ public class BookBlurbGenerator : MonoBehaviour
         {
             finalBlurb = finalBlurb.Replace("{" + kvp.Key + "}", kvp.Value.word_s);
         }
+        
 
+        // Convert the string to title case
+        if (genre == "Title")
+        {
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            finalBlurb = textInfo.ToTitleCase(finalBlurb);
+        }
+        
         Debug.Log("Blurb:\n"+finalBlurb);// OUTPUT
         return finalBlurb;
     }
