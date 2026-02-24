@@ -100,8 +100,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -353,7 +353,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 8717524226854276306}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -498,15 +498,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Will could see his mom\u2019s face clearly now through the fleshy window.
-    Her hair stuck out in odd directions, obvious dark circles hung under her eyes,
-    and her brows were drawn up creating deep lines on her forehead. Her hands met
-    Will\u2019s on the other side of the wall, pressed against him \u2014 Will relished
-    in the hint of warmth emanating from her,the first he\u2019s felt in days. Joyce
-    then began prodding with more and more strength against the petition. Digging
-    her fingernails into it, scraping and thrashing with increasing desperation.
-    Will echoed her frantic movements. Chunks of rust coloured gunk embedding under
-    his nails, grey slime slinking itself around his fingers. \n "
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -533,8 +525,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
