@@ -1,10 +1,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class PublishableTile : MonoBehaviour, IDropHandler
 {
     [SerializeField] string storyElement;
     [SerializeField] string elementType;
+    TextMeshProUGUI elementText;
+
+    void Awake()
+    {
+        elementText = GetComponentInChildren<TextMeshProUGUI>();
+    }
 
 
     public void SetStoryElement(string element)
@@ -15,6 +22,7 @@ public class PublishableTile : MonoBehaviour, IDropHandler
     public void SetElementType(string type)
     {
         elementType = type;
+        elementText.text = type;
     }
 
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -22,8 +23,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
-        initialScale = transform.localScale;
-        finalScale = transform.localScale * scaleFactor;
+
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -83,5 +83,8 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     void Start()
     {
         transform.position = initialLocation.position;
+
+        initialScale = transform.localScale;
+        finalScale = transform.localScale * scaleFactor;
     }
 }
