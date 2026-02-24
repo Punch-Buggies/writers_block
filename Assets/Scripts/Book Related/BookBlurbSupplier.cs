@@ -277,7 +277,7 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         templates.Add("Romance", new List<BookBlurbTemplate>
         {
-            new BookBlurbTemplate("“Follow me,”{mc_a} moves {their_a} arm from {mc_b}’s shoulder to tug on the {person_b}’s arm. {mc_b} shoots {them_a} a {adj1} glance, but follows {mc_a} nonetheless.\nAt the claw machine, {mc_a} lets go of {mc_b} to stand in front of {them_b} and raises {their_a} arms presenter style.\n“{mc_b}… Wait, what's your last name?“\n“{thing_b},“ {mc_b} laughed. {mc_a} liked {their_b} laugh. It was {adj} and you had to pay special attention to hear it.\n“{mc_b} {thing_b}: I, {mc_a}, hereby present to you the formidable… claw machine!“\n{mc_b} brings {their_b} hands to {their_b} face, hiding the tint of pink spreading over {their_b} face.\n“I will now display my superior gaming skills in a valiant battle against the wretched claw to bring forth to my princess the— oh I don’t fucking know, I’m winning you one of those stupid looking stuffed {thing1}s, okay?“\n{mc_b} dragged {their_b} hands down enough that {mc_a} could see the {person_b}’s eyes.\n“Why am I a princess now?“ {mc_b} tried to fake annoyance, but {mc_a} caught the quirk of a smile {mc_b} was attempting to hide under {their_b} hands.\n“Cause you’re pretty like one.“\n“You’re so embarrassing.“ {mc_b} groaned.",
+            new BookBlurbTemplate("“Follow me,” {mc_a} moves {their_a} arm from {mc_b}’s shoulder to tug on the {person_b}’s arm. {mc_b} shoots {them_a} a {adj1} glance, but follows {mc_a} nonetheless.\nAt the claw machine, {mc_a} lets go of {mc_b} to stand in front of {them_b} and raises {their_a} arms presenter style.\n“{mc_b}… Wait, what's your last name?“\n“{thing_b},“ {mc_b} laughed. {mc_a} liked {their_b} laugh. It was {adj} and you had to pay special attention to hear it.\n“{mc_b} {thing_b}: I, {mc_a}, hereby present to you the formidable… claw machine!“\n{mc_b} brings {their_b} hands to {their_b} face, hiding the tint of pink spreading over {their_b} face.\n“I will now display my superior gaming skills in a valiant battle against the wretched claw to bring forth to my princess the— oh I don’t fucking know, I’m winning you one of those stupid looking stuffed {thing1}s, okay?“\n{mc_b} dragged {their_b} hands down enough that {mc_a} could see the {person_b}’s eyes.\n“Why am I a princess now?“ {mc_b} tried to fake annoyance, but {mc_a} caught the quirk of a smile {mc_b} was attempting to hide under {their_b} hands.\n“Cause you’re pretty like one.“\n“You’re so embarrassing.“ {mc_b} groaned.",
             new List<TemplateSlot>
             {
               new TemplateSlot("mc_a", WordType.Name, parentId:"character"),
@@ -331,7 +331,7 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("place_b", WordType.Place)
 
             }, "Action"),
-            new BookBlurbTemplate("{mc}, still paralyzed— clearly, both fight and flight responses were forgone— stared at the retreating {person_b}. {they_b} had lifted {their_b} grip off {mc}, though {they_b} still pinned {them_a} down by the legs, and tilted {their_b} head back and forth – as if searching for the source of the sound. A second bang rang out, and this time {mc} sees the {thing1} rip straight through the {person}’s open mouth, getting lodged in {their_b} cheek.\nBefore the {person_b} could follow through with {their_b} instinct to retaliate, {their_b} arms snap backwards in an unnatural way. {mc} feels the pressure on {their_a} legs alleviate as the {person_b} is lifted slightly in the air. With an awful cracking sound, the {person_b}’s head snaps backwards at an impossible angle. {mc} stares, mouth agape, at the {person_b} suspended above him, before {they_b} come falling back down. {mc} rolls off to the side just a fraction of time before the {person_b}’s now limp body meets the ground {they_a} had just occupied with a thud.", 
+            new BookBlurbTemplate("{mc}, still paralyzed— clearly, both fight and flight responses were forgone— stared at the retreating {person_b}. {they_b} had lifted {their_b} grip off {mc}, though {they_b} still pinned {them_a} down by the legs, and tilted {their_b} head back and forth – as if searching for the source of the sound. A second bang rang out, and this time {mc} sees the {thing1} rip straight through the {person_b}’s open mouth, getting lodged in {their_b} cheek.\nBefore the {person_b} could follow through with {their_b} instinct to retaliate, {their_b} arms snap backwards in an unnatural way. {mc} feels the pressure on {their_a} legs alleviate as the {person_b} is lifted slightly in the air. With an awful cracking sound, the {person_b}’s head snaps backwards at an impossible angle. {mc} stares, mouth agape, at the {person_b} suspended above him, before {they_b} come falling back down. {mc} rolls off to the side just a fraction of time before the {person_b}’s now limp body meets the ground {they_a} had just occupied with a thud.", 
             new List<TemplateSlot>
             {
               new TemplateSlot("mc", WordType.Name, parentId:"character"),
@@ -379,7 +379,7 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         templates.Add("Adventure", new List<BookBlurbTemplate>
         {
-            new BookBlurbTemplate("The thin road stretches out in front of {mc}, it was dark enough now that the juncture of its eventual turn was obscured in shadow. {mc} and {their_a} friends called the road {adj1} {thing1} because of the way the {place1} on either side seemed to crowd in around you as they traveled down it. The road was especially “{adj1} {thing1}”-y at night. It was easy to imagine {adj3} {person1} and {adj2} {person2} crawling out of the {place1} after the sun set. It was too far out of town for there to be any lights. {mc} relied on the glow cast down by the moon to navigate to the {place2}. Though, even the moonlight seemed to have a personality of its own on {adj1} {thing1} road. Spindly, arm like, shadows stretched across the gravel, swaying and grabbing at {them_a} as {they_a} walked along the path. {mc} glanced up at the {thing2}s rocking in the autumn breeze. {they_a} should’ve worn a thicker jacket like {their_a} {person3} told {them_a} to.", 
+            new BookBlurbTemplate("The thin road stretches out in front of {mc}, it was dark enough now that the juncture of its eventual turn was obscured in shadow. {mc} and {their_a} friends called the road {adj1}-{thing1} road because of the way the {thing0}s on either side seemed to crowd in around you as you traveled down it. The road was especially “{adj1}-{thing1}”-y at night. It was easy to imagine {adj3} {person1}s and {adj2} {person2}s crawling out of the {place1} after the sun set. It was too far out of town for there to be any lights. {mc} relied on the glow cast down by the moon to navigate to the {place2}. Though, even the moonlight seemed to have a personality of its own on {adj1}-{thing1} road. Spindly, arm like, shadows stretched across the gravel, swaying and grabbing at {them_a} as {they_a} walked along the path. {mc} glanced up at the {thing2}s rocking in the autumn breeze. {they_a} should’ve worn a thicker jacket like {their_a} {person3} told {them_a} to.", 
             new List<TemplateSlot>
             {
               new TemplateSlot("mc", WordType.Name, parentId:"character"),
@@ -395,7 +395,8 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("person2", WordType.Person),
               new TemplateSlot("place2", WordType.Place),
               new TemplateSlot("thing2", WordType.Thing),
-              new TemplateSlot("person3", WordType.Person)
+              new TemplateSlot("person3", WordType.Person),
+              new TemplateSlot("thing0", WordType.Thing)
             }, "Adventure")
         });
         templates.Add("Slice-of-Life", new List<BookBlurbTemplate>
@@ -421,7 +422,7 @@ public class BookBlurbSupplier : MonoBehaviour
                 new TemplateSlot("phrase", WordType.Catchphrase)
 
             }, "Slice-of-Life"),
-            new BookBlurbTemplate("Eventually, finally, the group settled on rewatching their usual movie night flick: “{person1}s and {thing2}s”. They pass the {thing3}s around and dig into the pizza: Hawaiian because {mc_a} picked it. {mc_b} grumbles as {they_b} picks off the pineapple from {their_b} slices, silently putting them on {mc_c}’s plate. {mc_c} piles them onto his pizza.\nAbout ten minutes into the movie, {mc_a} looks over to the couch, “So, what brings you to our {place1}, {mc_d}?”\n{mc_d} tenses, “Ah, my parents thought it’d be good for me. Let me find some new people to bother. Y’know… ‘{phrase}’ or whatever” {they_d} finishes with a noncommittal shrug.\n“Well, you’re doing a great job of that,” {mc_b}, {adj1}, mumbles.\n{mc_c} side eyes {mc_b}, “You’re being real {adj2} for a replaceable friend group member, {mc_b}.”\n“The fuck do you mean ‘replacable’?”\n“Just saying, goofy over here’s more likeable than {adj3}”\n{mc_c} snorts and tries to hide {their_c} grin behind {their_c} hand when {mc_b} shoots {them_c} a betrayed look.", 
+            new BookBlurbTemplate("Eventually, finally, the group settled on rewatching their usual movie night flick: “{person1}s and {thing2}s”. They pass the {thing3}s around and dig into the pizza: Hawaiian because {mc_a} picked it. {mc_b} grumbles as {they_b} picks off the pineapple from {their_b} slices, silently putting them on {mc_c}’s plate. {mc_c} piles them onto {their_c} pizza.\nAbout ten minutes into the movie, {mc_a} looks over to the couch, “So, what brings you to our {place1}, {mc_d}?”\n{mc_d} tenses, “Ah, my parents thought it’d be good for me. Let me find some new people to bother. Y’know… ‘{phrase}’ or whatever” {they_d} finishes with a noncommittal shrug.\n“Well, you’re doing a great job of that,” {mc_b}, {adj1}, mumbles.\n{mc_c} side eyes {mc_b}, “You’re being real {adj2} for a replaceable friend group member, {mc_b}.”\n“The fuck do you mean ‘replacable’?”\n“Just saying, goofy over here’s more likeable than {adj3}”\n{mc_c} snorts and tries to hide {their_c} grin behind {their_c} hand when {mc_b} shoots {them_c} a betrayed look.", 
             new List<TemplateSlot>
             {
               new TemplateSlot("mc_a", WordType.Name, parentId:"character"),
@@ -448,7 +449,7 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("thing3", WordType.Thing),
               new TemplateSlot("place1", WordType.Place),
               new TemplateSlot("phrase", WordType.Catchphrase),
-              new TemplateSlot("adj1", WordType.Adjectives),
+              new TemplateSlot("adj1", WordType.Adjective),
               new TemplateSlot("adj2", WordType.Adjective),
               new TemplateSlot("adj3", WordType.Adjective)
             }, "Slice-of-Life")
@@ -486,8 +487,8 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         
         
-        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid" });
-        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier" });
+        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid", "Loren", "Avery", "Stardust", "Kitty", "Caitlyn", "Meghan", "Maggie", "Maryam", "Renaissa", "Charlotte", "Ingrid", "Mary", "Faith", "Precious", "Sophia", "Vivian", "Sofia", "Anita", "Gloria"});
+        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier", "Alex", "Steel Lightning", "Faiaz", "Brian", "William", "Mitch", "Lucas", "Ryan", "Todd", "Richard", "Bartemius", "Reggie", "James", "Temi", "Oscar", "Nico", "Zafir", "Rafael", "Lee"});
         names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
         Debug.Log("I have populated all the data i Hope");
     }
