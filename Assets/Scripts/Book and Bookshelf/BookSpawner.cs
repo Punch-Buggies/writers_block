@@ -6,21 +6,15 @@ public class BookInsideSpawner : MonoBehaviour
     [SerializeField] private GameObject bookCoverPrefab;
     [SerializeField] private Transform parentContainer;
 
-    // [SerializeField] private Transform bookViewContainer;
-    
-
-    // public void SpawnInside(string blurb )
-    // {
-    //     // spawn inside
-    //     GameObject newInside = Instantiate(bookInsidePrefab, bookViewContainer);
-
-    //     BookInside insideScript = newInside.GetComponent<BookInside>();
-    //     insideScript.Initialize(blurb);
-
-    // }
+   
 
     public void SpawnCover(string title, bool bestseller, int copiesSold, string blurb)
     {
+        // bool bestseller = book.bestSelling
+        // int copiesSold
+        // string blurb
+       
+
         // spawn outside
         GameObject newCover = Instantiate(bookCoverPrefab, parentContainer);
         BookCover coverScript = newCover.GetComponent<BookCover>();
