@@ -4,11 +4,14 @@ public class StartScreenManager : MonoBehaviour
 {
     [SerializeField] private GameObject startScreenCam;
     [SerializeField] private GameObject mainCam;
+    [SerializeField] private GameObject bookshelfCam;
+
 
     void Start()
     {
         startScreenCam.SetActive(true);
         mainCam.SetActive(false);
+        bookshelfCam.SetActive(false);
     }
 
 
@@ -16,5 +19,13 @@ public class StartScreenManager : MonoBehaviour
     {
         startScreenCam.SetActive(false);
         mainCam.SetActive(true);
+        bookshelfCam.SetActive(false);
+    }
+
+    public void GoToBookshelf()
+    {
+        startScreenCam.SetActive(false);
+        mainCam.SetActive(false);
+        bookshelfCam.SetActive(true);
     }
 }

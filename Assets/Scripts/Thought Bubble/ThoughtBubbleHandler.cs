@@ -68,9 +68,11 @@ public class ThoughtBubbleHandler : MonoBehaviour
             Quaternion.identity, 
             transform // Set as child of this GameObject
         );
+        spawnedElement.transform.SetParent(transform, worldPositionStays: false);
+        spawnedElement.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f); // Ensure the spawned element has a scale of 2
 
-        UnityEngine.Color c = UnityEngine.Color.blue;
-        spawnedElement.GetComponent <Image>().color = c;
+        //UnityEngine.Color c = UnityEngine.Color.blue;
+        //spawnedElement.GetComponent <Image>().color = c;
 ;
 
         // Filling up the data for both the scripts

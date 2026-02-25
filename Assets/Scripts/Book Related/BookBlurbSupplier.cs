@@ -43,6 +43,17 @@ public class BookBlurbSupplier : MonoBehaviour
     void BuildSampleData()
     // sample data for testing
     {
+        templates.Add("Title", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "{character}'s {adjective} {genre} story",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("adjective", WordType.Adjective)
+                },
+                "Title"
+            )
+        });
         templates.Add("Test", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
@@ -251,7 +262,14 @@ public class BookBlurbSupplier : MonoBehaviour
         
         // TEMPLATES
         templates.Add("Title", new List<BookBlurbTemplate>
+        // note title's don't have access to original genre
         {
+            new BookBlurbTemplate( "{character}'s {adjective} Story",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("adjective", WordType.Adjective)
+                },"Title"),
+        
             new BookBlurbTemplate("The {character}’s Journey", new List<TemplateSlot>{}, "Title"),
             new BookBlurbTemplate("{a} {setting} Story", new List<TemplateSlot>{new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"setting")}, "Title"),
             new BookBlurbTemplate("{a} {character}’s Guide to {thing1}s and {thing2}s", new List<TemplateSlot>{
