@@ -89,6 +89,8 @@ public class Publish : MonoBehaviour
             string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
             // makes bookui object and adds to bookshelf UI
             spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold, newBook.blurb);
+            // play book sound!!
+            AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
 
     }
 
