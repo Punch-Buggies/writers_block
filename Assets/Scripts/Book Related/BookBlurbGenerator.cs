@@ -26,7 +26,7 @@ public class BookBlurbGenerator : MonoBehaviour
         Dictionary<string, Word> chosenBySlot = new Dictionary<string, Word>();
 
         //include genre, setting, and character as words
-        chosenBySlot["character"] = new Word(character, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary}));
+        chosenBySlot["character"] = new Word(character, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine}));
         usedWords.Add(character);
         chosenBySlot["genre"] = new Word(genre);
         usedWords.Add(genre);
@@ -57,7 +57,7 @@ public class BookBlurbGenerator : MonoBehaviour
                         break;
                     case WordType.Person:
                         word_s = RandomUniqueFrom(bookBlurbSupplier.GetPeople(setting), s=>s, usedWords);
-                        word = new Word(word_s, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine,Gender.nonbinary}));
+                        word = new Word(word_s, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine}));
                         break;
                     case WordType.Place:
                         word_s = RandomUniqueFrom(bookBlurbSupplier.GetPlaces(setting), s=>s, usedWords);

@@ -10,6 +10,10 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     [SerializeField] GameObject progressBar;
     [SerializeField] GameObject publishableTile;
 
+    [SerializeField] GameObject genrePublishableTile;
+    [SerializeField] GameObject settingsPublishableTile;
+    [SerializeField] GameObject characterPublishableTile;
+
     [SerializeField] string tileType;
     [SerializeField] TextMeshProUGUI unlockText;
 
@@ -105,12 +109,35 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             string storyElement = spawnedElement.GetComponent<StoryElement>().GetStoryElement();
             string elementType = spawnedElement.GetComponent<StoryElement>().GetElementType();
 
+
+            GameObject prefabToSpawn = null;
+            // we destoy the old element which we dragged
             Destroy(spawnedElement);
+
+            switch (storyElement)
+            {
+                case "Genre":
+                    prefabToSpawn = genrePublishableTile;
+                    break;
+
+                case "Setting":
+                    prefabToSpawn = settingsPublishableTile;
+                    break;
+
+                case "Character":
+                    prefabToSpawn = characterPublishableTile;
+                    break;
+
+                default:
+                    Debug.LogWarning("Unknown element type: " + elementType);
+                    return;
+            }
+
             GameObject spawnedTile = Instantiate(
-                publishableTile,
+                prefabToSpawn,
                 transform.position,
                 Quaternion.identity,
-                transform // Set as child of the parent GameObject
+                transform
             );
 
             // After Spawning the Publishable Tile, we put the info into it

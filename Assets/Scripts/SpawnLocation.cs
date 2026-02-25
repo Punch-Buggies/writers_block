@@ -18,6 +18,7 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             UnlockLocation();
         }
+        unlockText.SetActive(false);
     }
 
 
@@ -51,12 +52,12 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        return;
+        unlockText.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        return;
+        unlockText.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -77,8 +77,7 @@ public class Publish : MonoBehaviour
                 false
                 );
 
-            // this is the blurb being adding to the book object
-            newBook.blurb = BookBlurbGenerator.Instance.generate_blurb("Test", newBook.character, newBook.setting);//TODO: replace with book's genre
+            newBook.blurb = BookBlurbGenerator.Instance.generate_blurb(newBook.genre, newBook.character, newBook.setting);
 
 
             // clear the element dictionary
