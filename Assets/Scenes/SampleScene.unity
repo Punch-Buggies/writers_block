@@ -5452,9 +5452,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1336664822}
   sfxSource: {fileID: 317288760}
-  musicVolume: 1
+  musicVolume: 0.7
   sfxVolume: 1
   mainMusic: {fileID: 8300000, guid: 8dc77622334894c3b8f357de78c369df, type: 3}
+  quillSFX: {fileID: 8300000, guid: 5be33543b6cf54e2a85ec757d06d48b8, type: 3}
 --- !u!4 &1479097259
 Transform:
   m_ObjectHideFlags: 0
