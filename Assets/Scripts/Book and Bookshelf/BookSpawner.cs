@@ -8,11 +8,11 @@ public class BookInsideSpawner : MonoBehaviour
 
    
 
-    public void SpawnCover(string title, bool bestseller, int copiesSold, string blurb)
+    public void SpawnCover(string title, Book book)
     {
-        // bool bestseller = book.bestSelling
-        // int copiesSold
-        // string blurb
+        bool bestseller = book.bestSelling;
+        int copiesSold = book.copiesSold;
+        string blurb = book.blurb;
        
 
         // spawn outside

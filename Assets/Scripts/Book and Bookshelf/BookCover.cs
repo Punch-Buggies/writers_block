@@ -12,6 +12,7 @@ public class BookCover : MonoBehaviour
     private string title;
     private string besteller;
     private string blurb;
+    // private Book book;
 
     public void Initialize(string title, string besteller, string b)
     {
