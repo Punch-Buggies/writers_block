@@ -12,7 +12,7 @@ public class BookInsideSpawner : MonoBehaviour
     {
         bool bestseller = book.bestSelling;
         int copiesSold = book.copiesSold;
-        string blurb = book.blurb;
+        // string blurb = book.blurb;
        
 
         // spawn outside
@@ -20,7 +20,8 @@ public class BookInsideSpawner : MonoBehaviour
         BookCover coverScript = newCover.GetComponent<BookCover>();
         string bestsellerStr = bestseller ? "Bestseller" : "";;
         string coverHeaderStr = $"{copiesSold}\ncopies sold\n{bestsellerStr}";
-        coverScript.Initialize(title, coverHeaderStr, blurb);
+        Debug.Log("about to initialize cover script this is corner string: "+coverHeaderStr);
+        coverScript.Initialize(title, coverHeaderStr, book);
     }
 
 }
