@@ -75,6 +75,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             if (tileOccupied == false && storyElement != null)
             {
                 progressBar.SetActive(true);
+                AudioManager.Instance.PlayQuillSFX();
                 if (draggable != null)
                 {
                     // StoryElement Side of things

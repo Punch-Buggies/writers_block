@@ -15,6 +15,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
+    [SerializeField] public AudioClip quillSFX; 
+
+
 
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
@@ -92,6 +95,15 @@ public class AudioManager : MonoBehaviour
         Debug.Log("Playing clip: " + path);
         sfxSource.PlayOneShot(clip);
     }
+
+    public void PlayQuillSFX()
+    {
+        if (quillSFX == null) return;
+
+        sfxSource.clip = quillSFX;
+        sfxSource.Play();
+    }
+
 
     public void playTest()
     {
