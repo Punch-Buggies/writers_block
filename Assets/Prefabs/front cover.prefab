@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BookCover
   titleText: {fileID: 7112120128883262790}
-  bestellerText: {fileID: 6835127684478515743}
+  cornerText: {fileID: 6835127684478515743}
 --- !u!114 &624410092263193746
 MonoBehaviour:
   m_ObjectHideFlags: 0
