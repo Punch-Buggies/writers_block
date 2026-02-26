@@ -11,6 +11,7 @@ public class BookViewManager : MonoBehaviour
     [SerializeField] private GameObject bookInsidePrefab;
 
     GameObject currentInsideBook;
+    Book currentDataBook;
 
 
     private void Awake(){
@@ -28,31 +29,38 @@ public class BookViewManager : MonoBehaviour
         }
     }
 
-    public void SpawnInside(string blurb )
+    public void SpawnInside(Book book )
     {
         // spawn inside
         GameObject newInside = Instantiate(bookInsidePrefab, bookViewContainer);
 
         BookInside insideScript = newInside.GetComponent<BookInside>();
-        insideScript.Initialize(blurb);
+        insideScript.Initialize(book.blurb);
 
         currentInsideBook = newInside;
 
+        currentDataBook = book;
+
     }
 
-    public void OpenBookView(string blurb)
+    public void OpenBookView(Book book)
     {
-        // first spawn the inside view object
-        SpawnInside(blurb);
+        // first create the inside view object
+        SpawnInside(book);
+        // play sound
+        AudioManager.Instance.PlayUniqueBookSound(book.genre, book.character, book.setting);
         // then activate the ui overtop the bookshelf
         bookViewUI.SetActive(true); // opens the bookUI
     }
 
     public void CloseBookView(){
+        // play audio
+        // AudioManager.Instance.PlayUniqueBookSound(currentDataBook.genre, currentDataBook.character, currentDataBook.setting);
         // first close the UI so now its just the bookshelf showing
         bookViewUI.SetActive(false);
         // then delete game insidne view objecy
         Destroy(currentInsideBook);
+        currentDataBook = null;
     }
 
 }

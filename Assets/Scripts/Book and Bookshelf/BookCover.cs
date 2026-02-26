@@ -6,25 +6,28 @@ using UnityEngine.UI;
 public class BookCover : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private TextMeshProUGUI bestellerText;
-    
+    [SerializeField] private TextMeshProUGUI cornerText;
 
+    // title to display in prefab
     private string title;
-    private string besteller;
-    private string blurb;
+    // corner header string
+    private string cornerHeader;
+    private Book book;
 
-    public void Initialize(string title, string besteller, string b)
+    public void Initialize(string title, string cornerHeader, Book bookData)
     {
 
         titleText.text = title;
-        bestellerText.text = besteller;
-        blurb = b;
+        cornerText.text = cornerHeader;
+        book = bookData;
+
     }
 
     // add button for opening bookview
     public void OnClick(){
         Debug.Log("youre clicking me");
-        BookViewManager.Instance.OpenBookView(blurb);
+        // book sound is also played in thiw function call
+        BookViewManager.Instance.OpenBookView(book);
     }
 
 }
