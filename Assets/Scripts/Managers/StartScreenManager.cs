@@ -7,7 +7,7 @@ public class StartScreenManager : MonoBehaviour
     [SerializeField] private GameObject bookshelfCam;
 
 
-    void Start()
+    void Awake()
     {
         startScreenCam.SetActive(true);
         mainCam.SetActive(false);
