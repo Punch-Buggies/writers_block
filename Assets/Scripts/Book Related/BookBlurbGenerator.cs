@@ -5,11 +5,6 @@ using System.Threading;
 
 public class BookBlurbGenerator : MonoBehaviour
 {
-    // genre, character, & setting will come from published book
-    // [SerializeField] string genre;
-    // [SerializeField] string character;
-    // [SerializeField] string setting;
-    [SerializeField] BookInsideSpawner spawner;
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
     public static BookBlurbGenerator Instance { get; private set;}
@@ -199,7 +194,7 @@ public class BookBlurbGenerator : MonoBehaviour
     void Start()
     {
         // TESTING
-        
+
         // string g = "Title";
         // string c = "Lover";
         // string s = "WildWest";
