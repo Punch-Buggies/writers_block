@@ -198,13 +198,15 @@ public class BookBlurbGenerator : MonoBehaviour
     }
     void Start()
     {
-        string g = "Title";
-        string c = "Lover";
-        string s = "WildWest";
-        for (int i=0; i<10;i++){
-          string test = generate_blurb(g,c,s);
-        Debug.Log(test);  
-        };
+        // TESTING
+        
+        // string g = "Title";
+        // string c = "Lover";
+        // string s = "WildWest";
+        // for (int i=0; i<10;i++){
+        //   string test = generate_blurb(g,c,s);
+        // Debug.Log(test);  
+        // };
         
     }
 
