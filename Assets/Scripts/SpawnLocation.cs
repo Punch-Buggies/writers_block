@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -9,7 +10,8 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [SerializeField] GameObject unlockText;
 
-    int unlockCost = 10;
+    [SerializeField] int unlockCost = 10;
+    [SerializeField]TextMeshProUGUI unlockCostText;
 
 
     void Start()
@@ -19,6 +21,8 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             UnlockLocation();
         }
         unlockText.SetActive(false);
+        unlockCostText.text = "";
+
     }
 
 
@@ -53,11 +57,13 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         unlockText.SetActive(true);
+        unlockCostText.text = "$ " + unlockCost.ToString();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         unlockText.SetActive(false);
+        unlockCostText.text = "";
     }
 
     public void OnPointerClick(PointerEventData eventData)
