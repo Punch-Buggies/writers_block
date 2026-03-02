@@ -10,7 +10,7 @@ public class Publish : MonoBehaviour
 {
     [SerializeField] BestSeller bestSeller;
     [SerializeField] int publishCounter = 0;
-    [SerializeField] BookInsideSpawner spawner;//temp
+    [SerializeField] BookInsideSpawner spawner;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
