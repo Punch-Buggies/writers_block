@@ -1203,7 +1203,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 1
   unlockText: {fileID: 326220696}
-  unlockCost: 10
   unlockCostText: {fileID: 254666929}
 --- !u!114 &176255605
 MonoBehaviour:
@@ -1680,7 +1679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyManager
   moneyUI: {fileID: 205735007}
-  startingAmount: 0
+  startingAmount: 150
 --- !u!222 &205735009
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1987,7 +1986,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 1
   unlockText: {fileID: 1503027050}
-  unlockCost: 10
   unlockCostText: {fileID: 1907700845}
 --- !u!114 &281935423
 MonoBehaviour:
@@ -2125,7 +2123,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 0
   unlockText: {fileID: 1451209072}
-  unlockCost: 10
   unlockCostText: {fileID: 593106476}
 --- !u!1 &317288759
 GameObject:
@@ -3342,7 +3339,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 0
   unlockText: {fileID: 194863802}
-  unlockCost: 10
   unlockCostText: {fileID: 932649631}
 --- !u!224 &616777140 stripped
 RectTransform:
@@ -5584,7 +5580,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 0
   unlockText: {fileID: 1556387745}
-  unlockCost: 10
   unlockCostText: {fileID: 455081500}
 --- !u!224 &1173923108 stripped
 RectTransform:
@@ -6475,7 +6470,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 0
   unlockText: {fileID: 1286245764}
-  unlockCost: 10
   unlockCostText: {fileID: 143631676}
 --- !u!1001 &1400654155
 PrefabInstance:
@@ -6969,7 +6963,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 0
   unlockText: {fileID: 1618698818}
-  unlockCost: 10
   unlockCostText: {fileID: 130225327}
 --- !u!1 &1451209072
 GameObject:
@@ -7641,7 +7634,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 0
   unlockText: {fileID: 2035475190}
-  unlockCost: 10
   unlockCostText: {fileID: 73852842}
 --- !u!114 &1531941907 stripped
 MonoBehaviour:
@@ -9186,7 +9178,6 @@ MonoBehaviour:
   spawnOccupied: 0
   unlocked: 1
   unlockText: {fileID: 1043576981}
-  unlockCost: 10
   unlockCostText: {fileID: 2065107273}
 --- !u!114 &1901498647
 MonoBehaviour:
@@ -10081,15 +10072,15 @@ PrefabInstance:
       objectReference: {fileID: 2330435813356086164, guid: 6e8b036d4261388408c9375a3865b004, type: 3}
     - target: {fileID: 6708625634261031582, guid: ad915cc0f0f130941a07c1cfaae4c355, type: 3}
       propertyPath: m_Color.b
-      value: 0.18431373
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6708625634261031582, guid: ad915cc0f0f130941a07c1cfaae4c355, type: 3}
       propertyPath: m_Color.g
-      value: 0.44313726
+      value: 0.37254903
       objectReference: {fileID: 0}
     - target: {fileID: 6708625634261031582, guid: ad915cc0f0f130941a07c1cfaae4c355, type: 3}
       propertyPath: m_Color.r
-      value: 0.23921569
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7652972221771014370, guid: ad915cc0f0f130941a07c1cfaae4c355, type: 3}
       propertyPath: m_Pivot.x
