@@ -44,13 +44,13 @@ public class MoneyManager : MonoBehaviour
         }
 
         Debug.Log("I have $" + currentMoney);
-        moneyUI.text = $"${currentMoney}";
+        moneyUI.text = $"${currentMoney:0.##}";
     }
 
     public void addMoney(double amount)
     {
         currentMoney += amount;
-        moneyUI.text = $"${currentMoney}";
+        moneyUI.text = $"${currentMoney:0.##}";
     }
 
     public void deductMoney(double amount)
