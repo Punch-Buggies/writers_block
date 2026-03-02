@@ -5,10 +5,6 @@ using System.Threading;
 
 public class BookBlurbGenerator : MonoBehaviour
 {
-    // genre, character, & setting will come from published book
-    // [SerializeField] string genre;
-    // [SerializeField] string character;
-    // [SerializeField] string setting;
 
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
     public static BookBlurbGenerator Instance { get; private set;}
@@ -197,11 +193,16 @@ public class BookBlurbGenerator : MonoBehaviour
     }
     void Start()
     {
-        // // generate 5 random blurbs from sample data (for testing)
-        // for (int i = 0; i<5; i++)
-        // {
-        //     generate_sample();
-        // }
+        // TESTING
+
+        // string g = "Title";
+        // string c = "Lover";
+        // string s = "WildWest";
+        // for (int i=0; i<10;i++){
+        //   string test = generate_blurb(g,c,s);
+        // Debug.Log(test);  
+        // };
+        
     }
 
 }

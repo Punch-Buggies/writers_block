@@ -264,6 +264,15 @@ public class BookBlurbSupplier : MonoBehaviour
         templates.Add("Title", new List<BookBlurbTemplate>
         // note title's don't have access to original genre
         {
+            new BookBlurbTemplate("{a} {thing} for a {thing}", new List<TemplateSlot>{new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"thing"), new TemplateSlot("thing", WordType.Thing)},"Title"),
+            new BookBlurbTemplate("You Took my {heart} (I was Sleeping)", new List<TemplateSlot>{new TemplateSlot("heart", WordType.Thing)},"Title"),
+            new BookBlurbTemplate("Super-{something}", new List<TemplateSlot>{new TemplateSlot("something", WordType.Thing)},"Title"),
+            new BookBlurbTemplate("{a} {character} and {their} {thing}", new List<TemplateSlot>
+            {
+                new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"character"),
+                new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                new TemplateSlot("thing", WordType.Thing)
+            },"Title"),
             new BookBlurbTemplate( "{character}'s {adjective} Story",
                 new List<TemplateSlot>
                 {
@@ -288,7 +297,7 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("adjective", WordType.Adjective)
                 },"Title"),
             new BookBlurbTemplate("When two {character}s Meet", new List<TemplateSlot>{}, "Title"),
-            new BookBlurbTemplate("The Cadence of {adjective} {people}s", new List<TemplateSlot>{new TemplateSlot("adjective", WordType.Adjective)}, "Title"),
+            new BookBlurbTemplate("The Cadence of {adjective} {people}s", new List<TemplateSlot>{new TemplateSlot("adjective", WordType.Adjective), new TemplateSlot("people", WordType.Person)}, "Title"),
             new BookBlurbTemplate("You Lie in the {place}", new List<TemplateSlot>{new TemplateSlot("place", WordType.Place)}, "Title"),
             new BookBlurbTemplate("The End of the World (for {adjective} {character}s)", new List<TemplateSlot>{new TemplateSlot("adjective", WordType.Adjective)},"Title"),
             new BookBlurbTemplate("The Song of the {character}", new List<TemplateSlot>{}, "Title")
@@ -422,6 +431,7 @@ public class BookBlurbSupplier : MonoBehaviour
             new BookBlurbTemplate("With a sigh, {mc_a} tucks {their_a} {thing1} back into {their_a} pocket. The door then opens, and {they_a}’s greeted by a {adj1} {person_b} {mc_b} ushering {them_a} in through the door. {mc_b}’s house is exactly as cookie-cutter suburban on the inside as it is on the outside. {mc_a} felt like {they_a}’d walked into a tv show set. The family's shoes are tucked away neatly in the entry-way closet, instead of scattered haphazardly on the doormat like they would be in {their_b} own home. The scent of something homecooked— {thing2} and {thing3}— wafted from the kitchen.\n“It’s so good to see you again, {mc_a}!” {mc_b} wrapped {their_b} arms around the {adj} {person_a} as {they_a} set down {their_a} bags, “{phrase}”", 
             new List<TemplateSlot>
             {
+                new TemplateSlot("person_a", WordType.Person),
                 new TemplateSlot("person_b", WordType.Person),
                 new TemplateSlot("mc_b", WordType.Name, parentId:"character"),
                 new TemplateSlot("they_b", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),

@@ -66,7 +66,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             return;
         }
         
-        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null)
+        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
         {
             spawnedElement = eventData.pointerDrag;
             DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
@@ -170,6 +170,10 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         {
             unlockText.text = "Unlock: " + unlockCost + "$";
         }
+        else
+        {
+            unlockText.text = tileType;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -179,13 +183,13 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(MoneyManager.Instance.getMoney() >= unlockCost)
+        if(unlocked == false && MoneyManager.Instance.getMoney() >= unlockCost)
         {
             MoneyManager.Instance.deductMoney(unlockCost);
             
             unlocked = true;
             image.color = Color.white;
+            unlockText.text = tileType;
         }
-
     }
 }
