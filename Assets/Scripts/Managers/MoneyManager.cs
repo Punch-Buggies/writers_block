@@ -15,20 +15,20 @@ public class MoneyManager : MonoBehaviour
 
     public TextMeshProUGUI moneyUI;
 
-    [SerializeField] private int startingAmount = 0;
+    [SerializeField] private int startingAmount = 150;
 
     public int currentMoney { get; private set; }
 
     void Awake()
     {
 
-        Debug.Log($"babe moneymanager is awake in {gameObject.scene.name}");
+        // Debug.Log($"babe moneymanager is awake in {gameObject.scene.name}");
 
         // if it exists but its not this, destroy
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
 
             currentMoney = startingAmount;
         }
