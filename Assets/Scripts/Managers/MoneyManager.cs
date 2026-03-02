@@ -15,9 +15,13 @@ public class MoneyManager : MonoBehaviour
 
     public TextMeshProUGUI moneyUI;
 
-    [SerializeField] private int startingAmount = 150;
+    [SerializeField] private double startingAmount = 150;
 
-    public int currentMoney { get; private set; }
+    public double currentMoney { get; private set; }
+
+    public double tileUnlockCost { get; private set; } = 50;
+
+    public double spawnUnlockCost { get; private set; } = 10;
 
     void Awake()
     {
@@ -43,22 +47,31 @@ public class MoneyManager : MonoBehaviour
         moneyUI.text = $"${currentMoney}";
     }
 
-    public void addMoney(int amount)
+    public void addMoney(double amount)
     {
         currentMoney += amount;
         moneyUI.text = $"${currentMoney}";
     }
 
-    public void deductMoney(int amount)
+    public void deductMoney(double amount)
     {
         currentMoney -= amount;
-        moneyUI.text = $"${currentMoney}";
+        moneyUI.text = $"${currentMoney:0.##}";
     }
 
-    public int getMoney()
+    public double getMoney()
     {
         return currentMoney;
     }
 
+    public void increaseTileCost()
+    {
+        tileUnlockCost *= 1.5;
+    }
+
+    public void increaseSpawnCost()
+    {
+        spawnUnlockCost *= 1.5;
+    }
 
 }

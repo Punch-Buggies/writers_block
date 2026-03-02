@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     Image image;
 
 
-    int unlockCost = 50;
+    double unlockCost;
     [SerializeField] bool unlocked = false;
 
     Color genreLock = new Color32(101, 160, 189, 255);
@@ -58,6 +58,12 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
            // offsetting the text because in the lock position there is two lines
             unlockText.rectTransform.anchoredPosition += new Vector2(0, 9);
         }
+    }
+
+    void Start()
+    {
+        // it seems like tile.awake is called before moneymanager.awake so having this in awake, moneymanager doesnt exist yet
+        unlockCost = MoneyManager.Instance.tileUnlockCost;
     }
     
     public void OnDrop(PointerEventData eventData)
@@ -177,7 +183,10 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         if (!unlocked)
         {
-            unlockText.text = $"{tileType}\n Unlock: " + unlockCost + "$";
+            // get unlock cost
+            unlockCost = MoneyManager.Instance.tileUnlockCost;
+
+            unlockText.text = $"{tileType}\n Unlock: ${unlockCost:0.##}";
         }
         else
         {
@@ -192,6 +201,9 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // get unlock cost
+        unlockCost = MoneyManager.Instance.tileUnlockCost;
+        
         if(unlocked == false && MoneyManager.Instance.getMoney() >= unlockCost)
         {
             MoneyManager.Instance.deductMoney(unlockCost);
@@ -202,7 +214,10 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             changeColor();
             unlockText.text = tileType;
             // taking away the offset when it gets unlocked bc there is only one line of text now
-            unlockText.rectTransform.anchoredPosition -= new Vector2(0, 79);
+            unlockText.rectTransform.anchoredPosition -= new Vector2(0, 9);
+
+            // changing unlock cost to be 1.5x more now that they have made a purchase
+            MoneyManager.Instance.increaseTileCost();
         }
     }
 
