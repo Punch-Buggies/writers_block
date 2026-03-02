@@ -33,6 +33,15 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     int unlockCost = 50;
     [SerializeField] bool unlocked = false;
 
+    Color genreLock = new Color32(101, 160, 189, 255);
+    Color settingsLock = new Color32(61, 113, 55, 255);
+    Color characterLock = new Color32(201, 188, 99, 255);
+
+    Color genreUnlock = new Color32(62, 169, 244, 181);
+    Color settingsUnlock = new Color32(61, 152, 64, 204);
+    Color characterUnlock = new Color32(239, 246, 32, 192);
+
+
     void Awake()
     {
         storyElementSupplier = FindAnyObjectByType<StoryElementSupplier>();
@@ -42,13 +51,12 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
         image = GetComponent<Image>();
 
-        if (unlocked)
+        // change image color
+        changeColor();
+        if (!unlocked) // in lock position
         {
-            image.color = Color.white;
-        }
-        else
-        {
-            image.color = Color.grey;
+           // offsetting the text because in the lock position there is two lines
+            unlockText.rectTransform.anchoredPosition += new Vector2(0, 9);
         }
     }
     
@@ -66,6 +74,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             return;
         }
         
+        // if its not an eraser and the story element matches the tile type
         if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
         {
             spawnedElement = eventData.pointerDrag;
@@ -168,7 +177,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         if (!unlocked)
         {
-            unlockText.text = "Unlock: " + unlockCost + "$";
+            unlockText.text = $"{tileType}\n Unlock: " + unlockCost + "$";
         }
         else
         {
@@ -188,8 +197,55 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             MoneyManager.Instance.deductMoney(unlockCost);
             
             unlocked = true;
-            image.color = Color.white;
+
+            // changing color now that it is unlocked
+            changeColor();
             unlockText.text = tileType;
+            // taking away the offset when it gets unlocked bc there is only one line of text now
+            unlockText.rectTransform.anchoredPosition -= new Vector2(0, 79);
+        }
+    }
+
+    private void changeColor()
+    {
+        // checks if its in the unlocked or locked state and sets color accordinly
+        if (!unlocked)
+        {
+            // changing color to type
+            switch (tileType)
+            {
+                case "Genre":
+                    image.color = genreLock;
+                    break;
+                case "Character":
+                    image.color = characterLock;
+                    break;
+                case "Setting":
+                    image.color = settingsLock;
+                    break;
+                default:
+                    Debug.LogWarning($"Lock Tile type: {tileType} did not match anything");
+                    break;
+            }
+        }
+        else // tile is unlocked
+        {
+            // changing color to type
+            switch (tileType)
+            {
+                case "Genre":
+                    image.color = genreUnlock;
+                    break;
+                case "Character":
+                    image.color = characterUnlock;
+                    break;
+                case "Setting":
+                    image.color = settingsUnlock;
+                    break;
+                default:
+                    Debug.LogWarning($"Unlock Tile type: {tileType} did not match anything");
+                    break;
+            }
         }
     }
 }
