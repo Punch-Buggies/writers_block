@@ -18,10 +18,13 @@ public class MoneyManager : MonoBehaviour
     [SerializeField] private double startingAmount = 150;
 
     public double currentMoney { get; private set; }
+    // call MoneyManager.Instance.currentMoney to access this attribute
 
     public double tileUnlockCost { get; private set; } = 50;
 
     public double spawnUnlockCost { get; private set; } = 10;
+
+    public double tileGrowthCost {get; private set; } = 50;
 
     void Awake()
     {
@@ -59,19 +62,21 @@ public class MoneyManager : MonoBehaviour
         moneyUI.text = $"${currentMoney:0.##}";
     }
 
-    public double getMoney()
-    {
-        return currentMoney;
-    }
-
     public void increaseTileCost()
+    // this is called in Tile.cs
     {
         tileUnlockCost *= 1.5;
     }
 
     public void increaseSpawnCost()
+    // this called in SpawnLocation.cs
     {
         spawnUnlockCost *= 1.5;
     }
+
+    
+
+
+
 
 }

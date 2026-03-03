@@ -16,11 +16,12 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     [SerializeField] string tileType;
     [SerializeField] TextMeshProUGUI unlockText;
+    [SerializeField] private TMP_FontAsset font;
 
     Slider progressBarSlider;
     StoryElementSupplier storyElementSupplier;
     float timer = 0f;
-    [SerializeField] float timerLimit = 2f;
+    [SerializeField] float timerLimit = 10f;
 
     bool tileOccupied = false;
 
@@ -31,6 +32,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
 
     double unlockCost;
+    double growthCost;
     [SerializeField] bool unlocked = false;
 
     Color genreLock = new Color32(101, 160, 189, 255);
@@ -56,7 +58,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         if (!unlocked) // in lock position
         {
            // offsetting the text because in the lock position there is two lines
-            unlockText.rectTransform.anchoredPosition += new Vector2(0, 9);
+            unlockText.rectTransform.anchoredPosition += new Vector2(0, 11);
         }
     }
 
@@ -64,42 +66,83 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         // it seems like tile.awake is called before moneymanager.awake so having this in awake, moneymanager doesnt exist yet
         unlockCost = MoneyManager.Instance.tileUnlockCost;
+        unlockText.font = font;
+    }
+
+    private void Erase(GameObject spawnedElement)
+    {
+        Debug.Log("Erasing");
+        Destroy(spawnedElement);
+        spawnedElement = null;
+        tileOccupied = false;
+        startCooking = false;
+        timer = 0f;
+        progressBar.SetActive(false);
+        return;
+    }
+
+    private void SetUpCook(GameObject spawnedElement)
+    {
+        DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
+        StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
+
+        // start progress bar
+        progressBar.SetActive(true);
+        // audio
+        AudioManager.Instance.PlayQuillSFX();
+        if (draggable != null)
+        {
+            // StoryElement Side of things
+            // change position
+            draggable.OnSuccessfulDrop(transform.position);
+            storyElement.OnSuccessfulDrop();
+
+            tileOccupied = true;
+            startCooking = true; // now that this is true, the next update call will run cooking and timering
+        }  
     }
     
     public void OnDrop(PointerEventData eventData)
     {
+        // its in eraser mode
         if(tileOccupied == true && eventData.pointerDrag.GetComponent<Eraser>() != null)
         {
-            Debug.Log("Erasing");
-            Destroy(spawnedElement);
-            spawnedElement = null;
-            tileOccupied = false;
-            startCooking = false;
-            timer = 0f;
-            progressBar.SetActive(false);
-            return;
+            Erase(spawnedElement);
         }
         
-        // if its not an eraser and the story element matches the tile type
-        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
+        // if its not an eraser, the story element matches the tile type, the tile is unlocked and not occuiped
+        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType && tileOccupied == false)
         {
             spawnedElement = eventData.pointerDrag;
-            DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
+            growthCost = MoneyManager.Instance.tileGrowthCost;
+           
             StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
-
-            if (tileOccupied == false && storyElement != null)
+            // the tile is not empty and story element is there
+            if (storyElement != null)
             {
-                progressBar.SetActive(true);
-                AudioManager.Instance.PlayQuillSFX();
-                if (draggable != null)
+                // confirm with the player that they want to grow this element
+                PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
                 {
-                    // StoryElement Side of things
-                    draggable.OnSuccessfulDrop(transform.position);
-                    storyElement.OnSuccessfulDrop();
+                    if (confirmed) // they clicked on the yes button and they have enough money
+                    {
+                        if (MoneyManager.Instance.currentMoney >= growthCost )
+                        {
+                            // we had enbough money, deduct, and set up the cook
+                            MoneyManager.Instance.deductMoney(growthCost);
+                            SetUpCook(spawnedElement);
+                        }
+                        else // we didnt have enough money, tell the player
+                        {
+                            PurchaseManager.Instance.DisplayInsufficientFunds();
+                        }
+                    }
+                    else // they clicked no button
+                    {
+                        Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
+                    }
+                });
 
-                    tileOccupied = true;
-                    startCooking = true;
-                }   
+                 
             }
         }
     }
@@ -119,7 +162,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             timer += Time.deltaTime;
             progressBarSlider.value = timer;        
         }
-        else
+        else // timer has reached its limit
         {
             // Before we destroy the storyElement, we get the info out of it
             string storyElement = spawnedElement.GetComponent<StoryElement>().GetStoryElement();
@@ -162,7 +205,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
             spawnedElement = spawnedTile;
 
-
+            // reset timer, progress bar, boolean
             progressBar.SetActive(false);
             timer = 0f;
             startCooking = false;
@@ -186,7 +229,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             // get unlock cost
             unlockCost = MoneyManager.Instance.tileUnlockCost;
 
-            unlockText.text = $"{tileType}\n Unlock: ${unlockCost:0.##}";
+            unlockText.text = $"Unlock: ${unlockCost:0.##}";
         }
         else
         {
@@ -204,7 +247,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         // get unlock cost
         unlockCost = MoneyManager.Instance.tileUnlockCost;
         
-        if(unlocked == false && MoneyManager.Instance.getMoney() >= unlockCost)
+        if(unlocked == false && MoneyManager.Instance.currentMoney >= unlockCost)
         {
             MoneyManager.Instance.deductMoney(unlockCost);
             
@@ -214,7 +257,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             changeColor();
             unlockText.text = tileType;
             // taking away the offset when it gets unlocked bc there is only one line of text now
-            unlockText.rectTransform.anchoredPosition -= new Vector2(0, 9);
+            unlockText.rectTransform.anchoredPosition -= new Vector2(0, 11);
 
             // changing unlock cost to be 1.5x more now that they have made a purchase
             MoneyManager.Instance.increaseTileCost();
