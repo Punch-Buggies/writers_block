@@ -75,7 +75,7 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
          // get unlock cost
         unlockCost = MoneyManager.Instance.spawnUnlockCost;
 
-        if(MoneyManager.Instance.getMoney() >= unlockCost && unlocked == false)
+        if(MoneyManager.Instance.currentMoney >= unlockCost && unlocked == false)
         {
         
             MoneyManager.Instance.deductMoney(unlockCost);
