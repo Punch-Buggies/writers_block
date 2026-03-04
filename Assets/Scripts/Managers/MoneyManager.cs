@@ -15,20 +15,27 @@ public class MoneyManager : MonoBehaviour
 
     public TextMeshProUGUI moneyUI;
 
-    [SerializeField] private int startingAmount = 0;
+    [SerializeField] private double startingAmount = 150;
 
-    public int currentMoney { get; private set; }
+    public double currentMoney { get; private set; }
+    // call MoneyManager.Instance.currentMoney to access this attribute
+
+    public double tileUnlockCost { get; private set; } = 50;
+
+    public double spawnUnlockCost { get; private set; } = 10;
+
+    public double tileGrowthCost {get; private set; } = 50;
 
     void Awake()
     {
 
-        Debug.Log($"babe moneymanager is awake in {gameObject.scene.name}");
+        // Debug.Log($"babe moneymanager is awake in {gameObject.scene.name}");
 
         // if it exists but its not this, destroy
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
 
             currentMoney = startingAmount;
         }
@@ -40,25 +47,36 @@ public class MoneyManager : MonoBehaviour
         }
 
         Debug.Log("I have $" + currentMoney);
-        moneyUI.text = $"${currentMoney}";
+        moneyUI.text = $"${currentMoney:0.##}";
     }
 
-    public void addMoney(int amount)
+    public void addMoney(double amount)
     {
         currentMoney += amount;
-        moneyUI.text = $"${currentMoney}";
+        moneyUI.text = $"${currentMoney:0.##}";
     }
 
-    public void deductMoney(int amount)
+    public void deductMoney(double amount)
     {
         currentMoney -= amount;
-        moneyUI.text = $"${currentMoney}";
+        moneyUI.text = $"${currentMoney:0.##}";
     }
 
-    public int getMoney()
+    public void increaseTileCost()
+    // this is called in Tile.cs
     {
-        return currentMoney;
+        tileUnlockCost *= 1.5;
     }
+
+    public void increaseSpawnCost()
+    // this called in SpawnLocation.cs
+    {
+        spawnUnlockCost *= 1.5;
+    }
+
+    
+
+
 
 
 }

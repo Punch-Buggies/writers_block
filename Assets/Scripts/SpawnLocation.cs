@@ -10,7 +10,7 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [SerializeField] GameObject unlockText;
 
-    [SerializeField] int unlockCost = 10;
+    double unlockCost;
     [SerializeField]TextMeshProUGUI unlockCostText;
 
 
@@ -23,6 +23,7 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         unlockText.SetActive(false);
         unlockCostText.text = "";
 
+        unlockCost = MoneyManager.Instance.spawnUnlockCost;
     }
 
 
@@ -56,8 +57,11 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // get unlock cost
+        unlockCost = MoneyManager.Instance.spawnUnlockCost; 
+
         unlockText.SetActive(true);
-        unlockCostText.text = "$ " + unlockCost.ToString();
+        unlockCostText.text = $"${unlockCost:0.##}";
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -68,13 +72,17 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(MoneyManager.Instance.getMoney() >= unlockCost)
+         // get unlock cost
+        unlockCost = MoneyManager.Instance.spawnUnlockCost;
+
+        if(MoneyManager.Instance.currentMoney >= unlockCost && unlocked == false)
         {
-            if (!unlocked)
-            {
-                MoneyManager.Instance.deductMoney(unlockCost);
-                UnlockLocation();
-            }
+        
+            MoneyManager.Instance.deductMoney(unlockCost);
+            UnlockLocation();
+            //update cost
+            MoneyManager.Instance.increaseSpawnCost();
+    
         }
 
     }
