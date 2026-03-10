@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BestSeller : MonoBehaviour
 {
@@ -18,7 +17,13 @@ public class BestSeller : MonoBehaviour
     [SerializeField] TextMeshProUGUI settingBestSellerText;
 
 
+    [SerializeField] TextMeshProUGUI bestSellerTimerText;
+
+
     string[] bestSeller = new string[3];
+
+
+    [SerializeField] float bestSellerResetTimer = 60f;
 
     void Awake()
     {
@@ -32,6 +37,17 @@ public class BestSeller : MonoBehaviour
     void Start()
     {
         SetBestSeller();
+    }
+
+    void Update()
+    {
+        bestSellerResetTimer -= Time.deltaTime;
+        bestSellerTimerText.text = Mathf.CeilToInt(bestSellerResetTimer).ToString();
+        if (bestSellerResetTimer <= 0)
+        {
+            SetBestSeller();
+            bestSellerResetTimer = 60f;
+        }
     }
 
     void SetBestSeller()
@@ -62,10 +78,6 @@ public class BestSeller : MonoBehaviour
 
         if(publishedBook["Setting"] == bestSeller[2])
             matchCount++;
-
-        
-
-        SetBestSeller();
         
         return matchCount;
         
