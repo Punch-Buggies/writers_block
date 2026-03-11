@@ -20,6 +20,9 @@ public class MoneyManager : MonoBehaviour
     public double currentMoney { get; private set; }
     // call MoneyManager.Instance.currentMoney to access this attribute
 
+    double displayMoney;
+    int moneyUpdateSpeed = 5;
+
     public double tileUnlockCost { get; private set; } = 50;
 
     public double spawnUnlockCost { get; private set; } = 10;
@@ -41,13 +44,24 @@ public class MoneyManager : MonoBehaviour
         }
         else if (Instance != this)
         {
-           Debug.Log("ahhh I'm being destroyed");
+           // Debug.Log("ahhh I'm being destroyed");
            Destroy(gameObject);
            return; 
         }
 
         Debug.Log("I have $" + currentMoney);
+        displayMoney = currentMoney;
         moneyUI.text = $"${currentMoney:0.##}";
+    }
+
+
+    void Update()
+    {
+        if(displayMoney != currentMoney)
+        {
+            displayMoney = Mathf.Lerp((float)displayMoney, (float)currentMoney, Time.deltaTime * moneyUpdateSpeed);
+            moneyUI.text = $"${displayMoney:0.##}";
+        }
     }
 
     public void addMoney(double amount)
@@ -73,10 +87,4 @@ public class MoneyManager : MonoBehaviour
     {
         spawnUnlockCost *= 1.5;
     }
-
-    
-
-
-
-
 }
