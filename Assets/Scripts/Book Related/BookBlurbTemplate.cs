@@ -48,8 +48,10 @@ public class TemplateSlot
     public WordType type;   // Person, Place, etc
     public string parentId; //for dependant words only (id of word it depends on, must be an independant word)
     public Conjugation perspective; //for pronouns only
+    public bool plural; //for nouns only, false by default
 
-    public TemplateSlot(string id, WordType type, string parentId=null, Conjugation conjugation=Conjugation.PossessivePro)
+
+    public TemplateSlot(string id, WordType type, string parentId=null, Conjugation conjugation=Conjugation.PossessivePro, bool plural=false)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -59,6 +61,7 @@ public class TemplateSlot
         slotId = id;
         this.type = type;
         this.perspective = conjugation;
+        this.plural = plural;
         // Dependent word types must reference a parent slot
         if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name || type == WordType.Verb)
         {

@@ -366,44 +366,17 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         templates.Add("Test", new List<BookBlurbTemplate>
         {
-            new BookBlurbTemplate("{they} {is} so annoying. {they} {has} so many {thing}s, and {does} nothing with them!", 
+            new BookBlurbTemplate("{they} {is} so annoying. {they} {has} so many {thing}, and {does} nothing with them!", 
             new List<TemplateSlot>
             {
                 new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
                 new TemplateSlot("is", WordType.Verb, parentId:"character"),
-                new TemplateSlot("thing", WordType.Thing),
+                new TemplateSlot("thing", WordType.Thing, plural:true),
                 new TemplateSlot("has", WordType.Verb, parentId:"character"),
                 new TemplateSlot("does", WordType.Verb, parentId:"character")
             }
             ,"Test"
             ),
-            new BookBlurbTemplate("{adj} {name1} ran over to {name2}, the {person2}. {they} shouted at {them}, “{catchphrase}!", 
-            new List<TemplateSlot>
-            {
-                new TemplateSlot("adj", WordType.Adjective),
-                new TemplateSlot("name1", WordType.Name, parentId:"character"),
-                new TemplateSlot("name2", WordType.Name, parentId:"person2"),
-                new TemplateSlot("person2", WordType.Person),
-                new TemplateSlot("them", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Object),
-                new TemplateSlot("catchphrase", WordType.Catchphrase),
-                new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject)
-            }, 
-            "Test"),
-            new BookBlurbTemplate(
-                "{first_name}, the {person1}, saw {their1} {thing_a}. Then, {name2} took it from {them1}",
-                new List<TemplateSlot>
-                {   
-                    new TemplateSlot("person1", WordType.Person),
-                    new TemplateSlot("their1", WordType.Pronoun, parentId:"person1", conjugation:Conjugation.PossessiveAdj),
-                    new TemplateSlot("thing_a", WordType.Thing),
-                    new TemplateSlot("person2", WordType.Person),
-                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
-                    new TemplateSlot("them1", WordType.Pronoun, parentId:"person1", conjugation:Conjugation.Object),
-                    new TemplateSlot("first_name", WordType.Name, parentId:"person1"),
-                    new TemplateSlot("name2", WordType.Name, parentId:"person2")
-                },
-                "Test"
-            )
             
         });
         

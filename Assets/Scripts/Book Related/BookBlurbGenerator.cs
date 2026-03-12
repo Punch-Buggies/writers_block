@@ -59,14 +59,17 @@ public class BookBlurbGenerator : MonoBehaviour
                         break;
                     case WordType.Person:
                         word_s = RandomUniqueFrom(bookBlurbSupplier.GetPeople(setting), s=>s, usedWords);
+                        if (slot.plural){word_s = NounPluralizer.Pluralize(word_s);}
                         word = new Word(word_s, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine}));
                         break;
                     case WordType.Place:
                         word_s = RandomUniqueFrom(bookBlurbSupplier.GetPlaces(setting), s=>s, usedWords);
+                        if (slot.plural){word_s = NounPluralizer.Pluralize(word_s);}
                         word = new Word(word_s);
                         break;
                     case WordType.Thing:
                         word_s = RandomUniqueFrom(bookBlurbSupplier.GetThings(setting), s=>s, usedWords);
+                        if (slot.plural){word_s = NounPluralizer.Pluralize(word_s);}
                         word = new Word(word_s);
                         break;
                     case WordType.Pronoun:
@@ -323,7 +326,7 @@ public class BookBlurbGenerator : MonoBehaviour
 
         string g = "Test";
         string c = "Lover";
-        string s = "WildWest";
+        string s = "Underwater";
         for (int i=0; i<10;i++){
           string test = generate_blurb(g,c,s);
         Debug.Log(test);  
@@ -354,3 +357,94 @@ public class Word
     }
 }
 
+public static class NounPluralizer
+//pluralizes any given noun -- update private HashSets if any associated words have irregular pluralisation
+{
+    private static readonly Dictionary<string, string> Irregular = new()
+    {
+        {"man","men"},
+        {"woman","women"},
+        {"child","children"},
+        {"person","people"},
+        {"mouse","mice"},
+        {"goose","geese"},
+        {"tooth","teeth"},
+        {"foot","feet"},
+        {"ox","oxen"},
+        {"die","dice"}
+    };
+
+    private static readonly HashSet<string> NoChange = new()
+    {
+        "sheep","deer","fish","aircraft","species","series"
+    };
+
+    private static readonly HashSet<string> FExceptions = new()
+    {
+        "roof","belief","chef","chief","proof","reef"
+    };
+
+    private static readonly HashSet<string> OExceptions = new()
+    {
+        "photo","piano","halo","memo","stereo"
+    };
+
+    public static string Pluralize(string noun)
+    {
+        if (string.IsNullOrWhiteSpace(noun))
+            return noun;
+
+        bool capitalized = char.IsUpper(noun[0]);
+        string word = noun.ToLower();
+
+        // irregular nouns
+        if (Irregular.ContainsKey(word))
+            return MatchCase(Irregular[word], capitalized);
+
+        // same singular/plural
+        if (NoChange.Contains(word))
+            return noun;
+
+        // latin/greek patterns
+        if (word.EndsWith("is"))
+            return MatchCase(word[..^2] + "es", capitalized);   // analysis → analyses
+
+        if (word.EndsWith("us"))
+            return MatchCase(word[..^2] + "i", capitalized);    // cactus → cacti
+
+        if (word.EndsWith("um"))
+            return MatchCase(word[..^2] + "a", capitalized);    // bacterium → bacteria
+
+        if (word.EndsWith("on"))
+            return MatchCase(word[..^2] + "a", capitalized);    // phenomenon → phenomena
+
+        // consonant + y → ies
+        if (word.EndsWith("y") && word.Length > 1 && !"aeiou".Contains(word[^2]))
+            return MatchCase(word[..^1] + "ies", capitalized);
+
+        // f / fe → ves (with exceptions)
+        if (word.EndsWith("fe"))
+            return MatchCase(word[..^2] + "ves", capitalized);
+
+        if (word.EndsWith("f") && !FExceptions.Contains(word))
+            return MatchCase(word[..^1] + "ves", capitalized);
+
+        // sibilant endings → es
+        if (word.EndsWith("s") || word.EndsWith("x") || word.EndsWith("z") ||
+            word.EndsWith("ch") || word.EndsWith("sh"))
+            return MatchCase(word + "es", capitalized);
+
+        // words ending in o
+        if (word.EndsWith("o") && !OExceptions.Contains(word))
+            return MatchCase(word + "es", capitalized);
+
+        // default
+        return MatchCase(word + "s", capitalized);
+    }
+
+    private static string MatchCase(string word, bool capitalized)
+    {
+        if (!capitalized) return word;
+        return char.ToUpper(word[0]) + word.Substring(1);
+    }
+}
