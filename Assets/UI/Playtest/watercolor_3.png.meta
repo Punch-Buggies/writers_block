@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: fad3ceba7e2184dddbe6344ad9134c73
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4964538842765821251
+    second: watercolor_3_0
+  - first:
+      213: 4322696885068115961
+    second: watercolor_3_1
+  - first:
+      213: 6302630425507675975
+    second: watercolor_3_2
+  - first:
+      213: 33751594670740207
+    second: watercolor_3_3
+  - first:
+      213: -2062686589560267291
+    second: watercolor_3_4
+  - first:
+      213: 664068862258462285
+    second: watercolor_3_5
+  - first:
+      213: -4805491917264540025
+    second: watercolor_3_6
+  - first:
+      213: 7690455577032716816
+    second: watercolor_3_7
+  - first:
+      213: 1458182464703749566
+    second: watercolor_3_8
+  - first:
+      213: 457745511172210950
+    second: watercolor_3_9
+  - first:
+      213: -3770929511947727373
+    second: watercolor_3_10
+  - first:
+      213: -7725625244497185613
+    second: watercolor_3_11
+  - first:
+      213: 2090332012951114909
+    second: watercolor_3_12
+  - first:
+      213: 7347354362724058885
+    second: watercolor_3_13
+  - first:
+      213: -5748313982220652208
+    second: watercolor_3_14
+  - first:
+      213: 5256049844768013228
+    second: watercolor_3_15
+  - first:
+      213: -426524320774785839
+    second: watercolor_3_16
+  - first:
+      213: -1663597919274161032
+    second: watercolor_3_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: watercolor_3_0
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 315
+        width: 3966
+        height: 1220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dba705bc93a6a1bb0800000000000000
+      internalID: -4964538842765821251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_1
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 1532
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff2c221aed4dfb30800000000000000
+      internalID: 4322696885068115961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_2
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 920
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74f34feaaf0777750800000000000000
+      internalID: 6302630425507675975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_3
+      rect:
+        serializedVersion: 2
+        x: 4073
+        y: 621
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe2d3f285e8e77000800000000000000
+      internalID: 33751594670740207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_4
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 336
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ed5c42b97ddf53e0800000000000000
+      internalID: -2062686589560267291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_5
+      rect:
+        serializedVersion: 2
+        x: 1744
+        y: 333
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4e3051ac1f373900800000000000000
+      internalID: 664068862258462285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_6
+      rect:
+        serializedVersion: 2
+        x: 1887
+        y: 326
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78eaf64df867f4db0800000000000000
+      internalID: -4805491917264540025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_7
+      rect:
+        serializedVersion: 2
+        x: 1913
+        y: 331
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012f4fdf99cf9ba60800000000000000
+      internalID: 7690455577032716816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_8
+      rect:
+        serializedVersion: 2
+        x: 2106
+        y: 339
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebdde52d9318c3410800000000000000
+      internalID: 1458182464703749566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_9
+      rect:
+        serializedVersion: 2
+        x: 2413
+        y: 340
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60103fefd1d3a5600800000000000000
+      internalID: 457745511172210950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_10
+      rect:
+        serializedVersion: 2
+        x: 2514
+        y: 340
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd815f8697faabc0800000000000000
+      internalID: -3770929511947727373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_11
+      rect:
+        serializedVersion: 2
+        x: 2714
+        y: 336
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b474f1b5c019c490800000000000000
+      internalID: -7725625244497185613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_12
+      rect:
+        serializedVersion: 2
+        x: 2987
+        y: 325
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d94149604e9520d10800000000000000
+      internalID: 2090332012951114909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_13
+      rect:
+        serializedVersion: 2
+        x: 3059
+        y: 333
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 507851d6ddb07f560800000000000000
+      internalID: 7347354362724058885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_14
+      rect:
+        serializedVersion: 2
+        x: 3168
+        y: 337
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 051b35893e2e930b0800000000000000
+      internalID: -5748313982220652208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_15
+      rect:
+        serializedVersion: 2
+        x: 2815
+        y: 320
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cabf42f6c7d31f840800000000000000
+      internalID: 5256049844768013228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_16
+      rect:
+        serializedVersion: 2
+        x: 3086
+        y: 322
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d4772cd36ea41af0800000000000000
+      internalID: -426524320774785839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watercolor_3_17
+      rect:
+        serializedVersion: 2
+        x: 3110
+        y: 313
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ca59ca186b9e8e0800000000000000
+      internalID: -1663597919274161032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      watercolor_3_0: -4964538842765821251
+      watercolor_3_1: 4322696885068115961
+      watercolor_3_10: -3770929511947727373
+      watercolor_3_11: -7725625244497185613
+      watercolor_3_12: 2090332012951114909
+      watercolor_3_13: 7347354362724058885
+      watercolor_3_14: -5748313982220652208
+      watercolor_3_15: 5256049844768013228
+      watercolor_3_16: -426524320774785839
+      watercolor_3_17: -1663597919274161032
+      watercolor_3_2: 6302630425507675975
+      watercolor_3_3: 33751594670740207
+      watercolor_3_4: -2062686589560267291
+      watercolor_3_5: 664068862258462285
+      watercolor_3_6: -4805491917264540025
+      watercolor_3_7: 7690455577032716816
+      watercolor_3_8: 1458182464703749566
+      watercolor_3_9: 457745511172210950
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
