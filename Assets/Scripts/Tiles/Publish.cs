@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic;
 using UnityEngine;
+using System.Linq;
 
 public class Publish : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Publish : MonoBehaviour
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
+
     }
 
     public (int, int) calculateCopiesAndMoney()
@@ -49,51 +51,54 @@ public class Publish : MonoBehaviour
 
     void FullPublish()
     {
-            Debug.Log("Publish time!");
-            // print the elements in the book
-            Debug.Log("Published the book with: ");
-            foreach(string key in bookStoryElementDict.Keys)
-            {
-                Debug.Log(key  + " and " + bookStoryElementDict[key]);
-            }
+        Debug.Log("Publish time!");
+        // print the elements in the book
+        Debug.Log("Published the book with: ");
+        foreach(string key in bookStoryElementDict.Keys)
+        {
+            Debug.Log(key  + " and " + bookStoryElementDict[key]);
+        }
 
-            bestSellerMultiplier = bestSeller.BestSellerMultiplicationCalc(bookStoryElementDict);
-            // delete the tiles in the ui
-            foreach(GameObject publishedTile in publishedTiles)
-            {
-                Destroy(publishedTile);
-            }
+        bestSellerMultiplier = bestSeller.BestSellerMultiplicationCalc(bookStoryElementDict);
+        // delete the tiles in the ui
+        foreach(GameObject publishedTile in publishedTiles)
+        {
+            Destroy(publishedTile);
+        }
 
-            // calculate copy and profit info needed for book and then make the book
-            (int copiesSold, int bookProfit) = calculateCopiesAndMoney();
+        // calculate copy and profit info needed for book and then make the book
+        (int copiesSold, int bookProfit) = calculateCopiesAndMoney();
 
-            // when a new book is instantiated the money is added INSIDE the bookclass instatntiation
-            Book newBook = new Book(
-                bookStoryElementDict["Genre"],
-                bookStoryElementDict["Character"],
-                bookStoryElementDict["Setting"],
-                copiesSold,
-                bookProfit,
-                false
-                );
+        // when a new book is instantiated the money is added INSIDE the bookclass instatntiation
+        Book newBook = new Book(
+            bookStoryElementDict["Genre"],
+            bookStoryElementDict["Character"],
+            bookStoryElementDict["Setting"],
+            copiesSold,
+            bookProfit,
+            false
+            );
 
-            newBook.blurb = BookBlurbGenerator.Instance.generate_blurb(newBook.genre, newBook.character, newBook.setting);
+        newBook.blurb = BookBlurbGenerator.Instance.generate_blurb(newBook.genre, newBook.character, newBook.setting);
 
 
-            // clear the element dictionary
-            bookStoryElementDict.Clear();
-            publishedTiles.Clear();
-            publishCounter = 0; // checking how many categories of elements we have (genre, char, setting)    
+        // clear the element dictionary
+        bookStoryElementDict.Clear();
+        publishedTiles.Clear();
+        publishCounter = 0; // checking how many categories of elements we have (genre, char, setting)    
 
-            //display book ui - temporary
-            string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
-            // makes bookui object and adds to bookshelf UI
-            // spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold, newBook.blurb);
-            spawner.SpawnCover(title, newBook);
+        //display book ui - temporary
+        string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
+        // makes bookui object and adds to bookshelf UI
+        // spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold, newBook.blurb);
+        spawner.SpawnCover(title, newBook);
 
-            // play book sound!!
-            AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
+        // play book sound!!
+        AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
 
+        // everything should have reset clear the best seller highlight
+        Debug.Log("Dictionary after publishing: " + string.Join(", ", bookStoryElementDict.Select(kvp => $"{kvp.Key}:{kvp.Value}")));        
+        ClearBSMatch();
     }
 
     public void PublishStoryElement(string storyElement, string elementType)
@@ -111,6 +116,35 @@ public class Publish : MonoBehaviour
     public void AddToPublishedTiles(GameObject publishedTile)
     {
         publishedTiles.Add(publishedTile);
+    }
+    void ClearBSMatch()
+    {
+        // only called after a book is publish, there is nothing left in publish so best seller should always clear
+        // otherwise turn off the glow
+        bestSeller.MaterialMatchGlow("Genre", false);
+        bestSeller.MaterialMatchGlow("Character", false);
+        bestSeller.MaterialMatchGlow("Setting", false);
+    }
+
+    public void CheckBSMatch()
+    {
+        // if the elementType matches a best seller make it glow on the board
+        // first bestSeller is the bestseller script
+        // second bestseller (.bestseller) is the list of current best sellers
+        foreach (KeyValuePair<string, string> kvp in bookStoryElementDict)
+        {
+            bool match = false;
+            // if it matches light it up
+            if (bestSeller.bestSeller.Contains(kvp.Value) )
+            {
+                Debug.Log($"WE got a match!!! {kvp.Value} was found in {bestSeller.bestSeller}");
+                // we got a match yipee
+                match = true;
+            }
+            // otherwise turn off the glow
+            bestSeller.MaterialMatchGlow(kvp.Key, match);
+        }
+        Debug.Log("Done checking if the best seller matches in publish.cs");
     }
 
 }

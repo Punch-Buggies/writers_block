@@ -18,12 +18,22 @@ public class BestSeller : MonoBehaviour
     [SerializeField] TextMeshProUGUI bestSellerTimerText;
     [SerializeField] float bestSellerResetTimer = 60f;
     [SerializeField] TextMeshProUGUI bestSellerText; // this it the title text
+    [SerializeField] Publish publish;
+    [SerializeField] GameObject genreHighlight;
+    [SerializeField] GameObject characterHighlight;
+    [SerializeField] GameObject settingsHighlight;
 
-    string[] bestSeller = new string[3];
+    public string[] bestSeller = new string[3];
 
     Vector3 originalScale;
     Material bsFontMaterial;
     Material titleFontMaterial;
+    // this was for highlight polish but i didnt end up using it
+    Material charMaterial;
+    Material settMaterial;
+    Material genMaterial;
+    Color32 matchColor = new Color32(191, 191, 0, 255);
+
 
     void Awake()
     {
@@ -39,10 +49,22 @@ public class BestSeller : MonoBehaviour
         SetBestSeller();
         // get the og scale and font material for juice purposes later
         originalScale = bestSellerTimerText.transform.localScale;
+
         bsFontMaterial = bestSellerTimerText.fontMaterial;
-        bsFontMaterial.SetFloat("_GlowPower", 0f); // make sure glow is off
         titleFontMaterial = bestSellerText.fontMaterial;
-        titleFontMaterial.SetFloat("_GlowPower", 0f); // make sure glow is off
+
+        genMaterial = genreBestSellerText.fontMaterial;
+        charMaterial = characterBestSellerText.fontMaterial;
+        settMaterial = settingBestSellerText.fontMaterial;
+
+
+        // make sure glow is off
+        bsFontMaterial.SetFloat("_GlowPower", 0f); 
+        titleFontMaterial.SetFloat("_GlowPower", 0f); 
+        genMaterial.SetFloat("_GlowPower", 0f);
+        charMaterial.SetFloat("_GlowPower", 0f);
+        settMaterial.SetFloat("_GlowPower", 0f);
+
     }
 
     void Update()
@@ -62,6 +84,8 @@ public class BestSeller : MonoBehaviour
             SetBestSeller();
             bestSellerResetTimer = 60f;
             StopPulseAndGlow();
+            // check for highlights bc they might still be valid
+            publish.CheckBSMatch();
         }
     }
 
@@ -94,6 +118,52 @@ public class BestSeller : MonoBehaviour
         bestSellerTimerText.transform.localScale = originalScale;
         bsFontMaterial.SetFloat("_GlowPower", 0f); // don't need to change glow color bc when power is 0 you dont see it
         titleFontMaterial.SetFloat("_GlowPower", 0f);
+
+    }
+
+    public void MaterialMatchGlow(string storyElement, bool glow)
+    {
+        // assign material accordingly
+        // Material material = null;
+        // Debug.Log("Setting the material to change");
+        GameObject material = null;
+        switch (storyElement)
+        {
+            case "Genre":
+                // material = genMaterial;
+                material = genreHighlight;
+                break;
+            case "Character":
+                // material = charMaterial;
+                material = characterHighlight;
+                break;
+            case "Setting":
+                // material = settMaterial;
+                material = settingsHighlight;
+                break;
+            default:
+                Debug.Log("somethingwent weird in amterial match glow");
+                break;
+        }
+        if (material != null && glow == true)
+        {
+            Debug.Log("makign it glow baby");
+            material.GetComponent<Image>().enabled = true;
+            // set the specific material to glow
+            // material.SetColor("_GlowColor", matchColor);
+            // material.SetFloat("_GlowPower", 0.47f);
+            // material.SetFloat("_GlowOffset", 0.14f);
+            // material.SetFloat("_GlowOuter", 0.15f);
+        }
+        else if (material != null && glow == false)
+        {
+            // material.SetFloat("_GlowPower", 0f);
+            material.GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            Debug.Log("material is null");
+        }
     }
 
     void SetBestSeller()
@@ -110,6 +180,7 @@ public class BestSeller : MonoBehaviour
         randomElementNumber = Random.Range(0, settingElements.Length);
         bestSeller[2] = settingElements[randomElementNumber];
         settingBestSellerText.text = bestSeller[2];
+
     }
 
     public int BestSellerMultiplicationCalc(Dictionary<string, string> publishedBook)
@@ -127,6 +198,5 @@ public class BestSeller : MonoBehaviour
             matchCount++;
         
         return matchCount;
-        
     }
 }
