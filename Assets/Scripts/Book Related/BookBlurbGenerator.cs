@@ -28,7 +28,7 @@ public class BookBlurbGenerator : MonoBehaviour
         Dictionary<string, Word> chosenBySlot = new Dictionary<string, Word>();
 
         //include genre, setting, and character as words
-        chosenBySlot["character"] = new Word(character, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine}));
+        chosenBySlot["character"] = new Word(character, RandomFrom(new List<Gender>{Gender.masculine,Gender.feminine, Gender.nonbinary}));
         usedWords.Add(character);
         chosenBySlot["genre"] = new Word(genre);
         usedWords.Add(genre);
@@ -73,6 +73,9 @@ public class BookBlurbGenerator : MonoBehaviour
                         is_dependant = true;
                         break;
                     case WordType.IndefiniteArticle:
+                        is_dependant = true;
+                        break;
+                    case WordType.Verb:
                         is_dependant = true;
                         break;
                     default:
@@ -318,7 +321,7 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        string g = "Title";
+        string g = "Test";
         string c = "Lover";
         string s = "WildWest";
         for (int i=0; i<10;i++){

@@ -142,7 +142,7 @@ public class BookBlurbSupplier : MonoBehaviour
             }
         }
         
-        // TEMPLATES
+        // TEMPLATES -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         templates.Add("Title", new List<BookBlurbTemplate>
         // note title's don't have access to original genre
         {
@@ -366,6 +366,17 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         templates.Add("Test", new List<BookBlurbTemplate>
         {
+            new BookBlurbTemplate("{they} {is} so annoying. {they} {has} so many {thing}s, and {does} nothing with them!", 
+            new List<TemplateSlot>
+            {
+                new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                new TemplateSlot("is", WordType.Verb, parentId:"character"),
+                new TemplateSlot("thing", WordType.Thing),
+                new TemplateSlot("has", WordType.Verb, parentId:"character"),
+                new TemplateSlot("does", WordType.Verb, parentId:"character")
+            }
+            ,"Test"
+            ),
             new BookBlurbTemplate("{adj} {name1} ran over to {name2}, the {person2}. {they} shouted at {them}, “{catchphrase}!", 
             new List<TemplateSlot>
             {

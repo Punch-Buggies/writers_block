@@ -60,7 +60,7 @@ public class TemplateSlot
         this.type = type;
         this.perspective = conjugation;
         // Dependent word types must reference a parent slot
-        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name)
+        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name || type == WordType.Verb)
         {
              if (string.IsNullOrEmpty(parentId))
             {
