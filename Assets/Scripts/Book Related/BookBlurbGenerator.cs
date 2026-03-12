@@ -123,6 +123,9 @@ public class BookBlurbGenerator : MonoBehaviour
                     }else if (slot.slotId == "does")
                     {
                         w = (g==Gender.nonbinary)?"do":"does";
+                    }else if (slot.slotID == "was")
+                    {
+                        w = (g==Gender.nonbinary)?"were":"was";
                     }
                     else
                     {
@@ -324,13 +327,13 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        string g = "Test";
-        string c = "Lover";
-        string s = "Underwater";
-        for (int i=0; i<10;i++){
-          string test = generate_blurb(g,c,s);
-        Debug.Log(test);  
-        };
+        // string g = "Test";
+        // string c = "Lover";
+        // string s = "Underwater";
+        // for (int i=0; i<10;i++){
+        //   string test = generate_blurb(g,c,s);
+        // Debug.Log(test);  
+        // };
         
     }
 
