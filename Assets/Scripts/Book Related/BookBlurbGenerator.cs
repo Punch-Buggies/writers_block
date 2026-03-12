@@ -10,6 +10,11 @@ public class BookBlurbGenerator : MonoBehaviour
     [SerializeField] BookBlurbSupplier bookBlurbSupplier;//gives associated words
     public static BookBlurbGenerator Instance { get; private set;}
 
+    private static readonly HashSet<string> SmallWords = new HashSet<string>
+    {
+        "a", "an", "the", "and", "but", "or", "in", "for", "of"
+    };
+
 
     public string generate_blurb(string genre, string character, string setting)
     {   
@@ -144,8 +149,7 @@ public class BookBlurbGenerator : MonoBehaviour
         // Convert the string to title case
         if (genre == "Title")
         {
-            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
-            finalBlurb = textInfo.ToTitleCase(finalBlurb);
+            finalBlurb = CapitalizeTitle(finalBlurb);
         }
         else
         {
@@ -161,8 +165,10 @@ public class BookBlurbGenerator : MonoBehaviour
         //tldr this function tracks when it finds a punctuation and flips the capitlizeNext bool so on the next iteration it capitalizes whatever follows the punctuation
 
         if (string.IsNullOrWhiteSpace(input))
+        {
             return input;
-
+        }
+            
         StringBuilder result = new StringBuilder(input.Length); //stringBuilder allows for mutable strings
         bool capitalizeNext = true; // start by capitalizing the first character
 
@@ -194,11 +200,61 @@ public class BookBlurbGenerator : MonoBehaviour
             {
                 capitalizeNext = false;
             }
-            return result.ToString();
+            
         }
-        
+        return result.ToString();
     }
 
+    public static string CapitalizeTitle(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return input;
+
+        string[] tokens = input.Split(' ');
+        StringBuilder result = new StringBuilder();
+        bool firstWord = true;
+
+        foreach (string token in tokens)
+        {
+            string word = token;
+
+            int start = 0;
+            while (start < word.Length && !char.IsLetterOrDigit(word[start]) && word[start] != '{')
+                start++;
+
+            int end = word.Length - 1;
+            while (end >= start && !char.IsLetterOrDigit(word[end]) && word[end] != '}')
+                end--;
+
+            if (start <= end)
+            {
+                string prefix = word.Substring(0, start);
+                string core = word.Substring(start, end - start + 1);
+                string suffix = word.Substring(end + 1);
+
+                string lowerCore = core.ToLower();
+
+                if (!(core.StartsWith("{") && core.EndsWith("}")))
+                {
+                    if (firstWord || !SmallWords.Contains(lowerCore))
+                    {
+                        lowerCore = char.ToUpper(lowerCore[0]) + lowerCore.Substring(1);
+                    }
+                }
+
+                result.Append(prefix + lowerCore + suffix);
+            }
+            else
+            {
+                result.Append(word);
+            }
+
+            result.Append(' ');
+            firstWord = false;
+        }
+
+        return result.ToString().TrimEnd();
+    }
     T RandomFrom<T>(List<T> list)
     {
         // returns a random item from the provided list
