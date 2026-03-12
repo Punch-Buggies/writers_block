@@ -165,8 +165,8 @@ public class BookBlurbSupplier : MonoBehaviour
             new BookBlurbTemplate("{a} {setting} Story", new List<TemplateSlot>{new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"setting")}, "Title"),
             new BookBlurbTemplate("{a} {character}’s Guide to {thing1} and {thing2}", new List<TemplateSlot>{
                 new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"character"),
-                new TemplateSlot("thing1", WordType.Thing, plural:True),
-                new TemplateSlot("thing2", WordType.Thing, plural:True)
+                new TemplateSlot("thing1", WordType.Thing, plural:true),
+                new TemplateSlot("thing2", WordType.Thing, plural:true)
                 }, "Title"),
             new BookBlurbTemplate("{a} {adjective} Summer with You",
                 new List<TemplateSlot>{
@@ -242,7 +242,7 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("place_b", WordType.Place)
 
             }, "Action"),
-            new BookBlurbTemplate("{mc}, still paralyzed-- clearly, both fight and flight responses were forgone-- stared at the retreating {person_b}. {they_b} had lifted {their_b} grip off {mc}, though {they_b} still pinned {them_a} down by the legs, and tilted {their_b} head back and forth – as if searching for the source of the sound. A second bang rang out, and this time {mc} sees the {thing1} rip straight through the {person_b}’s open mouth, getting lodged in {their_b} cheek.\nBefore the {person_b} could follow through with {their_b} instinct to retaliate, {their_b} arms snap backwards in an unnatural way. {mc} feels the pressure on {their_a} legs alleviate as the {person_b} is lifted slightly in the air. With an awful cracking sound, the {person_b}’s head snaps backwards at an impossible angle. {mc} stares, mouth agape, at the {person_b} suspended above {them_a}, before {they_b} come falling back down. {mc} rolls off to the side just a fraction of time before the {person_b}’s now limp body meets the ground {they_a} had just occupied with a thud.", 
+            new BookBlurbTemplate("{mc}, still paralyzed-- clearly, both fight and flight responses were forgone-- stared at the retreating {person_b}. {they_b} had lifted {their_b} grip off {mc}, though {they_b} still pinned {them_a} down by the legs, and tilted {their_b} head back and forth – as if searching for the source of the sound. A second bang rang out, and this time {mc} saw the {thing1} rip straight through the {person_b}’s open mouth, getting lodged in {their_b} cheek.\nBefore the {person_b} could follow through with {their_b} instinct to retaliate, {their_b} arms snap backwards in an unnatural way. {mc} feels the pressure on {their_a} legs alleviate as the {person_b} is lifted slightly in the air. With an awful cracking sound, the {person_b}’s head snaps backwards at an impossible angle. {mc} stares, mouth agape, at the {person_b} suspended above {them_a}, before {they_b} come falling back down. {mc} rolls off to the side just a fraction of time before the {person_b}’s now limp body meets the ground {they_a} had just occupied with a thud.", 
             new List<TemplateSlot>
             {
               new TemplateSlot("mc", WordType.Name, parentId:"character"),

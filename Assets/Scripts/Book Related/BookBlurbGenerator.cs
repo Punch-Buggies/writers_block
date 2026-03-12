@@ -123,7 +123,7 @@ public class BookBlurbGenerator : MonoBehaviour
                     }else if (slot.slotId == "does")
                     {
                         w = (g==Gender.nonbinary)?"do":"does";
-                    }else if (slot.slotID == "was")
+                    }else if (slot.slotId == "was")
                     {
                         w = (g==Gender.nonbinary)?"were":"was";
                     }
@@ -379,7 +379,7 @@ public static class NounPluralizer
 
     private static readonly HashSet<string> NoChange = new()
     {
-        "sheep","deer","fish","aircraft","species","series"
+        "sheep","deer","fish","aircraft","species","series","bison"
     };
 
     private static readonly HashSet<string> FExceptions = new()
