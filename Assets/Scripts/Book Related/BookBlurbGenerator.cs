@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using System.Text;
 
 public class BookBlurbGenerator : MonoBehaviour
 {
@@ -146,11 +147,58 @@ public class BookBlurbGenerator : MonoBehaviour
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
             finalBlurb = textInfo.ToTitleCase(finalBlurb);
         }
+        else
+        {
+            finalBlurb = CapitalizeSentence(finalBlurb);
+        }
         
         Debug.Log("Blurb:\n"+finalBlurb);// OUTPUT
         return finalBlurb;
     }
     
+    public static string CapitalizeSentence(string input)
+    {
+        //tldr this function tracks when it finds a punctuation and flips the capitlizeNext bool so on the next iteration it capitalizes whatever follows the punctuation
+
+        if (string.IsNullOrWhiteSpace(input))
+            return input;
+
+        StringBuilder result = new StringBuilder(input.Length); //stringBuilder allows for mutable strings
+        bool capitalizeNext = true; // start by capitalizing the first character
+
+        foreach (char c in input)
+        {
+            //capitalize
+            if (capitalizeNext && char.IsLetter(c))
+            {
+                result.Append(char.ToUpper(c));
+                capitalizeNext = false;
+            }
+            //don't capitalize
+            else
+            {
+                result.Append(c);
+            }
+            // If the character is a punctuation, set bool to capitalize next letter
+            if (c == '.' || c == '!' || c == '?')
+            {
+                capitalizeNext = true;
+            }
+            // handle quotes: if a punctuation is followed by a quote, capitalize after it
+            else if (c == '"' || c == '“' || c == '”')
+            {
+                // skip
+            }
+            // Skip spaces and line breaks when capitalizing next letter
+            else if (!char.IsWhiteSpace(c) && c != '\r' && c != '\n')
+            {
+                capitalizeNext = false;
+            }
+            return result.ToString();
+        }
+        
+    }
+
     T RandomFrom<T>(List<T> list)
     {
         // returns a random item from the provided list
