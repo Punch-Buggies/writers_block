@@ -10377,7 +10377,8 @@ MonoBehaviour:
   characterBestSellerText: {fileID: 951067663}
   settingBestSellerText: {fileID: 55254097}
   bestSellerTimerText: {fileID: 1905434804}
-  bestSellerResetTimer: 60
+  bestSellerResetTimer: 20
+  bestSellerText: {fileID: 478211193}
 --- !u!1001 &1801545293
 PrefabInstance:
   m_ObjectHideFlags: 0

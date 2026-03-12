@@ -17,11 +17,13 @@ public class BestSeller : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI bestSellerTimerText;
     [SerializeField] float bestSellerResetTimer = 60f;
+    [SerializeField] TextMeshProUGUI bestSellerText; // this it the title text
 
     string[] bestSeller = new string[3];
 
     Vector3 originalScale;
     Material bsFontMaterial;
+    Material titleFontMaterial;
 
     void Awake()
     {
@@ -39,6 +41,8 @@ public class BestSeller : MonoBehaviour
         originalScale = bestSellerTimerText.transform.localScale;
         bsFontMaterial = bestSellerTimerText.fontMaterial;
         bsFontMaterial.SetFloat("_GlowPower", 0f); // make sure glow is off
+        titleFontMaterial = bestSellerText.fontMaterial;
+        titleFontMaterial.SetFloat("_GlowPower", 0f); // make sure glow is off
     }
 
     void Update()
@@ -68,20 +72,28 @@ public class BestSeller : MonoBehaviour
         float fraction = time % 1f;
         // scaled to grow to maximum in a second
         float pulse = 1f + 0.25f * Mathf.Sin(Mathf.PI * (1f - fraction));
-    
-        bestSellerTimerText.transform.localScale = originalScale * pulse;
 
+        // make timer glow and pulse
+        bestSellerTimerText.transform.localScale = originalScale * pulse;
         bsFontMaterial.SetColor("_GlowColor", Color.red);
         bsFontMaterial.SetFloat("_GlowPower", pulse);
         bsFontMaterial.SetFloat("_GlowOffset", -0.64f);
         bsFontMaterial.SetFloat("_GlowOuter", 1f);
         bsFontMaterial.SetFloat("_GlowInner", 1f);
+
+        // make text glow to the pulse but not actually pulse
+        titleFontMaterial.SetColor("_GlowColor", Color.red);
+        titleFontMaterial.SetFloat("_GlowPower", pulse);
+        titleFontMaterial.SetFloat("_GlowOffset", -0.64f);
+        titleFontMaterial.SetFloat("_GlowOuter", 1f);
+        titleFontMaterial.SetFloat("_GlowInner", 1f);
     }
 
     void StopPulseAndGlow()
     {
         bestSellerTimerText.transform.localScale = originalScale;
         bsFontMaterial.SetFloat("_GlowPower", 0f); // don't need to change glow color bc when power is 0 you dont see it
+        titleFontMaterial.SetFloat("_GlowPower", 0f);
     }
 
     void SetBestSeller()
