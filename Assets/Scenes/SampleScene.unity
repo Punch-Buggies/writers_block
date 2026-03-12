@@ -6387,6 +6387,7 @@ MonoBehaviour:
   bestSeller: {fileID: 1799788562}
   publishCounter: 0
   spawner: {fileID: 22034390}
+  bookshelfImage: {fileID: 2066524599}
 --- !u!1 &1170887068
 GameObject:
   m_ObjectHideFlags: 0
@@ -10531,6 +10532,7 @@ MonoBehaviour:
   bestSellerTimerText: {fileID: 1905434804}
   bestSellerResetTimer: 20
   bestSellerText: {fileID: 478211193}
+  publish: {fileID: 1135086158}
   genreHighlight: {fileID: 1183550324}
   characterHighlight: {fileID: 2052240526}
   settingsHighlight: {fileID: 1585005339}

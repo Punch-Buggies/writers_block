@@ -6,12 +6,16 @@ using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
+using System.Collections;
 
 public class Publish : MonoBehaviour
 {
     [SerializeField] BestSeller bestSeller;
     [SerializeField] int publishCounter = 0;
     [SerializeField] BookInsideSpawner spawner;
+    [SerializeField] Image bookshelfImage;
+    Color originalColor;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
@@ -20,8 +24,14 @@ public class Publish : MonoBehaviour
     void Awake()
     {
         bookStoryElementDict = new Dictionary<string, string>();
-        publishedTiles = new List<GameObject>();
-        
+        publishedTiles = new List<GameObject>();   
+    }
+    void Start()
+    {
+        if (bookshelfImage != null)
+        {
+            originalColor = bookshelfImage.color;
+        }
     }
 
     void Update()
@@ -96,8 +106,9 @@ public class Publish : MonoBehaviour
         // play book sound!!
         AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
 
+        // flash bookshelf or replace with book opening animation
+        StartCoroutine(FlashBookshelf());
         // everything should have reset clear the best seller highlight
-        Debug.Log("Dictionary after publishing: " + string.Join(", ", bookStoryElementDict.Select(kvp => $"{kvp.Key}:{kvp.Value}")));        
         ClearBSMatch();
     }
 
@@ -145,6 +156,24 @@ public class Publish : MonoBehaviour
             bestSeller.MaterialMatchGlow(kvp.Key, match);
         }
         Debug.Log("Done checking if the best seller matches in publish.cs");
+    }
+
+    private IEnumerator FlashBookshelf()
+    {
+        int flashCount = 3;
+        Color32 flashColor = new Color32(191, 158, 116, 255);
+        float flashDuration = 0.4f; 
+
+        for (int i = 0; i < flashCount; i++)
+        {
+            // set to bright color
+            bookshelfImage.color = flashColor;
+            yield return new WaitForSeconds(flashDuration);
+
+            // return to original color
+            bookshelfImage.color = originalColor;
+            yield return new WaitForSeconds(flashDuration);
+        }
     }
 
 }
