@@ -99,13 +99,32 @@ public class BookBlurbGenerator : MonoBehaviour
             }
             string word_s = "s";
             Word word = chosenBySlot[slot.parentId];
+            Gender g = chosenBySlot[slot.parentId].gender;
             switch (slot.type)
             {
                 case WordType.IndefiniteArticle:
                     word = new Word(chosenBySlot[slot.parentId].startsVowel?"an":"a");
                     break;
+                case WordType.Verb:
+                    string w = "";
+                    if (slot.slotId == "is")
+                    {
+                        w = (g == Gender.nonbinary)?"are":"is";
+                    }else if (slot.slotId == "has")
+                    {
+                        w = (g==Gender.nonbinary)?"have":"has";
+                        
+                    }else if (slot.slotId == "does")
+                    {
+                        w = (g==Gender.nonbinary)?"do":"does";
+                    }
+                    else
+                    {
+                        Debug.Log("Conjugated verb slot has undefined or incorrectly defined id: " + slot.slotId);
+                    }
+                    word = new Word(w,g);
+                    break;
                 case WordType.Pronoun:
-                    Gender g = chosenBySlot[slot.parentId].gender;
                     string p = "they";
                     if (g == Gender.feminine)
                     {
@@ -299,13 +318,13 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        // string g = "Title";
-        // string c = "Lover";
-        // string s = "WildWest";
-        // for (int i=0; i<10;i++){
-        //   string test = generate_blurb(g,c,s);
-        // Debug.Log(test);  
-        // };
+        string g = "Title";
+        string c = "Lover";
+        string s = "WildWest";
+        for (int i=0; i<10;i++){
+          string test = generate_blurb(g,c,s);
+        Debug.Log(test);  
+        };
         
     }
 

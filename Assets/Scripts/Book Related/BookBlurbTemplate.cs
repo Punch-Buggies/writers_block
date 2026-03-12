@@ -24,10 +24,12 @@ public enum WordType
     Person,
     Place,
     Thing,
+
     //dependants:
     Name, // gendered
     Pronoun, // gendered pronouns only
-    IndefiniteArticle //    a/an
+    IndefiniteArticle, //    a/an
+    Verb //system only handles "is/are", "has/have", and "does/do" (in the case where they depend on a Subject pronoun conjugation-- she/he differs from they's verb conjugation)
 
     // note gendered dependants must depend on an independant word that has a gender (character, WordType.Person)
 }
