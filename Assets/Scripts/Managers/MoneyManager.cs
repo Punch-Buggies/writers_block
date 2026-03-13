@@ -74,6 +74,7 @@ public class MoneyManager : MonoBehaviour
     {
         currentMoney -= amount;
         moneyUI.text = $"${currentMoney:0.##}";
+        // check we didn't run out of money to grow tiles and can still publish with whats in the tiles
     }
 
     public void increaseTileCost()
@@ -86,5 +87,48 @@ public class MoneyManager : MonoBehaviour
     // this called in SpawnLocation.cs
     {
         spawnUnlockCost *= 1.5;
+    }
+
+    public bool canPublish()
+    // check that we can still publish given whats in the tile area
+    {
+        // character, genre, setting
+        bool[] hasElement = new bool[3];
+
+        Tile[] tiles = FindObjectsOfType<Tile>();
+
+        foreach (Tile tile in tiles)
+        {
+            // the tile is occupied?
+            if (tile.tileOccupied == true)
+            {
+                string storyElement = tile.tileType;
+
+
+                switch (storyElement)
+                {
+                    case "Character":
+                        hasElement[0] = true;
+                        break;
+                    case "Genre":
+                        hasElement[1] = true;
+                        break;
+                    case "Setting":
+                        hasElement[2] = true;
+                        break;
+
+                }
+                if (hasElement[0] && hasElement[1] && hasElement[2]) // all true                
+                {
+                    // we have them all, we done here
+                    Debug.Log("we can still publish");
+                    return true;
+                }
+
+            }
+        }
+        Debug.Log("can't publish no more");
+        // didn't find them all
+        return false;
     }
 }
