@@ -253,7 +253,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587116352984842182}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42a5532b1019c5c4190e8f1a8b281749, type: 3}
   m_Name: 
@@ -353,6 +353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookCover
   titleText: {fileID: 7112120128883262790}
   cornerText: {fileID: 6835127684478515743}
+  bg_image: {fileID: 7351736036093521900}
+  outer_border: {fileID: 1996921535246030305}
+  inner_border: {fileID: 921739086975552717}
 --- !u!114 &624410092263193746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,7 +722,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3350527211062950188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42a5532b1019c5c4190e8f1a8b281749, type: 3}
   m_Name: 
