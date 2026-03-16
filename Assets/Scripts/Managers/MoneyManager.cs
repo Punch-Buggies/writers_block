@@ -21,7 +21,7 @@ public class MoneyManager : MonoBehaviour
     // call MoneyManager.Instance.currentMoney to access this attribute
 
     double displayMoney;
-    int moneyUpdateSpeed = 5;
+    int moneyUpdateSpeed = 7;
 
     public double tileUnlockCost { get; private set; } = 50;
 
