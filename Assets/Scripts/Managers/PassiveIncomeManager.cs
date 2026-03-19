@@ -17,10 +17,12 @@ public class PassiveIncomeManager : MonoBehaviour
     float passiveTimer = 3f;
     double passiveIncomeAmount = 20f;
     Vector2 originalTextPos;
+
+    BestSeller bestSeller;
     void Start()
     {
         publishedBooks = new Dictionary<string, Book>();
-        
+        bestSeller = FindAnyObjectByType<BestSeller>();
         passiveIncomeText.text = "";
         passiveIncomeText.alpha = 0f;
         originalTextPos = passiveIncomeText.rectTransform.anchoredPosition;
@@ -56,8 +58,24 @@ public class PassiveIncomeManager : MonoBehaviour
                 string randomTitle = keys[Random.Range(0, keys.Count)];
                 Book book = publishedBooks[randomTitle];
 
-                MoneyManager.Instance.addMoney(passiveIncomeAmount);
-                PlayIncomePopup($"+${passiveIncomeAmount} from \"{randomTitle}\"!");
+                // Check how many bestseller this book hits
+                string[] bestSellers = bestSeller.GetBestSellers();
+                int bestsellerHits = 0;
+                foreach(string bs in bestSellers)
+                {
+                    if(book.genre== bs || book.character == bs || book.setting == bs)
+                    {
+                        bestsellerHits++;
+                    }
+                }
+                MoneyManager.Instance.addMoney(passiveIncomeAmount * (bestsellerHits + 1));
+
+                string bestsellerMessage = "";
+                if (bestsellerHits > 0)
+                {
+                    bestsellerMessage = $" ({bestsellerHits} bestseller hit{(bestsellerHits > 1 ? "s" : "")})";
+                }
+                PlayIncomePopup($"+${passiveIncomeAmount * (bestsellerHits + 1)} from \"{randomTitle}\"{bestsellerMessage}!");
             }
         }
     }
