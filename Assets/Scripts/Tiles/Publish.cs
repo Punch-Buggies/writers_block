@@ -14,6 +14,7 @@ public class Publish : MonoBehaviour
     [SerializeField] BestSeller bestSeller;
     [SerializeField] int publishCounter = 0;
     [SerializeField] BookInsideSpawner spawner;
+    PassiveIncomeManager passiveIncomeManager;
     [SerializeField] Image bookshelfImage;
     Color originalColor;
 
@@ -24,6 +25,9 @@ public class Publish : MonoBehaviour
     void Awake()
     {
         bookStoryElementDict = new Dictionary<string, string>();
+        publishedTiles = new List<GameObject>();
+        passiveIncomeManager = FindAnyObjectByType<PassiveIncomeManager>();
+        
         publishedTiles = new List<GameObject>();   
     }
     void Start()
@@ -101,6 +105,8 @@ public class Publish : MonoBehaviour
         string title = BookBlurbGenerator.Instance.generate_blurb("Title", newBook.character, newBook.setting);
         // makes bookui object and adds to bookshelf UI
         // spawner.SpawnCover(title, newBook.bestSelling, newBook.copiesSold, newBook.blurb);
+
+        passiveIncomeManager.AddBookToPassiveIncome(title, newBook); // This here is used for Passive income, We can keep track of the title and best seller matching
         spawner.SpawnCover(title, newBook);
 
         // play book sound!!
