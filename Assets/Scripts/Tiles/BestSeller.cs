@@ -166,6 +166,15 @@ public class BestSeller : MonoBehaviour
         }
     }
 
+    public string[]  GetBestSellers()
+    {
+        string genreBS = genreBestSellerText.text;
+        string charBS = characterBestSellerText.text;
+        string settBS = settingBestSellerText.text;
+
+        return new string[] {genreBS, charBS, settBS};
+    }
+
     void SetBestSeller()
     {
         // changes the best seller elements
