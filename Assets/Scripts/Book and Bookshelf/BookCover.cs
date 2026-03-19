@@ -11,9 +11,11 @@ public class BookCover : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI cornerText;
     // randomize, randomize
-    [SerializeField] private Image bg_image;
+    [SerializeField] private Image bg_image; //this is the solid color that gets set from a random setting color
     [SerializeField] private Image outer_border;
     [SerializeField] private Image inner_border;
+    [SerializeField] private Image texture; // this is the texture that would go on top, from a random genre
+
 
     // title to display in prefab
     private string title;
@@ -33,8 +35,8 @@ public class BookCover : MonoBehaviour
         MakeColorDic();
 
         // create book cover image according to its attribute
-        SetColors(book);
-        //TODO: set images
+        SetColors(book); // color according to setting
+        SetTexture(book); //texture according to genre
     }
 
     // add button for opening bookview
@@ -43,7 +45,7 @@ public class BookCover : MonoBehaviour
         // book sound is also played in thiw function call
         BookViewManager.Instance.OpenBookView(book);
     }
-
+    ///////////// colors //////////////
     // the Hex() function is used when intiializing the colorDict to convert them straight to type Color
     private Color Hex(string hexcode)
     {
@@ -71,6 +73,36 @@ public class BookCover : MonoBehaviour
         outer_border.color = RandomlyPickAColor(setting);
         inner_border.color = RandomlyPickAColor(setting);
     }
+    ///////////// textures //////////////
+    private Sprite[] LoadTextures(string genre)
+    {
+        string foldername = $"Textures/{genre}";
+        Debug.Log($"trying to get into the folder {foldername}");
+        Sprite[] textures = Resources.LoadAll<Sprite>(foldername);
+
+        return textures;
+    }
+    private Sprite RandomlyPickATexture(string genre)
+    {
+        Debug.Log($"Picking a texture for {genre}");
+        // get the images in the genre folder
+        Sprite[] textures = LoadTextures(genre);
+        if (textures == null)
+        {
+            Debug.Log($"{genre} had null textures");
+        }
+        Sprite randomTexture = textures[Random.Range(0, textures.Length)];
+        return randomTexture;
+    }
+
+
+    private void SetTexture(Book book)
+    {
+        //randomly selects a texture from its specific genre texture folder
+        string genre = book.genre;
+        texture.sprite = RandomlyPickATexture(genre);
+    }
+
 
 ///////////// color dictionary //////////////
     private void MakeColorDic()
