@@ -40,10 +40,10 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("audio manager starting up");
+        // Debug.Log("audio manager starting up");
         UpdateVolume();
         PlayMusic(mainMusic);
-        Debug.Log("main music is playing now");
+        // Debug.Log("main music is playing now");
     }
 
 
@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
         PlaySound("Audio/Randomizer/GENRE/GENRE_" + genre);
         PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_" + character);
         PlaySound("Audio/Randomizer/SETTING/SETTING_" + setting);
-        Debug.Log("played all the sounds");
+        // Debug.Log("played all the sounds");
     }
 
     private void PlaySound(string path)
@@ -92,7 +92,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("clip is null at: " + path);
         }
 
-        Debug.Log("Playing clip: " + path);
+        // Debug.Log("Playing clip: " + path);
         sfxSource.PlayOneShot(clip);
     }
 
@@ -109,7 +109,7 @@ public class AudioManager : MonoBehaviour
     {
         // PlayUniqueBookSound("Romance","Antihero","Mountains");
         PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_Magician");
-        Debug.Log("test over");
+        // Debug.Log("test over");
     }
 
     // VOLUME
