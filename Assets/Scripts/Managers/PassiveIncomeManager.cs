@@ -12,7 +12,8 @@ public class PassiveIncomeManager : MonoBehaviour
     Dictionary<string, Book> publishedBooks;
 
     [SerializeField] TextMeshProUGUI passiveIncomeText;
-    [SerializeField] float verticalFloatDistance = 60f;
+    [SerializeField] float verticalFloatDistance = 60f; 
+    // this change how much the text moves up(postive number) or down(negative number)
     [SerializeField] float floatDuration = 1.2f;
     float passiveTimer = 3f;
     double passiveIncomeAmount = 20f;

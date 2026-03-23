@@ -156,6 +156,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     void CookingAndTimering()
     {
+        // turn off ability to drag tile when cooking
         if(timer <= timerLimit)
         {
             timer += Time.deltaTime;

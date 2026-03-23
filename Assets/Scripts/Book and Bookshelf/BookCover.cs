@@ -72,6 +72,7 @@ public class BookCover : MonoBehaviour
         bg_image.color = RandomlyPickAColor(setting);
         outer_border.color = RandomlyPickAColor(setting);
         inner_border.color = RandomlyPickAColor(setting);
+        // set corner color
     }
     ///////////// textures //////////////
     private Sprite[] LoadTextures(string genre)
