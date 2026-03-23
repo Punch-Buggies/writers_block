@@ -33,11 +33,12 @@ public class PassiveIncomeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(string title in publishedBooks.Keys)
-        {
-            if(publishedBooks.Count > 0)
-                Debug.Log(title);
-        }
+        // commenting this debug, because it makes my laptop explode
+        // foreach(string title in publishedBooks.Keys)
+        // {
+        //     if(publishedBooks.Count > 0)
+        //         Debug.Log(title);
+        // }
     }
 
     public void AddBookToPassiveIncome(string title, Book book)
@@ -51,7 +52,7 @@ public class PassiveIncomeManager : MonoBehaviour
         {
             yield return new WaitForSeconds(passiveTimer);
 
-            Debug.Log("Passive income time!");
+            // Debug.Log("Passive income time!");
             if(publishedBooks.Count > 0)
             {
                 // Pick a random book
