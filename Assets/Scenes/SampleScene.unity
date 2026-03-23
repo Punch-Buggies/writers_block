@@ -10759,7 +10759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12690,6 +12690,7 @@ GameObject:
   - component: {fileID: 2066524600}
   - component: {fileID: 2066524599}
   - component: {fileID: 2066524598}
+  - component: {fileID: 2066524602}
   m_Layer: 5
   m_Name: Bookshelf Icon
   m_TagString: Untagged
@@ -12834,6 +12835,19 @@ RectTransform:
   m_AnchoredPosition: {x: -20.14, y: -94}
   m_SizeDelta: {x: 1958.08, y: 621.41}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2066524602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066524597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37ce2313f217494e91f3854a6ca384e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaHit
+  image: {fileID: 2066524599}
 --- !u!1001 &2080779605
 PrefabInstance:
   m_ObjectHideFlags: 0
