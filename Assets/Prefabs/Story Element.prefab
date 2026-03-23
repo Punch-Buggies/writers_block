@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Type
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 55de01f9664c5804a8c490c860036ca7, type: 2}
-  m_sharedMaterial: {fileID: -4703919102700247434, guid: 55de01f9664c5804a8c490c860036ca7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 60d737fa2a6ae9549b4d518e549746d7, type: 2}
+  m_sharedMaterial: {fileID: 1399233775013243501, guid: 60d737fa2a6ae9549b4d518e549746d7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,13 +92,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.46
+  m_fontSize: 54.15
   m_fontSizeBase: 49.46
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 33
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -199,7 +199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoryElement
   storyElement: Genre
   elementType: Action
-  unlockCost: 10
 --- !u!114 &2852260257832869303
 MonoBehaviour:
   m_ObjectHideFlags: 0
