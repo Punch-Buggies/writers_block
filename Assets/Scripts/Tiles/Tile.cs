@@ -72,6 +72,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     private void Erase(GameObject spawnedElement)
     {
+        // THIS NEVER GETS CALLED
         AudioManager.Instance.PlaySFX("eraser");
         Debug.Log("Erasing");
         Destroy(spawnedElement);
@@ -106,10 +107,12 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     
     public void OnDrop(PointerEventData eventData)
     {
-        // its in eraser mode
+        // its in eraser mode // THIS NEVER EXECUTES
         if(tileOccupied == true && eventData.pointerDrag.GetComponent<Eraser>() != null)
         {
+            Debug.Log("about to erase");
             Erase(spawnedElement);
+            Debug.Log("erase called?");
         }
         
         // if its not an eraser, the story element matches the tile type, the tile is unlocked and not occuiped

@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
             {"quill", quillSFX},
             {"eraser", eraseSFX}
         };
+
     }
     private void Awake()
     {
@@ -109,7 +110,9 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(string sfx)
     {
+        Debug.Log(sfxDict);
         AudioClip sfxClip = sfxDict[sfx];
+        Debug.Log(sfxClip);
         if (sfxClip == null) return;
 
         Debug.Log($"playing a {sfx} clip");
@@ -121,8 +124,8 @@ public class AudioManager : MonoBehaviour
     public void playTest()
     {
         // PlayUniqueBookSound("Romance","Antihero","Mountains");
-        PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_Magician");
-        // Debug.Log("test over");
+        PlaySound("Audio/SFX/Farming/Farming_Eraser");
+        Debug.Log("test over");
     }
 
     // VOLUME
