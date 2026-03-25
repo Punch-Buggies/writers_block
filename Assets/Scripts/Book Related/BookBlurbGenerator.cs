@@ -327,7 +327,7 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        string g = "Coming-of-Age";
+        string g = "Drama";
         string c = "Friend";
         string s = "Forest";
         for (int i=0; i<10;i++){
