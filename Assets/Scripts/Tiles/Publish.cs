@@ -38,7 +38,7 @@ public class Publish : MonoBehaviour
         }
     }
 
-    void Update()
+    public void PublishButtonClicked()
     {
         if(publishCounter >= 3)
         {
@@ -46,7 +46,6 @@ public class Publish : MonoBehaviour
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
-
     }
 
     public (int, int) calculateCopiesAndMoney()

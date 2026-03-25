@@ -111,38 +111,55 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         }
         
         // if its not an eraser, the story element matches the tile type, the tile is unlocked and not occuiped
-        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType && tileOccupied == false)
+        // first the tile must be unlocked, unoccupied and not in eraser mode
+        // then check if its a story element(to be grown) or a publishable tile
+        
+        // if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType && tileOccupied == false)
+        if (unlocked && tileOccupied == false && eventData.pointerDrag.GetComponent<Eraser>() == null) 
         {
-            spawnedElement = eventData.pointerDrag;
-            growthCost = MoneyManager.Instance.tileGrowthCost;
-           
-            StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
-            // the tile is not empty and story element is there
-            if (storyElement != null)
+            // check if story element or publishable
+            if (eventData.pointerDrag.GetComponent<StoryElement>() != null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
             {
-                // dont show again is NOT clicked. so the purchase ui comes up
-                // takes a response from the player
-                if (PurchaseManager.Instance.toggleOn == true)
+                spawnedElement = eventData.pointerDrag;
+                growthCost = MoneyManager.Instance.tileGrowthCost;
+            
+                StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
+                // the tile is not empty and story element is there
+                if (storyElement != null)
                 {
-                    // confirm with the player that they want to grow this element
-                    PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
+                    // dont show again is NOT clicked. so the purchase ui comes up
+                    // takes a response from the player
+                    if (PurchaseManager.Instance.toggleOn == true)
                     {
-                        if (confirmed) // they clicked on the yes button  
+                        // confirm with the player that they want to grow this element
+                        PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
                         {
-                            //process the purchase
-                            ProcessPurchase(spawnedElement);
-                        }
-                        else // they clicked no button
-                        {
-                            Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
-                        }
-                    });
-                }
-                else // toggleOn == false, don't show again was clicked
-                {
-                    ProcessPurchase(spawnedElement);
+                            if (confirmed) // they clicked on the yes button  
+                            {
+                                //process the purchase
+                                ProcessPurchase(spawnedElement);
+                            }
+                            else // they clicked no button
+                            {
+                                Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
+                            }
+                        });
+                    }
+                    else // toggleOn == false, don't show again was clicked
+                    {
+                        ProcessPurchase(spawnedElement);
+                    } 
                 } 
             }
+            // if its a publishanble tile
+            // else if (eventData.pointerDrag.GetComponent<PublishableTile>() != null && eventData.pointerDrag.GetComponent<PublishableTile>().GetStoryElement() == tileType)
+            // {
+            //     // move the tile to that spot
+            //     Debug.Log("i knew it was a publishable tile");
+            //     DraggableItem draggable = eventData.pointerDrag.GetComponent<DraggableItem>();
+            //     draggable.OnSuccessfulDrop(transform.position);
+
+            // }
         }
     }
 
@@ -160,7 +177,11 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         if(timer <= timerLimit)
         {
             timer += Time.deltaTime;
-            progressBarSlider.value = timer;        
+            progressBarSlider.value = timer;     
+
+            // disable drag
+            DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();   
+            draggable.enabled = false;
         }
         else // timer has reached its limit
         {
