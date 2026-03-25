@@ -23,7 +23,7 @@ public class PublishZone : MonoBehaviour, IDropHandler
         PublishableTile publishableTile = publishedElement.GetComponent<PublishableTile>();
 
 
-        if (publishableTile.GetStoryElement() == zoneType)
+        if (publishableTile != null && publishableTile.GetStoryElement() == zoneType)
         {
             if (draggable != null)
             {
