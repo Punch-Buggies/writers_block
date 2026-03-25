@@ -368,6 +368,213 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("adj3", WordType.Adjective)
             }, "Slice-of-Life")
         });
+        templates.Add("Paranormal", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "{mc1} clicked {their1} flashlight on as {mc2} and {them1} descended into the house’s {main-place}. Each step creaked and groaned under their weight. The light of {their1} flashlight caught on specks of dust and {thing-plural} floating listlessly from the old wooden rafters, and a lithe dangling {thing1} stopped {mc1} in {their1} path as it lowered itself into view. \n“Careful, I think that kind bites,” {mc2}’s {adj1} voice tickled {mc1}’s ear from behind.\n“A common house {thing1} doesn’t bite,” {mc1} kept {their1} gaze fixed on the {thing1} nonetheless, “You’re just trying to scare me.”\n“Boo!” {mc2}’s hands came up on {mc1}’s shoulders, jostling {them1}.\n{mc1} brushed {them2} off, and continued down the stairs dodging the {thing1}. {they1} waited for the {adj2} sound of {mc2}’s steps behind {them1}. Silence.\n“{mc2}?”\nA beat passed. {mc1} gripped {their1} flashlight tighter. {they1} turned, slowly. \n{mc2} stood rigid - still halfway down the stairs - eyes glassy and unfocused.\n{mc1} sighed, “{mc2} this isn’t funny.”\n{mc2} did not move. As {mc1} watched {them2}, {they1} realized with growing unease that {mc2} was not blinking. \nA coldness fell over the back of {mc1}’s neck, sparking goosebumps, and slid down {their1} spine. \nBefore {mc1} could react, {mc2}’s body flung upwards hitting the ceiling with a heavy thud. Dust puffed out from the point of impact in a cloud. {mc1} was paralyzed in fear as {they1} watched {mc2}’s body - now fully flush with the {main-place} ceiling - drain of colour.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mc1", WordType.Name, parentId:"character"),
+                    new TemplateSlot("they1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("their1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("person2", WordType.Person),
+                    new TemplateSlot("mc2", WordType.Name, parentId:"person2"),
+                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Object),
+                    new TemplateSlot("their2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("main-place", WordType.Place),
+                    new TemplateSlot("thing-plural", WordType.Thing, plural:true),
+                    new TemplateSlot("thing1", WordType.Thing),
+                    new TemplateSlot("adj1", WordType.Adjective),
+                    new TemplateSlot("adj2", WordType.Adjective)
+                },
+                "Horror"
+            )
+        });
+        templates.Add("Fantasy", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "{mc} the {adj1} brandished {their} sword, marching valiantly up the fire-scorched {place}. {they} jutted {their} chin up and bellowed, “{catchphrase}!”\n{mc} then broke into a sprint - armour jostling, {adj2} hair catching in the wind. Before {them}, the great beast - a terrifying {person} -  roared. It was a mighty thing. Tall enough to peer over a castle {place2}, fat enough to crumble said {place2} to rubble. The {person}’s jaw unhinged, opening its maw to produce a second roar. {mc} felt the sound more than heard it - the roar reverberated through {them} like a wave. \nAs the beast stepped forward, {mc} seized the opportunity to bring {their} sword down on the {person}’s large paw. Sweat gleaming off {their} forehead from the effort, {mc} raised {their} weapon above {their} head. Before the beast could retaliate, {they} - in a {adj} motion - plunged the sword downward, pinning the {person}’s paw to the ground.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mc", WordType.Name, parentId:"character"),
+                    new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("adj1", WordType.Adjective),
+                    new TemplateSlot("place", WordType.Place),
+                    new TemplateSlot("catchphrase", WordType.Catchphrase),
+                    new TemplateSlot("adj2", WordType.Adjective),
+                    new TemplateSlot("person", WordType.Person),
+                    new TemplateSlot("place2", WordType.Place),
+                    new TemplateSlot("adj", WordType.Adjective)
+                },
+                "Fantasy"
+            )
+        });
+        templates.Add("Sci-Fi", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "The asteroids produced a sharp tinny zeeoom as they flew past the spaceship. Commander {mc} gripped the control gear with a tightness that blanched {their} {adj0} fingers. Spotting an asteroid directly in front of the viewport, {they} deftly pulled the controller towards {them} - the ship hulled heavily. {mc} flinched as the asteroid zipped past, narrowly avoiding the ship. Phew.\nIt was a stupid miscalculation. An amateur mistake. But, when it came to light-travel, the slightest error in coordinate values resulted in disastrously off-plan warp points. Which is how {mc}’s fleet of space faring {people-p} found themselves in the center of one of the largest asteroid fields she had ever encountered.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mc", WordType.Name, parentId:"character"),
+                    new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("adj0", WordType.Adjective),
+                    new TemplateSlot("people-p", WordType.Person, plural:true)
+                },
+                "Sci-Fi"
+            )
+        });
+        templates.Add("Coming-of-Age", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "Pop. The drink fizzed and started to spill over {mc}’s hand as soon as the pressure of the {thing0} against {their} thumb broke through the can. \n “Quick! Chug it!” {their} friends were gathered around the {place}, watching as {mc} brought the beer over {their} head, pressing {their} {adj0} lips against the newly formed opening. {their} throat bobbed as {they} guzzled the liquid. At the last drop, {mc} triumphantly shook the now emptied can above {their} head before throwing it to the ground. \nNarrowing {their} eyes at {their} friends, {a} {adj1} smile crept onto {their} face, “Who’s coming skinny dipping with me?” \n{they} didn’t have to ask twice, the group of {people-p} - buzzing with adrenaline and booze - scurried down the {place}’s path leading towards the lake. A warm summer breeze threaded its soft fingers through their hair, sand slipped between their toes, and the stars above them winked at their antics. As the {people-p} undressed under the night’s benign cover, {mc} and {their} friends shared warm smiles knowing they would never be this young again.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mc", WordType.Name, parentId:"character"),
+                    new TemplateSlot("they", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("thing0", WordType.Thing),
+                    new TemplateSlot("place", WordType.Place),
+                    new TemplateSlot("adj0", WordType.Adjective),
+                    new TemplateSlot("adj1", WordType.Adjective),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"adj1"),
+                    new TemplateSlot("people-p", WordType.Person, plural:true)
+                },
+                "Coming-of-Age"
+            )
+        });
+        templates.Add("Horror", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "“We should split up to investigate,” {mcA} said as {theyA} slotted new batteries into {theirA} flashlight. {theyA} looked up at the group of {person-p}, “The sooner we figure out why the power went out, the better. I’m freezing already.”\nOutside the {place}, the blizzard’s wind whistled and rattled at the windows. Rod twisted the cap onto {theirA} flashlight and clicked it on, lighting his friends’ faces in an eerie underglow. \n“I don’t know if that’s a good idea…” {mcB} wringed {theirB} hands.\n{mcC} rolled {theirC} eyes next to {mcB}, “Come on, it’s just a power outage. {mcA} and I’ll look for the breaker in the {placeB}, you and {mcD} can search the main floor.”\n“Sounds good to me,” {mcD} hummed. \n{mcA} gave {a} {adj} nod, “{catchphrase}”\n{mcC} laced {theirC} arm around {mcA}’s and led {themA} down to the {placeB} with {themC}, leaving {mcB} and {mcD} by themselves in the dark {place}. A deep wrongness settled in {mcB}’s stomach as {theyB} nervously held tighter onto {theirB} {thing}, as if it could protect {themB}.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mcA", WordType.Name, parentId:"character"),
+                    new TemplateSlot("theyA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("B", WordType.Person),
+                    new TemplateSlot("mcB", WordType.Name, parentId:"B"),
+                    new TemplateSlot("theyB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("C", WordType.Person),
+                    new TemplateSlot("mcC", WordType.Name, parentId:"C"),
+                    new TemplateSlot("theyC", WordType.Pronoun, parentId:"C", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themC", WordType.Pronoun, parentId:"C", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirC", WordType.Pronoun, parentId:"C", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("D", WordType.Person),
+                    new TemplateSlot("mcD", WordType.Name, parentId:"D"),
+                    new TemplateSlot("theyD", WordType.Pronoun, parentId:"D", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themD", WordType.Pronoun, parentId:"D", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirD", WordType.Pronoun, parentId:"D", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("person-p", WordType.Person, plural:true),
+                    new TemplateSlot("place", WordType.Place),
+                    new TemplateSlot("placeB", WordType.Place),
+                    new TemplateSlot("adj", WordType.Adjective),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"adj"),
+                    new TemplateSlot("catchphrase", WordType.Catchphrase),
+                    new TemplateSlot("thing", WordType.Thing)
+                },"Horror"
+            ),
+            new BookBlurbTemplate(
+                "{mc1} clicked {their1} flashlight on as {mc2} and {them1} descended into the house’s {main-place}. Each step creaked and groaned under their weight. The light of {their1} flashlight caught on specks of dust and {thing-plural} floating listlessly from the old wooden rafters, and a lithe dangling {thing1} stopped {mc1} in {their1} path as it lowered itself into view. \n“Careful, I think that kind bites,” {mc2}’s {adj1} voice tickled {mc1}’s ear from behind.\n“A common house {thing1} doesn’t bite,” {mc1} kept {their1} gaze fixed on the {thing1} nonetheless, “You’re just trying to scare me.”\n“Boo!” {mc2}’s hands came up on {mc1}’s shoulders, jostling {them1}.\n{mc1} brushed {them2} off, and continued down the stairs dodging the {thing1}. {they1} waited for the {adj2} sound of {mc2}’s steps behind {them1}. Silence.\n“{mc2}?”\nA beat passed. {mc1} gripped {their1} flashlight tighter. {they1} turned, slowly. \n{mc2} stood rigid - still halfway down the stairs - eyes glassy and unfocused.\n{mc1} sighed, “{mc2} this isn’t funny.”\n{mc2} did not move. As {mc1} watched {them2}, {they1} realized with growing unease that {mc2} was not blinking. \nA coldness fell over the back of {mc1}’s neck, sparking goosebumps, and slid down {their1} spine. \nBefore {mc1} could react, {mc2}’s body flung upwards hitting the ceiling with a heavy thud. Dust puffed out from the point of impact in a cloud. {mc1} was paralyzed in fear as {they1} watched {mc2}’s body - now fully flush with the {main-place} ceiling - drain of colour.",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mc1", WordType.Name, parentId:"character"),
+                    new TemplateSlot("they1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("their1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("person2", WordType.Person),
+                    new TemplateSlot("mc2", WordType.Name, parentId:"person2"),
+                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
+                    new TemplateSlot("them2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Object),
+                    new TemplateSlot("their2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("main-place", WordType.Place),
+                    new TemplateSlot("thing-plural", WordType.Thing, plural:true),
+                    new TemplateSlot("thing1", WordType.Thing),
+                    new TemplateSlot("adj1", WordType.Adjective),
+                    new TemplateSlot("adj2", WordType.Adjective)
+                },
+                "Horror"
+            )
+        });
+        templates.Add("Drama", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate(
+                "“{wrong-name}- shit, {mcA}. Are you saying you don’t love me anymore?”\n“I’m saying that, I think- I think I’m not {a1} {person1} anymore, {mcB}.” {theyA} let {themB} sit in that for a moment. Whatever the fuck that means. Then, “And I think you’re not either.”\n“Yeah no shit-”\n“No {mcB}.” {theirA} tone was {adj1} now, “You’re not listening. Things are different now - we can’t keep pretending nothing’s changed. This relationship? It’s a complete sham.”\nHow {was} {theyA} able to say that so bluntly? In such a {adj2} tone, like {theyA} {was} telling {themB} “No, {mcB}, {things-p} don’t fly”.  Or “{catchphrase}”.\n“Are you actually dumping me, right now? Is that what’s happening?”\n{theyB} heard {themA} take a deep breath over the line, “I think I should have dumped you a long time ago.”\nOkay, Ouch. What the fuck. “{mcA} Wait-”\n“Goodnight {mcB}.” It sounded final. \n{mcB} sat there, on the edge of {theirB} {thing2}, alone in the {setting} {place}, still holding the phone halfway between {theirB} lap and {theirB} mouth. {theyB} stared down at the yellowing old device, waiting for it to cackle back to life. It didn’t. {theyB}'d messed up hadn't {theyB}?",
+                new List<TemplateSlot>
+                {
+                    new TemplateSlot("mcA", WordType.Name, parentId:"character"),
+                    new TemplateSlot("theyA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("B", WordType.Person),
+                    new TemplateSlot("mcB", WordType.Name, parentId:"B"),
+                    new TemplateSlot("theyB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("wrong-name", WordType.Name, parentId:"character"),
+                    new TemplateSlot("a1", WordType.IndefiniteArticle, parentId:"person1"),
+                    new TemplateSlot("person1", WordType.Person),
+                    new TemplateSlot("adj1", WordType.Adjective),
+                    new TemplateSlot("was", WordType.Verb, parentId:"theyA"),
+                    new TemplateSlot("adj2", WordType.Adjective),
+                    new TemplateSlot("things-p", WordType.Thing, plural:true),
+                    new TemplateSlot("catchphrase", WordType.Catchphrase),
+                    new TemplateSlot("thing2", WordType.Thing),
+                    new TemplateSlot("place", WordType.Place)
+                },
+                "Drama"
+            )
+        });
+        templates.Add("History", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate("{mcA} hunched over the rough wooden desk, breath fogging in the dim lantern light. Outside, the cold of winter pressed hard against the {place} walls, as relentless as the war itself. {theyA} paused, listening - not for the wind, but for boots. British {people} had been encroaching closer and closer these past few nights.\n{theyA} forced {theirA} hand to steady and continued writing.\n“{catchphrase} Tell the General-”\nA crack echoed in the distance. Not thunder. {thing-p}.\n{mcA} folded the letter swiftly, sealing it with wax softened over the flame. {theirA} fingers lingered a moment, knowing this scrap of paper meant the difference between life and death for his battalion.\nThe door creaked open. {mcB}, cheeks raw from cold, stepped in. {mcB} held {themB}elf with a {adj1} sort of posture.\n“They’re moving sooner than we thought,” {theyB} said.\n{mcA} handed {themB} the letter. “Then you’d better outrun them.”\n{mcB} nodded once, then vanished into the storm.",
+            new List<TemplateSlot>
+            {
+                    new TemplateSlot("mcA", WordType.Name, parentId:"character"),
+                    new TemplateSlot("theyA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("B", WordType.Person),
+                    new TemplateSlot("mcB", WordType.Name, parentId:"B"),
+                    new TemplateSlot("theyB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("place", WordType.Place),
+                    new TemplateSlot("people", WordType.Person, plural:true),
+                    new TemplateSlot("catchphrase", WordType.Catchphrase),
+                    new TemplateSlot("thing-p", WordType.Thing, plural:true),
+                    new TemplateSlot("adj1", WordType.Adjective)
+            },"History")
+        });
+        templates.Add("Thriller", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate("{mcA} stopped dead in {theirA} tracks. \nSprawled out in front of {themA}, was the {person}. Deep crimson blood pooled around their wrists and neck, their skin a pale waxy quality, and eyes listed lazily to the ceiling. \n{mcA} paled.\n“{mcB}!?” {theyA} called for {theirA} friend, “{mcB}? I found the {person}...”\n{mcA} backed away from the body. {theirA} ears rang, and head felt light. {theirA} back pressed against a solid mass. {theyA} lept forward, turning in horror, only to be met by the familiar sight of {theirA} friend. \n“Oh thank god it’s you, ” {mcA} breathed, “{mcB}, we need to leave. Now.”\n{mcB} tilted {theirB} head. {theyB} took {a} {adj} step forward.\n{mcA}’s eyes trailed down to {theirA} friend’s hands. {theirA} breath hitched.\n{mcB}, knuckles bloodied, was griping a {thing}.",
+            new List<TemplateSlot>
+            {
+                new TemplateSlot("mcA", WordType.Name, parentId:"character"),
+                    new TemplateSlot("theyA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("B", WordType.Person),
+                    new TemplateSlot("mcB", WordType.Name, parentId:"B"),
+                    new TemplateSlot("theyB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("person", WordType.Person),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"adj"),
+                    new TemplateSlot("adj", WordType.Adjective),
+                    new TemplateSlot("thing", WordType.Thing)
+            },"Thriller")
+        });
         templates.Add("Test", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate("{they} {is} so annoying. {they} {has} so many {thing}, and {does} nothing with them!", 
