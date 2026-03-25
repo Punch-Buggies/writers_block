@@ -327,9 +327,9 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        string g = "Drama";
-        string c = "Friend";
-        string s = "Forest";
+        string g = "History";
+        string c = "Bodyguard";
+        string s = "Office";
         for (int i=0; i<10;i++){
           string test = generate_blurb(g,c,s);
         Debug.Log(test);  
@@ -379,7 +379,7 @@ public static class NounPluralizer
 
     private static readonly HashSet<string> NoChange = new()
     {
-        "sheep","deer","fish","aircraft","species","series","bison"
+        "sheep","deer","fish","aircraft","species","series","bison","paperwork"
     };
 
     private static readonly HashSet<string> FExceptions = new()

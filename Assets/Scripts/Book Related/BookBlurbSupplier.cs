@@ -487,7 +487,7 @@ public class BookBlurbSupplier : MonoBehaviour
         templates.Add("Drama", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
-                "“{wrong-name}- shit, {mcA}. Are you saying you don’t love me anymore?”\n“I’m saying that, I think- I think I’m not {a1} {person1} anymore, {mcB}.” {theyA} let {themB} sit in that for a moment. Whatever the fuck that means. Then, “And I think you’re not either.”\n“Yeah no shit-”\n“No {mcB}.” {theirA} tone was {adj1} now, “You’re not listening. Things are different now - we can’t keep pretending nothing’s changed. This relationship? It’s a complete sham.”\nHow {was} {theyA} able to say that so bluntly? In such a {adj2} tone, like {theyA} {was} telling {themB} “No, {mcB}, {things-p} don’t fly”.  Or “{catchphrase}”.\n“Are you actually dumping me, right now? Is that what’s happening?”\n{theyB} heard {themA} take a deep breath over the line, “I think I should have dumped you a long time ago.”\nOkay, Ouch. What the fuck. “{mcA} Wait-”\n“Goodnight {mcB}.” It sounded final. \n{mcB} sat there, on the edge of {theirB} {thing2}, alone in the {setting} {place}, still holding the phone halfway between {theirB} lap and {theirB} mouth. {theyB} stared down at the yellowing old device, waiting for it to cackle back to life. It didn’t. {theyB} messed up didn’t {theyB}?",
+                "“{wrong-name}- shit, {mcA}. Are you saying you don’t love me anymore?”\n“I’m saying that, I think- I think I’m not {a1} {person1} anymore, {mcB}.” {theyA} let {themB} sit in that for a moment. Whatever the fuck that means. Then, “And I think you’re not either.”\n“Yeah no shit-”\n“No {mcB}.” {theirA} tone was {adj1} now, “You’re not listening. Things are different now - we can’t keep pretending nothing’s changed. This relationship? It’s a complete sham.”\nHow {was} {theyA} able to say that so bluntly? In such a {adj2} tone, like {theyA} {was} telling {themB} “No, {mcB}, {things-p} don’t fly”.  Or “{catchphrase}”.\n“Are you actually dumping me, right now? Is that what’s happening?”\n{theyB} heard {themA} take a deep breath over the line, “I think I should have dumped you a long time ago.”\nOkay, Ouch. What the fuck. “{mcA} Wait-”\n“Goodnight {mcB}.” It sounded final. \n{mcB} sat there, on the edge of {theirB} {thing2}, alone in the {setting} {place}, still holding the phone halfway between {theirB} lap and {theirB} mouth. {theyB} stared down at the yellowing old device, waiting for it to cackle back to life. It didn’t. {theyB}'d messed up hadn't {theyB}?",
                 new List<TemplateSlot>
                 {
                     new TemplateSlot("mcA", WordType.Name, parentId:"character"),
@@ -512,6 +512,47 @@ public class BookBlurbSupplier : MonoBehaviour
                 },
                 "Drama"
             )
+        });
+        templates.Add("History", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate("{mcA} hunched over the rough wooden desk, breath fogging in the dim lantern light. Outside, the cold of winter pressed hard against the {place} walls, as relentless as the war itself. {theyA} paused, listening - not for the wind, but for boots. British {people} had been encroaching closer and closer these past few nights.\n{theyA} forced {theirA} hand to steady and continued writing.\n“{catchphrase} Tell the General-”\nA crack echoed in the distance. Not thunder. {thing-p}.\n{mcA} folded the letter swiftly, sealing it with wax softened over the flame. {theirA} fingers lingered a moment, knowing this scrap of paper meant the difference between life and death for his battalion.\nThe door creaked open. {mcB}, cheeks raw from cold, stepped in. {mcB} held {themB}elf with a {adj1} sort of posture.\n“They’re moving sooner than we thought,” {theyB} said.\n{mcA} handed {themB} the letter. “Then you’d better outrun them.”\n{mcB} nodded once, then vanished into the storm.",
+            new List<TemplateSlot>
+            {
+                    new TemplateSlot("mcA", WordType.Name, parentId:"character"),
+                    new TemplateSlot("theyA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("B", WordType.Person),
+                    new TemplateSlot("mcB", WordType.Name, parentId:"B"),
+                    new TemplateSlot("theyB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("place", WordType.Place),
+                    new TemplateSlot("people", WordType.Person, plural:true),
+                    new TemplateSlot("catchphrase", WordType.Catchphrase),
+                    new TemplateSlot("thing-p", WordType.Thing, plural:true),
+                    new TemplateSlot("adj1", WordType.Adjective)
+            },"History")
+        });
+        templates.Add("Thriller", new List<BookBlurbTemplate>
+        {
+            new BookBlurbTemplate("{mcA} stopped dead in {theirA} tracks. \nSprawled out in front of {themA}, was the {person}. Deep crimson blood pooled around their wrists and neck, their skin a pale waxy quality, and eyes listed lazily to the ceiling. \n{mcA} paled.\n“{mcB}!?” {theyA} called for {theirA} friend, “{mcB}? I found the {person}...”\n{mcA} backed away from the body. {theirA} ears rang, and head felt light. {theirA} back pressed against a solid mass. {theyA} lept forward, turning in horror, only to be met by the familiar sight of {theirA} friend. \n“Oh thank god it’s you, ” {mcA} breathed, “{mcB}, we need to leave. Now.”\n{mcB} tilted {theirB} head. {theyB} took {a} {adj} step forward.\n{mcA}’s eyes trailed down to {theirA} friend’s hands. {theirA} breath hitched.\n{mcB}, knuckles bloodied, was griping a {thing}.",
+            new List<TemplateSlot>
+            {
+                new TemplateSlot("mcA", WordType.Name, parentId:"character"),
+                    new TemplateSlot("theyA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirA", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("B", WordType.Person),
+                    new TemplateSlot("mcB", WordType.Name, parentId:"B"),
+                    new TemplateSlot("theyB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Subject),
+                    new TemplateSlot("themB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.Object),
+                    new TemplateSlot("theirB", WordType.Pronoun, parentId:"B", conjugation:Conjugation.PossessiveAdj),
+                    new TemplateSlot("person", WordType.Person),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"adj"),
+                    new TemplateSlot("adj", WordType.Adjective),
+                    new TemplateSlot("thing", WordType.Thing)
+            },"Thriller")
         });
         templates.Add("Test", new List<BookBlurbTemplate>
         {
