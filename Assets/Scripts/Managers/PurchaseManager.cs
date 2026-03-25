@@ -123,6 +123,16 @@ public class PurchaseManager : MonoBehaviour
         PurchaseUIView.SetActive(true);
     }
 
+    public void ResetPurchaseUI()
+    {
+        yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);
+        dontShowAgain.SetActive(true);
+        // 3.2 Display ok button
+        okButton.gameObject.SetActive(false);
+    }
+
+
     public void BoxClicked()
     {
         // the box was clicked, show checkmark depending

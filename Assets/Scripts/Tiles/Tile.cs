@@ -7,6 +7,7 @@ using TMPro;
 public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
+    [SerializeField] GameObject nextTileToUnlock;
     [SerializeField] GameObject progressBar;
     [SerializeField] GameObject publishableTile;
 
@@ -265,6 +266,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // unlocking the tile bc you clicked it
         // get unlock cost
         unlockCost = MoneyManager.Instance.tileUnlockCost;
         
@@ -282,6 +284,15 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
             // changing unlock cost to be 1.5x more now that they have made a purchase
             MoneyManager.Instance.increaseTileCost();
+
+            if (nextTileToUnlock != null)
+            {
+                nextTileToUnlock.SetActive(true);
+            }
+        }
+        else if (unlocked == false && MoneyManager.Instance.currentMoney < unlockCost)
+        {
+            PurchaseManager.Instance.DisplayInsufficientFunds();
         }
     }
 
@@ -339,10 +350,10 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             SetUpCook(spawnedElement);
         }
         // commenting out the insufficient funds bc we should have gotten rid of this
-        // else // we didnt have enough money, tell the player
-        // {
-        //     PurchaseManager.Instance.DisplayInsufficientFunds();
-        // }
+        else // we didnt have enough money, tell the player
+        {
+            PurchaseManager.Instance.DisplayInsufficientFunds();
+        }
     }
 
 }
