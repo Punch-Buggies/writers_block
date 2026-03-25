@@ -72,6 +72,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     private void Erase(GameObject spawnedElement)
     {
+        AudioManager.Instance.PlaySFX("eraser");
         Debug.Log("Erasing");
         Destroy(spawnedElement);
         spawnedElement = null;
@@ -90,7 +91,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         // start progress bar
         progressBar.SetActive(true);
         // audio
-        AudioManager.Instance.PlayQuillSFX();
+        AudioManager.Instance.PlaySFX("quill");
         if (draggable != null)
         {
             // StoryElement Side of things

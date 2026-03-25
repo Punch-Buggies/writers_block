@@ -16,12 +16,23 @@ public class AudioManager : MonoBehaviour
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
     [SerializeField] public AudioClip quillSFX; 
+    [SerializeField] public AudioClip eraseSFX; 
 
 
+    private Dictionary<string, AudioClip> sfxDict;
+    
 
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
 
+    private void MakeSFXDict()
+    {
+        sfxDict = new Dictionary<string, AudioClip>
+        {
+            {"quill", quillSFX},
+            {"eraser", eraseSFX}
+        };
+    }
     private void Awake()
     {
         // if it exists but its not this, destroy
@@ -43,6 +54,7 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("audio manager starting up");
         UpdateVolume();
         PlayMusic(mainMusic);
+        MakeSFXDict();
         // Debug.Log("main music is playing now");
     }
 
@@ -95,12 +107,13 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("Playing clip: " + path);
         sfxSource.PlayOneShot(clip);
     }
-
-    public void PlayQuillSFX()
+    public void PlaySFX(string sfx)
     {
-        if (quillSFX == null) return;
+        AudioClip sfxClip = sfxDict[sfx];
+        if (sfxClip == null) return;
 
-        sfxSource.clip = quillSFX;
+        Debug.Log($"playing a {sfx} clip");
+        sfxSource.clip = sfxClip;
         sfxSource.Play();
     }
 
