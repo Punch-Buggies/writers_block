@@ -31,6 +31,7 @@ public class PublishZone : MonoBehaviour, IDropHandler
                 draggable.OnSuccessfulDrop(transform.position);
                 string storyElement = publishableTile.GetStoryElement(); //char, genre, setting
                 string elementType = publishableTile.GetElementType(); //value
+                // adds the stuff into the dictionary
                 publish.PublishStoryElement(storyElement, elementType);
                 publish.AddToPublishedTiles(publishedElement);
 

@@ -130,6 +130,7 @@ public class Publish : MonoBehaviour
 
     public void PublishStoryElement(string storyElement, string elementType)
     {
+        // adds whatever values into the dictionary (genre, comedy)
         publishCounter += 1;
         Debug.Log("Published Story Element: " +  storyElement + " with " + elementType);
         bookStoryElementDict.Add(storyElement, elementType);
