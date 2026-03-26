@@ -158,14 +158,18 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
                 } 
             }
             // if its a publishanble tile
-            // else if (eventData.pointerDrag.GetComponent<PublishableTile>() != null && eventData.pointerDrag.GetComponent<PublishableTile>().GetStoryElement() == tileType)
-            // {
-            //     // move the tile to that spot
-            //     Debug.Log("i knew it was a publishable tile");
-            //     DraggableItem draggable = eventData.pointerDrag.GetComponent<DraggableItem>();
-            //     draggable.OnSuccessfulDrop(transform.position);
+            else if (eventData.pointerDrag.GetComponent<PublishableTile>() != null && eventData.pointerDrag.GetComponent<PublishableTile>().GetStoryElement() == tileType)
+            {
+                // move the tile to that spot
+                Debug.Log("i knew it was a publishable tile");
+                DraggableItem draggable = eventData.pointerDrag.GetComponent<DraggableItem>();
+                // change location
+                draggable.OnSuccessfulDrop(transform.position);
 
-            // }
+                // need to check if this publishable tile came from the publish zone
+                // if it did remove it from the dictionary
+
+            }
         }
     }
 
