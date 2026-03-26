@@ -79,6 +79,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         wasPlacedSuccessfully = true;
         // physucally moving it to that position
         transform.position = dropPosition;
+        // Debug.Log("how are canvas raycasts after successful drop");
+        // Debug.Log(canvasGroup.blocksRaycasts);
+        // canvasGroup.blocksRaycasts = true; // can grab after placing in publishable zone but it can now drop anywhere
     }
 
     void Start()

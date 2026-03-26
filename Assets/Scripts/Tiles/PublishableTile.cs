@@ -42,7 +42,12 @@ public class PublishableTile : MonoBehaviour, IDropHandler
         {
             AudioManager.Instance.PlaySFX("eraser");
             Destroy(gameObject);
+
+            // if the publishable tile was in the publish zone
+            // erase it from the dictionary
+
             return;
         }
+
     }
 }

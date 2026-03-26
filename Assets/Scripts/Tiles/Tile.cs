@@ -106,6 +106,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         }  
     }
     
+    // dropping something over a tile
     public void OnDrop(PointerEventData eventData)
     {
         // its in eraser mode // THIS NEVER EXECUTES
