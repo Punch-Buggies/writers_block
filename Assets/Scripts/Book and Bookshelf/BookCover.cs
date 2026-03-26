@@ -77,7 +77,7 @@ public class BookCover : MonoBehaviour
     ///////////// textures //////////////
     private Sprite[] LoadTextures(string genre)
     {
-        string foldername = $"Textures/{genre}";
+        string foldername = $"Genre/{genre}_";
         Debug.Log($"trying to get into the folder {foldername}");
         Sprite[] textures = Resources.LoadAll<Sprite>(foldername);
 
@@ -93,15 +93,37 @@ public class BookCover : MonoBehaviour
             Debug.Log($"{genre} had null textures");
         }
         Sprite randomTexture = textures[Random.Range(0, textures.Length)];
+        // get opacity
+        float alpha = GetOpacity(randomTexture);
+        Debug.Log($"for {randomTexture.name}, alpha is {alpha}");
         return randomTexture;
     }
+    float GetOpacity(Sprite texture)
+    {
+        string name = texture.name;
+        name = name.Replace(".png", "").Replace(".jpg", "");
+        // only need the last item in parts
+        string[] splits = name.Split('_');
+        // try to convert to float
+        if (float.TryParse(splits[^1], out float alpha))
+        {
+            return alpha;
+        }
+        Debug.LogWarning($"couldn't extract opacity from {name}");
+        return 1f;
+    }
 
+    private void SetOpacity(Image texture, float alpha)
+    {
+    }
 
     private void SetTexture(Book book)
     {
         //randomly selects a texture from its specific genre texture folder
         string genre = book.genre;
         texture.sprite = RandomlyPickATexture(genre);
+        // float alpha = 
+        // SetOpacity(texture, alpha);
     }
 
 
