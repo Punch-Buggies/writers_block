@@ -42,8 +42,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (!wasPlacedSuccessfully)
         {
+            // if it wasn't placed succesfully return to previous location
             transform.position = initialLocation.position;
-            canvasGroup.blocksRaycasts = true; 
+            // allow it to be grabbed
+            canvasGroup.blocksRaycasts = true;
         }
     }
 
@@ -74,10 +76,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnSuccessfulDrop(Vector3 dropPosition)
     {
-
         wasPlacedSuccessfully = true;
+        // physucally moving it to that position
         transform.position = dropPosition;
-
     }
 
     void Start()
