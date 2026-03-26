@@ -91,6 +91,7 @@ public class PurchaseManager : MonoBehaviour
 
     private void Respond(bool confirmed)
     {   // this is called when either button is clicked
+        AudioManager.Instance.PlaySFX("click");
 
         // 1. turn off view
         PurchaseUIView.SetActive(false);
@@ -137,6 +138,7 @@ public class PurchaseManager : MonoBehaviour
     {
         // the box was clicked, show checkmark depending
         // the checkmark is NOT there
+        AudioManager.Instance.PlaySFX("click");
         if (checkMarkImage.gameObject.activeSelf == false)
         {
             checkMarkImage.gameObject.SetActive(true);

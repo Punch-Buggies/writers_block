@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,7 +19,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip mainMusic; 
     [SerializeField] public AudioClip quillSFX; 
     [SerializeField] public AudioClip eraseSFX; 
-
+    [SerializeField] public AudioClip clickSFX;
+    [SerializeField] public AudioClip purchaseSFX;
+    [SerializeField] public AudioClip growFinishSFX;
+    [SerializeField] public AudioClip dropSFX;
+    [SerializeField] public AudioClip pageSFX;
+    [SerializeField] public AudioClip page1;
+    [SerializeField] public AudioClip page2;
+    [SerializeField] public AudioClip page3;
+    [SerializeField] public AudioClip page4;
 
     private Dictionary<string, AudioClip> sfxDict;
     
@@ -30,7 +40,14 @@ public class AudioManager : MonoBehaviour
         sfxDict = new Dictionary<string, AudioClip>
         {
             {"quill", quillSFX},
-            {"eraser", eraseSFX}
+            {"eraser", eraseSFX},
+            {"click", clickSFX},
+            {"purchase", purchaseSFX},
+            {"grow finish", growFinishSFX},
+            {"drop", dropSFX},
+            {"page turn",pageSFX},
+            {"increment", page3},
+            {"decrement", page4}
         };
 
     }
@@ -110,14 +127,44 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(string sfx)
     {
-        Debug.Log(sfxDict);
         AudioClip sfxClip = sfxDict[sfx];
-        Debug.Log(sfxClip);
         if (sfxClip == null) return;
 
         Debug.Log($"playing a {sfx} clip");
         sfxSource.clip = sfxClip;
         sfxSource.Play();
+    }
+
+    // public void PlayStaggeredPages()
+    // {
+    //     Debug.Log("trying to stagger");
+    //     AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
+
+    //     double nextStartTime = AudioSettings.dspTime + 1.0;
+    //     foreach (AudioClip clip in pageClips)
+    //     {
+    //         sfxSource.clip = clip;
+    //         sfxSource.PlayScheduled(nextStartTime);
+    //         nextStartTime += 0.2f; // Next clip plays after current ends
+    //     }
+    // }
+
+    public void PlayStaggeredPages()
+    {
+        StartCoroutine(PlayStaggeredCoroutine());
+    }
+
+    private IEnumerator PlayStaggeredCoroutine()
+    {
+        AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
+
+        var shuffledClips = pageClips.OrderBy(x => Random.value);
+
+        foreach (AudioClip clip in shuffledClips)
+        {
+            sfxSource.PlayOneShot(clip);
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
 

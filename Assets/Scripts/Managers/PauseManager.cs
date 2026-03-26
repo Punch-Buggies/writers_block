@@ -20,6 +20,7 @@ public class PauseManager : MonoBehaviour
 
     public void TogglePause()
     {
+        AudioManager.Instance.PlaySFX("click");
         if (IsPaused) Resume();
         else Pause();
     }
@@ -36,6 +37,7 @@ public class PauseManager : MonoBehaviour
 
     public void Resume()
     {
+        AudioManager.Instance.PlaySFX("click");
         pauseCam.SetActive(false);
         mainCam.SetActive(true);
         musicAudioSource.Play();
@@ -46,6 +48,7 @@ public class PauseManager : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioManager.Instance.PlaySFX("click");
         Time.timeScale = 1f;
         IsPaused = false;
 

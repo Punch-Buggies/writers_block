@@ -27,6 +27,7 @@ public class PublishZone : MonoBehaviour, IDropHandler
         {
             if (draggable != null)
             {
+                AudioManager.Instance.PlaySFX("drop");
                 draggable.OnSuccessfulDrop(transform.position);
                 string storyElement = publishableTile.GetStoryElement(); //char, genre, setting
                 string elementType = publishableTile.GetElementType(); //value

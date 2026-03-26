@@ -44,6 +44,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     Color settingsUnlock = new Color32(61, 152, 64, 204);
     Color characterUnlock = new Color32(239, 246, 32, 192);
 
+    bool playGrowSound = true;
 
     void Awake()
     {
@@ -187,9 +188,18 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             // disable drag
             DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();   
             draggable.enabled = false;
+
+            // start playing the grow finish audio with 0.8 seconds left
+            if (timer >= 9.1f && playGrowSound == true)
+            {
+                AudioManager.Instance.PlaySFX("grow finish");
+                playGrowSound = false;
+            }
+
         }
         else // timer has reached its limit
         {
+            playGrowSound = true;
             // Before we destroy the storyElement, we get the info out of it
             string storyElement = spawnedElement.GetComponent<StoryElement>().GetStoryElement();
             string elementType = spawnedElement.GetComponent<StoryElement>().GetElementType();
@@ -224,6 +234,8 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
                 Quaternion.identity,
                 transform
             );
+
+            
 
             // After Spawning the Publishable Tile, we put the info into it
             spawnedTile.GetComponent<PublishableTile>().SetStoryElement(storyElement);
@@ -276,6 +288,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         
         if(unlocked == false && MoneyManager.Instance.currentMoney >= unlockCost)
         {
+            AudioManager.Instance.PlaySFX("purchase");
             MoneyManager.Instance.deductMoney(unlockCost);
             
             unlocked = true;

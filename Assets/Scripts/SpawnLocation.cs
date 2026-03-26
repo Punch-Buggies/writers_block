@@ -79,10 +79,14 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
         
             MoneyManager.Instance.deductMoney(unlockCost);
+            AudioManager.Instance.PlaySFX("purchase");
             UnlockLocation();
             //update cost
             MoneyManager.Instance.increaseSpawnCost();
-    
+        }
+        if(MoneyManager.Instance.currentMoney < unlockCost && unlocked == false)
+        {
+            PurchaseManager.Instance.DisplayInsufficientFunds();
         }
 
     }
