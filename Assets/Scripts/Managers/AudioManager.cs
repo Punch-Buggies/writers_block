@@ -130,24 +130,10 @@ public class AudioManager : MonoBehaviour
         AudioClip sfxClip = sfxDict[sfx];
         if (sfxClip == null) return;
 
-        Debug.Log($"playing a {sfx} clip");
+        // Debug.Log($"playing a {sfx} clip");
         sfxSource.clip = sfxClip;
         sfxSource.Play();
     }
-
-    // public void PlayStaggeredPages()
-    // {
-    //     Debug.Log("trying to stagger");
-    //     AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
-
-    //     double nextStartTime = AudioSettings.dspTime + 1.0;
-    //     foreach (AudioClip clip in pageClips)
-    //     {
-    //         sfxSource.clip = clip;
-    //         sfxSource.PlayScheduled(nextStartTime);
-    //         nextStartTime += 0.2f; // Next clip plays after current ends
-    //     }
-    // }
 
     public void PlayStaggeredPages()
     {
