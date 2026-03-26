@@ -40,6 +40,7 @@ public class PublishableTile : MonoBehaviour, IDropHandler
     {
         if(eventData.pointerDrag.GetComponent<Eraser>() != null)
         {
+            AudioManager.Instance.PlaySFX("eraser");
             Destroy(gameObject);
             return;
         }

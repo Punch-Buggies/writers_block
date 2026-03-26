@@ -57,6 +57,7 @@ public class BookViewManager : MonoBehaviour
         // play audio
         // AudioManager.Instance.PlayUniqueBookSound(currentDataBook.genre, currentDataBook.character, currentDataBook.setting);
         // first close the UI so now its just the bookshelf showing
+        AudioManager.Instance.PlaySFX("click");
         bookViewUI.SetActive(false);
         // then delete game insidne view objecy
         Destroy(currentInsideBook);

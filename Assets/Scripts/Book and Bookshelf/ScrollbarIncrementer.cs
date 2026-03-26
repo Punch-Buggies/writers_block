@@ -34,6 +34,7 @@ public class ScrollbarIncrementer : MonoBehaviour
         GetComponent<Button>().interactable = Target.value != 1;
         TheOtherButton.interactable = true;
         Debug.Log("scroll forward");
+        AudioManager.Instance.PlaySFX("increment");
     }
 
     public void Decrement()
@@ -43,5 +44,7 @@ public class ScrollbarIncrementer : MonoBehaviour
         GetComponent<Button>().interactable = Target.value != 0;
         TheOtherButton.interactable = true;
         Debug.Log("scroll backward");
+        AudioManager.Instance.PlaySFX("decrement");
+
     }
 }

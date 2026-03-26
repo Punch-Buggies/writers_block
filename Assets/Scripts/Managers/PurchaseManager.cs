@@ -91,6 +91,7 @@ public class PurchaseManager : MonoBehaviour
 
     private void Respond(bool confirmed)
     {   // this is called when either button is clicked
+        AudioManager.Instance.PlaySFX("click");
 
         // 1. turn off view
         PurchaseUIView.SetActive(false);
@@ -123,10 +124,21 @@ public class PurchaseManager : MonoBehaviour
         PurchaseUIView.SetActive(true);
     }
 
+    public void ResetPurchaseUI()
+    {
+        yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);
+        dontShowAgain.SetActive(true);
+        // 3.2 Display ok button
+        okButton.gameObject.SetActive(false);
+    }
+
+
     public void BoxClicked()
     {
         // the box was clicked, show checkmark depending
         // the checkmark is NOT there
+        AudioManager.Instance.PlaySFX("click");
         if (checkMarkImage.gameObject.activeSelf == false)
         {
             checkMarkImage.gameObject.SetActive(true);

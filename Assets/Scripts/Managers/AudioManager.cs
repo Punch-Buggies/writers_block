@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 public class AudioManager : MonoBehaviour
 {
@@ -16,12 +18,39 @@ public class AudioManager : MonoBehaviour
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
     [SerializeField] public AudioClip quillSFX; 
+    [SerializeField] public AudioClip eraseSFX; 
+    [SerializeField] public AudioClip clickSFX;
+    [SerializeField] public AudioClip purchaseSFX;
+    [SerializeField] public AudioClip growFinishSFX;
+    [SerializeField] public AudioClip dropSFX;
+    [SerializeField] public AudioClip pageSFX;
+    [SerializeField] public AudioClip page1;
+    [SerializeField] public AudioClip page2;
+    [SerializeField] public AudioClip page3;
+    [SerializeField] public AudioClip page4;
 
-
+    private Dictionary<string, AudioClip> sfxDict;
+    
 
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
 
+    private void MakeSFXDict()
+    {
+        sfxDict = new Dictionary<string, AudioClip>
+        {
+            {"quill", quillSFX},
+            {"eraser", eraseSFX},
+            {"click", clickSFX},
+            {"purchase", purchaseSFX},
+            {"grow finish", growFinishSFX},
+            {"drop", dropSFX},
+            {"page turn",pageSFX},
+            {"increment", page3},
+            {"decrement", page4}
+        };
+
+    }
     private void Awake()
     {
         // if it exists but its not this, destroy
@@ -43,6 +72,7 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("audio manager starting up");
         UpdateVolume();
         PlayMusic(mainMusic);
+        MakeSFXDict();
         // Debug.Log("main music is playing now");
     }
 
@@ -95,21 +125,54 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("Playing clip: " + path);
         sfxSource.PlayOneShot(clip);
     }
-
-    public void PlayQuillSFX()
+    public void PlaySFX(string sfx)
     {
-        if (quillSFX == null) return;
+        AudioClip sfxClip = sfxDict[sfx];
+        if (sfxClip == null) return;
 
-        sfxSource.clip = quillSFX;
+        Debug.Log($"playing a {sfx} clip");
+        sfxSource.clip = sfxClip;
         sfxSource.Play();
+    }
+
+    // public void PlayStaggeredPages()
+    // {
+    //     Debug.Log("trying to stagger");
+    //     AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
+
+    //     double nextStartTime = AudioSettings.dspTime + 1.0;
+    //     foreach (AudioClip clip in pageClips)
+    //     {
+    //         sfxSource.clip = clip;
+    //         sfxSource.PlayScheduled(nextStartTime);
+    //         nextStartTime += 0.2f; // Next clip plays after current ends
+    //     }
+    // }
+
+    public void PlayStaggeredPages()
+    {
+        StartCoroutine(PlayStaggeredCoroutine());
+    }
+
+    private IEnumerator PlayStaggeredCoroutine()
+    {
+        AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
+
+        var shuffledClips = pageClips.OrderBy(x => Random.value);
+
+        foreach (AudioClip clip in shuffledClips)
+        {
+            sfxSource.PlayOneShot(clip);
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
 
     public void playTest()
     {
         // PlayUniqueBookSound("Romance","Antihero","Mountains");
-        PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_Magician");
-        // Debug.Log("test over");
+        PlaySound("Audio/SFX/Farming/Farming_Eraser");
+        Debug.Log("test over");
     }
 
     // VOLUME

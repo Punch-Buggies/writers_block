@@ -16,7 +16,9 @@ public class Publish : MonoBehaviour
     [SerializeField] BookInsideSpawner spawner;
     PassiveIncomeManager passiveIncomeManager;
     [SerializeField] Image bookshelfImage;
-    Color originalColor;
+    [SerializeField] Image publishButton;
+    Color32 flashColor = new Color32(191, 158, 116, 255);
+    Color originalColor = Color.white;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
@@ -30,15 +32,15 @@ public class Publish : MonoBehaviour
         
         publishedTiles = new List<GameObject>();   
     }
-    void Start()
-    {
-        if (bookshelfImage != null)
-        {
-            originalColor = bookshelfImage.color;
-        }
-    }
+    // void Start()
+    // {
+    //     if (bookshelfImage != null)
+    //     {
+    //         originalColor = bookshelfImage.color;
+    //     }
+    // }
 
-    void Update()
+    public void PublishButtonClicked()
     {
         if(publishCounter >= 3)
         {
@@ -46,7 +48,15 @@ public class Publish : MonoBehaviour
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
-
+    }
+    void Update()
+    {
+        // flash the publish button if something can be publihsed
+        if(publishCounter == 3)
+        {
+            float t = Mathf.PingPong(Time.time * 1.5f, 1f);
+            publishButton.color = Color.Lerp(originalColor, flashColor, t);
+        }
     }
 
     public (int, int) calculateCopiesAndMoney()
@@ -113,7 +123,7 @@ public class Publish : MonoBehaviour
         AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
 
         // flash bookshelf or replace with book opening animation
-        StartCoroutine(FlashBookshelf());
+        StartCoroutine(Flash(bookshelfImage));
         // everything should have reset clear the best seller highlight
         ClearBSMatch();
     }
@@ -164,20 +174,19 @@ public class Publish : MonoBehaviour
         Debug.Log("Done checking if the best seller matches in publish.cs");
     }
 
-    private IEnumerator FlashBookshelf()
+    private IEnumerator Flash(Image objectToFlash)
     {
         int flashCount = 3;
-        Color32 flashColor = new Color32(191, 158, 116, 255);
         float flashDuration = 0.4f; 
 
         for (int i = 0; i < flashCount; i++)
         {
             // set to bright color
-            bookshelfImage.color = flashColor;
+            objectToFlash.color = flashColor;
             yield return new WaitForSeconds(flashDuration);
 
             // return to original color
-            bookshelfImage.color = originalColor;
+            objectToFlash.color = originalColor;
             yield return new WaitForSeconds(flashDuration);
         }
     }
