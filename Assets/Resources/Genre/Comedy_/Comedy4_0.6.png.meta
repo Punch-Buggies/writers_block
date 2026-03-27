@@ -1,0 +1,1053 @@
+fileFormatVersion: 2
+guid: 0190eb141493841fdb6dcbc33c253035
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6574187410237666163
+    second: Comedy4_0.6_0
+  - first:
+      213: -78566660289313569
+    second: Comedy4_0.6_1
+  - first:
+      213: 4108580404895416016
+    second: Comedy4_0.6_2
+  - first:
+      213: -2699079006712886127
+    second: Comedy4_0.6_3
+  - first:
+      213: 6272034825771613378
+    second: Comedy4_0.6_4
+  - first:
+      213: 6613609545144541464
+    second: Comedy4_0.6_5
+  - first:
+      213: 6918754472401664669
+    second: Comedy4_0.6_6
+  - first:
+      213: 9041811143224846529
+    second: Comedy4_0.6_7
+  - first:
+      213: -4085758433055513174
+    second: Comedy4_0.6_8
+  - first:
+      213: -5814182396793658703
+    second: Comedy4_0.6_9
+  - first:
+      213: -1400762357502847007
+    second: Comedy4_0.6_10
+  - first:
+      213: 3871115884682348928
+    second: Comedy4_0.6_11
+  - first:
+      213: -1692240496705554718
+    second: Comedy4_0.6_12
+  - first:
+      213: -114309713268079095
+    second: Comedy4_0.6_13
+  - first:
+      213: -5349422897483712618
+    second: Comedy4_0.6_14
+  - first:
+      213: -2895445154762493809
+    second: Comedy4_0.6_15
+  - first:
+      213: -5378773721706436145
+    second: Comedy4_0.6_16
+  - first:
+      213: 923456407853955151
+    second: Comedy4_0.6_17
+  - first:
+      213: 3763105319607989633
+    second: Comedy4_0.6_18
+  - first:
+      213: -4765098188071148369
+    second: Comedy4_0.6_19
+  - first:
+      213: -2458010361287151077
+    second: Comedy4_0.6_20
+  - first:
+      213: 6199747309266130350
+    second: Comedy4_0.6_21
+  - first:
+      213: -1723381034825143348
+    second: Comedy4_0.6_22
+  - first:
+      213: 2623553970868591301
+    second: Comedy4_0.6_23
+  - first:
+      213: 3816774945657819431
+    second: Comedy4_0.6_24
+  - first:
+      213: 6839255201489955920
+    second: Comedy4_0.6_25
+  - first:
+      213: 8018074253296259911
+    second: Comedy4_0.6_26
+  - first:
+      213: 2064482451705542838
+    second: Comedy4_0.6_27
+  - first:
+      213: -4235467209208954266
+    second: Comedy4_0.6_28
+  - first:
+      213: 6016225839933724941
+    second: Comedy4_0.6_29
+  - first:
+      213: 5140714093397347460
+    second: Comedy4_0.6_30
+  - first:
+      213: -1547106581123814571
+    second: Comedy4_0.6_31
+  - first:
+      213: 2008689840014340918
+    second: Comedy4_0.6_32
+  - first:
+      213: 8183743000073122851
+    second: Comedy4_0.6_33
+  - first:
+      213: -3117136731552599889
+    second: Comedy4_0.6_34
+  - first:
+      213: 6354540839200572204
+    second: Comedy4_0.6_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Comedy4_0.6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3093
+        width: 196
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c40f5c16bc3c4a0800000000000000
+      internalID: -6574187410237666163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_1
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 3195
+        width: 118
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd4444ae900e8eef0800000000000000
+      internalID: -78566660289313569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_2
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 3162
+        width: 186
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0defbec2c1c940930800000000000000
+      internalID: 4108580404895416016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_3
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 3090
+        width: 330
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19c0a2891f1fa8ad0800000000000000
+      internalID: -2699079006712886127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_4
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 3162
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ccfef0817eba0750800000000000000
+      internalID: 6272034825771613378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_5
+      rect:
+        serializedVersion: 2
+        x: 2298
+        y: 3195
+        width: 102
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811297547d248cb50800000000000000
+      internalID: 6613609545144541464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2587
+        width: 34
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9a75a7198a540060800000000000000
+      internalID: 6918754472401664669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_7
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 2535
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c8e5164457fa7d70800000000000000
+      internalID: 9041811143224846529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_8
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 2568
+        width: 118
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa56ba73a587c47c0800000000000000
+      internalID: -4085758433055513174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_9
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 2463
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b2e8cb3aefdf4fa0800000000000000
+      internalID: -5814182396793658703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_10
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 2535
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e7dd42be0e7f8ce0800000000000000
+      internalID: -1400762357502847007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_11
+      rect:
+        serializedVersion: 2
+        x: 2034
+        y: 2490
+        width: 274
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0890dd61367f8b530800000000000000
+      internalID: 3871115884682348928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1848
+        width: 196
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e6b55feb34f388e0800000000000000
+      internalID: -1692240496705554718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_13
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1950
+        width: 118
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9068742ebe3e96ef0800000000000000
+      internalID: -114309713268079095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_14
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 1917
+        width: 186
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697742a973803c5b0800000000000000
+      internalID: -5349422897483712618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_15
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 1845
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8071c3f8ff41d7d0800000000000000
+      internalID: -2895445154762493809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_16
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 1917
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc96b7e4cc1ca55b0800000000000000
+      internalID: -5378773721706436145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_17
+      rect:
+        serializedVersion: 2
+        x: 2298
+        y: 1950
+        width: 102
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4871b3d5b6c0dc00800000000000000
+      internalID: 923456407853955151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1342
+        width: 34
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 185fd93b95c393430800000000000000
+      internalID: 3763105319607989633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_19
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 1290
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa4692cc178feddb0800000000000000
+      internalID: -4765098188071148369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_20
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1323
+        width: 118
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b12ff39799463edd0800000000000000
+      internalID: -2458010361287151077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_21
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 1218
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5ddf1845de90650800000000000000
+      internalID: 6199747309266130350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_22
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 1290
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccb2a9664125518e0800000000000000
+      internalID: -1723381034825143348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_23
+      rect:
+        serializedVersion: 2
+        x: 2034
+        y: 1245
+        width: 274
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca10b2bf6cb86420800000000000000
+      internalID: 2623553970868591301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 603
+        width: 196
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7219b874798e7f430800000000000000
+      internalID: 3816774945657819431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_25
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 705
+        width: 118
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c2d0dae5ae9ee50800000000000000
+      internalID: 6839255201489955920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_26
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 672
+        width: 186
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743dd624d0ce54f60800000000000000
+      internalID: 8018074253296259911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_27
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 600
+        width: 330
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b8bfea0ad386ac10800000000000000
+      internalID: 2064482451705542838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_28
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 672
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662094183099835c0800000000000000
+      internalID: -4235467209208954266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_29
+      rect:
+        serializedVersion: 2
+        x: 2298
+        y: 705
+        width: 102
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0996cda68ded7350800000000000000
+      internalID: 6016225839933724941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 97
+        width: 34
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48c0bc43b3c775740800000000000000
+      internalID: 5140714093397347460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_31
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 45
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b227ae2c2978ae0800000000000000
+      internalID: -1547106581123814571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_32
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 78
+        width: 118
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 633bdf954cc40eb10800000000000000
+      internalID: 2008689840014340918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_33
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 0
+        width: 330
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324b27436ee729170800000000000000
+      internalID: 8183743000073122851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_34
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 45
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa03c7f68a4bdb4d0800000000000000
+      internalID: -3117136731552599889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Comedy4_0.6_35
+      rect:
+        serializedVersion: 2
+        x: 2034
+        y: 0
+        width: 274
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c234347b93ddf2850800000000000000
+      internalID: 6354540839200572204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Comedy4_0.6_0: -6574187410237666163
+      Comedy4_0.6_1: -78566660289313569
+      Comedy4_0.6_10: -1400762357502847007
+      Comedy4_0.6_11: 3871115884682348928
+      Comedy4_0.6_12: -1692240496705554718
+      Comedy4_0.6_13: -114309713268079095
+      Comedy4_0.6_14: -5349422897483712618
+      Comedy4_0.6_15: -2895445154762493809
+      Comedy4_0.6_16: -5378773721706436145
+      Comedy4_0.6_17: 923456407853955151
+      Comedy4_0.6_18: 3763105319607989633
+      Comedy4_0.6_19: -4765098188071148369
+      Comedy4_0.6_2: 4108580404895416016
+      Comedy4_0.6_20: -2458010361287151077
+      Comedy4_0.6_21: 6199747309266130350
+      Comedy4_0.6_22: -1723381034825143348
+      Comedy4_0.6_23: 2623553970868591301
+      Comedy4_0.6_24: 3816774945657819431
+      Comedy4_0.6_25: 6839255201489955920
+      Comedy4_0.6_26: 8018074253296259911
+      Comedy4_0.6_27: 2064482451705542838
+      Comedy4_0.6_28: -4235467209208954266
+      Comedy4_0.6_29: 6016225839933724941
+      Comedy4_0.6_3: -2699079006712886127
+      Comedy4_0.6_30: 5140714093397347460
+      Comedy4_0.6_31: -1547106581123814571
+      Comedy4_0.6_32: 2008689840014340918
+      Comedy4_0.6_33: 8183743000073122851
+      Comedy4_0.6_34: -3117136731552599889
+      Comedy4_0.6_35: 6354540839200572204
+      Comedy4_0.6_4: 6272034825771613378
+      Comedy4_0.6_5: 6613609545144541464
+      Comedy4_0.6_6: 6918754472401664669
+      Comedy4_0.6_7: 9041811143224846529
+      Comedy4_0.6_8: -4085758433055513174
+      Comedy4_0.6_9: -5814182396793658703
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
