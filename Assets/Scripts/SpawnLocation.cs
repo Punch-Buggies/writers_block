@@ -13,6 +13,12 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     double unlockCost;
     [SerializeField]TextMeshProUGUI unlockCostText;
 
+    ThoughtBubbleHandler parentHandler;
+
+    void Awake()
+    {
+        parentHandler = GetComponentInParent<ThoughtBubbleHandler>();
+    }
 
     void Start()
     {
@@ -75,22 +81,32 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
          // get unlock cost
         unlockCost = MoneyManager.Instance.spawnUnlockCost;
 
-        // unlock ONLY IF we have published at least one book (BookshelfManager.Instance.getBookCount() >= 1 && )
-        // have enough money
-        // and the spawner is not already unlocked
-        
-        if(MoneyManager.Instance.currentMoney >= unlockCost && unlocked == false)
+        // they have not published any books
+        if (BookshelfManager.Instance.getBookCount() == 0)
         {
-        
-            MoneyManager.Instance.deductMoney(unlockCost);
-            AudioManager.Instance.PlaySFX("purchase");
-            UnlockLocation();
-            //update cost
-            MoneyManager.Instance.increaseSpawnCost();
+            // Display You cannot purchase a "" spawner
+            // string storyElement = parentHandler.storyElement; // genre, setting, character
+
+            string item = $"{parentHandler.storyElement} spawner";
+            PurchaseManager.Instance.DisplayNoBooksPublished(item);
         }
-        if(MoneyManager.Instance.currentMoney < unlockCost && unlocked == false)
-        {
-            PurchaseManager.Instance.DisplayInsufficientFunds();
+        else  // unlock ONLY IF we have published at least one book
+        {     // have enough money 
+              // and the spawner is not already unlocked
+            if(MoneyManager.Instance.currentMoney >= unlockCost && unlocked == false)
+            {
+            
+                MoneyManager.Instance.deductMoney(unlockCost);
+                AudioManager.Instance.PlaySFX("purchase");
+                UnlockLocation();
+                //update cost
+                MoneyManager.Instance.increaseSpawnCost();
+            }
+            // it has not been unlocked BUT they have no money
+            if(MoneyManager.Instance.currentMoney < unlockCost && unlocked == false)
+            {
+                PurchaseManager.Instance.DisplayInsufficientFunds();
+        }
         }
 
     }

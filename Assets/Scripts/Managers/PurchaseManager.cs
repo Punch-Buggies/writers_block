@@ -124,8 +124,30 @@ public class PurchaseManager : MonoBehaviour
         PurchaseUIView.SetActive(true);
     }
 
+    public void DisplayNoBooksPublished(string item)
+    {
+        // 1. Dim MainUI
+        DimMainUI();
+
+        // 2. Popoulate text with insufficient funds message
+        uiText.text = $"You cannot purchase a {item} until you have published 1 book.";
+
+        // 3.1 Remove yes and no buttons
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
+        dontShowAgain.SetActive(false);
+        // 3.2 Display ok button
+        okButton.gameObject.SetActive(true);
+
+        // 4. turn on view
+        PurchaseUIView.SetActive(true);
+    }
+
+
+
     public void ResetPurchaseUI()
     {
+        // this is called in the ok button click
         yesButton.gameObject.SetActive(true);
         noButton.gameObject.SetActive(true);
         dontShowAgain.SetActive(true);

@@ -25,7 +25,7 @@ public class MoneyManager : MonoBehaviour
 
     public double tileUnlockCost { get; private set; } = 155;
 
-    public double spawnUnlockCost { get; private set; } = 155;
+    public double spawnUnlockCost { get; private set; } = 30;
 
     public double tileGrowthCost {get; private set; } = 50;
 
