@@ -75,7 +75,7 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
          // get unlock cost
         unlockCost = MoneyManager.Instance.spawnUnlockCost;
 
-        // unlock ONLY IF we have published at least one book
+        // unlock ONLY IF we have published at least one book (BookshelfManager.Instance.getBookCount() >= 1 && )
         // have enough money
         // and the spawner is not already unlocked
         
