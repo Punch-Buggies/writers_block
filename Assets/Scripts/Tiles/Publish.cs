@@ -122,6 +122,11 @@ public class Publish : MonoBehaviour
         // play book sound!!
         AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
 
+        Debug.Log(BookshelfManager.Instance);
+        Debug.Log("i want to add a book bro");
+        // add new book data object to the bookshelf
+        BookshelfManager.Instance.addBook(newBook);
+
         // flash bookshelf or replace with book opening animation
         StartCoroutine(Flash(bookshelfImage));
         // everything should have reset clear the best seller highlight
