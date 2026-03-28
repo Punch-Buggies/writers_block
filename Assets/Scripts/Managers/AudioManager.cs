@@ -127,14 +127,17 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("Playing clip: " + path);
         sfxSource.PlayOneShot(clip);
     }
-    public void PlaySFX(string sfx)
+    public void PlaySFX(string sfx, float volume = 1f)
     {
         AudioClip sfxClip = sfxDict[sfx];
         if (sfxClip == null) return;
 
         // Debug.Log($"playing a {sfx} clip");
-        sfxSource.clip = sfxClip;
-        sfxSource.Play();
+        if (sfx == "grow finish" || sfx == "drop")
+        {
+            volume = 0.5f;
+        }
+        sfxSource.PlayOneShot(sfxClip, volume);
     }
 
     public void PlayStaggeredPages()
