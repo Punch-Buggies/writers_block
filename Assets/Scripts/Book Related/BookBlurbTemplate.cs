@@ -24,10 +24,12 @@ public enum WordType
     Person,
     Place,
     Thing,
+
     //dependants:
     Name, // gendered
     Pronoun, // gendered pronouns only
-    IndefiniteArticle //    a/an
+    IndefiniteArticle, //    a/an
+    Verb //system only handles "is/are", "has/have", and "does/do" (in the case where they depend on a Subject pronoun conjugation-- she/he differs from they's verb conjugation)
 
     // note gendered dependants must depend on an independant word that has a gender (character, WordType.Person)
 }
@@ -46,8 +48,10 @@ public class TemplateSlot
     public WordType type;   // Person, Place, etc
     public string parentId; //for dependant words only (id of word it depends on, must be an independant word)
     public Conjugation perspective; //for pronouns only
+    public bool plural; //for nouns only, false by default
 
-    public TemplateSlot(string id, WordType type, string parentId=null, Conjugation conjugation=Conjugation.PossessivePro)
+
+    public TemplateSlot(string id, WordType type, string parentId=null, Conjugation conjugation=Conjugation.PossessivePro, bool plural=false)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -57,8 +61,9 @@ public class TemplateSlot
         slotId = id;
         this.type = type;
         this.perspective = conjugation;
+        this.plural = plural;
         // Dependent word types must reference a parent slot
-        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name)
+        if (type == WordType.Pronoun || type == WordType.IndefiniteArticle || type == WordType.Name || type == WordType.Verb)
         {
              if (string.IsNullOrEmpty(parentId))
             {

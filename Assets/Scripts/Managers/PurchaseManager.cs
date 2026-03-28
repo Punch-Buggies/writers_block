@@ -20,6 +20,11 @@ public class PurchaseManager : MonoBehaviour
     [SerializeField] Button yesButton;
     [SerializeField] Button noButton;
     [SerializeField] Button okButton;
+    [SerializeField] Image checkMarkImage;
+    [SerializeField] GameObject dontShowAgain;
+    // show/unshow checkmark 
+    // if shown, don't siaplay anumore
+    public bool toggleOn = true; // show the purchase ui or not
 
     private Action<bool> onConfirm; //stores which button the player clicked
 
@@ -41,6 +46,9 @@ public class PurchaseManager : MonoBehaviour
         // button listeners
         yesButton.onClick.AddListener( () => Respond(true));
         noButton.onClick.AddListener( () => Respond(false));
+
+        // set the dont show again color to be dark
+
     }
 
     private void DimMainUI()
@@ -66,6 +74,8 @@ public class PurchaseManager : MonoBehaviour
     }
     public void ConfirmTileGrowthPayment(StoryElement storyElement, float time, double cost, Action<bool> response)
     {
+        // only ask to confirm if toggle is on, otherwise assume true
+        // if ()
         // 1. Populate the textbox with the necessary information
         uiText.text = $"Would you like to spend {time} seconds growing the {storyElement.GetElementType()} thought for ${cost}?";
 
@@ -81,6 +91,7 @@ public class PurchaseManager : MonoBehaviour
 
     private void Respond(bool confirmed)
     {   // this is called when either button is clicked
+        AudioManager.Instance.PlaySFX("click");
 
         // 1. turn off view
         PurchaseUIView.SetActive(false);
@@ -105,6 +116,7 @@ public class PurchaseManager : MonoBehaviour
         // 3.1 Remove yes and no buttons
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
+        dontShowAgain.SetActive(false);
         // 3.2 Display ok button
         okButton.gameObject.SetActive(true);
 
@@ -112,6 +124,34 @@ public class PurchaseManager : MonoBehaviour
         PurchaseUIView.SetActive(true);
     }
 
-    
+    public void ResetPurchaseUI()
+    {
+        yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);
+        dontShowAgain.SetActive(true);
+        // 3.2 Display ok button
+        okButton.gameObject.SetActive(false);
+    }
+
+
+    public void BoxClicked()
+    {
+        // the box was clicked, show checkmark depending
+        // the checkmark is NOT there
+        AudioManager.Instance.PlaySFX("click");
+        if (checkMarkImage.gameObject.activeSelf == false)
+        {
+            checkMarkImage.gameObject.SetActive(true);
+            // we do not want to show the purchase view
+            toggleOn = false;
+        }
+        else //checkmark IS there
+        {
+            checkMarkImage.gameObject.SetActive(false);
+            // we do want to show the purchase view
+            toggleOn = true;
+        }
+    }
+
 
 }

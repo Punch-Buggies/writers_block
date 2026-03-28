@@ -7,7 +7,6 @@ public class PublishZone : MonoBehaviour, IDropHandler
     GameObject publishedElement;
     Publish publish;
 
-
     [SerializeField] string zoneType;
 
     bool occupied = false;
@@ -24,16 +23,20 @@ public class PublishZone : MonoBehaviour, IDropHandler
         PublishableTile publishableTile = publishedElement.GetComponent<PublishableTile>();
 
 
-        if (publishableTile.GetStoryElement() == zoneType)
+        if (publishableTile != null && publishableTile.GetStoryElement() == zoneType)
         {
             if (draggable != null)
             {
+                AudioManager.Instance.PlaySFX("drop");
                 draggable.OnSuccessfulDrop(transform.position);
-                string storyElement = publishableTile.GetStoryElement();
-                string elementType = publishableTile.GetElementType();
-
+                string storyElement = publishableTile.GetStoryElement(); //char, genre, setting
+                string elementType = publishableTile.GetElementType(); //value
                 publish.PublishStoryElement(storyElement, elementType);
                 publish.AddToPublishedTiles(publishedElement);
+
+                // we're adding soemthing to publish check best seller
+                publish.CheckBSMatch();
+
             }
         }
 

@@ -1,0 +1,13 @@
+{
+    "OuterSpace" : ["#0B1026", "#2E0854","#00D9FF"],
+    "Office" : ["#D1D5DB", "#F3E5AB","#1F2937"],
+    "Pre-historic" : ["#5C4033", "#4B5320", "#E3DAC9"],
+    "Mountains" : ["#708090", "#F0F8FF", "#2D5A27"],
+    "Forest" : ["223311", "#889933", "#4B3621"],
+    "Underwater" : ["#001219", "#00AFB9", "#fcffcb"],
+    "WildWest" : ["#C27E3A", "#4A3728", "#7B3F40"],
+    "Medieval" : ["#7A7D7D", "#ad9f7c", "#8B0000"],
+    "Campus" : ["#A64439", "#F9C74F", "#264653"],
+    "Hospital" : ["E0F2F1", "#008080", " #D32F2F"],
+    "Basement" : ["#4B4B4B", "#8B5A2B", "#FFBF00"]
+}

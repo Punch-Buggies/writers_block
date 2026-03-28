@@ -7,6 +7,7 @@ using TMPro;
 public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
+    [SerializeField] GameObject nextTileToUnlock;
     [SerializeField] GameObject progressBar;
     [SerializeField] GameObject publishableTile;
 
@@ -43,6 +44,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     Color settingsUnlock = new Color32(61, 152, 64, 204);
     Color characterUnlock = new Color32(239, 246, 32, 192);
 
+    bool playGrowSound = true;
 
     void Awake()
     {
@@ -71,6 +73,8 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     private void Erase(GameObject spawnedElement)
     {
+        // THIS NEVER GETS CALLED
+        AudioManager.Instance.PlaySFX("eraser");
         Debug.Log("Erasing");
         Destroy(spawnedElement);
         spawnedElement = null;
@@ -89,7 +93,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         // start progress bar
         progressBar.SetActive(true);
         // audio
-        AudioManager.Instance.PlayQuillSFX();
+        AudioManager.Instance.PlaySFX("quill");
         if (draggable != null)
         {
             // StoryElement Side of things
@@ -104,46 +108,64 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     
     public void OnDrop(PointerEventData eventData)
     {
-        // its in eraser mode
+        // its in eraser mode // THIS NEVER EXECUTES
         if(tileOccupied == true && eventData.pointerDrag.GetComponent<Eraser>() != null)
         {
+            Debug.Log("about to erase");
             Erase(spawnedElement);
+            Debug.Log("erase called?");
         }
         
         // if its not an eraser, the story element matches the tile type, the tile is unlocked and not occuiped
-        if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType && tileOccupied == false)
+        // first the tile must be unlocked, unoccupied and not in eraser mode
+        // then check if its a story element(to be grown) or a publishable tile
+        
+        // if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType && tileOccupied == false)
+        if (unlocked && tileOccupied == false && eventData.pointerDrag.GetComponent<Eraser>() == null) 
         {
-            spawnedElement = eventData.pointerDrag;
-            growthCost = MoneyManager.Instance.tileGrowthCost;
-           
-            StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
-            // the tile is not empty and story element is there
-            if (storyElement != null)
+            // check if story element or publishable
+            if (eventData.pointerDrag.GetComponent<StoryElement>() != null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
             {
-                // confirm with the player that they want to grow this element
-                PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
+                spawnedElement = eventData.pointerDrag;
+                growthCost = MoneyManager.Instance.tileGrowthCost;
+            
+                StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
+                // the tile is not empty and story element is there
+                if (storyElement != null)
                 {
-                    if (confirmed) // they clicked on the yes button and they have enough money
+                    // dont show again is NOT clicked. so the purchase ui comes up
+                    // takes a response from the player
+                    if (PurchaseManager.Instance.toggleOn == true)
                     {
-                        if (MoneyManager.Instance.currentMoney >= growthCost )
+                        // confirm with the player that they want to grow this element
+                        PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
                         {
-                            // we had enbough money, deduct, and set up the cook
-                            MoneyManager.Instance.deductMoney(growthCost);
-                            SetUpCook(spawnedElement);
-                        }
-                        else // we didnt have enough money, tell the player
-                        {
-                            PurchaseManager.Instance.DisplayInsufficientFunds();
-                        }
+                            if (confirmed) // they clicked on the yes button  
+                            {
+                                //process the purchase
+                                ProcessPurchase(spawnedElement);
+                            }
+                            else // they clicked no button
+                            {
+                                Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
+                            }
+                        });
                     }
-                    else // they clicked no button
+                    else // toggleOn == false, don't show again was clicked
                     {
-                        Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
-                    }
-                });
-
-                 
+                        ProcessPurchase(spawnedElement);
+                    } 
+                } 
             }
+            // if its a publishanble tile
+            // else if (eventData.pointerDrag.GetComponent<PublishableTile>() != null && eventData.pointerDrag.GetComponent<PublishableTile>().GetStoryElement() == tileType)
+            // {
+            //     // move the tile to that spot
+            //     Debug.Log("i knew it was a publishable tile");
+            //     DraggableItem draggable = eventData.pointerDrag.GetComponent<DraggableItem>();
+            //     draggable.OnSuccessfulDrop(transform.position);
+
+            // }
         }
     }
 
@@ -157,13 +179,27 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     void CookingAndTimering()
     {
+        // turn off ability to drag tile when cooking
         if(timer <= timerLimit)
         {
             timer += Time.deltaTime;
-            progressBarSlider.value = timer;        
+            progressBarSlider.value = timer;     
+
+            // disable drag
+            DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();   
+            draggable.enabled = false;
+
+            // start playing the grow finish audio with 0.8 seconds left
+            if (timer >= 9.1f && playGrowSound == true)
+            {
+                AudioManager.Instance.PlaySFX("grow finish");
+                playGrowSound = false;
+            }
+
         }
         else // timer has reached its limit
         {
+            playGrowSound = true;
             // Before we destroy the storyElement, we get the info out of it
             string storyElement = spawnedElement.GetComponent<StoryElement>().GetStoryElement();
             string elementType = spawnedElement.GetComponent<StoryElement>().GetElementType();
@@ -198,6 +234,8 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
                 Quaternion.identity,
                 transform
             );
+
+            
 
             // After Spawning the Publishable Tile, we put the info into it
             spawnedTile.GetComponent<PublishableTile>().SetStoryElement(storyElement);
@@ -244,11 +282,13 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // unlocking the tile bc you clicked it
         // get unlock cost
         unlockCost = MoneyManager.Instance.tileUnlockCost;
         
         if(unlocked == false && MoneyManager.Instance.currentMoney >= unlockCost)
         {
+            AudioManager.Instance.PlaySFX("purchase");
             MoneyManager.Instance.deductMoney(unlockCost);
             
             unlocked = true;
@@ -261,6 +301,15 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
             // changing unlock cost to be 1.5x more now that they have made a purchase
             MoneyManager.Instance.increaseTileCost();
+
+            if (nextTileToUnlock != null)
+            {
+                nextTileToUnlock.SetActive(true);
+            }
+        }
+        else if (unlocked == false && MoneyManager.Instance.currentMoney < unlockCost)
+        {
+            PurchaseManager.Instance.DisplayInsufficientFunds();
         }
     }
 
@@ -306,4 +355,22 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             }
         }
     }
+
+    void ProcessPurchase(GameObject spawnedElement)
+    // attempt to process the purchase, if they have insufficient funds tell them
+    {
+        // first check if they have enough money
+        if (MoneyManager.Instance.currentMoney >= growthCost )
+        {
+            // we had enbough money, deduct, and set up the cook
+            MoneyManager.Instance.deductMoney(growthCost);
+            SetUpCook(spawnedElement);
+        }
+        // commenting out the insufficient funds bc we should have gotten rid of this
+        else // we didnt have enough money, tell the player
+        {
+            PurchaseManager.Instance.DisplayInsufficientFunds();
+        }
+    }
+
 }
