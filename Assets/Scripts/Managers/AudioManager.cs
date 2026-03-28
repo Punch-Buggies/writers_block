@@ -17,41 +17,38 @@ public class AudioManager : MonoBehaviour
 
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
-    [SerializeField] public AudioClip quillSFX; 
-    [SerializeField] public AudioClip eraseSFX; 
-    [SerializeField] public AudioClip clickSFX;
-    [SerializeField] public AudioClip purchaseSFX;
-    [SerializeField] public AudioClip growFinishSFX;
-    [SerializeField] public AudioClip dropSFX;
-    [SerializeField] public AudioClip pageSFX;
-    [SerializeField] public AudioClip page1;
-    [SerializeField] public AudioClip page2;
-    [SerializeField] public AudioClip page3;
-    [SerializeField] public AudioClip page4;
-    [SerializeField] public AudioClip shortPage;
 
-    private Dictionary<string, AudioClip> sfxDict;
+    [SerializeField] private List<SFXData> sfxList;
+
+    private Dictionary<string, SFXData> sfxDict;
     
 
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
+    // DATA TYPE FOR AUDIO CLIPS
+    [System.Serializable]
+    public class SFXData
+    {
+        public string name;
+        public AudioClip clip;
+        public float volume = 1f;
+    }
 
     private void MakeSFXDict()
     {
-        sfxDict = new Dictionary<string, AudioClip>
+        // put at all the sfx in the list into the dictionary
+        sfxDict = new Dictionary<string, SFXData>();
+        foreach (var sfx in sfxList)
         {
-            {"quill", quillSFX},
-            {"eraser", eraseSFX},
-            {"click", clickSFX},
-            {"purchase", purchaseSFX},
-            {"grow finish", growFinishSFX},
-            {"drop", dropSFX},
-            {"page turn",pageSFX},
-            {"increment", page3},
-            {"decrement", page4},
-            {"shortPage", shortPage}
-        };
-
+            if (!sfxDict.ContainsKey(sfx.name))
+            {
+                sfxDict.Add(sfx.name, sfx);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate SFX name: {sfx.name}");
+            }
+        }
     }
     private void Awake()
     {
@@ -127,17 +124,14 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("Playing clip: " + path);
         sfxSource.PlayOneShot(clip);
     }
-    public void PlaySFX(string sfx, float volume = 1f)
+
+    public void PlaySFX(string sfxName)
     {
-        AudioClip sfxClip = sfxDict[sfx];
-        if (sfxClip == null) return;
+        if (!sfxDict.TryGetValue(sfxName, out var sfx)) return;
+        if (sfx.clip == null) return;
 
         // Debug.Log($"playing a {sfx} clip");
-        if (sfx == "grow finish" || sfx == "drop")
-        {
-            volume = 0.5f;
-        }
-        sfxSource.PlayOneShot(sfxClip, volume);
+        sfxSource.PlayOneShot(sfx.clip, sfx.volume);
     }
 
     public void PlayStaggeredPages()
@@ -147,7 +141,13 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator PlayStaggeredCoroutine()
     {
-        AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
+        string[] pageNames = {"page1", "page2", "page turn", "page3", "page4"};
+        List<AudioClip> pageClips = new List<AudioClip>();
+        foreach (string name in pageNames)
+        {
+            AudioClip clip = sfxDict[name].clip;
+            pageClips.Add(clip);
+        }
 
         var shuffledClips = pageClips.OrderBy(x => Random.value);
 

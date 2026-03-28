@@ -10996,18 +10996,49 @@ MonoBehaviour:
   musicVolume: 0.7
   sfxVolume: 1
   mainMusic: {fileID: 8300000, guid: 8dc77622334894c3b8f357de78c369df, type: 3}
-  quillSFX: {fileID: 8300000, guid: 5be33543b6cf54e2a85ec757d06d48b8, type: 3}
-  eraseSFX: {fileID: 8300000, guid: 3ea5f81942e2b4889ba7381150204c15, type: 3}
-  clickSFX: {fileID: 8300000, guid: 2d7600dc849f541f0b0c1a48f62565f7, type: 3}
-  purchaseSFX: {fileID: 8300000, guid: 44487e980b2a74099b33e4953f7137ca, type: 3}
-  growFinishSFX: {fileID: 8300000, guid: 95fc6b7ee16bc48bb924c3dc859c4fbe, type: 3}
-  dropSFX: {fileID: 8300000, guid: a70f15bb6e6e54c5baaf6bb565dd89a9, type: 3}
-  pageSFX: {fileID: 8300000, guid: bff2644ee436a4e85ade3b84f78dc4c1, type: 3}
-  page1: {fileID: 8300000, guid: e5aba52ed874441019ca8dfe4968bc27, type: 3}
-  page2: {fileID: 8300000, guid: c872c5548f14a4032ac0965b12445116, type: 3}
-  page3: {fileID: 8300000, guid: a6f966c12b7174f76a06cd03f14d9f86, type: 3}
-  page4: {fileID: 8300000, guid: 03a11b7ac1abf4c7fac1df7fad557273, type: 3}
-  shortPage: {fileID: 8300000, guid: 41c4927bf7c00487dbab63a3b47ce29a, type: 3}
+  sfxList:
+  - name: quill
+    clip: {fileID: 8300000, guid: 5be33543b6cf54e2a85ec757d06d48b8, type: 3}
+    volume: 1
+  - name: eraser
+    clip: {fileID: 8300000, guid: 3ea5f81942e2b4889ba7381150204c15, type: 3}
+    volume: 1
+  - name: click
+    clip: {fileID: 8300000, guid: 2d7600dc849f541f0b0c1a48f62565f7, type: 3}
+    volume: 0.4
+  - name: purchase
+    clip: {fileID: 8300000, guid: 44487e980b2a74099b33e4953f7137ca, type: 3}
+    volume: 0.7
+  - name: grow finish
+    clip: {fileID: 8300000, guid: 95fc6b7ee16bc48bb924c3dc859c4fbe, type: 3}
+    volume: 0.26
+  - name: drop
+    clip: {fileID: 8300000, guid: a70f15bb6e6e54c5baaf6bb565dd89a9, type: 3}
+    volume: 0.13
+  - name: page turn
+    clip: {fileID: 8300000, guid: bff2644ee436a4e85ade3b84f78dc4c1, type: 3}
+    volume: 1
+  - name: increment
+    clip: {fileID: 0}
+    volume: 1
+  - name: decrement
+    clip: {fileID: 0}
+    volume: 1
+  - name: shortPage
+    clip: {fileID: 8300000, guid: 41c4927bf7c00487dbab63a3b47ce29a, type: 3}
+    volume: 0.77
+  - name: page1
+    clip: {fileID: 8300000, guid: e5aba52ed874441019ca8dfe4968bc27, type: 3}
+    volume: 1
+  - name: page2
+    clip: {fileID: 8300000, guid: c872c5548f14a4032ac0965b12445116, type: 3}
+    volume: 1
+  - name: page3
+    clip: {fileID: 8300000, guid: a6f966c12b7174f76a06cd03f14d9f86, type: 3}
+    volume: 1
+  - name: page4
+    clip: {fileID: 8300000, guid: 03a11b7ac1abf4c7fac1df7fad557273, type: 3}
+    volume: 1
 --- !u!4 &1479097259
 Transform:
   m_ObjectHideFlags: 0
