@@ -14,15 +14,14 @@ public class AudioManager : MonoBehaviour
     [Header("Volume Settings")]
     [Range(0f, 1f)] public float musicVolume = 1f;
     [Range(0f, 1f)] public float sfxVolume = 1f;
+    [Range(0f, 1f)] public float randomizerVolume = 1f;
 
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
-
     [SerializeField] private List<SFXData> sfxList;
-
+    // variables
     private Dictionary<string, SFXData> sfxDict;
-    
-
+    private Coroutine duckRoutine;
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
     // DATA TYPE FOR AUDIO CLIPS
@@ -92,14 +91,27 @@ public class AudioManager : MonoBehaviour
     // RANDOMIZER
     public void PlayUniqueBookSound(string genre, string character, string setting)
     {
-        PlaySound("Audio/Randomizer/GENRE/GENRE_" + genre);
-        PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_" + character);
-        PlaySound("Audio/Randomizer/SETTING/SETTING_" + setting);
+        // each sound will return its length
+        float l1 = PlaySound("Audio/Randomizer/GENRE/GENRE_" + genre);
+        float l2 = PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_" + character);
+        float l3 = PlaySound("Audio/Randomizer/SETTING/SETTING_" + setting);
         // Debug.Log("played all the sounds");
+
+        // find the longest clip length and duck bgm for that amount of time
+        float longest = Mathf.Max(l1, l2, l3);
+        
+        // if it already ducking, cancel and start this one
+        if (duckRoutine != null)
+        {
+            StopCoroutine(duckRoutine);
+        }
+        duckRoutine = StartCoroutine(DuckBGM(longest));
     }
 
-    private void PlaySound(string path)
+    private float PlaySound(string path)
     {
+        // plays the clip found in the path
+        // returns the length of the clip to be calcualted for ducking bgm
         if (!clipCache.TryGetValue(path, out AudioClip clip))
         {
             // load clip
@@ -112,7 +124,7 @@ public class AudioManager : MonoBehaviour
             else
             {
                 Debug.LogWarning("Audio not found at: " + path);
-                return;
+                return 0f;
             }
         }
 
@@ -121,8 +133,9 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("clip is null at: " + path);
         }
 
-        // Debug.Log("Playing clip: " + path);
-        sfxSource.PlayOneShot(clip);
+        Debug.Log($"Playing clip: {path} at volume {randomizerVolume}");
+        sfxSource.PlayOneShot(clip, randomizerVolume);
+        return clip.length;
     }
 
     public void PlaySFX(string sfxName)
@@ -157,6 +170,33 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+
+    private IEnumerator DuckBGM(float duration)
+    {
+        float ogVolume = musicSource.volume;
+        float duckedVolume = ogVolume * 0.3f;
+        float fadeTime = 0.2f;
+
+        // fade down the bgm
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            musicSource.volume = Mathf.Lerp(ogVolume, duckedVolume, t / fadeTime);
+            yield return null;
+        }
+
+        // stay ducked
+        yield return new WaitForSeconds(duration);
+
+        // fade up bgm
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            musicSource.volume = Mathf.Lerp(duckedVolume, ogVolume, t / fadeTime);
+            yield return null;
+        }
+        // make sure to fully resetore volume
+        musicSource.volume = ogVolume;
+    }
+    
 
 
     public void playTest()

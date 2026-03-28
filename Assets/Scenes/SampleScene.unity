@@ -10995,6 +10995,7 @@ MonoBehaviour:
   sfxSource: {fileID: 317288760}
   musicVolume: 0.7
   sfxVolume: 1
+  randomizerVolume: 0.48
   mainMusic: {fileID: 8300000, guid: 8dc77622334894c3b8f357de78c369df, type: 3}
   sfxList:
   - name: quill
