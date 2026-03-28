@@ -48,6 +48,15 @@ public class Publish : MonoBehaviour
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
+        else if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            AudioManager.Instance.PlaySFX("click");
+            // display info on publish button
+            string text = "This is the publish button, when all publish zones have a tile, this button will write your story. Find all your published stories in the bookshelf.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+        }
+
+
     }
     void Update()
     {
@@ -196,5 +205,8 @@ public class Publish : MonoBehaviour
             yield return new WaitForSeconds(flashDuration);
         }
     }
+
+
+
 
 }

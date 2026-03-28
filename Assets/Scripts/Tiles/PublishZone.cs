@@ -1,19 +1,25 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PublishZone : MonoBehaviour, IDropHandler
+public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    GameObject publishedElement;
+    GameObject publishedElement; // the element that gets dropped in
     Publish publish;
 
     [SerializeField] string zoneType;
 
     bool occupied = false;
+    Color ogColor;
 
     void Awake()
     {
         publish = FindAnyObjectByType<Publish>();
+    }
+    void Start()
+    {
+        ogColor = GetComponent<Image>().color;
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -40,7 +46,30 @@ public class PublishZone : MonoBehaviour, IDropHandler
 
             }
         }
+    }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlaySFX("click");
+        // display info data if clicked on AND toggleINFO on
+        if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            // display a information text saying what it does
+            string text = $"This is a {zoneType} publish zone, the {zoneType} tile dropped in here will be used to write your next book.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+        }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            // darken the image so people know you can click on it
+            GetComponent<Image>().color = ogColor * 0.5f;
+        }
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GetComponent<Image>().color = ogColor;
     }
 
 }

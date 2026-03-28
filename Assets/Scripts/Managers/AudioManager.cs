@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip page2;
     [SerializeField] public AudioClip page3;
     [SerializeField] public AudioClip page4;
+    [SerializeField] public AudioClip shortPage;
 
     private Dictionary<string, AudioClip> sfxDict;
     
@@ -47,7 +48,8 @@ public class AudioManager : MonoBehaviour
             {"drop", dropSFX},
             {"page turn",pageSFX},
             {"increment", page3},
-            {"decrement", page4}
+            {"decrement", page4},
+            {"shortPage", shortPage}
         };
 
     }

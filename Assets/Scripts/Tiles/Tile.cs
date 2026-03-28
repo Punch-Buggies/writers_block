@@ -136,7 +136,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
                 {
                     // dont show again is NOT clicked. so the purchase ui comes up
                     // takes a response from the player
-                    if (PurchaseManager.Instance.toggleOn == true)
+                    if (PurchaseManager.Instance.toggleOnPurchase == true)
                     {
                         // confirm with the player that they want to grow this element
                         PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
@@ -152,7 +152,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
                             }
                         });
                     }
-                    else // toggleOn == false, don't show again was clicked
+                    else // toggleOnPurchase == false, don't show again was clicked
                     {
                         ProcessPurchase(spawnedElement);
                     } 
@@ -287,34 +287,55 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Instance.PlaySFX("click");
         // unlocking the tile bc you clicked it
         // get unlock cost
         unlockCost = MoneyManager.Instance.tileUnlockCost;
-        
-        if(unlocked == false && MoneyManager.Instance.currentMoney >= unlockCost)
+
+        // first check if they've published one book
+        if (BookshelfManager.Instance.getBookCount() == 0 && unlocked == false)
         {
-            AudioManager.Instance.PlaySFX("purchase");
-            MoneyManager.Instance.deductMoney(unlockCost);
-            
-            unlocked = true;
-
-            // changing color now that it is unlocked
-            changeColor();
-            unlockText.text = tileType;
-            // taking away the offset when it gets unlocked bc there is only one line of text now
-            unlockText.rectTransform.anchoredPosition -= new Vector2(0, 11);
-
-            // changing unlock cost to be 1.5x more now that they have made a purchase
-            MoneyManager.Instance.increaseTileCost();
-
-            if (nextTileToUnlock != null)
-            {
-                nextTileToUnlock.SetActive(true);
-            }
+            // Display You cannot purchase a "" grow tile
+            string item = $"{tileType} grow tile";
+            PurchaseManager.Instance.DisplayNoBooksPublished(item);
         }
-        else if (unlocked == false && MoneyManager.Instance.currentMoney < unlockCost)
+        else if (unlocked == true && PurchaseManager.Instance.toggleOnInfo == true)
         {
-            PurchaseManager.Instance.DisplayInsufficientFunds();
+            // this tile is already unlocked AND they HAVENT TOGGLED THE DISPLAYU OFF
+            // display a information text saying what it does
+            string text = $"This is a {tileType} grow tile, which can grow {tileType} thoughts when dropped in.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+        }
+        else // they have published at least one book
+        {    // tile must be locked
+             // and thye have enough money
+            if(unlocked == false && MoneyManager.Instance.currentMoney >= unlockCost)
+            {
+                AudioManager.Instance.PlaySFX("purchase");
+                MoneyManager.Instance.deductMoney(unlockCost);
+                
+                unlocked = true;
+
+                // changing color now that it is unlocked
+                changeColor();
+                unlockText.text = tileType;
+                // taking away the offset when it gets unlocked bc there is only one line of text now
+                unlockText.rectTransform.anchoredPosition -= new Vector2(0, 11);
+
+                // changing unlock cost to be 1.5x more now that they have made a purchase
+                MoneyManager.Instance.increaseTileCost();
+
+                // show the next tile in the column
+                if (nextTileToUnlock != null)
+                {
+                    nextTileToUnlock.SetActive(true);
+                }
+            }
+            // they didn't have enough money
+            else if (unlocked == false && MoneyManager.Instance.currentMoney < unlockCost)
+            {
+                PurchaseManager.Instance.DisplayInsufficientFunds();
+            }
         }
     }
 

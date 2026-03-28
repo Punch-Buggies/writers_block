@@ -85,8 +85,6 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (BookshelfManager.Instance.getBookCount() == 0)
         {
             // Display You cannot purchase a "" spawner
-            // string storyElement = parentHandler.storyElement; // genre, setting, character
-
             string item = $"{parentHandler.storyElement} spawner";
             PurchaseManager.Instance.DisplayNoBooksPublished(item);
         }
