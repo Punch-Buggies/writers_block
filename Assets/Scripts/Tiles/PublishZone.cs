@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -9,6 +11,7 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
     Publish publish;
 
     [SerializeField] string zoneType;
+    [SerializeField] TextMeshProUGUI text;
 
     bool occupied = false;
     Color ogColor;
@@ -16,7 +19,8 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
     void Awake()
     {
         publish = FindAnyObjectByType<Publish>();
-    }
+        text.text = "";
+;    }
     void Start()
     {
         ogColor = GetComponent<Image>().color;
@@ -66,10 +70,12 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
             // darken the image so people know you can click on it
             GetComponent<Image>().color = ogColor * 0.5f;
         }
+        text.text = zoneType;
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         GetComponent<Image>().color = ogColor;
+        text.text = "";
     }
 
 }

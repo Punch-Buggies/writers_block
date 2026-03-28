@@ -80,6 +80,7 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
          // get unlock cost
         unlockCost = MoneyManager.Instance.spawnUnlockCost;
+        AudioManager.Instance.PlaySFX("click");
 
         // they have not published any books
         if (BookshelfManager.Instance.getBookCount() == 0)
