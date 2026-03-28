@@ -48,6 +48,15 @@ public class Publish : MonoBehaviour
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
+        else if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            AudioManager.Instance.PlaySFX("click");
+            // display info on publish button
+            string text = "This is the publish button, when all publish zones have a tile, this button will write your story. Find all your published stories in the bookshelf.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+        }
+
+
     }
     void Update()
     {
@@ -122,6 +131,11 @@ public class Publish : MonoBehaviour
         // play book sound!!
         AudioManager.Instance.PlayUniqueBookSound(newBook.genre, newBook.character, newBook.setting);
 
+        Debug.Log(BookshelfManager.Instance);
+        Debug.Log("i want to add a book bro");
+        // add new book data object to the bookshelf
+        BookshelfManager.Instance.addBook(newBook);
+
         // flash bookshelf or replace with book opening animation
         StartCoroutine(Flash(bookshelfImage));
         // everything should have reset clear the best seller highlight
@@ -130,6 +144,7 @@ public class Publish : MonoBehaviour
 
     public void PublishStoryElement(string storyElement, string elementType)
     {
+        // adds whatever values into the dictionary (genre, comedy)
         publishCounter += 1;
         Debug.Log("Published Story Element: " +  storyElement + " with " + elementType);
         bookStoryElementDict.Add(storyElement, elementType);
@@ -190,5 +205,8 @@ public class Publish : MonoBehaviour
             yield return new WaitForSeconds(flashDuration);
         }
     }
+
+
+
 
 }

@@ -8,7 +8,7 @@ public class ThoughtBubbleHandler : MonoBehaviour
     [SerializeField] GameObject[] elementSpawnLocations;
     [SerializeField] GameObject storyElementPrefab;
 
-    [SerializeField] string storyElement;
+    [SerializeField] public string storyElement;
     string[] elements;
 
     StoryElementSupplier storyElementSupplier;

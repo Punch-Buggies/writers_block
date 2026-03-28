@@ -2,8 +2,9 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class BestSeller : MonoBehaviour
+public class BestSeller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     StoryElementSupplier storyElementSupplier;
 
@@ -22,6 +23,8 @@ public class BestSeller : MonoBehaviour
     [SerializeField] GameObject genreHighlight;
     [SerializeField] GameObject characterHighlight;
     [SerializeField] GameObject settingsHighlight;
+    [SerializeField] GameObject darkBG;
+
 
     public string[] bestSeller = new string[3];
 
@@ -207,5 +210,27 @@ public class BestSeller : MonoBehaviour
             matchCount++;
         
         return matchCount;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlaySFX("click");
+        // when this is clicked, check toggleINFO on
+        if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            // display info
+            string text = $"Book profit multiples for each tile in the publish zone that matches its best seller. Resets every minute.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+            }
+        
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // if mouse enters area, turn on dark bg
+        darkBG.SetActive(true);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // if pointer leaves area, turn off dark bg
+        darkBG.SetActive(false);
     }
 }

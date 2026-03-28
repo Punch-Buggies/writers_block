@@ -77,10 +77,9 @@ public class BookCover : MonoBehaviour
     ///////////// textures //////////////
     private Sprite[] LoadTextures(string genre)
     {
-        string foldername = $"Textures/{genre}";
+        string foldername = $"Genre/{genre}_";
         Debug.Log($"trying to get into the folder {foldername}");
         Sprite[] textures = Resources.LoadAll<Sprite>(foldername);
-
         return textures;
     }
     private Sprite RandomlyPickATexture(string genre)
@@ -93,15 +92,56 @@ public class BookCover : MonoBehaviour
             Debug.Log($"{genre} had null textures");
         }
         Sprite randomTexture = textures[Random.Range(0, textures.Length)];
+        // get opacity
         return randomTexture;
     }
+    float GetOpacity(Sprite texture)
+    {
+        string name = texture.name;
+        Debug.Log($"og '{name}'");
+        // only need the last item in parts
+        string[] splits = name.Split('_');
+        Debug.Log(string.Join(" ,", splits));
+        Debug.Log(splits[^2]);
+        if (float.TryParse(splits[^2], out float alpha))
+        {
+            // opacity should be the last item??
+            if (0 < alpha && alpha <= 1)
+            {
+                return alpha;
+            }
+            Debug.LogWarning($"alpha wasn't between 0 and 1 alpha={alpha}");
 
+        }
+        Debug.LogWarning($"couldn't extract opacity from {name}");
+        return 1f;
+    }
+
+    private void SetImageAndOpacity(Image texture, Sprite randomTexture, float alpha)
+    {
+        // first set the texture
+        texture.sprite = randomTexture;
+
+        // make a new color with the right alpha
+        Color c = texture.color;
+        // set the alpha
+        c.a = alpha;
+        // update the color
+        texture.color = c;
+    }
 
     private void SetTexture(Book book)
     {
         //randomly selects a texture from its specific genre texture folder
         string genre = book.genre;
-        texture.sprite = RandomlyPickATexture(genre);
+        // get a texture
+        Sprite randomTexture = RandomlyPickATexture(genre);
+        // extract the alpha value
+        float alpha = GetOpacity(randomTexture);
+        Debug.Log($"for {randomTexture.name}, alpha is {alpha}");
+        
+        // set texture(image)'s image with the random texture and opacity
+        SetImageAndOpacity(texture, randomTexture, alpha);
     }
 
 
