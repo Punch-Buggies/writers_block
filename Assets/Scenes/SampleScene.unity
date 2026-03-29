@@ -5486,6 +5486,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2429520620872655041, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.21568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429520620872655041, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.2901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429520620872655041, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.40784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429520620872655041, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2461655207659067946, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5506,6 +5522,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2660672595013271581, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: PixelStep
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660672595013271581, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: TargetContent
+      value: 
+      objectReference: {fileID: 1863730234}
     - target: {fileID: 2717743953356426123, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -5814,6 +5838,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5437887372492039506, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.21568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437887372492039506, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.2901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437887372492039506, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.40784314
+      objectReference: {fileID: 0}
     - target: {fileID: 5601720281343516076, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -5958,6 +5994,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7654933633898439662, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: PixelStep
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654933633898439662, guid: fb22657116429455885c939b585f07ec, type: 3}
+      propertyPath: TargetContent
+      value: 
+      objectReference: {fileID: 1863730234}
     - target: {fileID: 8440125581449132163, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -13736,6 +13780,17 @@ RectTransform:
   m_AnchoredPosition: {x: -110.9, y: -2.650597}
   m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1863730234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1681847761993538899, guid: fb22657116429455885c939b585f07ec, type: 3}
+  m_PrefabInstance: {fileID: 736872523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
 --- !u!224 &1884899054 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3088000670480899312, guid: f3d80da5ca630474a83d6cb4988e4cb1, type: 3}
