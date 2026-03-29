@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] Transform initialLocation;
     bool wasPlacedSuccessfully = false;
@@ -25,6 +25,30 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
 
     }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AudioManager.Instance.PlaySFX("shortPage");
+        // show an info display if the drggable item is also a story element AND check that toggleINFO is on
+        StoryElement storyElement = GetComponent<StoryElement>();
+        if (storyElement != null && PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            string type = storyElement.GetStoryElement();
+            string value = storyElement.GetElementType();
+            // set a or an depening on first letter of value
+            string vowels = "aeiou";
+            if (vowels.Contains(value[0]))
+            {
+                // there is a vowel
+                value = "an "+ value;
+            }else
+            {
+                // there is no value
+                value = "a " + value;
+            }
+            string text = $"This is {value} {type} thought tile, you can grow this thought only in {type} grow tiles.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+        }
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false; 
@@ -42,8 +66,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (!wasPlacedSuccessfully)
         {
+            // if it wasn't placed succesfully return to previous location
             transform.position = initialLocation.position;
-            canvasGroup.blocksRaycasts = true; 
+            // allow it to be grabbed
+            canvasGroup.blocksRaycasts = true;
         }
     }
 
@@ -74,10 +100,12 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnSuccessfulDrop(Vector3 dropPosition)
     {
-
         wasPlacedSuccessfully = true;
+        // physucally moving it to that position
         transform.position = dropPosition;
-
+        // Debug.Log("how are canvas raycasts after successful drop");
+        // Debug.Log(canvasGroup.blocksRaycasts);
+        // canvasGroup.blocksRaycasts = true; // can grab after placing in publishable zone but it can now drop anywhere
     }
 
     void Start()

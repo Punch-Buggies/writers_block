@@ -24,10 +24,9 @@ public class MoneyManager : MonoBehaviour
     int moneyUpdateSpeed = 7;
 
     public float moneyLimit = 999999;
+    public double tileUnlockCost { get; private set; } = 155;
 
-    public double tileUnlockCost { get; private set; } = 50;
-
-    public double spawnUnlockCost { get; private set; } = 10;
+    public double spawnUnlockCost { get; private set; } = 30;
 
     public double tileGrowthCost {get; private set; } = 50;
 
