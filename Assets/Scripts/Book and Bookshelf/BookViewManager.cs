@@ -49,6 +49,7 @@ public class BookViewManager : MonoBehaviour
         SpawnInside(book);
         // play sound
         AudioManager.Instance.PlayUniqueBookSound(book.genre, book.character, book.setting);
+        AudioManager.Instance.PlayStaggeredPages();
         // then activate the ui overtop the bookshelf
         bookViewUI.SetActive(true); // opens the bookUI
     }
@@ -57,7 +58,7 @@ public class BookViewManager : MonoBehaviour
         // play audio
         // AudioManager.Instance.PlayUniqueBookSound(currentDataBook.genre, currentDataBook.character, currentDataBook.setting);
         // first close the UI so now its just the bookshelf showing
-        AudioManager.Instance.PlaySFX("click");
+        // AudioManager.Instance.PlaySFX("click");
         bookViewUI.SetActive(false);
         // then delete game insidne view objecy
         Destroy(currentInsideBook);

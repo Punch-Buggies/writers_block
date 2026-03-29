@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)] public float musicVolume = 1f;
     [Range(0f, 1f)] public float sfxVolume = 1f;
     [Range(0f, 1f)] public float randomizerVolume = 1f;
+    [Range(0f, 1f)] public float staggeredPagesVolume = 1f;
 
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
@@ -74,7 +75,6 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("main music is playing now");
     }
 
-
     // BG MUSIC
     public void PlayMusic(AudioClip clip)
     {
@@ -86,7 +86,6 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = 1f;
         musicSource.Play();
     }
-
 
     // RANDOMIZER
     public void PlayUniqueBookSound(string genre, string character, string setting)
@@ -151,6 +150,10 @@ public class AudioManager : MonoBehaviour
     {
         StartCoroutine(PlayStaggeredCoroutine());
     }
+    public void StopSFXSounds()
+    {
+        sfxSource.Stop();
+    }
 
     private IEnumerator PlayStaggeredCoroutine()
     {
@@ -160,13 +163,15 @@ public class AudioManager : MonoBehaviour
         {
             AudioClip clip = sfxDict[name].clip;
             pageClips.Add(clip);
+            pageClips.Add(clip);
         }
 
         var shuffledClips = pageClips.OrderBy(x => Random.value);
 
         foreach (AudioClip clip in shuffledClips)
         {
-            sfxSource.PlayOneShot(clip);
+            sfxSource.PlayOneShot(clip, staggeredPagesVolume);
+            // stagger them by waiting a few seconds
             yield return new WaitForSeconds(0.2f);
         }
     }
