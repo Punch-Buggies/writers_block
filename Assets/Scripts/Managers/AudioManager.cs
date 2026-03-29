@@ -192,6 +192,7 @@ public class AudioManager : MonoBehaviour
         float duckedVolume = ogVolume * 0.3f;
         float fadeTime = 0.2f;
 
+        Debug.Log("DUCKING DOWN");
         // fade down the bgm
         for (float t = 0; t < fadeTime; t += Time.deltaTime)
         {
@@ -210,6 +211,7 @@ public class AudioManager : MonoBehaviour
         }
         // make sure to fully resetore volume
         musicSource.volume = ogVolume;
+        Debug.Log("VOLUME RESTORED");
     }
     
     public void PlayBookCloseSound()
