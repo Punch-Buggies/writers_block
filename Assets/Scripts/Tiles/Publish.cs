@@ -60,11 +60,22 @@ public class Publish : MonoBehaviour
     }
     void Update()
     {
-        // flash the publish button if something can be publihsed
-        if(publishCounter == 3)
+        // flash the dark bg for the publish button if something can be publihsed
+        if (publishCounter == 3)
         {
-            float t = Mathf.PingPong(Time.time * 1.5f, 1f);
-            publishButton.color = Color.Lerp(originalColor, flashColor, t);
+            float t = Mathf.PingPong(Time.time * 1f, 1f);
+
+            Color c = publishButton.color;
+            // making it pulse by changing opacity
+            c.a = Mathf.Lerp(0f, 1f, t);
+            publishButton.color = c;
+            // show the dark bg that is "pulsing"
+            publishButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            // turn it off
+            publishButton.gameObject.SetActive(false);
         }
     }
 
