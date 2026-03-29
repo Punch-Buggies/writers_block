@@ -82,8 +82,8 @@ MonoBehaviour:
     of a smile Ryan was attempting to hide under his hands.\r\n\u201CCause you\u2019re
     pretty like one.\u201C\r\n\u201CYou\u2019re so embarrassing.\u201C Ryan groaned.\r\n\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d44668766e298a94f977300087e82237, type: 2}
+  m_sharedMaterial: {fileID: -1582789494846264723, guid: d44668766e298a94f977300087e82237, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -674,8 +674,8 @@ MonoBehaviour:
     of a smile Ryan was attempting to hide under his hands.\r\n\u201CCause you\u2019re
     pretty like one.\u201C\r\n\u201CYou\u2019re so embarrassing.\u201C Ryan groaned.\r\n\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d44668766e298a94f977300087e82237, type: 2}
+  m_sharedMaterial: {fileID: -1582789494846264723, guid: d44668766e298a94f977300087e82237, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
