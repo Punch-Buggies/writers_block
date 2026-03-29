@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     // variables
     private Dictionary<string, SFXData> sfxDict;
     private Coroutine duckRoutine;
+    private Coroutine staggeredPagesRoutine;
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
     // DATA TYPE FOR AUDIO CLIPS
@@ -146,24 +147,33 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(sfx.clip, sfx.volume);
     }
 
-    public void PlayStaggeredPages()
-    {
-        StartCoroutine(PlayStaggeredCoroutine());
-    }
     public void StopSFXSounds()
     {
+        if (staggeredPagesRoutine != null)
+        {
+            // stop playing page flipping
+            StopCoroutine(staggeredPagesRoutine);
+            staggeredPagesRoutine = null;
+        }
+        // stops unique book sounds
         sfxSource.Stop();
     }
+     public void PlayStaggeredPages(int add)
+    {
+        staggeredPagesRoutine = StartCoroutine(PlayStaggeredCoroutine(add));
+    }
 
-    private IEnumerator PlayStaggeredCoroutine()
+    private IEnumerator PlayStaggeredCoroutine(int add)
     {
         string[] pageNames = {"page1", "page2", "page turn", "page3", "page4"};
         List<AudioClip> pageClips = new List<AudioClip>();
         foreach (string name in pageNames)
         {
             AudioClip clip = sfxDict[name].clip;
-            pageClips.Add(clip);
-            pageClips.Add(clip);
+            for (int i = 0; i < add; i++)
+            {
+                pageClips.Add(clip);
+            }
         }
 
         var shuffledClips = pageClips.OrderBy(x => Random.value);
@@ -202,7 +212,12 @@ public class AudioManager : MonoBehaviour
         musicSource.volume = ogVolume;
     }
     
-
+    public void PlayBookCloseSound()
+    {
+        StopSFXSounds();
+        PlayStaggeredPages(1);
+        PlaySFX("book close");
+    }
 
     public void playTest()
     {

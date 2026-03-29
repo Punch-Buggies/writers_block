@@ -49,7 +49,7 @@ public class BookViewManager : MonoBehaviour
         SpawnInside(book);
         // play sound
         AudioManager.Instance.PlayUniqueBookSound(book.genre, book.character, book.setting);
-        AudioManager.Instance.PlayStaggeredPages();
+        AudioManager.Instance.PlayStaggeredPages(2);
         // then activate the ui overtop the bookshelf
         bookViewUI.SetActive(true); // opens the bookUI
     }
