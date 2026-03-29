@@ -3276,7 +3276,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 406926098}
+  m_TargetGraphic: {fileID: 956659544}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3299,20 +3299,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406926095}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6997,6 +6997,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951067661}
   m_CullTransparentMesh: 1
+--- !u!1 &956659543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956659546}
+  - component: {fileID: 956659545}
+  - component: {fileID: 956659544}
+  m_Layer: 5
+  m_Name: Dark BG for publish button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &956659544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956659543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &956659545
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956659543}
+  m_CullTransparentMesh: 1
+--- !u!224 &956659546
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956659543}
+  m_LocalRotation: {x: -0, y: -0, z: -0.12734962, w: 0.9918579}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1135086155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -14.633}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -574.5, y: 31.11}
+  m_SizeDelta: {x: 328.84, y: 98.81}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &962929427
 GameObject:
   m_ObjectHideFlags: 0
@@ -8126,6 +8201,7 @@ RectTransform:
   - {fileID: 1457771865}
   - {fileID: 962929428}
   - {fileID: 413729923}
+  - {fileID: 956659546}
   - {fileID: 406926096}
   m_Father: {fileID: 560014593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.94}
@@ -8188,7 +8264,7 @@ MonoBehaviour:
   publishCounter: 0
   spawner: {fileID: 22034390}
   bookshelfImage: {fileID: 2066524599}
-  publishButton: {fileID: 406926098}
+  publishButton: {fileID: 956659544}
 --- !u!1 &1145649111 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 992246085240604597, guid: f3d80da5ca630474a83d6cb4988e4cb1, type: 3}
@@ -11057,11 +11133,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 1336664822}
   sfxSource: {fileID: 317288760}
-  musicVolume: 0.7
+  musicVolume: 0.6
   sfxVolume: 1
   randomizerVolume: 0.48
   staggeredPagesVolume: 0.22
-  mainMusic: {fileID: 8300000, guid: 8dc77622334894c3b8f357de78c369df, type: 3}
+  mainMusic: {fileID: 8300000, guid: dfd98340cf3054391adbcda788d4f2a0, type: 3}
   sfxList:
   - name: quill
     clip: {fileID: 8300000, guid: 5be33543b6cf54e2a85ec757d06d48b8, type: 3}

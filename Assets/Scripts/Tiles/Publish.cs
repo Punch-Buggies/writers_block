@@ -17,7 +17,7 @@ public class Publish : MonoBehaviour
     PassiveIncomeManager passiveIncomeManager;
     [SerializeField] Image bookshelfImage;
     [SerializeField] Image publishButton;
-    Color32 flashColor = new Color32(191, 158, 116, 255);
+    Color32 flashColor = new Color32(197, 120, 83, 255);
     Color originalColor = Color.white;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently

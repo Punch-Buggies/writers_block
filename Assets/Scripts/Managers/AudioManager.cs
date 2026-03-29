@@ -189,8 +189,8 @@ public class AudioManager : MonoBehaviour
     private IEnumerator DuckBGM(float duration)
     {
         float ogVolume = musicSource.volume;
-        float duckedVolume = ogVolume * 0.3f;
-        float fadeTime = 0.2f;
+        float duckedVolume = ogVolume * 0.25f;
+        float fadeTime = 0.6f;
 
         Debug.Log("DUCKING DOWN");
         // fade down the bgm
