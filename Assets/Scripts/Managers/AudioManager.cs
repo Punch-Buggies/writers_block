@@ -14,44 +14,42 @@ public class AudioManager : MonoBehaviour
     [Header("Volume Settings")]
     [Range(0f, 1f)] public float musicVolume = 1f;
     [Range(0f, 1f)] public float sfxVolume = 1f;
+    [Range(0f, 1f)] public float randomizerVolume = 1f;
+    [Range(0f, 1f)] public float staggeredPagesVolume = 1f;
 
     [Header("Music")]
     [SerializeField] public AudioClip mainMusic; 
-    [SerializeField] public AudioClip quillSFX; 
-    [SerializeField] public AudioClip eraseSFX; 
-    [SerializeField] public AudioClip clickSFX;
-    [SerializeField] public AudioClip purchaseSFX;
-    [SerializeField] public AudioClip growFinishSFX;
-    [SerializeField] public AudioClip dropSFX;
-    [SerializeField] public AudioClip pageSFX;
-    [SerializeField] public AudioClip page1;
-    [SerializeField] public AudioClip page2;
-    [SerializeField] public AudioClip page3;
-    [SerializeField] public AudioClip page4;
-    [SerializeField] public AudioClip shortPage;
-
-    private Dictionary<string, AudioClip> sfxDict;
-    
-
+    [SerializeField] private List<SFXData> sfxList;
+    // variables
+    private Dictionary<string, SFXData> sfxDict;
+    private Coroutine duckRoutine;
+    private Coroutine staggeredPagesRoutine;
     // cache for audio clips
     private Dictionary<string, AudioClip> clipCache = new Dictionary<string, AudioClip>();
+    // DATA TYPE FOR AUDIO CLIPS
+    [System.Serializable]
+    public class SFXData
+    {
+        public string name;
+        public AudioClip clip;
+        public float volume = 1f;
+    }
 
     private void MakeSFXDict()
     {
-        sfxDict = new Dictionary<string, AudioClip>
+        // put at all the sfx in the list into the dictionary
+        sfxDict = new Dictionary<string, SFXData>();
+        foreach (var sfx in sfxList)
         {
-            {"quill", quillSFX},
-            {"eraser", eraseSFX},
-            {"click", clickSFX},
-            {"purchase", purchaseSFX},
-            {"grow finish", growFinishSFX},
-            {"drop", dropSFX},
-            {"page turn",pageSFX},
-            {"increment", page3},
-            {"decrement", page4},
-            {"shortPage", shortPage}
-        };
-
+            if (!sfxDict.ContainsKey(sfx.name))
+            {
+                sfxDict.Add(sfx.name, sfx);
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate SFX name: {sfx.name}");
+            }
+        }
     }
     private void Awake()
     {
@@ -78,7 +76,6 @@ public class AudioManager : MonoBehaviour
         // Debug.Log("main music is playing now");
     }
 
-
     // BG MUSIC
     public void PlayMusic(AudioClip clip)
     {
@@ -91,18 +88,30 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-
     // RANDOMIZER
     public void PlayUniqueBookSound(string genre, string character, string setting)
     {
-        PlaySound("Audio/Randomizer/GENRE/GENRE_" + genre);
-        PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_" + character);
-        PlaySound("Audio/Randomizer/SETTING/SETTING_" + setting);
+        // each sound will return its length
+        float l1 = PlaySound("Audio/Randomizer/GENRE/GENRE_" + genre);
+        float l2 = PlaySound("Audio/Randomizer/CHARACTER/CHARACTER_" + character);
+        float l3 = PlaySound("Audio/Randomizer/SETTING/SETTING_" + setting);
         // Debug.Log("played all the sounds");
+
+        // find the longest clip length and duck bgm for that amount of time
+        float longest = Mathf.Max(l1, l2, l3);
+        
+        // if it already ducking, cancel and start this one
+        if (duckRoutine != null)
+        {
+            StopCoroutine(duckRoutine);
+        }
+        duckRoutine = StartCoroutine(DuckBGM(longest));
     }
 
-    private void PlaySound(string path)
+    private float PlaySound(string path)
     {
+        // plays the clip found in the path
+        // returns the length of the clip to be calcualted for ducking bgm
         if (!clipCache.TryGetValue(path, out AudioClip clip))
         {
             // load clip
@@ -115,7 +124,7 @@ public class AudioManager : MonoBehaviour
             else
             {
                 Debug.LogWarning("Audio not found at: " + path);
-                return;
+                return 0f;
             }
         }
 
@@ -124,37 +133,93 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("clip is null at: " + path);
         }
 
-        // Debug.Log("Playing clip: " + path);
-        sfxSource.PlayOneShot(clip);
+        Debug.Log($"Playing clip: {path} at volume {randomizerVolume}");
+        sfxSource.PlayOneShot(clip, randomizerVolume);
+        return clip.length;
     }
-    public void PlaySFX(string sfx)
+
+    public void PlaySFX(string sfxName)
     {
-        AudioClip sfxClip = sfxDict[sfx];
-        if (sfxClip == null) return;
+        if (!sfxDict.TryGetValue(sfxName, out var sfx)) return;
+        if (sfx.clip == null) return;
 
         // Debug.Log($"playing a {sfx} clip");
-        sfxSource.clip = sfxClip;
-        sfxSource.Play();
+        sfxSource.PlayOneShot(sfx.clip, sfx.volume);
     }
 
-    public void PlayStaggeredPages()
+    public void StopSFXSounds()
     {
-        StartCoroutine(PlayStaggeredCoroutine());
+        if (staggeredPagesRoutine != null)
+        {
+            // stop playing page flipping
+            StopCoroutine(staggeredPagesRoutine);
+            staggeredPagesRoutine = null;
+        }
+        // stops unique book sounds
+        sfxSource.Stop();
+    }
+     public void PlayStaggeredPages(int add)
+    {
+        staggeredPagesRoutine = StartCoroutine(PlayStaggeredCoroutine(add));
     }
 
-    private IEnumerator PlayStaggeredCoroutine()
+    private IEnumerator PlayStaggeredCoroutine(int add)
     {
-        AudioClip[] pageClips = {page1, page2, pageSFX, page3, page4};
+        string[] pageNames = {"page1", "page2", "page turn", "page3", "page4"};
+        List<AudioClip> pageClips = new List<AudioClip>();
+        foreach (string name in pageNames)
+        {
+            AudioClip clip = sfxDict[name].clip;
+            for (int i = 0; i < add; i++)
+            {
+                pageClips.Add(clip);
+            }
+        }
 
         var shuffledClips = pageClips.OrderBy(x => Random.value);
 
         foreach (AudioClip clip in shuffledClips)
         {
-            sfxSource.PlayOneShot(clip);
+            sfxSource.PlayOneShot(clip, staggeredPagesVolume);
+            // stagger them by waiting a few seconds
             yield return new WaitForSeconds(0.2f);
         }
     }
 
+    private IEnumerator DuckBGM(float duration)
+    {
+        float ogVolume = musicSource.volume;
+        float duckedVolume = ogVolume * 0.25f;
+        float fadeTime = 0.6f;
+
+        Debug.Log("DUCKING DOWN");
+        // fade down the bgm
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            musicSource.volume = Mathf.Lerp(ogVolume, duckedVolume, t / fadeTime);
+            yield return null;
+        }
+
+        // stay ducked
+        yield return new WaitForSeconds(duration);
+
+        // fade up bgm
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            musicSource.volume = Mathf.Lerp(duckedVolume, ogVolume, t / fadeTime);
+            yield return null;
+        }
+        // make sure to fully resetore volume
+        musicSource.volume = ogVolume;
+        Debug.Log("VOLUME RESTORED");
+    }
+    
+    public void PlayBookCloseSound()
+    {
+        StopSFXSounds();
+        PlayStaggeredPages(1);
+        PlaySFX("book close");
+    }
 
     public void playTest()
     {

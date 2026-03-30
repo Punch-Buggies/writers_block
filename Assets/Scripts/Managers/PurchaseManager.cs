@@ -32,6 +32,7 @@ public class PurchaseManager : MonoBehaviour
     public bool toggleOnInfo = true; // show the purchase ui or not
 
     private Action<bool> onConfirm; //stores which button the player clicked
+    PauseManager pauseManager;
 
     void Awake()
     {
@@ -51,6 +52,7 @@ public class PurchaseManager : MonoBehaviour
         // button listeners
         yesButton.onClick.AddListener( () => Respond(true));
         noButton.onClick.AddListener( () => Respond(false));
+        pauseManager = FindAnyObjectByType<PauseManager>();
 
         // set the dont show again color to be dark
 
@@ -202,64 +204,49 @@ public class PurchaseManager : MonoBehaviour
         okButton.gameObject.SetActive(false);
     }
 
-
-    public void BoxClicked(string type)
+    public void PauseMenuClicked(string type)
     {
-        // the box was clicked, show checkmark depending
-        // the checkmark is NOT there
+        // this is for when you are trying to change the settings in the pause menu
+        // first change the text, and grab the toggleOn boolean, then turn off according checkmark and set toggle value
+
+        AudioManager.Instance.PlaySFX("click");
+        // the thing was clicked, change text
+        bool toggleOn;
+        // this is the dont show again checkmark, need to figure out if its the purfhase or info
         Image checkMarkImage;
+        // get the toggle value and the right checkmark
         switch(type)
         {
-            // set the variables according to which type
+            // set the right toggleON
             case "Purchase":
+                toggleOn = pauseManager.ChangePurchaseText();
                 checkMarkImage = checkMarkPurchase;
                 break;
             case "Info":
+                toggleOn = pauseManager.ChangeInfoText();
                 checkMarkImage = checkMarkInfo;
                 break;
             default:
                 Debug.LogWarning($"Not a valid type: {type}");
                 return;
         }
+        // remove checkmark regardless (bc even if its toggleOFF they wouldnt see it)
+        bool checkmarkIsOn = checkMarkImage.gameObject.activeSelf;
+        checkMarkImage.gameObject.SetActive(!checkmarkIsOn); // this should be set to the opposite of whatever toggleOn is, if toggleOn is true, then checkmark should be false
 
-
-        AudioManager.Instance.PlaySFX("click");
-        // checkmark is not there
-        if (checkMarkImage.gameObject.activeSelf == false)
+        // set the right purchase or info toggle settings according to if its yes or no
+        switch(type)
         {
-            checkMarkImage.gameObject.SetActive(true);
-            // we do not want to show the purchase view
-            switch(type)
-            {
-                // set the right toggleON
-                case "Purchase":
-                    toggleOnPurchase = false;
-                    break;
-                case "Info":
-                    toggleOnInfo = false;
-                    break;
-                default:
-                    Debug.LogWarning($"Not a valid type: {type}");
-                    return;
-            }
-        }
-        else //checkmark IS there
-        {
-            checkMarkImage.gameObject.SetActive(false);
-            // we do want to show the purchase view
-            switch(type)
-            {
-                // set the right toggleON
-                case "Purchase":
-                    toggleOnPurchase = true;
-                    break;
-                case "Info":
-                    toggleOnInfo = true;
-                    break;
-                default:
-                    Debug.LogWarning($"Not a valid type: {type}");
-                    return;
-            }
+            // get the right toggle variable
+            case "Purchase":
+                toggleOnPurchase = toggleOn;
+                break;
+            case "Info":
+                toggleOnInfo = toggleOn;
+                break;
+            default:
+                Debug.LogWarning($"Not a valid type: {type}");
+                return;
         }
     }
 }

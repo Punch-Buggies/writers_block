@@ -213,10 +213,10 @@ public class BestSeller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        AudioManager.Instance.PlaySFX("click");
         // when this is clicked, check toggleINFO on
         if (PurchaseManager.Instance.toggleOnInfo == true)
         {
+            AudioManager.Instance.PlaySFX("click");
             // display info
             string text = $"Book profit multiples for each tile in the publish zone that matches its best seller. Resets every minute.";
             PurchaseManager.Instance.DisplayTileInfo(text);
@@ -225,8 +225,12 @@ public class BestSeller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // if mouse enters area, turn on dark bg
-        darkBG.SetActive(true);
+        // if mouse enters area && info is on, turn on dark bg
+        if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            darkBG.SetActive(true);
+        }
+
     }
     public void OnPointerExit(PointerEventData eventData)
     {

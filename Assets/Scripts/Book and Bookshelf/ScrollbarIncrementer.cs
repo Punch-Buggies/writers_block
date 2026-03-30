@@ -12,16 +12,26 @@ public class ScrollbarIncrementer : MonoBehaviour
     public float PixelStep = 50f;          // pixels per increment
     public float HoldFrequency = 0.1f;
     [SerializeField] bool increment;
+    [Header("Audio")]
+    [SerializeField] private AudioSource scrollSource;
+    [SerializeField] private AudioClip incrementClip;
+    [SerializeField] private AudioClip decrementClip;
     public void OnPointerDown()
     {
         IncrementDecrementSequence();//invoke the scroll once immediately to avoid delay
         InvokeRepeating("IncrementDecrementSequence", 0.5f, HoldFrequency);
+
+        // start audio
+        StartScrollAudio();
     }
 
     public void OnPointerUp()
     {
         //stop scrolling
         CancelInvoke("IncrementDecrementSequence");
+
+        // stop audio
+        StopScrollAudio();
     }
 
     public void IncrementDecrementSequence()
@@ -49,7 +59,8 @@ public class ScrollbarIncrementer : MonoBehaviour
         Target.value = Mathf.Clamp(Target.value + dynamicStep, 0, 1);
 
         Debug.Log("scroll forward");
-        AudioManager.Instance.PlaySFX("increment");
+        // stops audio if we incremeneted to the end
+        CheckScrollBounds();
     }
 
     public void Decrement()
@@ -71,7 +82,8 @@ public class ScrollbarIncrementer : MonoBehaviour
         Target.value = Mathf.Clamp(Target.value - dynamicStep, 0, 1);
 
         Debug.Log("scroll backward");
-        AudioManager.Instance.PlaySFX("decrement");
+        // stops audio if we decremented to the end
+        CheckScrollBounds();
 
     }
      private void MoveContent(float deltaX)
@@ -96,4 +108,34 @@ public class ScrollbarIncrementer : MonoBehaviour
         if (TheOtherButton != null)
             TheOtherButton.interactable = true;
     }
+    private void StartScrollAudio()
+    {
+        // this starts playing on pointer down
+        // get the right audio
+        AudioClip clip = increment ? incrementClip : decrementClip;
+        // set audio
+        if (scrollSource.clip != clip)
+        {
+            scrollSource.clip = clip;
+        }
+        // turn on loop and play
+        scrollSource.loop = true;
+        scrollSource.Play();
+    }
+    private void StopScrollAudio()
+    {
+        // this is called in pointer up
+        // hard stop audio
+        scrollSource.Stop();
+    }
+    private void CheckScrollBounds()
+    {
+        // stops audio if we reach either end
+        // give some space for the boundary
+        if (Target.value <= 0.001f || Target.value >= 0.999f)
+        {
+            StopScrollAudio();
+        }
+    }
+
 }

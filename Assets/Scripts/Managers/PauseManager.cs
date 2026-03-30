@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
@@ -8,17 +9,18 @@ public class PauseManager : MonoBehaviour
 
     [SerializeField] GameObject pauseCam;
     [SerializeField] GameObject mainCam;
+    [Header("Audio")]
     [SerializeField] Slider audioBGSlider;
     [SerializeField] Slider audioSFXSlider;
-
-
     [SerializeField] AudioClip adjustedAudioClip;
     [SerializeField] AudioSource adjustedBGAudioSource;
     [SerializeField] AudioSource adjustedSFXAudioSource;
-
-
     [SerializeField] AudioSource BGAudioSource;
     [SerializeField] AudioSource SFXAudioSource;
+    [Header("Toggle Info ON/OFF")]
+    [SerializeField] TextMeshProUGUI purchaseYesNo;
+    [SerializeField] TextMeshProUGUI infoYesNo;
+
 
     void Start()
     {
@@ -63,54 +65,54 @@ public class PauseManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
-public void IncreaseBGVolume()
-{
-    audioBGSlider.value = Mathf.Clamp(audioBGSlider.value + 1f, 0f, 10f);
+    public void IncreaseBGVolume()
+    {
+        audioBGSlider.value = Mathf.Clamp(audioBGSlider.value + 1f, 0f, 10f);
 
-    float normalizedVolume = audioBGSlider.value / 10f;
+        float normalizedVolume = audioBGSlider.value / 10f;
 
-    adjustedBGAudioSource.volume = normalizedVolume;
-    BGAudioSource.volume = normalizedVolume;
+        adjustedBGAudioSource.volume = normalizedVolume;
+        BGAudioSource.volume = normalizedVolume;
 
-    adjustedBGAudioSource.PlayOneShot(adjustedAudioClip);
-}
+        adjustedBGAudioSource.PlayOneShot(adjustedAudioClip);
+    }
 
-public void DecreaseBGVolume()
-{
-    audioBGSlider.value = Mathf.Clamp(audioBGSlider.value - 1f, 0f, 10f);
+    public void DecreaseBGVolume()
+    {
+        audioBGSlider.value = Mathf.Clamp(audioBGSlider.value - 1f, 0f, 10f);
 
-    float normalizedVolume = audioBGSlider.value / 10f;
+        float normalizedVolume = audioBGSlider.value / 10f;
 
-    adjustedBGAudioSource.volume = normalizedVolume;
-    BGAudioSource.volume = normalizedVolume;
+        adjustedBGAudioSource.volume = normalizedVolume;
+        BGAudioSource.volume = normalizedVolume;
 
-    adjustedBGAudioSource.PlayOneShot(adjustedAudioClip);
-}
+        adjustedBGAudioSource.PlayOneShot(adjustedAudioClip);
+    }
 
 
-public void IncreaseSFXVolume()
-{
-    audioSFXSlider.value = Mathf.Clamp(audioSFXSlider.value + 1f, 0f, 10f);
+    public void IncreaseSFXVolume()
+    {
+        audioSFXSlider.value = Mathf.Clamp(audioSFXSlider.value + 1f, 0f, 10f);
 
-    float normalizedVolume = audioSFXSlider.value / 10f;
+        float normalizedVolume = audioSFXSlider.value / 10f;
 
-    adjustedSFXAudioSource.volume = normalizedVolume;
-    SFXAudioSource.volume = normalizedVolume;
+        adjustedSFXAudioSource.volume = normalizedVolume;
+        SFXAudioSource.volume = normalizedVolume;
 
-    adjustedSFXAudioSource.PlayOneShot(adjustedAudioClip);
-}
+        adjustedSFXAudioSource.PlayOneShot(adjustedAudioClip);
+    }
 
-public void DecreaseSFXVolume()
-{
-    audioSFXSlider.value = Mathf.Clamp(audioSFXSlider.value - 1f, 0f, 10f);
+    public void DecreaseSFXVolume()
+    {
+        audioSFXSlider.value = Mathf.Clamp(audioSFXSlider.value - 1f, 0f, 10f);
 
-    float normalizedVolume = audioSFXSlider.value / 10f;
+        float normalizedVolume = audioSFXSlider.value / 10f;
 
-    adjustedSFXAudioSource.volume = normalizedVolume;
-    SFXAudioSource.volume = normalizedVolume;
+        adjustedSFXAudioSource.volume = normalizedVolume;
+        SFXAudioSource.volume = normalizedVolume;
 
-    adjustedSFXAudioSource.PlayOneShot(adjustedAudioClip);
-}
+        adjustedSFXAudioSource.PlayOneShot(adjustedAudioClip);
+    }
 
     void Update()
     {
@@ -121,4 +123,38 @@ public void DecreaseSFXVolume()
                 TogglePause();
         }
     }
+
+    public bool ChangePurchaseText()
+    {   
+        // changes to either yes or no
+        if (purchaseYesNo.text == "YES")
+        {
+            // return false if the text is NO, they don't want to toggle
+            purchaseYesNo.text = "NO";   
+            return false;
+        }
+        else
+        {
+            // return true if the text is YES, they do want to see info
+            purchaseYesNo.text = "YES";
+            return true;
+        }
+    }
+    public bool ChangeInfoText()
+    {
+       // changes to either yes or no
+        if (infoYesNo.text == "YES")
+        {
+            // return false if the text is NO, they don't want to toggle
+            infoYesNo.text = "NO";   
+            return false;
+        }
+        else
+        {
+            // return true if the text is YES, they do want to see info
+            infoYesNo.text = "YES";
+            return true;
+        }
+    }
+
 }
