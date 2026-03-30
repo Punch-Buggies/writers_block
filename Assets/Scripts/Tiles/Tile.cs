@@ -287,25 +287,29 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        AudioManager.Instance.PlaySFX("click");
         // unlocking the tile bc you clicked it
         // get unlock cost
         unlockCost = MoneyManager.Instance.tileUnlockCost;
 
         // first check if they've published one book
+        // display no books published
         if (BookshelfManager.Instance.getBookCount() == 0 && unlocked == false)
         {
+            AudioManager.Instance.PlaySFX("click");
             // Display You cannot purchase a "" grow tile
             string item = $"{tileType} grow tile";
             PurchaseManager.Instance.DisplayNoBooksPublished(item);
         }
+        // display info
         else if (unlocked == true && PurchaseManager.Instance.toggleOnInfo == true)
         {
+            AudioManager.Instance.PlaySFX("click");
             // this tile is already unlocked AND they HAVENT TOGGLED THE DISPLAYU OFF
             // display a information text saying what it does
             string text = $"This is a {tileType} grow tile, which can grow {tileType} thoughts when dropped in.";
             PurchaseManager.Instance.DisplayTileInfo(text);
         }
+        // buying the tile
         else // they have published at least one book
         {    // tile must be locked
              // and thye have enough money
@@ -334,6 +338,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             // they didn't have enough money
             else if (unlocked == false && MoneyManager.Instance.currentMoney < unlockCost)
             {
+                AudioManager.Instance.PlaySFX("click"); // maybe change this to an insufficeint fund sound
                 PurchaseManager.Instance.DisplayInsufficientFunds();
             }
         }
