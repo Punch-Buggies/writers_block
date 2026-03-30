@@ -8,14 +8,21 @@ public class PauseManager : MonoBehaviour
 
     [SerializeField] GameObject pauseCam;
     [SerializeField] GameObject mainCam;
-    [SerializeField] Slider audioSlider;
+    [SerializeField] Slider audioBGSlider;
+    [SerializeField] Slider audioSFXSlider;
+
+
     [SerializeField] AudioClip adjustedAudioClip;
-    [SerializeField] AudioSource adjustedAudioSource;
-    [SerializeField] AudioSource musicAudioSource;
+    [SerializeField] AudioSource adjustedBGAudioSource;
+    [SerializeField] AudioSource adjustedSFXAudioSource;
+
+
+    [SerializeField] AudioSource BGAudioSource;
+    [SerializeField] AudioSource SFXAudioSource;
 
     void Start()
     {
-        audioSlider.value = 10f;
+        audioBGSlider.value = 10f;
     }
 
     public void TogglePause()
@@ -29,7 +36,7 @@ public class PauseManager : MonoBehaviour
     {
         pauseCam.SetActive(true);
         mainCam.SetActive(false);
-        musicAudioSource.Pause();
+        BGAudioSource.Pause();
 
         Time.timeScale = 0f;
         IsPaused = true;
@@ -40,7 +47,7 @@ public class PauseManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("click");
         pauseCam.SetActive(false);
         mainCam.SetActive(true);
-        musicAudioSource.Play();
+        BGAudioSource.Play();
 
         Time.timeScale = 1f;
         IsPaused = false;
@@ -56,28 +63,53 @@ public class PauseManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
-public void IncreaseVolume()
+public void IncreaseBGVolume()
 {
-    audioSlider.value = Mathf.Clamp(audioSlider.value + 1f, 0f, 10f);
+    audioBGSlider.value = Mathf.Clamp(audioBGSlider.value + 1f, 0f, 10f);
 
-    float normalizedVolume = audioSlider.value / 10f;
+    float normalizedVolume = audioBGSlider.value / 10f;
 
-    adjustedAudioSource.volume = normalizedVolume;
-    musicAudioSource.volume = normalizedVolume;
+    adjustedBGAudioSource.volume = normalizedVolume;
+    BGAudioSource.volume = normalizedVolume;
 
-    adjustedAudioSource.PlayOneShot(adjustedAudioClip);
+    adjustedBGAudioSource.PlayOneShot(adjustedAudioClip);
 }
 
-public void DecreaseVolume()
+public void DecreaseBGVolume()
 {
-    audioSlider.value = Mathf.Clamp(audioSlider.value - 1f, 0f, 10f);
+    audioBGSlider.value = Mathf.Clamp(audioBGSlider.value - 1f, 0f, 10f);
 
-    float normalizedVolume = audioSlider.value / 10f;
+    float normalizedVolume = audioBGSlider.value / 10f;
 
-    adjustedAudioSource.volume = normalizedVolume;
-    musicAudioSource.volume = normalizedVolume;
+    adjustedBGAudioSource.volume = normalizedVolume;
+    BGAudioSource.volume = normalizedVolume;
 
-    adjustedAudioSource.PlayOneShot(adjustedAudioClip);
+    adjustedBGAudioSource.PlayOneShot(adjustedAudioClip);
+}
+
+
+public void IncreaseSFXVolume()
+{
+    audioSFXSlider.value = Mathf.Clamp(audioSFXSlider.value + 1f, 0f, 10f);
+
+    float normalizedVolume = audioSFXSlider.value / 10f;
+
+    adjustedSFXAudioSource.volume = normalizedVolume;
+    SFXAudioSource.volume = normalizedVolume;
+
+    adjustedSFXAudioSource.PlayOneShot(adjustedAudioClip);
+}
+
+public void DecreaseSFXVolume()
+{
+    audioSFXSlider.value = Mathf.Clamp(audioSFXSlider.value - 1f, 0f, 10f);
+
+    float normalizedVolume = audioSFXSlider.value / 10f;
+
+    adjustedSFXAudioSource.volume = normalizedVolume;
+    SFXAudioSource.volume = normalizedVolume;
+
+    adjustedSFXAudioSource.PlayOneShot(adjustedAudioClip);
 }
 
     void Update()

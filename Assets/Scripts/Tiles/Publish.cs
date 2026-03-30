@@ -17,6 +17,8 @@ public class Publish : MonoBehaviour
     PassiveIncomeManager passiveIncomeManager;
     [SerializeField] Image bookshelfImage;
     [SerializeField] Image publishButton;
+    [SerializeField] Image darkBGPublish;
+
     Color32 flashColor = new Color32(197, 120, 83, 255);
     Color originalColor = Color.white;
 
@@ -24,6 +26,12 @@ public class Publish : MonoBehaviour
 
     List<GameObject> publishedTiles;
     int bestSellerMultiplier;
+
+
+    public Sprite publishReadyButtonImage;
+    public Sprite publishNotReadyButtonImage;
+
+    public Button publishUIButton;
     void Awake()
     {
         bookStoryElementDict = new Dictionary<string, string>();
@@ -42,6 +50,8 @@ public class Publish : MonoBehaviour
 
     public void PublishButtonClicked()
     {
+        publishUIButton.interactable = false;
+        publishButton.sprite = publishNotReadyButtonImage;
         if(publishCounter >= 3)
         {
             Debug.Log("element count before full pub" + bookStoryElementDict.Count);
@@ -63,19 +73,25 @@ public class Publish : MonoBehaviour
         // flash the dark bg for the publish button if something can be publihsed
         if (publishCounter == 3)
         {
-            float t = Mathf.PingPong(Time.time * 1f, 1f);
+        // mAGS FIX THIS??
+        // FAIAZ SWAPS THE SPRITES OUT, KEEP THE HIGHLIGHT IN THE BACK
+        //     float t = Mathf.PingPong(Time.time * 1f, 1f);
 
-            Color c = publishButton.color;
-            // making it pulse by changing opacity
-            c.a = Mathf.Lerp(0f, 1f, t);
-            publishButton.color = c;
-            // show the dark bg that is "pulsing"
-            publishButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            // turn it off
-            publishButton.gameObject.SetActive(false);
+        //     Color c = darkBGPublish.color;
+        //     // making it pulse by changing opacity
+        //     c.a = Mathf.Lerp(0f, 1f, t);
+        //     darkBGPublish.color = c;
+        //     // show the dark bg that is "pulsing"
+        //     darkBGPublish.gameObject.SetActive(true);
+        // }
+        // else
+        // {
+        //     // turn it off
+        //     darkBGPublish.gameObject.SetActive(false);
+            publishButton.sprite = publishReadyButtonImage;
+            publishUIButton.interactable = true;
+            float t = Mathf.PingPong(Time.time * 1.5f, 1f);
+            publishButton.color = Color.Lerp(originalColor, flashColor, t);
         }
     }
 
