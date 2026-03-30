@@ -54,10 +54,10 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        AudioManager.Instance.PlaySFX("click");
         // display info data if clicked on AND toggleINFO on
         if (PurchaseManager.Instance.toggleOnInfo == true)
         {
+            AudioManager.Instance.PlaySFX("click");
             // display a information text saying what it does
             string text = $"This is a {zoneType} publish zone, the {zoneType} tile dropped in here will be used to write your next book.";
             PurchaseManager.Instance.DisplayTileInfo(text);
