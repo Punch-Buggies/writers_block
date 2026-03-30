@@ -60,7 +60,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         if (!unlocked) // in lock position
         {
            // offsetting the text because in the lock position there is two lines
-            unlockText.rectTransform.anchoredPosition += new Vector2(0, 11);
+            // unlockText.rectTransform.anchoredPosition += new Vector2(0, 11); 
         }
     }
 
@@ -272,7 +272,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             // get unlock cost
             unlockCost = MoneyManager.Instance.tileUnlockCost;
 
-            unlockText.text = $"Unlock: ${unlockCost:0.##}";
+            unlockText.text = $"${unlockCost:0.##}";
         }
         else
         {
