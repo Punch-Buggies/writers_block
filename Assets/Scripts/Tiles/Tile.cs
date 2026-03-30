@@ -120,29 +120,28 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             // the tile is not empty and story element is there
             if (storyElement != null)
             {
-                // confirm with the player that they want to grow this element
-                PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
+                // dont show again is NOT clicked. so the purchase ui comes up
+                // takes a response from the player
+                if (PurchaseManager.Instance.toggleOn == true)
                 {
-                    if (confirmed) // they clicked on the yes button and they have enough money
+                    // confirm with the player that they want to grow this element
+                    PurchaseManager.Instance.ConfirmTileGrowthPayment(storyElement, timerLimit, growthCost,confirmed =>
                     {
-                        if (MoneyManager.Instance.currentMoney >= growthCost )
+                        if (confirmed) // they clicked on the yes button  
                         {
-                            // we had enbough money, deduct, and set up the cook
-                            MoneyManager.Instance.deductMoney(growthCost);
-                            SetUpCook(spawnedElement);
+                            //process the purchase
+                            ProcessPurchase(spawnedElement);
                         }
-                        else // we didnt have enough money, tell the player
+                        else // they clicked no button
                         {
-                            PurchaseManager.Instance.DisplayInsufficientFunds();
+                            Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
                         }
-                    }
-                    else // they clicked no button
-                    {
-                        Debug.Log($"Player declined to grow {storyElement.GetElementType()}");
-                    }
-                });
-
-                 
+                    });
+                }
+                else // toggleOn == false, don't show again was clicked
+                {
+                    ProcessPurchase(spawnedElement);
+                } 
             }
         }
     }
@@ -306,4 +305,22 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             }
         }
     }
+
+    void ProcessPurchase(GameObject spawnedElement)
+    // attempt to process the purchase, if they have insufficient funds tell them
+    {
+        // first check if they have enough money
+        if (MoneyManager.Instance.currentMoney >= growthCost )
+        {
+            // we had enbough money, deduct, and set up the cook
+            MoneyManager.Instance.deductMoney(growthCost);
+            SetUpCook(spawnedElement);
+        }
+        // commenting out the insufficient funds bc we should have gotten rid of this
+        // else // we didnt have enough money, tell the player
+        // {
+        //     PurchaseManager.Instance.DisplayInsufficientFunds();
+        // }
+    }
+
 }
