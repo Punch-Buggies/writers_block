@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0024719238, y: 0.000061035156}
-  m_SizeDelta: {x: -0.005127, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5170414645159639800
 CanvasRenderer:
@@ -65,18 +65,25 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Will could see his mom\u2019s face clearly now through the fleshy window.
-    Her hair stuck out in odd directions, obvious dark circles hung under her eyes,
-    and her brows were drawn up creating deep lines on her forehead. Her hands met
-    Will\u2019s on the other side of the wall, pressed against him \u2014 Will relished
-    in the hint of warmth emanating from her,the first he\u2019s felt in days. Joyce
-    then began prodding with more and more strength against the petition. Digging
-    her fingernails into it, scraping and thrashing with increasing desperation.
-    Will echoed her frantic movements. Chunks of rust coloured gunk embedding under
-    his nails, grey slime slinking itself around his fingers. \n "
+  m_text: "\u201CFollow me,\u201D Steel Lightning moves his arm from Ryan\u2019s
+    shoulder to tug on the mouse\u2019s arm. Ryan shoots him a funny glance, but
+    follows Steel Lightning nonetheless.\r\nAt the claw machine, Steel Lightning
+    lets go of Ryan to stand in front of him and raises his arms presenter style.\r\n\u201CRyan\u2026
+    Wait, what's your last name?\u201C\r\n\u201CDust,\u201C Ryan laughed. Steel Lightning
+    liked his laugh. It was laughing and you had to pay special attention to hear
+    it.\r\n\u201CRyan dust: I, Steel Lightning, hereby present to you the formidable\u2026
+    claw machine!\u201C\r\nRyan brings his hands to his face, hiding the tint of
+    pink spreading over his face.\r\n\u201CI will now display my superior gaming
+    skills in a valiant battle against the wretched claw to bring forth to my princess
+    the\u2014 oh I don\u2019t fucking know, I\u2019m winning you one of those stupid
+    looking stuffed dark corners, okay?\u201C\r\nRyan dragged his hands down enough
+    that Steel Lightning could see the mouse\u2019s eyes.\r\n\u201CWhy am I a princess
+    now?\u201C Ryan tried to fake annoyance, but Steel Lightning caught the quirk
+    of a smile Ryan was attempting to hide under his hands.\r\n\u201CCause you\u2019re
+    pretty like one.\u201C\r\n\u201CYou\u2019re so embarrassing.\u201C Ryan groaned.\r\n\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0eab62885398d4d4088a1f61c6d6f0c7, type: 2}
-  m_sharedMaterial: {fileID: 3420801969372598241, guid: 0eab62885398d4d4088a1f61c6d6f0c7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d44668766e298a94f977300087e82237, type: 2}
+  m_sharedMaterial: {fileID: -1582789494846264723, guid: d44668766e298a94f977300087e82237, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -100,10 +107,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54
+  m_fontSize: 32
   m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -115,7 +122,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 60
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -139,7 +146,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 50, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -206,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9215687, g: 0.81568635, b: 0.6509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -569,7 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9215687, g: 0.81568635, b: 0.6509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -617,10 +624,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 17775648480755625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0026321, y: 0.000030518}
-  m_SizeDelta: {x: 694.3, y: 1059.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5093515018591370541
 CanvasRenderer:
@@ -650,10 +657,25 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\u201CFollow me,\u201D Steel Lightning moves his arm from Ryan\u2019s
+    shoulder to tug on the mouse\u2019s arm. Ryan shoots him a funny glance, but
+    follows Steel Lightning nonetheless.\r\nAt the claw machine, Steel Lightning
+    lets go of Ryan to stand in front of him and raises his arms presenter style.\r\n\u201CRyan\u2026
+    Wait, what's your last name?\u201C\r\n\u201CDust,\u201C Ryan laughed. Steel Lightning
+    liked his laugh. It was laughing and you had to pay special attention to hear
+    it.\r\n\u201CRyan dust: I, Steel Lightning, hereby present to you the formidable\u2026
+    claw machine!\u201C\r\nRyan brings his hands to his face, hiding the tint of
+    pink spreading over his face.\r\n\u201CI will now display my superior gaming
+    skills in a valiant battle against the wretched claw to bring forth to my princess
+    the\u2014 oh I don\u2019t fucking know, I\u2019m winning you one of those stupid
+    looking stuffed dark corners, okay?\u201C\r\nRyan dragged his hands down enough
+    that Steel Lightning could see the mouse\u2019s eyes.\r\n\u201CWhy am I a princess
+    now?\u201C Ryan tried to fake annoyance, but Steel Lightning caught the quirk
+    of a smile Ryan was attempting to hide under his hands.\r\n\u201CCause you\u2019re
+    pretty like one.\u201C\r\n\u201CYou\u2019re so embarrassing.\u201C Ryan groaned.\r\n\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0eab62885398d4d4088a1f61c6d6f0c7, type: 2}
-  m_sharedMaterial: {fileID: 3420801969372598241, guid: 0eab62885398d4d4088a1f61c6d6f0c7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d44668766e298a94f977300087e82237, type: 2}
+  m_sharedMaterial: {fileID: -1582789494846264723, guid: d44668766e298a94f977300087e82237, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -681,8 +703,8 @@ MonoBehaviour:
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 30
+  m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -692,7 +714,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 60
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -716,7 +738,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 82.36215, y: 150.18954, z: 82.36212, w: 130.81042}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -758,7 +780,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -100}
+  m_SizeDelta: {x: -60, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &126661966998028138
 CanvasRenderer:
@@ -834,7 +856,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -100}
+  m_SizeDelta: {x: -59.999996, y: -99.999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2714226426267871530
 CanvasRenderer:

@@ -368,30 +368,6 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("adj3", WordType.Adjective)
             }, "Slice-of-Life")
         });
-        templates.Add("Paranormal", new List<BookBlurbTemplate>
-        {
-            new BookBlurbTemplate(
-                "{mc1} clicked {their1} flashlight on as {mc2} and {them1} descended into the house’s {main-place}. Each step creaked and groaned under their weight. The light of {their1} flashlight caught on specks of dust and {thing-plural} floating listlessly from the old wooden rafters, and a lithe dangling {thing1} stopped {mc1} in {their1} path as it lowered itself into view. \n“Careful, I think that kind bites,” {mc2}’s {adj1} voice tickled {mc1}’s ear from behind.\n“A common house {thing1} doesn’t bite,” {mc1} kept {their1} gaze fixed on the {thing1} nonetheless, “You’re just trying to scare me.”\n“Boo!” {mc2}’s hands came up on {mc1}’s shoulders, jostling {them1}.\n{mc1} brushed {them2} off, and continued down the stairs dodging the {thing1}. {they1} waited for the {adj2} sound of {mc2}’s steps behind {them1}. Silence.\n“{mc2}?”\nA beat passed. {mc1} gripped {their1} flashlight tighter. {they1} turned, slowly. \n{mc2} stood rigid - still halfway down the stairs - eyes glassy and unfocused.\n{mc1} sighed, “{mc2} this isn’t funny.”\n{mc2} did not move. As {mc1} watched {them2}, {they1} realized with growing unease that {mc2} was not blinking. \nA coldness fell over the back of {mc1}’s neck, sparking goosebumps, and slid down {their1} spine. \nBefore {mc1} could react, {mc2}’s body flung upwards hitting the ceiling with a heavy thud. Dust puffed out from the point of impact in a cloud. {mc1} was paralyzed in fear as {they1} watched {mc2}’s body - now fully flush with the {main-place} ceiling - drain of colour.",
-                new List<TemplateSlot>
-                {
-                    new TemplateSlot("mc1", WordType.Name, parentId:"character"),
-                    new TemplateSlot("they1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Subject),
-                    new TemplateSlot("them1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
-                    new TemplateSlot("their1", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
-                    new TemplateSlot("person2", WordType.Person),
-                    new TemplateSlot("mc2", WordType.Name, parentId:"person2"),
-                    new TemplateSlot("they2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Subject),
-                    new TemplateSlot("them2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.Object),
-                    new TemplateSlot("their2", WordType.Pronoun, parentId:"person2", conjugation:Conjugation.PossessiveAdj),
-                    new TemplateSlot("main-place", WordType.Place),
-                    new TemplateSlot("thing-plural", WordType.Thing, plural:true),
-                    new TemplateSlot("thing1", WordType.Thing),
-                    new TemplateSlot("adj1", WordType.Adjective),
-                    new TemplateSlot("adj2", WordType.Adjective)
-                },
-                "Horror"
-            )
-        });
         templates.Add("Fantasy", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
@@ -484,7 +460,7 @@ public class BookBlurbSupplier : MonoBehaviour
                 },"Horror"
             ),
             new BookBlurbTemplate(
-                "{mc1} clicked {their1} flashlight on as {mc2} and {them1} descended into the house’s {main-place}. Each step creaked and groaned under their weight. The light of {their1} flashlight caught on specks of dust and {thing-plural} floating listlessly from the old wooden rafters, and a lithe dangling {thing1} stopped {mc1} in {their1} path as it lowered itself into view. \n“Careful, I think that kind bites,” {mc2}’s {adj1} voice tickled {mc1}’s ear from behind.\n“A common house {thing1} doesn’t bite,” {mc1} kept {their1} gaze fixed on the {thing1} nonetheless, “You’re just trying to scare me.”\n“Boo!” {mc2}’s hands came up on {mc1}’s shoulders, jostling {them1}.\n{mc1} brushed {them2} off, and continued down the stairs dodging the {thing1}. {they1} waited for the {adj2} sound of {mc2}’s steps behind {them1}. Silence.\n“{mc2}?”\nA beat passed. {mc1} gripped {their1} flashlight tighter. {they1} turned, slowly. \n{mc2} stood rigid - still halfway down the stairs - eyes glassy and unfocused.\n{mc1} sighed, “{mc2} this isn’t funny.”\n{mc2} did not move. As {mc1} watched {them2}, {they1} realized with growing unease that {mc2} was not blinking. \nA coldness fell over the back of {mc1}’s neck, sparking goosebumps, and slid down {their1} spine. \nBefore {mc1} could react, {mc2}’s body flung upwards hitting the ceiling with a heavy thud. Dust puffed out from the point of impact in a cloud. {mc1} was paralyzed in fear as {they1} watched {mc2}’s body - now fully flush with the {main-place} ceiling - drain of colour.",
+                "{mc1} clicked {their1} flashlight on as {mc2} and {them1} descended into the house’s {main-place}. Each step creaked and groaned under their weight. The light of {their1} flashlight caught on specks of dust and {thing-plural} floating listlessly from the old wooden rafters, and a lithe dangling {thing1} stopped {mc1} in {their1} path as it lowered itself into view. \n“Careful, I think that kind bites,” {mc2}’s {adj1} voice tickled {mc1}’s ear from behind.\n“A common house {thing1} doesn’t bite,” {mc1} kept {their1} gaze fixed on the {thing1} nonetheless, “You’re just trying to scare me.”\n“Boo!” {mc2}’s hands came up on {mc1}’s shoulders, jostling {them1}.\n{mc1} brushed {them2} off, and continued down the stairs dodging the {thing1}. {they1} waited for the {adj2} sound of {mc2}’s steps behind {them1}. Silence.\n“{mc2}?”\nA beat passed. {mc1} gripped {their1} flashlight tighter. {they1} turned, slowly. \n{mc2} stood rigid - still halfway down the stairs - eyes glassy and unfocused.\n{mc1} sighed, “{mc2} this isn’t funny.”\n{mc2} did not move. As {mc1} watched {them2}, {they1} realized with growing unease that {mc2} was not blinking.",
                 new List<TemplateSlot>
                 {
                     new TemplateSlot("mc1", WordType.Name, parentId:"character"),
