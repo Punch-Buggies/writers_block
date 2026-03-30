@@ -12,7 +12,7 @@ using System.Collections;
 public class Publish : MonoBehaviour
 {
     [SerializeField] BestSeller bestSeller;
-    [SerializeField] int publishCounter = 0;
+    [SerializeField] public int publishCounter = 0;
     [SerializeField] BookInsideSpawner spawner;
     PassiveIncomeManager passiveIncomeManager;
     [SerializeField] Image bookshelfImage;
@@ -21,6 +21,8 @@ public class Publish : MonoBehaviour
 
     Color32 flashColor = new Color32(197, 120, 83, 255);
     Color originalColor = Color.white;
+    
+    Color publishBorderColor;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
@@ -40,58 +42,47 @@ public class Publish : MonoBehaviour
         
         publishedTiles = new List<GameObject>();   
     }
-    // void Start()
-    // {
-    //     if (bookshelfImage != null)
-    //     {
-    //         originalColor = bookshelfImage.color;
-    //     }
-    // }
+    void Start()
+    {
+        if (publishButton != null)
+        {
+            publishBorderColor = publishButton.color;
+        }
+    }
 
     public void PublishButtonClicked()
-    {
-        publishUIButton.interactable = false;
-        publishButton.sprite = publishNotReadyButtonImage;
+    {        
+        // toggle info is handled in the publish highlight script
+        // this is purely for publishing
         if(publishCounter >= 3)
         {
             Debug.Log("element count before full pub" + bookStoryElementDict.Count);
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
         }
-        else if (PurchaseManager.Instance.toggleOnInfo == true)
+        // switch back to publish not ready border sprite
+        if (publishButton.sprite != publishNotReadyButtonImage)
         {
-            AudioManager.Instance.PlaySFX("click");
-            // display info on publish button
-            string text = "This is the publish button, when all publish zones have a tile, this button will write your story. Find all your published stories in the bookshelf.";
-            PurchaseManager.Instance.DisplayTileInfo(text);
+            publishButton.sprite = publishNotReadyButtonImage;
+            // set to right color
+            publishButton.color = publishBorderColor;
         }
-
 
     }
     void Update()
     {
-        // flash the dark bg for the publish button if something can be publihsed
+        // flash the publish ready sprite if something can be publihsed
         if (publishCounter == 3)
         {
-        // mAGS FIX THIS??
-        // FAIAZ SWAPS THE SPRITES OUT, KEEP THE HIGHLIGHT IN THE BACK
-        //     float t = Mathf.PingPong(Time.time * 1f, 1f);
-
-        //     Color c = darkBGPublish.color;
-        //     // making it pulse by changing opacity
-        //     c.a = Mathf.Lerp(0f, 1f, t);
-        //     darkBGPublish.color = c;
-        //     // show the dark bg that is "pulsing"
-        //     darkBGPublish.gameObject.SetActive(true);
-        // }
-        // else
-        // {
-        //     // turn it off
-        //     darkBGPublish.gameObject.SetActive(false);
+            // switch the button sprite
             publishButton.sprite = publishReadyButtonImage;
-            publishUIButton.interactable = true;
-            float t = Mathf.PingPong(Time.time * 1.5f, 1f);
-            publishButton.color = Color.Lerp(originalColor, flashColor, t);
+            // publishUIButton.interactable = true;
+            float t = Mathf.PingPong(Time.time * 1f, 1f);
+            // change the sprite color to the dark bg color
+            Color c = darkBGPublish.color;
+            // making it pulse by changing opacity
+            c.a = Mathf.Lerp(0f, 1f, t);
+            publishButton.color = c;
         }
     }
 
@@ -217,6 +208,8 @@ public class Publish : MonoBehaviour
     }
 
     private IEnumerator Flash(Image objectToFlash)
+    // i tried to make this modular for the pbulish button and bookshelf but it was kinda hard
+    // so its really just for the bookshelf
     {
         int flashCount = 3;
         float flashDuration = 0.4f; 
@@ -228,7 +221,7 @@ public class Publish : MonoBehaviour
             yield return new WaitForSeconds(flashDuration);
 
             // return to original color
-            objectToFlash.color = originalColor;
+            objectToFlash.color = originalColor; // orignal color is white, this is for the bookshelf
             yield return new WaitForSeconds(flashDuration);
         }
     }

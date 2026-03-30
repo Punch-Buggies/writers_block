@@ -3072,6 +3072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406926096}
   - component: {fileID: 406926099}
+  - component: {fileID: 406926101}
   - component: {fileID: 406926097}
   - component: {fileID: 406926100}
   m_Layer: 5
@@ -3122,11 +3123,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8117647, g: 0.8117647, b: 0.8117647, a: 1}
-    m_HighlightedColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
-    m_PressedColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.8396226, g: 0.70682514, b: 0.629717, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3141,7 +3142,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 406926100}
+  m_TargetGraphic: {fileID: 956659544}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3178,7 +3179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3195,6 +3196,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &406926101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406926095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e2ed32e1c5143efaa846b30245fcf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PublishHighlight
+  darkBG: {fileID: 956659543}
 --- !u!1 &408513255
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,7 +4512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354129640107362141, guid: 106bdc15e94c6ec4ab6268c264c85055, type: 3}
       propertyPath: m_fontSize
-      value: 23.55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8354129640107362141, guid: 106bdc15e94c6ec4ab6268c264c85055, type: 3}
       propertyPath: m_fontAsset
@@ -5973,7 +5987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438887944018864309, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
       propertyPath: m_fontSize
-      value: 23.55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5438887944018864309, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
       propertyPath: m_fontAsset
@@ -6866,15 +6880,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.77254903, g: 0.47058824, b: 0.3254902, a: 1}
+  m_Color: {r: 1, g: 0.6627451, b: 0.39215687, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1302723820812287101, guid: db8ce2282afe2384192cbc75d697d4d3, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7966,8 +7980,9 @@ MonoBehaviour:
   publishCounter: 0
   spawner: {fileID: 22034390}
   bookshelfImage: {fileID: 2066524599}
-  publishButton: {fileID: 406926098}
-  publishReadyButtonImage: {fileID: -1110307268242722749, guid: cf869e6c6650548468a0b89c42b064d1, type: 3}
+  publishButton: {fileID: 406926100}
+  darkBGPublish: {fileID: 956659544}
+  publishReadyButtonImage: {fileID: 1302723820812287101, guid: db8ce2282afe2384192cbc75d697d4d3, type: 3}
   publishNotReadyButtonImage: {fileID: -7502676798654932297, guid: 001f300d61618a04db9e14401325a61f, type: 3}
   publishUIButton: {fileID: 406926097}
 --- !u!1 &1145649111 stripped
@@ -10656,7 +10671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6365168321212242682, guid: f3d80da5ca630474a83d6cb4988e4cb1, type: 3}
       propertyPath: m_fontSize
-      value: 23.55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6365168321212242682, guid: f3d80da5ca630474a83d6cb4988e4cb1, type: 3}
       propertyPath: m_fontAsset
@@ -15441,7 +15456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6365168321212242682, guid: f3d80da5ca630474a83d6cb4988e4cb1, type: 3}
       propertyPath: m_fontSize
-      value: 23.55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6365168321212242682, guid: f3d80da5ca630474a83d6cb4988e4cb1, type: 3}
       propertyPath: m_fontAsset
@@ -15662,7 +15677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8354129640107362141, guid: 106bdc15e94c6ec4ab6268c264c85055, type: 3}
       propertyPath: m_fontSize
-      value: 23.55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8354129640107362141, guid: 106bdc15e94c6ec4ab6268c264c85055, type: 3}
       propertyPath: m_fontAsset
@@ -15954,7 +15969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5438887944018864309, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
       propertyPath: m_fontSize
-      value: 23.55
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5438887944018864309, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
       propertyPath: m_fontAsset
