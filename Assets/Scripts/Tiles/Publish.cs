@@ -24,6 +24,12 @@ public class Publish : MonoBehaviour
 
     List<GameObject> publishedTiles;
     int bestSellerMultiplier;
+
+
+    public Sprite publishReadyButtonImage;
+    public Sprite publishNotReadyButtonImage;
+
+    public Button publishUIButton;
     void Awake()
     {
         bookStoryElementDict = new Dictionary<string, string>();
@@ -42,6 +48,8 @@ public class Publish : MonoBehaviour
 
     public void PublishButtonClicked()
     {
+        publishUIButton.interactable = false;
+        publishButton.sprite = publishNotReadyButtonImage;
         if(publishCounter >= 3)
         {
             Debug.Log("element count before full pub" + bookStoryElementDict.Count);
@@ -63,6 +71,8 @@ public class Publish : MonoBehaviour
         // flash the publish button if something can be publihsed
         if(publishCounter == 3)
         {
+            publishButton.sprite = publishReadyButtonImage;
+            publishUIButton.interactable = true;
             float t = Mathf.PingPong(Time.time * 1.5f, 1f);
             publishButton.color = Color.Lerp(originalColor, flashColor, t);
         }
