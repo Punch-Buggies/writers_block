@@ -34,6 +34,9 @@ public class Publish : MonoBehaviour
     public Sprite publishNotReadyButtonImage;
 
     public Button publishUIButton;
+
+
+    public ParticleSystem[] particleSystem;
     void Awake()
     {
         bookStoryElementDict = new Dictionary<string, string>();
@@ -48,6 +51,11 @@ public class Publish : MonoBehaviour
         {
             publishBorderColor = publishButton.color;
         }
+
+        foreach(ParticleSystem ps in particleSystem)
+        {
+            ps.Stop();
+        }
     }
 
     public void PublishButtonClicked()
@@ -59,6 +67,11 @@ public class Publish : MonoBehaviour
             Debug.Log("element count before full pub" + bookStoryElementDict.Count);
             FullPublish();
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
+
+            foreach(ParticleSystem ps in particleSystem)
+            {
+                ps.Play();
+            }
         }
         // switch back to publish not ready border sprite
         if (publishButton.sprite != publishNotReadyButtonImage)

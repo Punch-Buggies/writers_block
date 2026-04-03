@@ -14,7 +14,7 @@ public class PassiveIncomeManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI passiveIncomeText;
     [SerializeField] float verticalFloatDistance = 60f; 
     // this change how much the text moves up(postive number) or down(negative number)
-    [SerializeField] float floatDuration = 1.2f;
+    [SerializeField] float floatDuration;
     float passiveTimer = 3f;
     double passiveIncomeAmount = 20f;
     Vector2 originalTextPos;
