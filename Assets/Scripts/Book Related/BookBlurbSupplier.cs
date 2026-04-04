@@ -205,7 +205,7 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("a1", WordType.IndefiniteArticle, parentId:"adj1")
             },
             "Romance"),
-            new BookBlurbTemplate("The pair made their way through the {place}, admiring the {thing1} as they passed. {mc_a} struggled to look away from {mc_b}. {they_b} {was} just so pretty, it made {them_a} a little crazy, {mc_a} thought. {they_a} really wanted to touch {mc_b}’s {adj1} chestnut hair. And when {they_a} stood just close enough that {mc_b} had to look up at {mc_a}--  god {their_b} eyes. {mc_a} lost {their_a} train of thought every time {mc_b} looked up at {them_a} with those {adj} doe eyes. That’s when {they_a}’d start spewing nonsense and making a fool of {them_a}self; something {they_a} had a natural gift for.",
+            new BookBlurbTemplate("The pair made their way through the {place}, admiring the {thing1} as they passed. {mc_a} struggled to look away from {mc_b}. {they_b} {was} just so pretty, it made {them_a} a little crazy, {mc_a} thought. {they_a} really wanted to touch {mc_b}’s {adj1} chestnut hair. And when {they_a} stood just close enough that {mc_b} had to look up at {mc_a}--  god {their_b} eyes. {mc_a} lost {their_a} train of thought every time {mc_b} looked up at {them_a} with those {adj} doe eyes. That’s when {they_a}’d start spewing nonsense and making a fool of {them_a}self; something {they_a} had a natural gift for. \n{mc_a} reached out to {mc_b}, tugging {them_b} towards {them_a} by the wrist gently. {their_a} mouth felt dry.\n“{mc_b},” {mc_a} said.\n“Hm?”\n“You look- I like- or, you look {adj2}. Good. This is nice. I-” {mc_a} was interrupted by a soft warmth against {their_a} lips. \n{mc_b} leaned back quickly, “Okay?”\n{mc_a} didn’t think {they_a} were capable of stringing words together, so {they_a} hoped eager nodding would get the message across.\n{mc_b} giggled, lips brushing against {mc_a}’s lips. {mc_a} leaned in, catching {mc_b}’s bottom lip between {their_a}’s. ",
             new List<TemplateSlot>
             {
                 new TemplateSlot("mc_a", WordType.Name, parentId:"character"),
@@ -221,6 +221,7 @@ public class BookBlurbSupplier : MonoBehaviour
               new TemplateSlot("thing1", WordType.Thing, plural:true),
               new TemplateSlot("adj1", WordType.Adjective),
               new TemplateSlot("adj", WordType.Adjective),
+              new TemplateSlot("adj2", WordType.Adjective),
               new TemplateSlot("was", WordType.Verb, parentId:"person_b")
             },"Romance")
         });
@@ -568,9 +569,9 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         
         
-        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid", "Loren", "Avery", "Stardust", "Kitty", "Caitlyn", "Meghan", "Maggie", "Maryam", "Renaissa", "Charlotte", "Ingrid", "Mary", "Faith", "Precious", "Sophia", "Vivian", "Sofia", "Anita", "Gloria"});
-        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier", "Alex", "Steel Lightning", "Faiaz", "Brian", "William", "Mitch", "Lucas", "Ryan", "Todd", "Richard", "Bartemius", "Reggie", "James", "Temi", "Oscar", "Nico", "Zafir", "Rafael", "Lee"});
-        names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning" });
+        names.Add(Gender.feminine, new List<string> { "Mary", "Lottie", "Amelia", "Pauline", "Molly", "Harriet", "Leah", "Astrid", "Loren", "Avery", "Stardust", "Kitty", "Caitlyn", "Meghan", "Maggie", "Maryam", "Renaissa", "Charlotte", "Ingrid", "Mary", "Faith", "Precious", "Sophia", "Vivian", "Sofia", "Anita", "Gloria","Lily", "Mackenzie", "Michelle", "Willow", "Sue", "Sadie", "Katie", "Sabrina", "Marlene", "Dorcas", "Kaiya"});
+        names.Add(Gender.masculine, new List<string> { "Bob", "Reggie", "Reginald", "Barty", "John", "Maverick", "Nicholas", "Xavier", "Alex", "Steel Lightning", "Faiaz", "Brian", "William", "Mitch", "Lucas", "Ryan", "Todd", "Richard", "Bartemius", "Reggie", "James", "Temi", "Oscar", "Zafir", "Rafael", "Lee","Sam","Ethan", "Matthew", "Dave", "Mike", "Will", "Richie", "Finn", "Hugh", "Walter", "Nico", "Peter", "Evan", "Keith Sheppard", "Jake", "Cohen", "Brayden"});
+        names.Add(Gender.nonbinary, new List<string> { "Alex", "Loren", "Avery", "Stardust", "Steel Lightning", "Selena", "Dylan", "Ash", "Aspen", "River", "Wren", "Sage", "Bailey", "Charlie", "Devin", "Emerson", "Emery", "Jamie", "Ridley", "Atlas", "Blaize", "Harley", "Onyx", "Sloan", "Callisto", "Orion", "Max", "Brain" });
         Debug.Log("I have populated all the data i Hope");
     }
 // end of BookBLurnSupplier Class
