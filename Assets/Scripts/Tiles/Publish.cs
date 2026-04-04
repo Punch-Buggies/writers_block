@@ -103,6 +103,9 @@ public class Publish : MonoBehaviour
             text.color = Color.white;
             // turn on text glow
             Material mat = text.fontMaterial;
+            // make glow glow
+            float glow = Mathf.PingPong(Time.time * 1f, 1.2f);
+            mat.SetFloat("_GlowPower", glow);
             mat.EnableKeyword("GLOW_ON");
         }
     }
