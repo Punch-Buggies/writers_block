@@ -18,6 +18,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     [SerializeField] string tileType;
     [SerializeField] TextMeshProUGUI unlockText;
     [SerializeField] private TMP_FontAsset font;
+    [SerializeField] Image icon;
 
     Slider progressBarSlider;
     StoryElementSupplier storyElementSupplier;
@@ -254,6 +255,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // show the price if its locked, show icon, if its not
         if (!unlocked)
         {
             // get unlock cost
@@ -263,13 +265,16 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         }
         else
         {
-            unlockText.text = tileType;
+            // its unlocked, show icon as well
+            unlockText.text = "";
+            icon.gameObject.SetActive(true);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         unlockText.text = "";
+        icon.gameObject.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
