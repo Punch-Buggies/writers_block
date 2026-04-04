@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.6323395, y: 2.1126022}
+  m_AnchoredPosition: {x: 2.6323547, y: 2.1126022}
   m_SizeDelta: {x: 9, y: 3.1299973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49286385
@@ -324,8 +324,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282805899
-  m_fontColor: {r: 0.8470589, g: 0.7843138, b: 0.75294125, a: 1}
+    rgba: 4278787192
+  m_fontColor: {r: 0.47058824, g: 0.10980392, b: 0.03529412, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7759,7 +7759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5647059, g: 0.36078432, b: 0.21176471, a: 0.56078434}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7801,7 +7801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.32}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -574.88, y: 23.24}
+  m_AnchoredPosition: {x: -590.2, y: 14.7}
   m_SizeDelta: {x: 319.84, y: 95.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &962929427
