@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: abe57d20657d78c47bae2a3cf5ce6af6
+guid: a926ef5d98af1ae4ea82d6430ee5b52e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6931215456154040989
-    second: grown-tile_0
+      213: -7443241554651721938
+    second: punch-buggies-logo_0
+  - first:
+      213: 554691085546735864
+    second: punch-buggies-logo_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grown-tile_0
+      name: punch-buggies-logo_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 49
-        width: 1850
-        height: 989
+        x: 0
+        y: 22
+        width: 370
+        height: 190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 365cd3a04406fcf90800000000000000
-      internalID: -6931215456154040989
+      spriteID: e2fce85fd3b44b890800000000000000
+      internalID: -7443241554651721938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: punch-buggies-logo_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 21
+        width: 84
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f8c61a7a98a2b700800000000000000
+      internalID: 554691085546735864
       vertices: []
       indices: 
       edges: []
@@ -161,7 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      grown-tile_0: -6931215456154040989
+      punch-buggies-logo_0: -7443241554651721938
+      punch-buggies-logo_1: 554691085546735864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

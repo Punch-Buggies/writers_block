@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2deaf2234a69a324b8e4f0236c825389
+guid: fa6b8b56f5fc5e04faae507f2106380d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3618592806908353621
-    second: Team Logo_0
+      213: 3843231544584785974
+    second: book_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Team Logo_0
+      name: book_0
       rect:
         serializedVersion: 2
-        x: 720
-        y: 660
-        width: 3013
-        height: 1539
+        x: 80
+        y: 36
+        width: 1718
+        height: 1003
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 55c5e8a5cf2d73230800000000000000
-      internalID: 3618592806908353621
+      spriteID: 6305d8c3ab6e55530800000000000000
+      internalID: 3843231544584785974
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Team Logo_0: 3618592806908353621
+      book_0: 3843231544584785974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
