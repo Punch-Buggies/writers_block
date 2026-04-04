@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class Publish : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Publish : MonoBehaviour
     Color originalColor = Color.white;
     
     Color publishBorderColor;
+    Color publishTextColor;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
@@ -32,7 +34,6 @@ public class Publish : MonoBehaviour
 
     public Sprite publishReadyButtonImage;
     public Sprite publishNotReadyButtonImage;
-
     public Button publishUIButton;
 
 
@@ -50,6 +51,7 @@ public class Publish : MonoBehaviour
         if (publishButton != null)
         {
             publishBorderColor = publishButton.color;
+            publishTextColor = publishButton.GetComponentInChildren<TextMeshProUGUI>().color;
         }
 
         foreach(ParticleSystem ps in particleSystem)
@@ -79,6 +81,11 @@ public class Publish : MonoBehaviour
             publishButton.sprite = publishNotReadyButtonImage;
             // set to right color
             publishButton.color = publishBorderColor;
+            TextMeshProUGUI text = publishButton.GetComponentInChildren<TextMeshProUGUI>();
+            text.color = publishTextColor;
+            // turn on text glow
+            Material mat = text.fontMaterial;
+            mat.DisableKeyword("GLOW_ON");
         }
 
     }
@@ -89,13 +96,14 @@ public class Publish : MonoBehaviour
         {
             // switch the button sprite
             publishButton.sprite = publishReadyButtonImage;
-            // publishUIButton.interactable = true;
-            float t = Mathf.PingPong(Time.time * 1f, 1f);
-            // change the sprite color to the dark bg color
-            Color c = darkBGPublish.color;
-            // making it pulse by changing opacity
-            c.a = Mathf.Lerp(0f, 1f, t);
-            publishButton.color = c;
+            // make it image red
+            publishButton.color = Color.red;
+            // make the text white
+            TextMeshProUGUI text = publishButton.GetComponentInChildren<TextMeshProUGUI>();
+            text.color = Color.white;
+            // turn on text glow
+            Material mat = text.fontMaterial;
+            mat.EnableKeyword("GLOW_ON");
         }
     }
 
