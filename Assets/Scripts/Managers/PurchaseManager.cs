@@ -129,6 +129,8 @@ public class PurchaseManager : MonoBehaviour
         DimUI(mainUIGroup);
 
         // 3. Display the UI
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
         PurchaseUIView.SetActive(true);
 
         // 4. Respond to their decision
@@ -167,6 +169,8 @@ public class PurchaseManager : MonoBehaviour
         okButton.gameObject.SetActive(true);
 
         // 4. turn on view
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
         PurchaseUIView.SetActive(true);
     }
 
