@@ -29,6 +29,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     Slider progressBarSlider;
     float timer = 0f;
     [SerializeField] float timerLimit = 10f;
+    [SerializeField] Sprite growImage;
     
     [Header("Costs")]
     double unlockCost;
@@ -166,7 +167,9 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         if (startCooking)
         {
-            CookingAndTimering();
+            // change the spawned(aka growing) element to the grow image
+            spawnedElement.GetComponent<Image>().sprite = growImage;
+            CookingAndTimering(); // will make it look like its growing in this function
         }
     }
 
@@ -177,6 +180,16 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         {
             timer += Time.deltaTime;
             progressBarSlider.value = timer;     
+
+            // make the grow border become more opaque on the growing element
+            Image spawnedImage = spawnedElement.GetComponent<Image>();
+            // calculate alpha
+            float alpha = timer/timerLimit;
+            // set the color of the image to be the same, only change alpha
+            spawnedImage.color = new Color(spawnedImage.color.r, spawnedImage.color.g, spawnedImage.color.b, alpha);
+
+
+
 
             // disable drag
             DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();   
