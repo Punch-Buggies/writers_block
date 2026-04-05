@@ -7,49 +7,49 @@ using TMPro;
 public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
-    [SerializeField] GameObject nextTileToUnlock;
-    [SerializeField] GameObject progressBar;
-    [SerializeField] GameObject publishableTile;
-
+    [Header("Prefabs for publishable tiles")]
     [SerializeField] GameObject genrePublishableTile;
     [SerializeField] GameObject settingsPublishableTile;
     [SerializeField] GameObject characterPublishableTile;
 
+    [Header("Tile Info")]
     [SerializeField] string tileType;
+    [SerializeField] Image icon; // icon to show on pointer in
+    [SerializeField] bool unlocked = false;
+    [SerializeField] GameObject nextTileToUnlock;
+
+    Image image; // image on the tile object
+
+    [Header("Text")]
     [SerializeField] TextMeshProUGUI unlockText;
     [SerializeField] private TMP_FontAsset font;
-    [SerializeField] Image icon;
 
+    [Header("Progress Bar/Timer")]
+    [SerializeField] GameObject progressBar;
     Slider progressBarSlider;
-    StoryElementSupplier storyElementSupplier;
     float timer = 0f;
     [SerializeField] float timerLimit = 10f;
-
-    bool tileOccupied = false;
-
-
-    bool startCooking = false;
-    GameObject spawnedElement;
-    Image image;
-
-
+    
+    [Header("Costs")]
     double unlockCost;
     double growthCost;
-    [SerializeField] bool unlocked = false;
 
+    [Header("Colors")]
     Color genreLock = new Color32(101, 160, 189, 255);
     Color settingsLock = new Color32(61, 113, 55, 255);
     Color characterLock = new Color32(201, 188, 99, 255);
-
     Color genreUnlock = new Color32(62, 169, 244, 181);
     Color settingsUnlock = new Color32(61, 152, 64, 204);
     Color characterUnlock = new Color32(239, 246, 32, 192);
 
+    [Header("Cooking")]
     bool playGrowSound = true;
+    bool tileOccupied = false;
+    bool startCooking = false;
+    GameObject spawnedElement;
 
     void Awake()
     {
-        storyElementSupplier = FindAnyObjectByType<StoryElementSupplier>();
         unlockText.text = "";
         progressBar.SetActive(false);
         progressBarSlider = progressBar.GetComponent<Slider>();
