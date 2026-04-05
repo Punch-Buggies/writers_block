@@ -68,6 +68,13 @@ public class Publish : MonoBehaviour
         {
             Debug.Log("element count before full pub" + bookStoryElementDict.Count);
             FullPublish();
+            // check if this is the first book you've published
+            if (BookshelfManager.Instance.getBookCount() == 1)
+            {
+                // display go check out the bookshelf, if its the first time!!
+                PurchaseManager.Instance.DisplayNoBooksPublished("first book"); // poorly labeled function name, its jsut the tutorial display
+
+            }
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
 
             foreach(ParticleSystem ps in particleSystem)
@@ -183,6 +190,8 @@ public class Publish : MonoBehaviour
         StartCoroutine(Flash(bookshelfImage));
         // everything should have reset clear the best seller highlight
         ClearBSMatch();
+
+
     }
 
     public void PublishStoryElement(string storyElement, string elementType)

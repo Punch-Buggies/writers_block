@@ -145,6 +145,7 @@ public class PurchaseManager : MonoBehaviour
     public void DisplayNoBooksPublished(string item)
     {
         // THIS IS FOR THE TUTORIAL, YOU CANNOT TURN THIS OFF BC THE PLAYER NEEDS TO KNOW
+        // this function/display is actually about the fact that you can't turn it off and it only gives you the okay option
         // 1. Dim MainUI
         DimMainUI();
 
@@ -152,6 +153,10 @@ public class PurchaseManager : MonoBehaviour
         if (item == "eraser")
         {
             uiText.text = "You cannot erase any thoughts until you have published 1 book.";
+        }
+        else if (item == "first book")
+        {
+            uiText.text = "Congratulations on publishing your first story! Click on the bookshelf to see the collection of stories you've written.";
         }
         else
         {
