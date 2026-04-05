@@ -158,6 +158,17 @@ public class PurchaseManager : MonoBehaviour
         {
             uiText.text = "Congratulations on publishing your first story! Click on the bookshelf to see the collection of stories you've written.";
         }
+        else if (item == "first bookshelf")
+        {
+            if (BookshelfManager.Instance.getBookCount() == 0)
+            {
+                uiText.text = $"This bookshelf will hold the collection of stories you write. When you've published your first book, click them to read your story.";
+            }
+            else
+            {
+                uiText.text = $"This bookshelf holds your collection of published stories. Click them to read.";   
+            }
+        }
         else
         {
             uiText.text = $"You cannot purchase a {item} until you have published 1 book.";
