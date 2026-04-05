@@ -3749,6 +3749,18 @@ MonoBehaviour:
           m_StringArgument: click
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1234548931}
+        m_TargetAssemblyTypeName: PurchaseManager, Assembly-CSharp
+        m_MethodName: UndimBookshelfUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &406926095
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,6 +4176,10 @@ PrefabInstance:
       propertyPath: unlocked
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: growImage
+      value: 
+      objectReference: {fileID: -6931215456154040989, guid: 9b0f3ee872d7cd749a61873d968fa2f3, type: 3}
     - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
       propertyPath: nextTileToUnlock
       value: 
@@ -5758,7 +5774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 629649228688007323, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1095.7999
+      value: -1095.7998
       objectReference: {fileID: 0}
     - target: {fileID: 629649228688007323, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6342,7 +6358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7188298426770871644, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_Size
-      value: 0.99999803
+      value: 0.99993914
       objectReference: {fileID: 0}
     - target: {fileID: 7188298426770871644, guid: fb22657116429455885c939b585f07ec, type: 3}
       propertyPath: m_Value
@@ -6454,13 +6470,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4917407115170175270, guid: fb22657116429455885c939b585f07ec, type: 3}
       insertIndex: 2
       addedObject: {fileID: 1456107433}
+    - targetCorrespondingSourceObject: {fileID: 4917407115170175270, guid: fb22657116429455885c939b585f07ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 851354891}
     - targetCorrespondingSourceObject: {fileID: 2390141618668449829, guid: fb22657116429455885c939b585f07ec, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1258566060}
     - targetCorrespondingSourceObject: {fileID: 2390141618668449829, guid: fb22657116429455885c939b585f07ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1984603075}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6239928577026314058, guid: fb22657116429455885c939b585f07ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 736872534}
   m_SourcePrefab: {fileID: 100100000, guid: fb22657116429455885c939b585f07ec, type: 3}
 --- !u!224 &736872524 stripped
 RectTransform:
@@ -6477,6 +6499,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4917407115170175270, guid: fb22657116429455885c939b585f07ec, type: 3}
   m_PrefabInstance: {fileID: 736872523}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &736872534
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736872525}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &742624595
 GameObject:
   m_ObjectHideFlags: 0
@@ -7026,6 +7060,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826547879}
   m_CullTransparentMesh: 1
+--- !u!1 &851354887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 851354891}
+  - component: {fileID: 851354890}
+  - component: {fileID: 851354889}
+  m_Layer: 5
+  m_Name: Dark Overlay (for tutorial text)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &851354889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851354887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.13207549, g: 0.07394212, b: 0.01059096, a: 0.49803922}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &851354890
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851354887}
+  m_CullTransparentMesh: 1
+--- !u!224 &851354891
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851354887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 736872526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -4.98999, y: 1123.8}
+  m_SizeDelta: {x: 140.29, y: 993.54}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &873381234 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6240060077041834556, guid: 30362b10dbadee144ac32c893d647d8f, type: 3}
@@ -9289,16 +9398,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PurchaseManager
   mainUIGroup: {fileID: 560014594}
+  bookshelfGroup: {fileID: 736872534}
+  bookshelfOverlay: {fileID: 851354887}
   PurchaseUIView: {fileID: 1747264242}
   uiText: {fileID: 1353476243}
   yesButton: {fileID: 1306448917}
   noButton: {fileID: 110146577}
   okButton: {fileID: 394324659}
+  dontShowAgain: {fileID: 1985340558}
   checkMarkPurchase: {fileID: 1761874768}
   boxClickPurchase: {fileID: 233639529}
   checkMarkInfo: {fileID: 408513258}
   boxClickInfo: {fileID: 1129008572}
-  dontShowAgain: {fileID: 1985340558}
   toggleOnPurchase: 1
   toggleOnInfo: 1
 --- !u!1001 &1236120486
