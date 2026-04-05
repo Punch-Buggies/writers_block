@@ -25,28 +25,62 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
 
     }
+    public void DisplayThoughtInfo(StoryElement storyElement)
+    {
+        // play sound
+        AudioManager.Instance.PlaySFX("shortPage");
+        string type = storyElement.GetStoryElement();
+        string value = storyElement.GetElementType();
+        // set a or an depening on first letter of value
+        string vowels = "aeiou";
+        if (vowels.Contains(value[0]))
+        {
+            // there is a vowel
+            value = "an "+ value;
+        }else
+        {
+            // there is no value
+            value = "a " + value;
+        }
+        // display info
+        string text = $"This is {value} {type} thought tile, you can grow this thought only in {type} grow tiles.";
+        PurchaseManager.Instance.DisplayTileInfo(text);
+    }
+    void DisplayEraserInfo()
+    {
+        if (BookshelfManager.Instance.getBookCount() == 0)
+        {
+            AudioManager.Instance.PlaySFX("click");
+            // Display You cannot erase
+            string item = "eraser";
+            PurchaseManager.Instance.DisplayNoBooksPublished(item);
+        }
+        // display erase info
+        else if (PurchaseManager.Instance.toggleOnInfo == true)
+        {
+            AudioManager.Instance.PlaySFX("click");
+            // if they HAVENT TOGGLED THE DISPLAY OFF
+            // display a information text saying what it does
+            string text = $"Drag over any thought in a grow tile to erase it. You cannot erase a thought while it is growing.";
+            PurchaseManager.Instance.DisplayTileInfo(text);
+        }
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
-        AudioManager.Instance.PlaySFX("shortPage");
-        // show an info display if the drggable item is also a story element AND check that toggleINFO is on
+        // this function deals with display the tile info for story elements or the eraser
+
+        // check if this is a story element or eraser, could also be a publishable tile technically but only check these two cases
         StoryElement storyElement = GetComponent<StoryElement>();
+        Eraser eraser = GetComponent<Eraser>();
+
+        // show an info display if the drggable item is also a story element AND check that toggleINFO is on
         if (storyElement != null && PurchaseManager.Instance.toggleOnInfo == true)
         {
-            string type = storyElement.GetStoryElement();
-            string value = storyElement.GetElementType();
-            // set a or an depening on first letter of value
-            string vowels = "aeiou";
-            if (vowels.Contains(value[0]))
-            {
-                // there is a vowel
-                value = "an "+ value;
-            }else
-            {
-                // there is no value
-                value = "a " + value;
-            }
-            string text = $"This is {value} {type} thought tile, you can grow this thought only in {type} grow tiles.";
-            PurchaseManager.Instance.DisplayTileInfo(text);
+            DisplayThoughtInfo(storyElement);
+        }
+        else if (eraser != null) // dont need to check toggle, thats done in displayeraser info
+        {
+            DisplayEraserInfo();
         }
     }
     public void OnBeginDrag(PointerEventData eventData)

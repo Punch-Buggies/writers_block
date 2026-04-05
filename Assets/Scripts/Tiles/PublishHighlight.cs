@@ -1,5 +1,6 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // this is literally just to highlight the publish button lmfao
@@ -18,6 +19,7 @@ public class PublishHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (PurchaseManager.Instance.toggleOnInfo == true)
         {
             darkBG.SetActive(true);
+            // GetComponent<Image>().enabled = false;
         }
 
     }
@@ -25,6 +27,8 @@ public class PublishHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         // if pointer leaves area, turn off dark bg
         darkBG.SetActive(false);
+        // GetComponent<Image>().enabled = true;
+
     }
     public void OnPointerClick(PointerEventData eventData)
     {

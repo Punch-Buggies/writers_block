@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class Publish : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Publish : MonoBehaviour
     Color originalColor = Color.white;
     
     Color publishBorderColor;
+    Color publishTextColor;
 
     Dictionary<string, string> bookStoryElementDict; // keeps track of what elements are sitting in the ui currently
 
@@ -32,7 +34,6 @@ public class Publish : MonoBehaviour
 
     public Sprite publishReadyButtonImage;
     public Sprite publishNotReadyButtonImage;
-
     public Button publishUIButton;
 
 
@@ -50,6 +51,7 @@ public class Publish : MonoBehaviour
         if (publishButton != null)
         {
             publishBorderColor = publishButton.color;
+            publishTextColor = publishButton.GetComponentInChildren<TextMeshProUGUI>().color;
         }
 
         foreach(ParticleSystem ps in particleSystem)
@@ -66,6 +68,13 @@ public class Publish : MonoBehaviour
         {
             Debug.Log("element count before full pub" + bookStoryElementDict.Count);
             FullPublish();
+            // check if this is the first book you've published
+            if (BookshelfManager.Instance.getBookCount() == 1)
+            {
+                // display go check out the bookshelf, if its the first time!!
+                PurchaseManager.Instance.DisplayNoBooksPublished("first book"); // poorly labeled function name, its jsut the tutorial display
+
+            }
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
 
             foreach(ParticleSystem ps in particleSystem)
@@ -79,6 +88,11 @@ public class Publish : MonoBehaviour
             publishButton.sprite = publishNotReadyButtonImage;
             // set to right color
             publishButton.color = publishBorderColor;
+            TextMeshProUGUI text = publishButton.GetComponentInChildren<TextMeshProUGUI>();
+            text.color = publishTextColor;
+            // turn off text glow
+            Material mat = text.fontMaterial;
+            mat.DisableKeyword("GLOW_ON");
         }
 
     }
@@ -89,13 +103,18 @@ public class Publish : MonoBehaviour
         {
             // switch the button sprite
             publishButton.sprite = publishReadyButtonImage;
-            // publishUIButton.interactable = true;
-            float t = Mathf.PingPong(Time.time * 1f, 1f);
-            // change the sprite color to the dark bg color
-            Color c = darkBGPublish.color;
-            // making it pulse by changing opacity
-            c.a = Mathf.Lerp(0f, 1f, t);
-            publishButton.color = c;
+            // make the image red
+            publishButton.color = Color.red;
+            // get the text 
+            TextMeshProUGUI text = publishButton.GetComponentInChildren<TextMeshProUGUI>();
+            // make the text white
+            text.color = Color.white;
+            // turn on text glow
+            Material mat = text.fontMaterial;
+            // make glow glow
+            float glow = Mathf.PingPong(Time.time * 1f, 1.2f); //pulse calculation
+            mat.SetFloat("_GlowPower", glow);
+            mat.EnableKeyword("GLOW_ON");
         }
     }
 
@@ -171,6 +190,8 @@ public class Publish : MonoBehaviour
         StartCoroutine(Flash(bookshelfImage));
         // everything should have reset clear the best seller highlight
         ClearBSMatch();
+
+
     }
 
     public void PublishStoryElement(string storyElement, string elementType)
