@@ -6562,7 +6562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 785943721}
   m_Layer: 5
-  m_Name: Eraser Location (can't be a child of the eraser))
+  m_Name: Eraser Location (dont change its position in the hierachy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
