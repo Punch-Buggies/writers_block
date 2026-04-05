@@ -149,7 +149,15 @@ public class PurchaseManager : MonoBehaviour
         DimMainUI();
 
         // 2. Popoulate text with insufficient funds message
-        uiText.text = $"You cannot purchase a {item} until you have published 1 book.";
+        if (item == "eraser")
+        {
+            uiText.text = "You cannot erase any thoughts until you have published 1 book.";
+        }
+        else
+        {
+            uiText.text = $"You cannot purchase a {item} until you have published 1 book.";
+        }
+       
 
         // 3.1 Remove yes and no buttons
         yesButton.gameObject.SetActive(false);
