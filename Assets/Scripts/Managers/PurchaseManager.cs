@@ -259,6 +259,9 @@ public class PurchaseManager : MonoBehaviour
         okButton.gameObject.SetActive(true);
 
         // 4. turn on view
+        // make sure view y position is set in the mainui
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
         PurchaseUIView.SetActive(true);
     }
 
