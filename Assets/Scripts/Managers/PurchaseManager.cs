@@ -15,8 +15,9 @@ public class PurchaseManager : MonoBehaviour
 
     [Header("Canvases")]
     [SerializeField] private CanvasGroup mainUIGroup;      // MainUI CanvasGroup
-    [SerializeField] private CanvasGroup bookshelfGroup;      // MainUI CanvasGroup
+    [SerializeField] private CanvasGroup bookshelfGroup;      // bookshelf/bookview CanvasGroup
     [SerializeField] private GameObject bookshelfOverlay;
+    [SerializeField] private CanvasGroup pauseGroup;      // pause menu CanvasGroup
 
     [Header("Purchase View")]
     [SerializeField] GameObject PurchaseUIView;
@@ -69,7 +70,7 @@ public class PurchaseManager : MonoBehaviour
     {
         if (UIGroup != null)
         {
-            if (UIGroup == mainUIGroup)
+            if (UIGroup != bookshelfGroup)
             {
                 UIGroup.alpha = 0.5f;
             }
@@ -87,6 +88,7 @@ public class PurchaseManager : MonoBehaviour
 
     public void UndimMainUI()
     {
+        // this is attached to the yes/no buttons
         if (mainUIGroup != null)
         {
             mainUIGroup.alpha = 1f;
@@ -103,6 +105,17 @@ public class PurchaseManager : MonoBehaviour
             bookshelfOverlay.SetActive(false);
             bookshelfGroup.interactable = true;
             bookshelfGroup.blocksRaycasts = true;
+        }   
+        return;
+    }
+    public void UndimPauseUI()
+    {
+        // this is attached to the yes/no buttons
+        if (pauseGroup != null)
+        {
+            pauseGroup.alpha = 1f;
+            pauseGroup.interactable = true;
+            pauseGroup.blocksRaycasts = true;
         }   
         return;
     }
@@ -137,6 +150,27 @@ public class PurchaseManager : MonoBehaviour
         onConfirm = response;
     }
 
+    public void ConfirmRestartGame(Action<bool> response)
+    {
+        uiText.text = "Are you sure you want to restart? You will lose all published books.";
+
+        // turn off all checkmarks, boxes, and dont show again
+        boxClickPurchase.gameObject.SetActive(false);
+        checkMarkPurchase.gameObject.SetActive(false);
+        boxClickInfo.gameObject.SetActive(false);
+        checkMarkInfo.gameObject.SetActive(false);
+        dontShowAgain.gameObject.SetActive(false);
+
+        DimUI(pauseGroup);
+
+        // make sure its in the pause menu
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -42.5f);
+
+        PurchaseUIView.SetActive(true);
+
+        onConfirm = response;
+    }
     private void Respond(bool confirmed)
     {   // this is called when either yes or no button is clicked
         AudioManager.Instance.PlaySFX("click");
