@@ -83,7 +83,7 @@ public class Publish : MonoBehaviour
             publishButton.color = publishBorderColor;
             TextMeshProUGUI text = publishButton.GetComponentInChildren<TextMeshProUGUI>();
             text.color = publishTextColor;
-            // turn on text glow
+            // turn off text glow
             Material mat = text.fontMaterial;
             mat.DisableKeyword("GLOW_ON");
         }
@@ -96,15 +96,16 @@ public class Publish : MonoBehaviour
         {
             // switch the button sprite
             publishButton.sprite = publishReadyButtonImage;
-            // make it image red
+            // make the image red
             publishButton.color = Color.red;
-            // make the text white
+            // get the text 
             TextMeshProUGUI text = publishButton.GetComponentInChildren<TextMeshProUGUI>();
+            // make the text white
             text.color = Color.white;
             // turn on text glow
             Material mat = text.fontMaterial;
             // make glow glow
-            float glow = Mathf.PingPong(Time.time * 1f, 1.2f);
+            float glow = Mathf.PingPong(Time.time * 1f, 1.2f); //pulse calculation
             mat.SetFloat("_GlowPower", glow);
             mat.EnableKeyword("GLOW_ON");
         }
