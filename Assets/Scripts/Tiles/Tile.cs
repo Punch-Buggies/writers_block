@@ -294,6 +294,11 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
         // first check if they've published one book
         // display no books published
+        /* 
+        if publish dictionary key has the tile type, that means this type is in the publishzone
+        display you cannot grow anothrt "type" thought until you have published your frist book.
+        
+         */
         if (BookshelfManager.Instance.getBookCount() == 0 && unlocked == false)
         {
             AudioManager.Instance.PlaySFX("click");
