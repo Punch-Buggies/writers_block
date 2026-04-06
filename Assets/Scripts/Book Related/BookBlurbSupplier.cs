@@ -148,7 +148,7 @@ public class BookBlurbSupplier : MonoBehaviour
         {
             new BookBlurbTemplate("{thing1} Buddies", new List<TemplateSlot>{new TemplateSlot("thing1", WordType.Thing)},"Title"),
             new BookBlurbTemplate("My {person1} is my secret lover!?", new List<TemplateSlot>{new TemplateSlot("person1", WordType.Person)},"Title"),
-            new BookBlurbTemplate("I was Reincarnated as a {adj} {person}", new List<TemplateSlot>{new TemplateSlot("adj", WordType.Adjective), new TemplateSlot("person", WordType.Person)},"Title"),
+            new BookBlurbTemplate("I was Reincarnated as {a} {adj} {person}", new List<TemplateSlot>{new TemplateSlot("adj", WordType.Adjective), new TemplateSlot("person", WordType.Person), new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"adj")},"Title"),
             new BookBlurbTemplate("Journey to the {place}", new List<TemplateSlot>{new TemplateSlot("place", WordType.Place)},"Title"),
             new BookBlurbTemplate("Infect me {adj}", new List<TemplateSlot>{new TemplateSlot("adj", WordType.Adjective)},"Title"),
             new BookBlurbTemplate("{name} and the {person} from the {place}", new List<TemplateSlot>
