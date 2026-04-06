@@ -313,7 +313,7 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         templates.Add("Slice-of-Life", new List<BookBlurbTemplate>
         {
-            new BookBlurbTemplate("With a sigh, {mc_a} tucked {their_a} {thing1} back into {their_a} pocket. The door then opened, and {they_a} {was} greeted by {an} {adj1} {person_b} {mc_b} ushering {them_a} in through the door. {mc_b}’s house was exactly as cookie-cutter suburban on the inside as it was on the outside. {mc_a} felt like {they_a} had walked into a tv show set. The family's shoes were tucked away neatly in the entry-way closet, instead of scattered haphazardly on the doormat like they would be in {their_b} own home. The scent of something homecooked— {thing2} and {thing3}— wafted in from the kitchen.\n“It’s so good to see you again, {mc_a}!” {mc_b} wrapped {their_b} arms around the {adj} {person_a} as {they_a} set down {their_a} bags, “{phrase}”", 
+            new BookBlurbTemplate("With a sigh, {mc_a} tucked {their_a} {thing1} back into {their_a} pocket. The door then opened, and {they_a} {was} greeted by {an} {adj1} {person_b} {mc_b} ushering {them_a} in through the door. {mc_b}’s house was exactly as cookie-cutter suburban on the inside as it was on the outside. {mc_a} felt like {they_a} had walked into a tv show set. The family's shoes were tucked away neatly in the entry-way closet, instead of scattered haphazardly on the doormat like they would be in {their_b} own home. The scent of something homecooked— {thing2} and {thing3}— wafted in from the kitchen.\n“It’s so good to see you again, {mc_a}!” {mc_b} wrapped {their_b} arms around the {adj} {person_a} as {they_a} set down {their_a} bags, “{phrase} I’ve set up a mattress in the basement for you, you can bring your stuff downstairs.”\n{mc_a} followed {mc_b} into the home. {they_b} pointed out the {place1}, {place2}, and finally the door to the basement.\n{mc_a} hauled {their_a} {thing-p} to the basement, as {mc_b} went back to the kitchen. {they_a} threw {their_a} stuff by the mattress that had been laid out near the couch, then skipped back up the stairs.", 
             new List<TemplateSlot>
             {
                 new TemplateSlot("person_a", WordType.Person),
@@ -334,7 +334,10 @@ public class BookBlurbSupplier : MonoBehaviour
                 new TemplateSlot("adj", WordType.Adjective),
                 new TemplateSlot("phrase", WordType.Catchphrase),
                 new TemplateSlot("was", WordType.Verb, parentId:"a"),
-                new TemplateSlot("an", WordType.IndefiniteArticle, parentId:"adj1")
+                new TemplateSlot("an", WordType.IndefiniteArticle, parentId:"adj1"),
+                new TemplateSlot("place1", WordType.Place),
+                new TemplateSlot("place2", WordType.Place),
+                new TemplateSlot("thing-p", WordType.Thing, plural:true)
 
             }, "Slice-of-Life"),
             new BookBlurbTemplate("Eventually, finally, the group settled on rewatching their usual movie night flick: “{person1}s and {thing2}s”. They pass the {thing3}s around and dig into the pizza: Hawaiian because {mc_a} picked it. {mc_b} grumbles as {they_b} picks off the pineapple from {their_b} slices, silently putting them on {mc_c}’s plate. {mc_c} piles them onto {their_c} pizza.\nAbout ten minutes into the movie, {mc_a} looks over to the couch, “So, what brings you to our {place1}, {mc_d}?”\n{mc_d} tenses, “Ah, my parents thought it’d be good for me. Let me find some new people to bother. Y’know… ‘{phrase}’ or whatever” {they_d} finishes with a noncommittal shrug.\n“Well, you’re doing a great job of that,” {mc_b}, {adj1}, mumbles.\n{mc_c} side eyes {mc_b}, “You’re being real {adj2} for a replaceable friend group member, {mc_b}.”\n“The fuck do you mean ‘replacable’?”\n“Just saying, goofy over here’s more likeable than {adj3}”\n{mc_c} snorts and tries to hide {their_c} grin behind {their_c} hand when {mc_b} shoots {them_c} a betrayed look.", 
@@ -393,7 +396,7 @@ public class BookBlurbSupplier : MonoBehaviour
         templates.Add("Sci-Fi", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
-                "The asteroids produced a sharp tinny zeeoom as they flew past the spaceship. Commander {mc} gripped the control gear with a tightness that blanched {their} {adj0} fingers. Spotting an asteroid directly in front of the viewport, {they} deftly pulled the controller towards {them} - the ship hulled heavily. {mc} flinched as the asteroid zipped past, narrowly avoiding the ship. Phew.\nIt was a stupid miscalculation. An amateur mistake. But, when it came to light-travel, the slightest error in coordinate values resulted in disastrously off-plan warp points. Which is how {mc}’s fleet of space faring {people-p} found themselves in the center of one of the largest asteroid fields she had ever encountered.",
+                "The asteroids produced a sharp, tinny zeeoom as they flew past the spaceship, each one a streak of {adj1} metal and ancient {thing1}. Commander {mc} gripped the control gear with a tightness that blanched {their} {adj0} fingers, knuckles stark against the dim glow of the console. The viewport flickered with warning indicators: there were dangerously low levels of {thing2}, and the {place1} was compromised . Spotting an asteroid directly in front of the glass, {mc} reacted on instinct, deftly pulling the controller towards {them}-- the ship lurched heavily in protest, its hull groaning under the sudden strain.\n{mc} flinched as the asteroid zipped past, close enough that its shadow swallowed the cockpit for a breathless second. Phew. That had been too close.\nIt was a {adj2} miscalculation. An amateur mistake. But when it came to light-travel, even the slightest error in coordinate values resulted in disastrously off-plan warp points. Which was how {mc}’s fleet of spacefaring {people-p} had ended up stranded in the center of one of the largest asteroid fields {they} had ever encountered, surrounded on all sides by a relentless, drifting storm of debris.",
                 new List<TemplateSlot>
                 {
                     new TemplateSlot("mc", WordType.Name, parentId:"character"),
@@ -401,7 +404,11 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("them", WordType.Pronoun, parentId:"character", conjugation:Conjugation.Object),
                     new TemplateSlot("their", WordType.Pronoun, parentId:"character", conjugation:Conjugation.PossessiveAdj),
                     new TemplateSlot("adj0", WordType.Adjective),
-                    new TemplateSlot("people-p", WordType.Person, plural:true)
+                    new TemplateSlot("people-p", WordType.Person, plural:true),
+                    new TemplateSlot("adj1", WordType.Adjective),
+                    new TemplateSlot("thing1", WordType.Thing),
+                    new TemplateSlot("thing2", WordType.Thing),
+                    new TemplateSlot("place1", WordType.Place)
                 },
                 "Sci-Fi"
             )
