@@ -327,7 +327,7 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        string g = "History";
+        string g = "Slice-of-Life";
         string c = "Bodyguard";
         string s = "Office";
         for (int i=0; i<10;i++){
@@ -410,29 +410,29 @@ public static class NounPluralizer
 
         // latin/greek patterns
         if (word.EndsWith("is"))
-            return MatchCase(word[..^2] + "es", capitalized);   // analysis → analyses
+            return MatchCase(word[..^2] + "es", capitalized);   // analysis -> analyses
 
         if (word.EndsWith("us"))
-            return MatchCase(word[..^2] + "i", capitalized);    // cactus → cacti
+            return MatchCase(word[..^2] + "i", capitalized);    // cactus -> cacti
 
         if (word.EndsWith("um"))
-            return MatchCase(word[..^2] + "a", capitalized);    // bacterium → bacteria
+            return MatchCase(word[..^2] + "a", capitalized);    // bacterium -> bacteria
 
         if (word.EndsWith("on"))
-            return MatchCase(word[..^2] + "a", capitalized);    // phenomenon → phenomena
+            return MatchCase(word[..^2] + "a", capitalized);    // phenomenon -> phenomena
 
-        // consonant + y → ies
+        // consonant + y -> ies
         if (word.EndsWith("y") && word.Length > 1 && !"aeiou".Contains(word[^2]))
             return MatchCase(word[..^1] + "ies", capitalized);
 
-        // f / fe → ves (with exceptions)
+        // f / fe -> ves (with exceptions)
         if (word.EndsWith("fe"))
             return MatchCase(word[..^2] + "ves", capitalized);
 
         if (word.EndsWith("f") && !FExceptions.Contains(word))
             return MatchCase(word[..^1] + "ves", capitalized);
 
-        // sibilant endings → es
+        // sibilant endings -> es
         if (word.EndsWith("s") || word.EndsWith("x") || word.EndsWith("z") ||
             word.EndsWith("ch") || word.EndsWith("sh"))
             return MatchCase(word + "es", capitalized);

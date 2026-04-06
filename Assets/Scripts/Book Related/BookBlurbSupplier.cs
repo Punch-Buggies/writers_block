@@ -313,7 +313,7 @@ public class BookBlurbSupplier : MonoBehaviour
         });
         templates.Add("Slice-of-Life", new List<BookBlurbTemplate>
         {
-            new BookBlurbTemplate("With a sigh, {mc_a} tucked {their_a} {thing1} back into {their_a} pocket. The door then opened, and {they_a} {was} greeted by {an} {adj1} {person_b} {mc_b} ushering {them_a} in through the door. {mc_b}’s house was exactly as cookie-cutter suburban on the inside as it was on the outside. {mc_a} felt like {they_a} had walked into a tv show set. The family's shoes were tucked away neatly in the entry-way closet, instead of scattered haphazardly on the doormat like they would be in {their_b} own home. The scent of something homecooked— {thing2} and {thing3}— wafted in from the kitchen.\n“It’s so good to see you again, {mc_a}!” {mc_b} wrapped {their_b} arms around the {adj} {person_a} as {they_a} set down {their_a} bags, “{phrase} I’ve set up a mattress in the basement for you, you can bring your stuff downstairs.”\n{mc_a} followed {mc_b} into the home. {they_b} pointed out the {place1}, {place2}, and finally the door to the basement.\n{mc_a} hauled {their_a} {thing-p} to the basement, as {mc_b} went back to the kitchen. {they_a} threw {their_a} stuff by the mattress that had been laid out near the couch, then skipped back up the stairs.", 
+            new BookBlurbTemplate("With a sigh, {mc_a} tucked {their_a} {thing1} back into {their_a} pocket. The door then opened, and {they_a} {was} greeted by {their_a} {adj1} {person_b} {mc_b} ushering {them_a} in through the door. {mc_b}’s house was exactly as cookie-cutter suburban on the inside as it was on the outside. {mc_a} felt like {they_a} had walked into a tv show set. The family's shoes were tucked away neatly in the entry-way closet, instead of scattered haphazardly on the doormat like they would be in {their_b} own home. The scent of something homecooked— {thing2} and {thing3}— wafted in from the kitchen.\n“It’s so good to see you again, {mc_a}!” {mc_b} wrapped {their_b} arms around the {adj} {person_a} as {they_a} set down {their_a} bags, “{phrase} I’ve set up a mattress in the basement for you, you can bring your stuff downstairs.”\n{mc_a} followed {mc_b} into the home. {they_b} pointed out the {place1}, {place2}, and finally the door to the basement.\n{mc_a} hauled {their_a} {thing-p} to the basement, as {mc_b} went back to the kitchen. {they_a} threw {their_a} stuff by the mattress that had been laid out near the couch, then skipped back up the stairs.", 
             new List<TemplateSlot>
             {
                 new TemplateSlot("person_a", WordType.Person),
@@ -396,7 +396,7 @@ public class BookBlurbSupplier : MonoBehaviour
         templates.Add("Sci-Fi", new List<BookBlurbTemplate>
         {
             new BookBlurbTemplate(
-                "The asteroids produced a sharp, tinny zeeoom as they flew past the spaceship, each one a streak of {adj1} metal and ancient {thing1}. Commander {mc} gripped the control gear with a tightness that blanched {their} {adj0} fingers, knuckles stark against the dim glow of the console. The viewport flickered with warning indicators: there were dangerously low levels of {thing2}, and the {place1} was compromised . Spotting an asteroid directly in front of the glass, {mc} reacted on instinct, deftly pulling the controller towards {them}-- the ship lurched heavily in protest, its hull groaning under the sudden strain.\n{mc} flinched as the asteroid zipped past, close enough that its shadow swallowed the cockpit for a breathless second. Phew. That had been too close.\nIt was a {adj2} miscalculation. An amateur mistake. But when it came to light-travel, even the slightest error in coordinate values resulted in disastrously off-plan warp points. Which was how {mc}’s fleet of spacefaring {people-p} had ended up stranded in the center of one of the largest asteroid fields {they} had ever encountered, surrounded on all sides by a relentless, drifting storm of debris.",
+                "The asteroids produced a sharp, tinny zeeoom as they flew past the spaceship, each one a streak of {adj1} metal and ancient {thing1}. Commander {mc} gripped the control gear with a tightness that blanched {their} {adj0} fingers, knuckles stark against the dim glow of the console. The viewport flickered with warning indicators: there were dangerously low levels of {thing2}, and the {place1} was compromised . Spotting an asteroid directly in front of the glass, {mc} reacted on instinct, deftly pulling the controller towards {them}-- the ship lurched heavily in protest, its hull groaning under the sudden strain.\n{mc} flinched as the asteroid zipped past, close enough that its shadow swallowed the cockpit for a breathless second. Phew. That had been too close.\nIt was {a} {adj2} miscalculation. An amateur mistake. But when it came to light-travel, even the slightest error in coordinate values resulted in disastrously off-plan warp points. Which was how {mc}’s fleet of spacefaring {people-p} had ended up stranded in the center of one of the largest asteroid fields {they} had ever encountered, surrounded on all sides by a relentless, drifting storm of debris.",
                 new List<TemplateSlot>
                 {
                     new TemplateSlot("mc", WordType.Name, parentId:"character"),
@@ -407,8 +407,10 @@ public class BookBlurbSupplier : MonoBehaviour
                     new TemplateSlot("people-p", WordType.Person, plural:true),
                     new TemplateSlot("adj1", WordType.Adjective),
                     new TemplateSlot("thing1", WordType.Thing),
-                    new TemplateSlot("thing2", WordType.Thing),
-                    new TemplateSlot("place1", WordType.Place)
+                    new TemplateSlot("thing2", WordType.Thing, plural:true),
+                    new TemplateSlot("place1", WordType.Place),
+                    new TemplateSlot("adj2", WordType.Adjective),
+                    new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"adj2")
                 },
                 "Sci-Fi"
             )
