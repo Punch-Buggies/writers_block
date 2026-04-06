@@ -149,7 +149,7 @@ public class BookBlurbSupplier : MonoBehaviour
             new BookBlurbTemplate("{thing1} Buddies", new List<TemplateSlot>{new TemplateSlot("thing1", WordType.Thing)},"Title"),
             new BookBlurbTemplate("My {person1} is my secret lover!?", new List<TemplateSlot>{new TemplateSlot("person1", WordType.Person)},"Title"),
             new BookBlurbTemplate("I was Reincarnated as a {adj} {person}", new List<TemplateSlot>{new TemplateSlot("adj", WordType.Adjective), new TemplateSlot("person", WordType.Person)},"Title"),
-            new BookBlurbTemplate("Journey to {place}", new List<TemplateSlot>{new TemplateSlot("place", WordType.Place)},"Title"),
+            new BookBlurbTemplate("Journey to the {place}", new List<TemplateSlot>{new TemplateSlot("place", WordType.Place)},"Title"),
             new BookBlurbTemplate("Infect me {adj}", new List<TemplateSlot>{new TemplateSlot("adj", WordType.Adjective)},"Title"),
             new BookBlurbTemplate("{name} and the {person} from the {place}", new List<TemplateSlot>
             {
@@ -158,7 +158,7 @@ public class BookBlurbSupplier : MonoBehaviour
                 new TemplateSlot("place", WordType.Place)
             },"Title"),
             new BookBlurbTemplate("{thing-p}", new List<TemplateSlot>{new TemplateSlot("thing-p", WordType.Thing, plural:true)},"Title"),
-            
+
             new BookBlurbTemplate("{a} {thing} for a {thing}", new List<TemplateSlot>{new TemplateSlot("a", WordType.IndefiniteArticle, parentId:"thing"), new TemplateSlot("thing", WordType.Thing)},"Title"),
             new BookBlurbTemplate("You Took my {heart} (I was Sleeping)", new List<TemplateSlot>{new TemplateSlot("heart", WordType.Thing)},"Title"),
             new BookBlurbTemplate("Super-{something}", new List<TemplateSlot>{new TemplateSlot("something", WordType.Thing)},"Title"),
