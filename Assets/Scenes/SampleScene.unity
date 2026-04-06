@@ -4569,6 +4569,38 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: lockColor.a
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: lockColor.b
+      value: 0.25098044
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: lockColor.g
+      value: 0.52289
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: lockColor.r
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: unlockColor.a
+      value: 0.6509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: unlockColor.b
+      value: 0.32941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: unlockColor.g
+      value: 0.79607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
+      propertyPath: unlockColor.r
+      value: 0.90588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499065087997520454, guid: 6dc9d3b6f89b49f4d95c2aa25fe59533, type: 3}
       propertyPath: nextTileToUnlock
       value: 
       objectReference: {fileID: 1853411935}

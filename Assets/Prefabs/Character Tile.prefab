@@ -367,7 +367,11 @@ MonoBehaviour:
   font: {fileID: 11400000, guid: cdbdc6568498d7d43aa86759fefd4fbb, type: 2}
   progressBar: {fileID: 1256563338345790862}
   timerLimit: 10
-  growImage: {fileID: -6931215456154040989, guid: 9b0f3ee872d7cd749a61873d968fa2f3, type: 3}
+  growImage: {fileID: -4893136575357721295, guid: b5da5ad04ae0b374e97541d9d448f8d0, type: 3}
+  unlockCost: 0
+  growthCost: 0
+  lockColor: {r: 0.7169812, g: 0.5586273, b: 0.26041296, a: 0.8235294}
+  unlockColor: {r: 0.90588236, g: 0.79607844, b: 0.32941177, a: 0.62352943}
 --- !u!222 &2320129579048585539
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -32,16 +32,18 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     [SerializeField] Sprite growImage;
     
     [Header("Costs")]
-    double unlockCost;
-    double growthCost;
+    public double unlockCost;
+    public double growthCost;
 
     [Header("Colors")]
-    Color genreLock = new Color32(101, 160, 189, 255);
-    Color settingsLock = new Color32(61, 113, 55, 255);
-    Color characterLock = new Color32(201, 188, 99, 255);
-    Color genreUnlock = new Color32(62, 169, 244, 181);
-    Color settingsUnlock = new Color32(61, 152, 64, 204);
-    Color characterUnlock = new Color32(239, 246, 32, 192);
+    public Color lockColor;
+    public Color unlockColor;
+    Color genreLock; // = new Color32(101, 160, 189, 255);
+    Color settingsLock; // = new Color32(61, 113, 55, 255);
+    Color characterLock; // = new Color32(201, 188, 99, 255);
+    Color genreUnlock; // = new Color32(62, 169, 244, 181);
+    Color settingsUnlock; // = new Color32(61, 152, 64, 204);
+    Color characterUnlock; // = new Color32(239, 246, 32, 192);
 
     [Header("Cooking")]
     bool playGrowSound = true;
@@ -348,8 +350,19 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             }
         }
     }
-
     private void changeColor()
+    {
+        if (!unlocked)
+        {
+            image.color = lockColor;
+        }
+        else
+        {
+            image.color = unlockColor;
+        }
+    }
+
+    private void changeColor2()
     {
         // checks if its in the unlocked or locked state and sets color accordinly
         if (!unlocked)

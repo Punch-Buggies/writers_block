@@ -290,6 +290,10 @@ MonoBehaviour:
   progressBar: {fileID: 9017738682500324101}
   timerLimit: 10
   growImage: {fileID: -4893136575357721295, guid: b5da5ad04ae0b374e97541d9d448f8d0, type: 3}
+  unlockCost: 0
+  growthCost: 0
+  lockColor: {r: 0.15678605, g: 0.2830189, b: 0.07342472, a: 0.7647059}
+  unlockColor: {r: 0.26666668, g: 0.4745098, b: 0.12941177, a: 0.6313726}
 --- !u!222 &8551307330217607557
 CanvasRenderer:
   m_ObjectHideFlags: 0
