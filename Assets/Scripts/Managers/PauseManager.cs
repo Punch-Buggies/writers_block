@@ -58,11 +58,19 @@ public class PauseManager : MonoBehaviour
     public void MainMenu()
     {
         AudioManager.Instance.PlaySFX("click");
-        Time.timeScale = 1f;
-        IsPaused = false;
 
-        // Just Reload the scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        PurchaseManager.Instance.ConfirmRestartGame((confirmed) =>
+        {
+            if (confirmed)
+            {
+                AudioManager.Instance.PlaySFX("quill");
+                Time.timeScale = 1f;
+                IsPaused = false;
+
+                // Just Reload the scene
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
+        });
     }
 
     public void IncreaseBGVolume()

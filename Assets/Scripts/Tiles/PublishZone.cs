@@ -11,7 +11,7 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
     Publish publish;
 
     [SerializeField] string zoneType;
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Image icon;
 
     bool occupied = false;
     Color ogColor;
@@ -19,7 +19,7 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
     void Awake()
     {
         publish = FindAnyObjectByType<Publish>();
-        text.text = "";
+        icon.gameObject.SetActive(false);
 ;    }
     void Start()
     {
@@ -70,12 +70,12 @@ public class PublishZone : MonoBehaviour, IDropHandler, IPointerClickHandler, IP
             // darken the image so people know you can click on it
             GetComponent<Image>().color = ogColor * 0.5f;
         }
-        text.text = zoneType;
+        icon.gameObject.SetActive(true);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         GetComponent<Image>().color = ogColor;
-        text.text = "";
+        icon.gameObject.SetActive(false);
     }
 
 }

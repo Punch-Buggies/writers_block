@@ -40,8 +40,20 @@ public class PublishableTile : MonoBehaviour, IDropHandler
     {
         if(eventData.pointerDrag.GetComponent<Eraser>() != null)
         {
-            AudioManager.Instance.PlaySFX("eraser");
-            Destroy(gameObject);
+            // first check if they've published one book
+            if (BookshelfManager.Instance.getBookCount() == 0)
+            {
+                AudioManager.Instance.PlaySFX("click");
+                // Display You cannot erase
+                string item = "eraser";
+                PurchaseManager.Instance.DisplayNoBooksPublished(item);
+            }
+            else // feel free to erase
+            {
+                AudioManager.Instance.PlaySFX("eraser");
+                Destroy(gameObject);
+            }
+            
 
             // if the publishable tile was in the publish zone
             // erase it from the dictionary

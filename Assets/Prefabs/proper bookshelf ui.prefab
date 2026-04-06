@@ -2100,10 +2100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Target: {fileID: 7188298426770871644}
+  TargetContent: {fileID: 0}
   TheOtherButton: {fileID: 3175923681022415125}
-  Step: 0.01
+  PixelStep: 50
   HoldFrequency: 0.001
   increment: 0
+  scrollSource: {fileID: 0}
+  incrementClip: {fileID: 0}
+  decrementClip: {fileID: 0}
 --- !u!114 &2733397995405673885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2927,6 +2931,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookCover
   titleText: {fileID: 7869984389943447503}
   cornerText: {fileID: 0}
+  bg_image: {fileID: 0}
+  outer_border: {fileID: 0}
+  inner_border: {fileID: 0}
+  texture: {fileID: 0}
 --- !u!114 &4240961400240475953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3189,7 +3197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1020.72455, y: 499.99966}
+  m_AnchoredPosition: {x: -990.56946, y: 499.99966}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3317217563187533116
@@ -3399,6 +3407,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookCover
   titleText: {fileID: 6544216288819181680}
   cornerText: {fileID: 0}
+  bg_image: {fileID: 0}
+  outer_border: {fileID: 0}
+  inner_border: {fileID: 0}
+  texture: {fileID: 0}
 --- !u!114 &1716343086830396171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3562,6 +3574,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookCover
   titleText: {fileID: 4246322267849284375}
   cornerText: {fileID: 0}
+  bg_image: {fileID: 0}
+  outer_border: {fileID: 0}
+  inner_border: {fileID: 0}
+  texture: {fileID: 0}
 --- !u!114 &8857072572471464582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4519,7 +4535,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7616567774195482165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4859,8 +4875,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3935995358647805788}
   m_HandleRect: {fileID: 1533783889879218769}
   m_Direction: 0
-  m_Value: -0.13444719
-  m_Size: 0.7530045
+  m_Value: -0.18844993
+  m_Size: 0.39847267
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5543,6 +5559,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BookCover
   titleText: {fileID: 8911017516339663265}
   cornerText: {fileID: 0}
+  bg_image: {fileID: 0}
+  outer_border: {fileID: 0}
+  inner_border: {fileID: 0}
+  texture: {fileID: 0}
 --- !u!114 &8864420062626668389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6208,10 +6228,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Target: {fileID: 7188298426770871644}
+  TargetContent: {fileID: 0}
   TheOtherButton: {fileID: 661938977470214578}
-  Step: 0.01
+  PixelStep: 50
   HoldFrequency: 0.001
   increment: 1
+  scrollSource: {fileID: 0}
+  incrementClip: {fileID: 0}
+  decrementClip: {fileID: 0}
 --- !u!114 &3186147608082772783
 MonoBehaviour:
   m_ObjectHideFlags: 0
