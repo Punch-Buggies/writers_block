@@ -38,12 +38,6 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     [Header("Colors")]
     public Color lockColor;
     public Color unlockColor;
-    Color genreLock; // = new Color32(101, 160, 189, 255);
-    Color settingsLock; // = new Color32(61, 113, 55, 255);
-    Color characterLock; // = new Color32(201, 188, 99, 255);
-    Color genreUnlock; // = new Color32(62, 169, 244, 181);
-    Color settingsUnlock; // = new Color32(61, 152, 64, 204);
-    Color characterUnlock; // = new Color32(239, 246, 32, 192);
 
     [Header("Cooking")]
     bool playGrowSound = true;
@@ -359,49 +353,6 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         else
         {
             image.color = unlockColor;
-        }
-    }
-
-    private void changeColor2()
-    {
-        // checks if its in the unlocked or locked state and sets color accordinly
-        if (!unlocked)
-        {
-            // changing color to type
-            switch (tileType)
-            {
-                case "Genre":
-                    image.color = genreLock;
-                    break;
-                case "Character":
-                    image.color = characterLock;
-                    break;
-                case "Setting":
-                    image.color = settingsLock;
-                    break;
-                default:
-                    Debug.LogWarning($"Lock Tile type: {tileType} did not match anything");
-                    break;
-            }
-        }
-        else // tile is unlocked
-        {
-            // changing color to type
-            switch (tileType)
-            {
-                case "Genre":
-                    image.color = genreUnlock;
-                    break;
-                case "Character":
-                    image.color = characterUnlock;
-                    break;
-                case "Setting":
-                    image.color = settingsUnlock;
-                    break;
-                default:
-                    Debug.LogWarning($"Unlock Tile type: {tileType} did not match anything");
-                    break;
-            }
         }
     }
 
