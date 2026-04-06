@@ -93,7 +93,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
 
         // start progress bar
-        progressBar.SetActive(true);
+        // progressBar.SetActive(true);
         // audio
         AudioManager.Instance.PlaySFX("quill");
         if (draggable != null)
@@ -250,7 +250,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             spawnedElement = spawnedTile;
 
             // reset timer, progress bar, boolean
-            progressBar.SetActive(false);
+            // progressBar.SetActive(false);
             timer = 0f;
             startCooking = false;
 
@@ -276,7 +276,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
             unlockText.text = $"${unlockCost:0.##}";
         }
-        else
+        else if (!startCooking) // its not cooking
         {
             // its unlocked, show icon as well
             unlockText.text = "";
