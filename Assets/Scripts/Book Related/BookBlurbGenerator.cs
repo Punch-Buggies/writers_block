@@ -327,13 +327,13 @@ public class BookBlurbGenerator : MonoBehaviour
     {
         // TESTING
 
-        string g = "Slice-of-Life";
-        string c = "Bodyguard";
-        string s = "Office";
-        for (int i=0; i<10;i++){
-          string test = generate_blurb(g,c,s);
-        Debug.Log(test);  
-        };
+        // string g = "Slice-of-Life";
+        // string c = "Bodyguard";
+        // string s = "Office";
+        // for (int i=0; i<10;i++){
+        //   string test = generate_blurb(g,c,s);
+        // Debug.Log(test);  
+        // };
         
     }
 
