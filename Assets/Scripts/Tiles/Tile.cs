@@ -7,49 +7,46 @@ using TMPro;
 public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
-    [SerializeField] GameObject nextTileToUnlock;
-    [SerializeField] GameObject progressBar;
-    [SerializeField] GameObject publishableTile;
-
+    [Header("Prefabs for publishable tiles")]
     [SerializeField] GameObject genrePublishableTile;
     [SerializeField] GameObject settingsPublishableTile;
     [SerializeField] GameObject characterPublishableTile;
 
+    [Header("Tile Info")]
     [SerializeField] string tileType;
+    [SerializeField] Image icon; // icon to show on pointer in
+    [SerializeField] bool unlocked = false;
+    [SerializeField] GameObject nextTileToUnlock;
+
+    Image image; // image on the tile object
+
+    [Header("Text")]
     [SerializeField] TextMeshProUGUI unlockText;
     [SerializeField] private TMP_FontAsset font;
-    [SerializeField] Image icon;
 
+    [Header("Progress Bar/Timer")]
+    [SerializeField] GameObject progressBar;
     Slider progressBarSlider;
-    StoryElementSupplier storyElementSupplier;
     float timer = 0f;
     [SerializeField] float timerLimit = 10f;
+    [SerializeField] Sprite growImage;
+    
+    [Header("Costs")]
+    public double unlockCost;
+    public double growthCost;
 
+    [Header("Colors")]
+    public Color lockColor;
+    public Color unlockColor;
+
+    [Header("Cooking")]
+    bool playGrowSound = true;
     bool tileOccupied = false;
-
-
     bool startCooking = false;
     GameObject spawnedElement;
-    Image image;
-
-
-    double unlockCost;
-    double growthCost;
-    [SerializeField] bool unlocked = false;
-
-    Color genreLock = new Color32(101, 160, 189, 255);
-    Color settingsLock = new Color32(61, 113, 55, 255);
-    Color characterLock = new Color32(201, 188, 99, 255);
-
-    Color genreUnlock = new Color32(62, 169, 244, 181);
-    Color settingsUnlock = new Color32(61, 152, 64, 204);
-    Color characterUnlock = new Color32(239, 246, 32, 192);
-
-    bool playGrowSound = true;
 
     void Awake()
     {
-        storyElementSupplier = FindAnyObjectByType<StoryElementSupplier>();
         unlockText.text = "";
         progressBar.SetActive(false);
         progressBarSlider = progressBar.GetComponent<Slider>();
@@ -92,7 +89,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
 
         // start progress bar
-        progressBar.SetActive(true);
+        // progressBar.SetActive(true);
         // audio
         AudioManager.Instance.PlaySFX("quill");
         if (draggable != null)
@@ -166,7 +163,9 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     {
         if (startCooking)
         {
-            CookingAndTimering();
+            // change the spawned(aka growing) element to the grow image
+            spawnedElement.GetComponent<Image>().sprite = growImage;
+            CookingAndTimering(); // will make it look like its growing in this function
         }
     }
 
@@ -177,6 +176,16 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         {
             timer += Time.deltaTime;
             progressBarSlider.value = timer;     
+
+            // make the grow border become more opaque on the growing element
+            Image spawnedImage = spawnedElement.GetComponent<Image>();
+            // calculate alpha
+            float alpha = timer/timerLimit;
+            // set the color of the image to be the same, only change alpha
+            spawnedImage.color = new Color(spawnedImage.color.r, spawnedImage.color.g, spawnedImage.color.b, alpha);
+
+
+
 
             // disable drag
             DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();   
@@ -237,7 +246,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             spawnedElement = spawnedTile;
 
             // reset timer, progress bar, boolean
-            progressBar.SetActive(false);
+            // progressBar.SetActive(false);
             timer = 0f;
             startCooking = false;
 
@@ -263,7 +272,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
             unlockText.text = $"${unlockCost:0.##}";
         }
-        else
+        else if (!startCooking) // its not cooking
         {
             // its unlocked, show icon as well
             unlockText.text = "";
@@ -285,6 +294,11 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
         // first check if they've published one book
         // display no books published
+        /* 
+        if publish dictionary key has the tile type, that means this type is in the publishzone
+        display you cannot grow anothrt "type" thought until you have published your frist book.
+        
+         */
         if (BookshelfManager.Instance.getBookCount() == 0 && unlocked == false)
         {
             AudioManager.Instance.PlaySFX("click");
@@ -335,47 +349,15 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             }
         }
     }
-
     private void changeColor()
     {
-        // checks if its in the unlocked or locked state and sets color accordinly
         if (!unlocked)
         {
-            // changing color to type
-            switch (tileType)
-            {
-                case "Genre":
-                    image.color = genreLock;
-                    break;
-                case "Character":
-                    image.color = characterLock;
-                    break;
-                case "Setting":
-                    image.color = settingsLock;
-                    break;
-                default:
-                    Debug.LogWarning($"Lock Tile type: {tileType} did not match anything");
-                    break;
-            }
+            image.color = lockColor;
         }
-        else // tile is unlocked
+        else
         {
-            // changing color to type
-            switch (tileType)
-            {
-                case "Genre":
-                    image.color = genreUnlock;
-                    break;
-                case "Character":
-                    image.color = characterUnlock;
-                    break;
-                case "Setting":
-                    image.color = settingsUnlock;
-                    break;
-                default:
-                    Debug.LogWarning($"Unlock Tile type: {tileType} did not match anything");
-                    break;
-            }
+            image.color = unlockColor;
         }
     }
 

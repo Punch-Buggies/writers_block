@@ -35,7 +35,7 @@ public class StartScreenManager : MonoBehaviour
         if (firstTime)
         {
             // display bookshelf info
-           /*  figure this out later mags PurchaseManager.Instance.DisplayNoBooksPublished("first bookshelf"); */ // bad function name, this just calls tutorial display
+            PurchaseManager.Instance.DisplayNoBooksPublished("first bookshelf"); // bad function name, this just calls tutorial display
             firstTime = false;
         }
     }

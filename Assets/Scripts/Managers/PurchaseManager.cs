@@ -13,19 +13,27 @@ public class PurchaseManager : MonoBehaviour
     // only moneymanager script can set moneymanager
     public static PurchaseManager Instance { get; private set;}
 
+    [Header("Canvases")]
     [SerializeField] private CanvasGroup mainUIGroup;      // MainUI CanvasGroup
+    [SerializeField] private CanvasGroup bookshelfGroup;      // bookshelf/bookview CanvasGroup
+    [SerializeField] private GameObject bookshelfOverlay;
+    [SerializeField] private CanvasGroup pauseGroup;      // pause menu CanvasGroup
 
+    [Header("Purchase View")]
     [SerializeField] GameObject PurchaseUIView;
     [SerializeField] TextMeshProUGUI uiText;
     [SerializeField] Button yesButton;
     [SerializeField] Button noButton;
     [SerializeField] Button okButton;
+    [SerializeField] GameObject dontShowAgain;
+
+    [Header("Toggle On View (Purchase)")]
     [SerializeField] Image checkMarkPurchase;
     [SerializeField] Image boxClickPurchase;
+    [Header("Toggle On View (Info)")]
     [SerializeField] Image checkMarkInfo;
     [SerializeField] Image boxClickInfo;
 
-    [SerializeField] GameObject dontShowAgain;
     // show/unshow checkmark 
     // if shown, don't siaplay anumore
     public bool toggleOnPurchase = true; // show the purchase ui or not
@@ -58,19 +66,29 @@ public class PurchaseManager : MonoBehaviour
 
     }
 
-    private void DimMainUI()
+    private void DimUI(CanvasGroup UIGroup)
     {
-        if (mainUIGroup != null)
+        if (UIGroup != null)
         {
-            mainUIGroup.alpha = 0.5f;
-            mainUIGroup.interactable = false;
-            mainUIGroup.blocksRaycasts = false;
+            if (UIGroup != bookshelfGroup)
+            {
+                UIGroup.alpha = 0.5f;
+            }
+            else if (UIGroup == bookshelfGroup)
+            {
+                // turn on dark overlay on bookshelf
+                bookshelfOverlay.SetActive(true);
+            }
+            // block interactions and raycasts
+            UIGroup.interactable = false;
+            UIGroup.blocksRaycasts = false;
         }   
         return;
     }
 
     public void UndimMainUI()
     {
+        // this is attached to the yes/no buttons
         if (mainUIGroup != null)
         {
             mainUIGroup.alpha = 1f;
@@ -79,6 +97,29 @@ public class PurchaseManager : MonoBehaviour
         }   
         return;
     }
+    public void UndimBookshelfUI()
+    {
+        if (bookshelfGroup != null)
+        {
+            // bookshelfGroup.alpha = 0f;
+            bookshelfOverlay.SetActive(false);
+            bookshelfGroup.interactable = true;
+            bookshelfGroup.blocksRaycasts = true;
+        }   
+        return;
+    }
+    public void UndimPauseUI()
+    {
+        // this is attached to the yes/no buttons
+        if (pauseGroup != null)
+        {
+            pauseGroup.alpha = 1f;
+            pauseGroup.interactable = true;
+            pauseGroup.blocksRaycasts = true;
+        }   
+        return;
+    }
+
     public void ConfirmTileGrowthPayment(StoryElement storyElement, float time, double cost, Action<bool> response)
     {
         // only ask to confirm if toggle is on, otherwise assume true
@@ -98,15 +139,38 @@ public class PurchaseManager : MonoBehaviour
         dontShowAgain.GetComponentInChildren<TMP_Text>().text = "Don't Show Purchase Info Again";
 
         // 2. Dim and turn off interacbles of main UI
-        DimMainUI();
+        DimUI(mainUIGroup);
 
         // 3. Display the UI
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
         PurchaseUIView.SetActive(true);
 
         // 4. Respond to their decision
         onConfirm = response;
     }
 
+    public void ConfirmRestartGame(Action<bool> response)
+    {
+        uiText.text = "Are you sure you want to restart? You will lose all published books.";
+
+        // turn off all checkmarks, boxes, and dont show again
+        boxClickPurchase.gameObject.SetActive(false);
+        checkMarkPurchase.gameObject.SetActive(false);
+        boxClickInfo.gameObject.SetActive(false);
+        checkMarkInfo.gameObject.SetActive(false);
+        dontShowAgain.gameObject.SetActive(false);
+
+        DimUI(pauseGroup);
+
+        // make sure its in the pause menu
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -42.5f);
+
+        PurchaseUIView.SetActive(true);
+
+        onConfirm = response;
+    }
     private void Respond(bool confirmed)
     {   // this is called when either yes or no button is clicked
         AudioManager.Instance.PlaySFX("click");
@@ -126,7 +190,7 @@ public class PurchaseManager : MonoBehaviour
     public void DisplayInsufficientFunds()
     {
         // 1. Dim MainUI
-        DimMainUI();
+        DimUI(mainUIGroup);
 
         // 2. Popoulate text with insufficient funds message
         uiText.text = $"Sorry, you have insufficient funds.";
@@ -139,6 +203,8 @@ public class PurchaseManager : MonoBehaviour
         okButton.gameObject.SetActive(true);
 
         // 4. turn on view
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
         PurchaseUIView.SetActive(true);
     }
 
@@ -147,7 +213,15 @@ public class PurchaseManager : MonoBehaviour
         // THIS IS FOR THE TUTORIAL, YOU CANNOT TURN THIS OFF BC THE PLAYER NEEDS TO KNOW
         // this function/display is actually about the fact that you can't turn it off and it only gives you the okay option
         // 1. Dim MainUI
-        DimMainUI();
+        if (item == "first bookshelf")
+        {
+            DimUI(bookshelfGroup);
+            // DimUI(mainUIGroup);
+        }
+        else
+        {
+            DimUI(mainUIGroup);
+        }
 
         // 2. Popoulate text with insufficient funds message
         if (item == "eraser")
@@ -182,7 +256,17 @@ public class PurchaseManager : MonoBehaviour
         // 3.2 Display ok button
         okButton.gameObject.SetActive(true);
 
-        // 4. turn on view
+        // 4.1 make purchase view higher if its bookshelf 27.5 else -3.65425
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        if (item == "first bookshelf")
+        {
+            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, 27.5f);
+        }
+        else
+        {
+            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
+        }
+        // 4.2 turn on view
         PurchaseUIView.SetActive(true);
     }
 
@@ -191,7 +275,7 @@ public class PurchaseManager : MonoBehaviour
         // THIS IS TO HELP THE PLAYER FIGURE SUM SHIT OUT
         // CAN TURN OFF BC MAYNE ANNOYING
         // 1. Dim MainUI
-        DimMainUI();
+        DimUI(mainUIGroup);
 
         // 2. Popoulate text with insufficient funds message
         uiText.text = text;
@@ -213,6 +297,9 @@ public class PurchaseManager : MonoBehaviour
         okButton.gameObject.SetActive(true);
 
         // 4. turn on view
+        // make sure view y position is set in the mainui
+        RectTransform rect = PurchaseUIView.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -3.65425f);
         PurchaseUIView.SetActive(true);
     }
 

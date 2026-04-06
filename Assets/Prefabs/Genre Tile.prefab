@@ -53,18 +53,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabedd2dfdaf0d84a81eaed4789dafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
-  nextTileToUnlock: {fileID: 0}
-  progressBar: {fileID: 6625920942746587349}
-  publishableTile: {fileID: 2330435813356086164, guid: 6e8b036d4261388408c9375a3865b004, type: 3}
   genrePublishableTile: {fileID: 3486864314933406865, guid: 14007e473d169384aa25990ceb680ab6, type: 3}
   settingsPublishableTile: {fileID: 7201979345025117020, guid: 927283df1be847c43b8d1ae268f02638, type: 3}
   characterPublishableTile: {fileID: 7485914405711556259, guid: 32010ad7d5d40fa42b96323939b337e7, type: 3}
   tileType: Genre
+  icon: {fileID: 2286391922311085928}
+  unlocked: 1
+  nextTileToUnlock: {fileID: 0}
   unlockText: {fileID: 6365168321212242682}
   font: {fileID: 11400000, guid: cdbdc6568498d7d43aa86759fefd4fbb, type: 2}
-  icon: {fileID: 2286391922311085928}
+  progressBar: {fileID: 6625920942746587349}
   timerLimit: 10
-  unlocked: 1
+  growImage: {fileID: -4893136575357721295, guid: b5da5ad04ae0b374e97541d9d448f8d0, type: 3}
+  unlockCost: 0
+  growthCost: 0
+  lockColor: {r: 0.37767, g: 0.52601844, b: 0.6509434, a: 0.8784314}
+  unlockColor: {r: 0.5882353, g: 0.8117647, b: 1, a: 0.6745098}
 --- !u!222 &1168172821038102807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -286,7 +290,7 @@ RectTransform:
   m_Father: {fileID: 8158873893284921952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -481,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8158873893284921952
 RectTransform:
   m_ObjectHideFlags: 0
