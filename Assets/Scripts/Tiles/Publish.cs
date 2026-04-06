@@ -77,7 +77,7 @@ public class Publish : MonoBehaviour
             }
             Debug.Log("element count after full pub" + bookStoryElementDict.Count);
 
-            foreach(ParticleSystem ps in particleSystem)
+            foreach (ParticleSystem ps in particleSystem)
             {
                 ps.Play();
             }
