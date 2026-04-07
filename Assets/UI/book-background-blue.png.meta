@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 79b62cc4807e25c4498f8ec77f3be0bc
+guid: f458fdfc1664180449c15e652dec5b61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8579597622754261752
-    second: quill_0
+      213: 8436201333249062540
+    second: book-background-blue_0
+  - first:
+      213: 2922460130896869195
+    second: book-background-blue_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,53 +99,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: quill_0
+      name: book-background-blue_0
       rect:
         serializedVersion: 2
-        x: 599
-        y: 89
-        width: 1214
-        height: 971
-      alignment: 9
-      pivot: {x: 0.009873317, y: 0.0138802575}
+        x: 297
+        y: 17
+        width: 1327
+        height: 1041
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80542f33b652fe880800000000000000
-      internalID: -8579597622754261752
+      spriteID: c86bcf96a68631570800000000000000
+      internalID: 8436201333249062540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book-background-blue_1
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 1051
+        width: 89
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b477954510aae8820800000000000000
+      internalID: 2922460130896869195
       vertices: []
       indices: 
       edges: []
@@ -151,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ec54c91e458f7ff4ea9cef35c566770b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      quill_0: -8579597622754261752
+      book-background-blue_0: 8436201333249062540
+      book-background-blue_1: 2922460130896869195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

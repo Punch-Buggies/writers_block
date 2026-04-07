@@ -84,24 +84,35 @@ public class PassiveIncomeManager : MonoBehaviour
     }
     void PlayIncomePopup(string message)
     {
-        // Kill any existing tweens on the text to avoid overlap
         passiveIncomeText.DOKill();
 
-        // Reset position and alpha before animating
-        passiveIncomeText.rectTransform.anchoredPosition = originalTextPos;
-        passiveIncomeText.alpha = 1f;
-        passiveIncomeText.text = message;
+        // Fade out current text first if visible, then show new one
+        if (passiveIncomeText.alpha > 0f)
+        {
+            Sequence fadeSwap = DOTween.Sequence();
+            fadeSwap.Append(passiveIncomeText.DOFade(0f, 0.3f).SetEase(Ease.InQuad));
+            fadeSwap.AppendCallback(() =>
+            {
+                passiveIncomeText.rectTransform.anchoredPosition = originalTextPos;
+                passiveIncomeText.text = message;
+            });
+            fadeSwap.Append(passiveIncomeText.DOFade(1f, 0.3f).SetEase(Ease.OutQuad));
+            // Float upward and stay
+            fadeSwap.Join(passiveIncomeText.rectTransform
+                .DOAnchorPosY(originalTextPos.y + verticalFloatDistance, floatDuration)
+                .SetEase(Ease.OutCubic));
+        }
+        else
+        {
+            // First time, just fade in and float up
+            passiveIncomeText.rectTransform.anchoredPosition = originalTextPos;
+            passiveIncomeText.text = message;
 
-        Sequence seq = DOTween.Sequence();
-
-        // Float upward by 60 units over 1.2s
-        seq.Append(passiveIncomeText.rectTransform
-            .DOAnchorPosY(originalTextPos.y + verticalFloatDistance, floatDuration)
-            .SetEase(Ease.OutCubic));
-
-        // Fade out during the last 0.6s of the float
-        seq.Insert(0.6f, passiveIncomeText
-            .DOFade(0f, 0.6f)
-            .SetEase(Ease.InQuad));
+            Sequence seq = DOTween.Sequence();
+            seq.Append(passiveIncomeText.DOFade(1f, 0.3f).SetEase(Ease.OutQuad));
+            seq.Join(passiveIncomeText.rectTransform
+                .DOAnchorPosY(originalTextPos.y + verticalFloatDistance, floatDuration)
+                .SetEase(Ease.OutCubic));
+        }
     }
 }

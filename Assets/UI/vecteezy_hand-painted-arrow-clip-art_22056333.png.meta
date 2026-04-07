@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 79b62cc4807e25c4498f8ec77f3be0bc
+guid: 7ae8ecb44a1217645a194ee8960c15c4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8579597622754261752
-    second: quill_0
+      213: -5382731350773969034
+    second: vecteezy_hand-painted-arrow-clip-art_22056333_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,40 +109,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: quill_0
+      name: vecteezy_hand-painted-arrow-clip-art_22056333_0
       rect:
         serializedVersion: 2
-        x: 599
-        y: 89
-        width: 1214
-        height: 971
-      alignment: 9
-      pivot: {x: 0.009873317, y: 0.0138802575}
+        x: 0
+        y: 0
+        width: 6786
+        height: 6130
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80542f33b652fe880800000000000000
-      internalID: -8579597622754261752
+      spriteID: 67f42cbfa52bc45b0800000000000000
+      internalID: -5382731350773969034
       vertices: []
       indices: 
       edges: []
@@ -151,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ec54c91e458f7ff4ea9cef35c566770b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      quill_0: -8579597622754261752
+      vecteezy_hand-painted-arrow-clip-art_22056333_0: -5382731350773969034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

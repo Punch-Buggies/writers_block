@@ -9,6 +9,7 @@ using System.Linq;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using DG.Tweening;
 
 public class Publish : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class Publish : MonoBehaviour
     [SerializeField] Image bookshelfImage;
     [SerializeField] Image publishButton;
     [SerializeField] Image darkBGPublish;
+
+
+    [SerializeField] GameObject publishedBookFloatingText;
+    [SerializeField] float publishFloatDistance = 2f;
+[SerializeField] float publishFloatDuration = 1.2f;
 
     Color32 flashColor = new Color32(197, 120, 83, 255);
     Color originalColor = Color.white;
@@ -58,6 +64,12 @@ public class Publish : MonoBehaviour
         {
             ps.Stop();
         }
+
+
+        TextMeshProUGUI tmp = publishedBookFloatingText.GetComponent<TextMeshProUGUI>();
+        Color c = tmp.color;
+        c.a = 0f;
+        tmp.color = c;
     }
 
     public void PublishButtonClicked()
@@ -191,7 +203,46 @@ public class Publish : MonoBehaviour
         // everything should have reset clear the best seller highlight
         ClearBSMatch();
 
+        // display floating text for published book and money earned
+        TextMeshProUGUI tmp = publishedBookFloatingText.GetComponent<TextMeshProUGUI>();
+        tmp.text = "Published: " + title + "\nMoney Earned: $" + bookProfit;
+        StartCoroutine(AnimatePublishText(tmp));
 
+
+    }
+
+    IEnumerator AnimatePublishText(TextMeshProUGUI tmp)
+    {
+        // Kill any existing tweens
+        tmp.DOKill();
+
+        // Reset
+        Vector3 startPos = publishedBookFloatingText.transform.position;
+        Color c = tmp.color;
+        c.a = 0f;
+        tmp.color = c;
+
+        Sequence seq = DOTween.Sequence();
+
+        // Float up
+        seq.Append(publishedBookFloatingText.transform
+            .DOMove(startPos + Vector3.up * publishFloatDistance, publishFloatDuration)
+            .SetEase(Ease.OutCubic));
+
+        // Fade in
+        seq.Insert(0f, DOTween
+            .To(() => tmp.color.a, a => { c = tmp.color; c.a = a; tmp.color = c; }, 1f, publishFloatDuration * 0.3f)
+            .SetEase(Ease.OutQuad));
+
+        // Fade out
+        seq.Insert(publishFloatDuration * 0.5f, DOTween
+            .To(() => tmp.color.a, a => { c = tmp.color; c.a = a; tmp.color = c; }, 0f, publishFloatDuration * 0.5f)
+            .SetEase(Ease.InQuad));
+
+        yield return seq.WaitForCompletion();
+
+        // Reset position for next time
+        publishedBookFloatingText.transform.position = startPos;
     }
 
     public void PublishStoryElement(string storyElement, string elementType)
@@ -259,8 +310,4 @@ public class Publish : MonoBehaviour
             yield return new WaitForSeconds(flashDuration);
         }
     }
-
-
-
-
 }
