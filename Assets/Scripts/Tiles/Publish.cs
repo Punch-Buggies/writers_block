@@ -105,6 +105,7 @@ public class Publish : MonoBehaviour
             // turn off text glow
             Material mat = text.fontMaterial;
             mat.DisableKeyword("GLOW_ON");
+            Debug.LogWarning($"Text is? {text} and is color {text.color}");
         }
 
     }
