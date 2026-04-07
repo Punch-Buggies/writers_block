@@ -127,6 +127,13 @@ public class PurchaseManager : MonoBehaviour
         // 1. Populate the textbox with the necessary information
         uiText.text = $"Would you like to spend {time} seconds growing the {storyElement.GetElementType()} thought for ${cost}?";
 
+        // only yes or no buttons
+        yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);
+        // do not Display ok button
+        okButton.gameObject.SetActive(false);
+        dontShowAgain.SetActive(true);
+        
         // make sure the checkmark is the purchase one not the info checkmark
         // also make sure the right clcikable box is there
         boxClickPurchase.gameObject.SetActive(true);
@@ -153,6 +160,12 @@ public class PurchaseManager : MonoBehaviour
     public void ConfirmRestartGame(Action<bool> response)
     {
         uiText.text = "Are you sure you want to restart? You will lose all published books.";
+
+        // only yes or no buttons
+        yesButton.gameObject.SetActive(true);
+        noButton.gameObject.SetActive(true);
+        // do not Display ok button
+        okButton.gameObject.SetActive(false);
 
         // turn off all checkmarks, boxes, and dont show again
         boxClickPurchase.gameObject.SetActive(false);
