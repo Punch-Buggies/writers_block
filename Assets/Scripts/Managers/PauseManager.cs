@@ -29,10 +29,13 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject quillTrail;
     [SerializeField] GameObject bookshelfUI;
 
+    string currentScene;
+
 
     void Start()
     {
         audioBGSlider.value = 10f;
+        currentScene = "Start";
     }
 
     public void TogglePause()
@@ -62,7 +65,25 @@ public class PauseManager : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("click");
         pauseCam.SetActive(false);
-        mainCam.SetActive(true);
+        switch (currentScene)
+        {
+            case "Start":
+                startCam.SetActive(true);
+                break;
+
+            case "Main":
+                mainCam.SetActive(true);
+                break;
+
+            case "Bookshelf":
+                bookshelfCam.SetActive(true);
+                bookshelfUI.SetActive(true);
+                break;
+
+            default:
+                mainCam.SetActive(true);
+                break;
+        }
         BGAudioSource.Play();
 
         Time.timeScale = 1f;
@@ -146,6 +167,7 @@ public class PauseManager : MonoBehaviour
             else
                 TogglePause();
         }
+        TrackScene();
     }
 
     public bool ChangePurchaseText()
@@ -178,6 +200,23 @@ public class PauseManager : MonoBehaviour
             // return true if the text is YES, they do want to see info
             infoYesNo.text = "YES";
             return true;
+        }
+    }
+
+
+    public void TrackScene()
+    {
+        if(startCam.activeSelf)
+        {
+            currentScene = "Start";
+        }
+        else if(mainCam.activeSelf)
+        {
+            currentScene = "Main";
+        }
+        else if(bookshelfCam.activeSelf)
+        {
+            currentScene = "Bookshelf";
         }
     }
 
