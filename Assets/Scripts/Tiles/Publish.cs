@@ -71,6 +71,12 @@ public class Publish : MonoBehaviour
         c.a = 0f;
         tmp.color = c;
     }
+    public bool isInDictionary(string tileType)
+    {
+        bool inDict = bookStoryElementDict.ContainsKey(tileType);
+        Debug.Log($"checking the dictionary it says {inDict}  " + string.Join(", ", bookStoryElementDict.Keys));
+        return inDict;
+    }
 
     public void PublishButtonClicked()
     {        

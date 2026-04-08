@@ -256,6 +256,10 @@ public class PurchaseManager : MonoBehaviour
                 uiText.text = $"This bookshelf holds your collection of published stories. Click them to read.";   
             }
         }
+        else if (item == "grow")
+        {
+            uiText.text = "To write your first book, you must grow one Genre, Setting, and Character.";
+        }
         else
         {
             uiText.text = $"You cannot purchase a {item} until you have published 1 book.";

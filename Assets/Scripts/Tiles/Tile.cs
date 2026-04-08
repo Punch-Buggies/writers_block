@@ -44,9 +44,11 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     bool tileOccupied = false;
     bool startCooking = false;
     GameObject spawnedElement;
+    Publish publish; // we need the publish object
 
     void Awake()
     {
+        publish = FindAnyObjectByType<Publish>();
         unlockText.text = "";
         progressBar.SetActive(false);
         progressBarSlider = progressBar.GetComponent<Slider>();
@@ -122,8 +124,16 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         // if (unlocked && eventData.pointerDrag.GetComponent<Eraser>() == null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType && tileOccupied == false)
         if (unlocked && tileOccupied == false && eventData.pointerDrag.GetComponent<Eraser>() == null) 
         {
-            // check if story element or publishable
-            if (eventData.pointerDrag.GetComponent<StoryElement>() != null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
+            // you can't grow a tile if you already have one of that type in the publish zone and you havent made your first book yet
+            if (BookshelfManager.Instance.getBookCount() == 0 && publish.isInDictionary(tileType))
+            {
+                // display you must grow one of each
+                PurchaseManager.Instance.DisplayNoBooksPublished("grow");
+
+            }
+
+
+            else if (eventData.pointerDrag.GetComponent<StoryElement>() != null && eventData.pointerDrag.GetComponent<StoryElement>().GetStoryElement() == tileType)
             {
                 spawnedElement = eventData.pointerDrag;
                 growthCost = MoneyManager.Instance.tileGrowthCost;
