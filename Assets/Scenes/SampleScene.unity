@@ -4039,16 +4039,16 @@ RectTransform:
   m_GameObject: {fileID: 440533735}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1682.0643}
-  m_LocalScale: {x: 0.7555307, y: 0.7555307, z: 0.7555307}
+  m_LocalScale: {x: 0.6152891, y: 0.6152891, z: 0.6152891}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1405762047}
   m_Father: {fileID: 560014593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1152.75, y: -1561.85}
-  m_SizeDelta: {x: 423.66, y: 158.65}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 602, y: -473}
+  m_SizeDelta: {x: 423.66003, y: 158.65002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440533737
 MonoBehaviour:
@@ -5143,7 +5143,6 @@ RectTransform:
   m_Children:
   - {fileID: 1013147487}
   - {fileID: 2066524601}
-  - {fileID: 440533736}
   - {fileID: 1695117964}
   - {fileID: 205735006}
   - {fileID: 1135086155}
@@ -5160,6 +5159,7 @@ RectTransform:
   - {fileID: 1648562623}
   - {fileID: 1908068048}
   - {fileID: 666251312}
+  - {fileID: 440533736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5748,7 +5748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 85.875}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1276, y: -364.3}
+  m_AnchoredPosition: {x: -1107, y: -364.3}
   m_SizeDelta: {x: 6786.0757, y: 6130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666251313
@@ -18207,13 +18207,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 438793781}
     - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
+      propertyPath: startCam
+      value: 
+      objectReference: {fileID: 1699827572}
+    - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
       propertyPath: infoYesNo
       value: 
       objectReference: {fileID: 286950503}
     - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
+      propertyPath: quillTrail
+      value: 
+      objectReference: {fileID: 1701312013}
+    - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
       propertyPath: audioSlider
       value: 
       objectReference: {fileID: 8930842}
+    - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
+      propertyPath: bookshelfUI
+      value: 
+      objectReference: {fileID: 736872525}
+    - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
+      propertyPath: bookshelfCam
+      value: 
+      objectReference: {fileID: 176785269}
     - target: {fileID: 6237324273632911800, guid: 747f9fb09f711984aa5650515270a448, type: 3}
       propertyPath: BGAudioSource
       value: 
