@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PauseManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PauseManager : MonoBehaviour
 
     [SerializeField] GameObject pauseCam;
     [SerializeField] GameObject mainCam;
+    [SerializeField] GameObject startCam;
+    [SerializeField] GameObject bookshelfCam;
     [Header("Audio")]
     [SerializeField] Slider audioBGSlider;
     [SerializeField] Slider audioSFXSlider;
@@ -20,6 +23,11 @@ public class PauseManager : MonoBehaviour
     [Header("Toggle Info ON/OFF")]
     [SerializeField] TextMeshProUGUI purchaseYesNo;
     [SerializeField] TextMeshProUGUI infoYesNo;
+
+
+    [Header("GameObjects")]
+    [SerializeField] GameObject quillTrail;
+    [SerializeField] GameObject bookshelfUI;
 
 
     void Start()
@@ -38,10 +46,16 @@ public class PauseManager : MonoBehaviour
     {
         pauseCam.SetActive(true);
         mainCam.SetActive(false);
+        startCam.SetActive(false);
+        bookshelfCam.SetActive(false);
+
         BGAudioSource.Pause();
 
         Time.timeScale = 0f;
         IsPaused = true;
+
+        quillTrail.SetActive(false);
+        bookshelfUI.SetActive(false);
     }
 
     public void Resume()
@@ -53,6 +67,8 @@ public class PauseManager : MonoBehaviour
 
         Time.timeScale = 1f;
         IsPaused = false;
+
+        quillTrail.SetActive(true);
     }
 
     public void MainMenu()
@@ -124,7 +140,7 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (IsPaused) Resume();
             else
