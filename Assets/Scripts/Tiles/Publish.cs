@@ -178,7 +178,7 @@ public class Publish : MonoBehaviour
             bookStoryElementDict["Setting"],
             copiesSold,
             bookProfit,
-            false
+            bestSellerMultiplier // we automatically set best seller to false
             );
 
         newBook.blurb = BookBlurbGenerator.Instance.generate_blurb(newBook.genre, newBook.character, newBook.setting);
