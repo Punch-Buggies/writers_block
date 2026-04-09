@@ -20,19 +20,19 @@ public class Book
 
     public int copiesSold;
     public int moneyMade;
-    public bool bestSelling;
+    public int bestSelling;
     // [SerializeField] BookBlurbGenerator bookBlurbGenerator;
     public string blurb;
 
     // initialize
-    public Book(string genre, string character, string setting, int copiesSold, int moneyMade, bool bestSelling)
+    public Book(string genre, string character, string setting, int copiesSold, int moneyMade, int bestSelling)
     {
         this.genre = genre;
         this.character = character;
         this.setting = setting;
         this.copiesSold = copiesSold;
         this.moneyMade = moneyMade;
-        this.bestSelling = bestSelling;
+        this.bestSelling = bestSelling; // this is a number between 0 and 3 on how many hits it had for a best seller
 
 
         // increasing money because we sold something

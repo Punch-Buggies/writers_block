@@ -26,6 +26,7 @@ public class PassiveIncomeManager : MonoBehaviour
         bestSeller = FindAnyObjectByType<BestSeller>();
         passiveIncomeText.text = "";
         passiveIncomeText.alpha = 0f;
+
         originalTextPos = passiveIncomeText.rectTransform.anchoredPosition;
         StartCoroutine(IncomePassivelyAfterSomeTime());
     }
@@ -53,6 +54,12 @@ public class PassiveIncomeManager : MonoBehaviour
             yield return new WaitForSeconds(passiveTimer);
 
             // Debug.Log("Passive income time!");
+            /* 
+            if we have more than one published book,
+            randomly pick a 
+
+
+            */
             if(publishedBooks.Count > 0)
             {
                 // Pick a random book
@@ -60,16 +67,22 @@ public class PassiveIncomeManager : MonoBehaviour
                 string randomTitle = keys[Random.Range(0, keys.Count)];
                 Book book = publishedBooks[randomTitle];
 
-                // Check how many bestseller this book hits
-                string[] bestSellers = bestSeller.GetBestSellers();
-                int bestsellerHits = 0;
-                foreach(string bs in bestSellers)
-                {
-                    if(book.genre== bs || book.character == bs || book.setting == bs)
-                    {
-                        bestsellerHits++;
-                    }
-                }
+                int bestsellerHits = book.bestSelling;
+
+                // // Check how many bestseller this book hits
+                // string[] bestSellers = bestSeller.GetBestSellers();
+
+
+                // int bestsellerHits = 0;
+                // foreach(string bs in bestSellers)
+                // {
+                //     if(book.genre== bs || book.character == bs || book.setting == bs)
+                //     {
+                //         bestsellerHits++;
+                //     }
+                // }
+
+
                 MoneyManager.Instance.addMoney(passiveIncomeAmount * (bestsellerHits + 1));
                 
 

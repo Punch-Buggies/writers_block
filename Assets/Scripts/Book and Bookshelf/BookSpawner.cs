@@ -10,7 +10,7 @@ public class BookInsideSpawner : MonoBehaviour
 
     public void SpawnCover(string title, Book book)
     {
-        bool bestseller = book.bestSelling;
+        int bestseller = book.bestSelling;
         int copiesSold = book.copiesSold;
         // string blurb = book.blurb;
        
@@ -18,7 +18,11 @@ public class BookInsideSpawner : MonoBehaviour
         // spawn outside
         GameObject newCover = Instantiate(bookCoverPrefab, parentContainer);
         BookCover coverScript = newCover.GetComponent<BookCover>();
-        string bestsellerStr = bestseller ? "Bestseller" : "";;
+        string bestsellerStr = "";
+        if (bestseller > 0)
+        {
+            bestsellerStr = "Bestseller";
+        }
         string coverHeaderStr = $"{copiesSold}\ncopies sold\n{bestsellerStr}";
         Debug.Log("about to initialize cover script this is corner string: "+coverHeaderStr);
         coverScript.Initialize(title, coverHeaderStr, book);
