@@ -63,11 +63,15 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // get unlock cost
-        unlockCost = MoneyManager.Instance.spawnUnlockCost; 
+        if (!unlocked)
+        {
+            // get unlock cost
+            unlockCost = MoneyManager.Instance.spawnUnlockCost; 
 
-        unlockText.SetActive(true);
-        unlockCostText.text = $"${unlockCost:0.##}";
+            unlockText.SetActive(true);
+            unlockCostText.text = $"${unlockCost:0.##}";
+        }
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -94,12 +98,12 @@ public class SpawnLocation : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
               // and the spawner is not already unlocked
             if(MoneyManager.Instance.currentMoney >= unlockCost && unlocked == false)
             {
-            
                 MoneyManager.Instance.deductMoney(unlockCost);
                 AudioManager.Instance.PlaySFX("purchase");
                 UnlockLocation();
                 //update cost
                 MoneyManager.Instance.increaseSpawnCost();
+                // disable price showing
             }
             // it has not been unlocked BUT they have no money
             if(MoneyManager.Instance.currentMoney < unlockCost && unlocked == false)
