@@ -383,7 +383,7 @@ public static class NounPluralizer
 
     private static readonly HashSet<string> NoChange = new()
     {
-        "sheep","deer","fish","aircraft","species","series","bison","paperwork"
+        "sheep","deer","fish","aircraft","species","series","bison","paperwork","gold"
     };
 
     private static readonly HashSet<string> FExceptions = new()
