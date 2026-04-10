@@ -202,7 +202,7 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
             draggable.enabled = false;
 
             // start playing the grow finish audio with 0.8 seconds left
-            if (timer >= 9.1f && playGrowSound == true)
+            if (timer >= 9.4f && playGrowSound == true)
             {
                 AudioManager.Instance.PlaySFX("grow finish");
                 playGrowSound = false;
