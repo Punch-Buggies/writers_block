@@ -374,7 +374,11 @@ public static class NounPluralizer
         {"tooth","teeth"},
         {"foot","feet"},
         {"ox","oxen"},
-        {"die","dice"}
+        {"die","dice"},
+        {"whisky","whiskies"},
+        {"tobacco","tobaccos"},
+        {"ceo","ceos"},
+        {"merperson","merpeople"}
     };
 
     private static readonly HashSet<string> NoChange = new()
