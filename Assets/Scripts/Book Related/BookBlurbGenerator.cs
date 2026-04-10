@@ -372,14 +372,19 @@ public static class NounPluralizer
         {"mouse","mice"},
         {"goose","geese"},
         {"tooth","teeth"},
+        {"shark tooth", "shark teeth"},
         {"foot","feet"},
         {"ox","oxen"},
-        {"die","dice"}
+        {"die","dice"},
+        {"whisky","whiskies"},
+        {"tobacco","tobaccos"},
+        {"ceo","ceos"},
+        {"merperson","merfolk"}
     };
 
     private static readonly HashSet<string> NoChange = new()
     {
-        "sheep","deer","fish","aircraft","species","series","bison","paperwork"
+        "sheep","deer","fish","aircraft","species","series","bison","paperwork","gold"
     };
 
     private static readonly HashSet<string> FExceptions = new()
