@@ -20,7 +20,7 @@ public class ScrollbarIncrementer : MonoBehaviour
     {
         IncrementDecrementSequence();//invoke the scroll once immediately to avoid delay
         InvokeRepeating("IncrementDecrementSequence", 0.5f, HoldFrequency);
-
+        Debug.Log($"[SCROLLBAR INCREMENTER] pointer is DOWN starting audio");
         // start audio
         StartScrollAudio();
     }
@@ -29,7 +29,7 @@ public class ScrollbarIncrementer : MonoBehaviour
     {
         //stop scrolling
         CancelInvoke("IncrementDecrementSequence");
-
+        Debug.Log($"[SCROLLBAR INCREMENTER] pointer is UP stopping audio");
         // stop audio
         StopScrollAudio();
     }
@@ -126,16 +126,19 @@ public class ScrollbarIncrementer : MonoBehaviour
     {
         // this is called in pointer up
         // hard stop audio
+        scrollSource.loop = false;
         scrollSource.Stop();
     }
     private void CheckScrollBounds()
     {
+        // called in increment/decrement
         // stops audio if we reach either end
         // give some space for the boundary
         if (Target.value <= 0.001f || Target.value >= 0.999f)
         {
             StopScrollAudio();
         }
+        Debug.Log($"[SCROLLBAR INCREMENTER] check scroll bounds says its not the end, audio should still play");
     }
 
 }
