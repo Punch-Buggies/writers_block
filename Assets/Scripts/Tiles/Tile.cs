@@ -338,7 +338,6 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
                 // changing color now that it is unlocked
                 changeColor();
-                unlockText.text = tileType;
                 // taking away the offset when it gets unlocked bc there is only one line of text now
                 unlockText.rectTransform.anchoredPosition -= new Vector2(0, 11);
 
