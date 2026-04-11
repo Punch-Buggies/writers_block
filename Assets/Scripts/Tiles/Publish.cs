@@ -24,7 +24,7 @@ public class Publish : MonoBehaviour
 
     [SerializeField] GameObject publishedBookFloatingText;
     [SerializeField] float publishFloatDistance = 2f;
-[SerializeField] float publishFloatDuration = 1.2f;
+    [SerializeField] float publishFloatDuration = 1.2f;
 
     Color32 flashColor = new Color32(197, 120, 83, 255);
     Color originalColor = Color.white;

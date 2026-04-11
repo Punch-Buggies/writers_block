@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 4130941976158816759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.54036, y: 0.54036, z: 0.54036}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2302362867784449780}
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0000017881, y: -0.0000038147}
-  m_SizeDelta: {x: 307.3062, y: 112.1231}
+  m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1925010383960804846
 CanvasRenderer:
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278806318
-  m_fontColor: {r: 0.1813639, g: 0.404, b: 0.034339994, a: 1}
+    rgba: 4278931712
+  m_fontColor: {r: 0, g: 0.319, b: 0.04279272, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 66.6
   m_fontSizeBase: 49.46
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -166,7 +166,7 @@ RectTransform:
   m_GameObject: {fileID: 5967086130775231263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1387.9355}
-  m_LocalScale: {x: 0.84998614, y: 0.84998614, z: 0.84998614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3007444084787023278}
@@ -175,7 +175,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -579.5, y: -145}
-  m_SizeDelta: {x: 200, y: 115}
+  m_SizeDelta: {x: 250, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5078350226567252796
 CanvasRenderer:
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
   initialLocation: {fileID: 2302362867784449780}
-  scaleFactor: 2
+  scaleFactor: 1.5
   scaleTime: 0.1
 --- !u!114 &1189410299705398371
 MonoBehaviour:

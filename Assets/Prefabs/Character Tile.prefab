@@ -233,8 +233,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cdbdc6568498d7d43aa86759fefd4fbb, type: 2}
-  m_sharedMaterial: {fileID: -2124985756589581026, guid: cdbdc6568498d7d43aa86759fefd4fbb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 47f4e152d8f4d564289fe07a9ed57d7b, type: 2}
+  m_sharedMaterial: {fileID: 1008008764561037566, guid: 47f4e152d8f4d564289fe07a9ed57d7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 25
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -370,8 +370,8 @@ MonoBehaviour:
   growImage: {fileID: -4893136575357721295, guid: b5da5ad04ae0b374e97541d9d448f8d0, type: 3}
   unlockCost: 0
   growthCost: 0
-  lockColor: {r: 0.7169812, g: 0.5586273, b: 0.26041296, a: 0.8235294}
-  unlockColor: {r: 0.90588236, g: 0.79607844, b: 0.32941177, a: 0.62352943}
+  lockColor: {r: 0.4, g: 0.2, b: 0.6, a: 0.8156863}
+  unlockColor: {r: 0.67042816, g: 0.5788471, b: 0.85882354, a: 0.6745098}
 --- !u!222 &2320129579048585539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.90588236, g: 0.7978303, b: 0.3279294, a: 0.5882353}
+  m_Color: {r: 0.6695437, g: 0.5788471, b: 0.85882354, a: 0.69411767}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
