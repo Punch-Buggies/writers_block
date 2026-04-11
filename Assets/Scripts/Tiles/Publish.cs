@@ -25,6 +25,9 @@ public class Publish : MonoBehaviour
     [SerializeField] GameObject publishedBookFloatingText;
     [SerializeField] float publishFloatDistance = 2f;
     [SerializeField] float publishFloatDuration = 1.2f;
+    Vector3 publishTextStartPos;
+    Coroutine publishTextCoroutine;
+    Sequence publishTextSequence;
 
     Color32 flashColor = new Color32(197, 120, 83, 255);
     Color originalColor = Color.white;
@@ -70,6 +73,8 @@ public class Publish : MonoBehaviour
         Color c = tmp.color;
         c.a = 0f;
         tmp.color = c;
+
+        publishTextStartPos = publishedBookFloatingText.transform.position;
     }
     public bool isInDictionary(string tileType)
     {
@@ -213,43 +218,46 @@ public class Publish : MonoBehaviour
         // display floating text for published book and money earned
         TextMeshProUGUI tmp = publishedBookFloatingText.GetComponent<TextMeshProUGUI>();
         tmp.text = "Published: " + title + "\nMoney Earned: $" + bookProfit;
-        StartCoroutine(AnimatePublishText(tmp));
+        if (publishTextCoroutine != null)
+            StopCoroutine(publishTextCoroutine);
+        publishTextCoroutine = StartCoroutine(AnimatePublishText(tmp));
 
 
     }
 
     IEnumerator AnimatePublishText(TextMeshProUGUI tmp)
     {
-        // Kill any existing tweens
-        tmp.DOKill();
+        // Kill the sequence directly if it exists
+        if (publishTextSequence != null)
+        {
+            publishTextSequence.Kill();
+            publishTextSequence = null;
+        }
 
-        // Reset
-        Vector3 startPos = publishedBookFloatingText.transform.position;
+        // Reset position and alpha immediately
+        publishedBookFloatingText.transform.position = publishTextStartPos;
         Color c = tmp.color;
         c.a = 0f;
         tmp.color = c;
 
-        Sequence seq = DOTween.Sequence();
+        publishTextSequence = DOTween.Sequence();
 
-        // Float up
-        seq.Append(publishedBookFloatingText.transform
-            .DOMove(startPos + Vector3.up * publishFloatDistance, publishFloatDuration)
+        publishTextSequence.Append(publishedBookFloatingText.transform
+            .DOMove(publishTextStartPos + Vector3.up * publishFloatDistance, publishFloatDuration)
             .SetEase(Ease.OutCubic));
 
-        // Fade in
-        seq.Insert(0f, DOTween
+        publishTextSequence.Insert(0f, DOTween
             .To(() => tmp.color.a, a => { c = tmp.color; c.a = a; tmp.color = c; }, 1f, publishFloatDuration * 0.3f)
             .SetEase(Ease.OutQuad));
 
-        // Fade out
-        seq.Insert(publishFloatDuration * 0.5f, DOTween
+        publishTextSequence.Insert(publishFloatDuration * 0.5f, DOTween
             .To(() => tmp.color.a, a => { c = tmp.color; c.a = a; tmp.color = c; }, 0f, publishFloatDuration * 0.5f)
             .SetEase(Ease.InQuad));
 
-        yield return seq.WaitForCompletion();
+        yield return publishTextSequence.WaitForCompletion();
 
-        // Reset position for next time
-        publishedBookFloatingText.transform.position = startPos;
+        publishedBookFloatingText.transform.position = publishTextStartPos;
+        publishTextSequence = null;
     }
 
     public void PublishStoryElement(string storyElement, string elementType)
