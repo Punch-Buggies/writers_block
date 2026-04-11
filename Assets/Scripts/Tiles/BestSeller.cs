@@ -218,7 +218,7 @@ public class BestSeller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             AudioManager.Instance.PlaySFX("click");
             // display info
-            string text = $"Book profit multiples for each tile in the publish zone that matches its best seller. Resets every minute.";
+            string text = $"Book profit multiplies for each tile in the publish zone that matches its bestseller. Resets every minute.";
             PurchaseManager.Instance.DisplayTileInfo(text);
             }
         
