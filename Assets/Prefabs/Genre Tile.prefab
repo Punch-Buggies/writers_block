@@ -67,8 +67,8 @@ MonoBehaviour:
   growImage: {fileID: -4893136575357721295, guid: b5da5ad04ae0b374e97541d9d448f8d0, type: 3}
   unlockCost: 0
   growthCost: 0
-  lockColor: {r: 0.37767, g: 0.52601844, b: 0.6509434, a: 0.8784314}
-  unlockColor: {r: 0.5882353, g: 0.8117647, b: 1, a: 0.6745098}
+  lockColor: {r: 0.372549, g: 0.6196079, b: 0.627451, a: 1}
+  unlockColor: {r: 0.67415655, g: 0.8580174, b: 0.881, a: 0.74509805}
 --- !u!222 &1168172821038102807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2509804, g: 0.49411768, b: 0.6392157, a: 0.59607846}
+  m_Color: {r: 0.715394, g: 0.78475225, b: 0.794, a: 0.5529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7137255, g: 0.81960785, b: 0.99215686, a: 1}
+  m_Color: {r: 0.5294118, g: 0.8078432, b: 0.9215687, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

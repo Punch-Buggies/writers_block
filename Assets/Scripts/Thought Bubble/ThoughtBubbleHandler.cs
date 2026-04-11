@@ -61,11 +61,13 @@ public class ThoughtBubbleHandler : MonoBehaviour
     {
         int randomElementNumber = Random.Range(0, elements.Length);
         int spawnCount = Mathf.Min(elements.Length, elementSpawnLocations.Length); // Make sure we don't spawn more elements than we have locations
+        // roation of -4 for alignment
+        Quaternion rotation = Quaternion.Euler(0, 0, -4f);
         
         GameObject spawnedElement = Instantiate(
             storyElementPrefab, 
             elementSpawnTransform.position, 
-            Quaternion.identity, 
+            rotation, 
             transform // Set as child of this GameObject
         );
         spawnedElement.transform.SetParent(transform, worldPositionStays: false);
