@@ -90,6 +90,9 @@ public class Tile : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         DraggableItem draggable = spawnedElement.GetComponent<DraggableItem>();
         StoryElement storyElement = spawnedElement.GetComponent<StoryElement>();
 
+        // roate spawned element back to flat 0
+        spawnedElement.transform.rotation = Quaternion.Euler(0, 0, 0);
+
         // start progress bar
         // progressBar.SetActive(true);
         // audio

@@ -9,10 +9,10 @@ public class PublishHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     Publish publish;
     [SerializeField] GameObject darkBG;
     
-    void Awake()
-    {
-        publish = FindAnyObjectByType<Publish>();
-    }
+    //void Awake()
+    //{
+    //    publish = FindAnyObjectByType<Publish>();
+    //}
     public void OnPointerEnter(PointerEventData eventData)
     {
         // if mouse enters area && info is on, turn on dark bg
@@ -37,7 +37,7 @@ public class PublishHighlight : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             AudioManager.Instance.PlaySFX("click");
             // display info on publish button
-            string text = "This is the publish button, when all publish zones have a tile, this button will write your story. Find all your published stories in the bookshelf.";
+            string text = "When the publish zone is full of story ideas, this button will write your story. Find all your published stories in the bookshelf.";
             PurchaseManager.Instance.DisplayTileInfo(text);
         }
     }
