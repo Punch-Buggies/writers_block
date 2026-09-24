@@ -71,6 +71,8 @@ public class PassiveIncomeManager : MonoBehaviour
                     }
                 }
                 MoneyManager.Instance.addMoney(passiveIncomeAmount * (bestsellerHits + 1));
+                MoneyManager.Instance.addMoney(passiveIncomeAmount * (bestsellerHits + 1));
+
                 
 
                 string bestsellerMessage = "";

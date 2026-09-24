@@ -88,6 +88,13 @@ public class MoneyManager : MonoBehaviour
         moneyUI.text = $"${currentMoney:0.##}";
     }
 
+   public void doubleMoney(double amount)
+    {
+        currentMoney = amount * 2;
+        moneyUI.text = $"${currentMoney:0.##}";
+    }
+
+
     public void increaseTileCost()
     // this is called in Tile.cs
     {
